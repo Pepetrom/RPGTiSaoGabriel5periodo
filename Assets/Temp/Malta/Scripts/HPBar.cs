@@ -9,8 +9,15 @@ public class HPBar : MonoBehaviour
     public Slider easebar;
     public float maxHP;
     public float currentHP;
-    public float moveSpeed; // Use this to set how fast easebar moves towards hpbar
+    public float moveSpeed;
+    public float lerpSpeed;
+    private float targetHP;
+    public static HPBar hpbarInstance;
 
+    private void Awake()
+    {
+        hpbarInstance = this;
+    }
     private void Start()
     {
         currentHP = maxHP;
@@ -22,14 +29,15 @@ public class HPBar : MonoBehaviour
 
     private void Update()
     {
-        UpdateHPBar();
+        UpdateHPBarTakingDamage();
+        RecoverLifebyHit();
     }
 
-    private void UpdateHPBar()
+    private void UpdateHPBarTakingDamage()
     {
         if (hpbar.value != currentHP)
         {
-            hpbar.value = currentHP;
+            UpdateHealthBar();
         }
         if(hpbar.value != easebar.value)
         {
@@ -50,6 +58,9 @@ public class HPBar : MonoBehaviour
         }
         easebar.value = Mathf.MoveTowards(easebar.value, hpbar.value, moveSpeed * Time.deltaTime);
 
+    }
+    private void RecoverLifebyHit()
+    {
         if (Input.GetKeyDown(KeyCode.Q))
         {
             float d = 0.3f;
@@ -59,6 +70,12 @@ public class HPBar : MonoBehaviour
             }
             Debug.Log("Q");
         }
+    }
+    public void UpdateHealthBar()
+    {
+        hpbar.value = Mathf.Lerp(hpbar.value, currentHP, lerpSpeed);
+        //hpbar.value = easebar.value;
+        Debug.Log("Atualizando a barra de vida");
     }
 
     private void TakeDamage(float damage)
