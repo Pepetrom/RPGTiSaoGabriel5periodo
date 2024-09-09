@@ -30,7 +30,7 @@ public class A_SideStep : IAction
                 return;
             }
             PlayerController.instance.canDoAction[slot] = false;
-            PlayerController.instance.moveDirection += PlayerController.instance.transform.forward * dashForce * Time.fixedDeltaTime;
+            PlayerController.instance.moveDirection += PlayerController.instance.moveDirection * dashForce * Time.fixedDeltaTime;
             dashTime -= Time.fixedDeltaTime * 4;
         }
         else

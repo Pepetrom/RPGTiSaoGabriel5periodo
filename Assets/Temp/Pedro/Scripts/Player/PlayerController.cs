@@ -45,19 +45,13 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         //InitialActions();
-        actions[0] = new A_Dash();
+        actions[0] = new A_SideStep();
         actions[0].SetSlot(0);
         life = maxlife;
     }
-    /*
-     * water hand dash punch
-     * wind hand pega projéteis próximos e volta nos oponentes
-     * earth hand bate no chão e causa dano
-     * fire hand atira 
-     * */
     void InitialActions()
     {
-        actions[0] = new A_Dash();
+        actions[0] = new A_SideStep();
         for (int i = 0; i < actions.Length; i++)
         {
             actions[i].SetSlot(i);
