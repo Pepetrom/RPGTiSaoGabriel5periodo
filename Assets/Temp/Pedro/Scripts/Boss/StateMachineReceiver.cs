@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StateMachineReceiver : MonoBehaviour
 {
+    //receptor dos métodos relacionados aos event triggers
     public BossStateMachine boss;
     public void OnAnimationEvent()
     {
@@ -12,5 +13,17 @@ public class StateMachineReceiver : MonoBehaviour
     public void Attack1toIdle()
     {
         boss.Attack1toIdle();
+    }
+    public void AllowColliderRightHand()
+    {
+        boss.AllowColliderRightHand();
+    }
+    public void GrabRockEvent()
+    {
+        boss.GrabRockEvent();
+    }
+    public void ThrowRockEvent()
+    {
+        boss.ThrowRockEvent();
     }
 }

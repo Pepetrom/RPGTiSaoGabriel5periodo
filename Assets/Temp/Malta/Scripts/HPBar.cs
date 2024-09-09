@@ -39,31 +39,18 @@ public class HPBar : MonoBehaviour
         {
             UpdateHealthBar();
         }
-        if(hpbar.value != easebar.value)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                float r = Random.value;
-                easebar.value = hpbar.value;
-                TakeDamage(r);
-            }
-        }
-        else
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                float r = Random.value;
-                TakeDamage(r);
-            }
-        }
-        easebar.value = Mathf.MoveTowards(easebar.value, hpbar.value, moveSpeed * Time.deltaTime);
 
+        // Smoothly decrease ease bar to current HP
+        if (easebar.value != hpbar.value)
+        {
+            easebar.value = Mathf.MoveTowards(easebar.value, hpbar.value, moveSpeed * Time.deltaTime);
+        }
     }
     private void RecoverLifebyHit()
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            float d = 0.3f;
+            float d = 8f;
             if(hpbar.value != easebar.value && easebar.value < maxHP && (d <= easebar.value - currentHP))
             {
                 currentHP += d;
@@ -78,10 +65,20 @@ public class HPBar : MonoBehaviour
         Debug.Log("Atualizando a barra de vida");
     }
 
-    private void TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
+        // If the ease bar is still higher than the HP bar (mid-transition), snap it to the current HP value
+        if (easebar.value != hpbar.value)
+        {
+            easebar.value = hpbar.value; // Force the easebar to catch up before applying new damage
+        }
+
+        // Now apply the new damage
         currentHP -= damage;
-        // Ensure currentHP doesn't go below 0
-        currentHP = Mathf.Max(currentHP, 0);
+        currentHP = Mathf.Max(currentHP, 0); // Ensure currentHP doesn't go below 0
+
+        // Immediately set the HP bar to reflect the new current HP
+        hpbar.value = currentHP;
     }
+
 }

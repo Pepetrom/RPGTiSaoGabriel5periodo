@@ -11,8 +11,10 @@ public class RunState : IBossFSM
     }
     public void OnEnter()
     {
+        //Não usar o anystate para criar animações de loop
         controller.boss.speed = 15f;
         controller.animator.SetBool("Run", true);
+        Debug.Log("Correndo");
     }
 
     public void OnExit()
