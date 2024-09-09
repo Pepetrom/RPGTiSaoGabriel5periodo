@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     [Header("Dash Settings------------------")]
     public float baseDashForce;
     public float baseDashCooldown;
-    public ParticleSystem water;
+    public ParticleSystem particle;
     [Header("Atack Settings------------------")]
     public float baseDamage;
     public float atackSpeed;
