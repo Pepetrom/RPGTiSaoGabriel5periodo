@@ -20,7 +20,7 @@ public class A_Dash : IAction
         dashTime = 1;
         dashing = true;
     }
-    public void DoAction()
+    public void ActionUpdate()
     {
         if (dashing)
         {

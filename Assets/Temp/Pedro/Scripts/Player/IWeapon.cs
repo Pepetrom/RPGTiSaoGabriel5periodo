@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IWeapon : MonoBehaviour
+public interface IWeapon 
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public bool CanBeInterupted();
+    public void SetSlot(int slot);
+    public void AtackStart();
+    public void AtackUpdate();
+    public void EventOne();
+    public void EventTwo();
+    public void EventThree();
+    public void Hit(Collider other);
+    public void InteruptAtack();
+    public void AtackEnd();
 }

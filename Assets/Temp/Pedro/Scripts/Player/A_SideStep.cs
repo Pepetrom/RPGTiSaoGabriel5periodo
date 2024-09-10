@@ -3,8 +3,8 @@ using UnityEngine;
 public class A_SideStep : IAction
 {
     public int slot;
-    public float dashForce;
-    public float dashCooldown;
+    float dashForce;
+    float dashCooldown;
     float dashTime;
     float dashTimer;
     bool dashing;
@@ -21,7 +21,7 @@ public class A_SideStep : IAction
         dashing = true;
         PlayerController.instance.particle.gameObject.SetActive(true);
     }
-    public void DoAction()
+    public void ActionUpdate()
     {
         if (dashing)
         {

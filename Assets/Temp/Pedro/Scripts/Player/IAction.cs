@@ -6,6 +6,6 @@ public interface IAction
 {
     public void SetSlot(int slot);
     public void ActionStart();
-    public void DoAction();
+    public void ActionUpdate();
     public void ActionEnd();
 }
