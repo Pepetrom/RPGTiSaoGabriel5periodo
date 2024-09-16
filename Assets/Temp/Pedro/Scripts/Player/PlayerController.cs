@@ -23,8 +23,8 @@ public class PlayerController : MonoBehaviour
     public float baseDamage;
     public float atackSpeed;
     float damage = 0;
+    public int comboCounter = 1;
     public AtackCollider atackCollider;
-    public Animator tempSwordAnimator;
     [Header("Defese Settings------------------")]
     public float maxlife, invencibilityTime;
     bool canTakeDamage = true;
@@ -93,7 +93,7 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                atacks[0].AtackStart();
+                Atack(0);
             }
             /*
             else if (Input.GetKeyDown(KeyCode.Mouse1))
@@ -104,14 +104,9 @@ public class PlayerController : MonoBehaviour
     }
     void Atack(int slot)
     {
-        canDoAtack[slot] = false;
         canMove = false;
-        animator.speed = atackSpeed;
-        moveDirection = Vector3.zero;
-        runningMultiplier = 1;
-        animator.SetBool("Atacking", true);
-        animator.SetBool("Walk", false);
-        animator.SetBool("Run", false);
+        //animator.speed = atackSpeed;
+        atacks[slot].AtackStart();
     }
 
     void Move()
@@ -121,6 +116,7 @@ public class PlayerController : MonoBehaviour
         moveDirection.Normalize();
         moveDirection = moveDirection * moveSpeed * runningMultiplier;
         moveDirection.y = 0;
+        animator.SetBool("Walk", moveDirection != Vector3.zero);
     }
 
     public void TakeDamage(float damage)
@@ -149,7 +145,6 @@ public class PlayerController : MonoBehaviour
         worldMousePosition = fakeCamera.ScreenToWorldPoint(mousePosition);
         direction = worldMousePosition;
         direction.y = model.transform.position.y;
-
         model.transform.LookAt(direction);
     }
 

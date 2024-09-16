@@ -8,9 +8,10 @@ public interface IWeapon
     public void SetSlot(int slot);
     public void AtackStart();
     public void AtackUpdate();
-    public void EventOne();
-    public void EventTwo();
-    public void EventThree();
+    public void CloseComboWindow();
+    public void StartRegisterHit();
+    public void StopRegisterHit();
+    public void OpenComboWindow();
     public void Hit(Collider other);
     public void InteruptAtack();
     public void AtackEnd();

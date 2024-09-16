@@ -5,17 +5,21 @@ using UnityEngine;
 public class ControllerForAnim : MonoBehaviour
 {
     public int slot;
-    public void EventOne()
+    public void StartRegisterHit()
     {
-        PlayerController.instance.atacks[slot].EventOne();
+        PlayerController.instance.atacks[slot].StartRegisterHit();
     }
-    public void EventTwo()
+    public void StopRegisterHit()
     {
-        PlayerController.instance.atacks[slot].EventTwo();
+        PlayerController.instance.atacks[slot].StopRegisterHit();
     }
-    public void EventThree()
+    public void OpenComboWindow()
     {
-        PlayerController.instance.atacks[slot].EventThree();
+        PlayerController.instance.atacks[slot].OpenComboWindow();
+    }
+    public void CloseComboWindow()
+    {
+        PlayerController.instance.atacks[slot].CloseComboWindow();
     }
     public void AtackEnd()
     {
