@@ -31,7 +31,7 @@ public class W_TestAtack : IWeapon
         PlayerController.instance.canMove = false;
         canBeInterupted = true;
         interupted = false;
-        PlayerController.instance.animator.SetTrigger("Atack"+ PlayerController.instance.comboCounter);
+        PlayerController.instance.animator.SetTrigger(("Atack"+ PlayerController.instance.comboCounter));
     }
     public void AtackUpdate()
     {
@@ -66,7 +66,7 @@ public class W_TestAtack : IWeapon
         if (!interupted)
         {
             PlayerController.instance.comboCounter ++;
-            PlayerController.instance.comboCounter = Mathf.Clamp(PlayerController.instance.comboCounter, 1, 3);
+            PlayerController.instance.comboCounter = Mathf.Clamp(PlayerController.instance.comboCounter, 1, 2);
             PlayerController.instance.canDoAtack[slot] = true;
         }
     }
