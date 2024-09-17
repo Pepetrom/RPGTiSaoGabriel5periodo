@@ -19,7 +19,7 @@ public class A_SideStep : IAction
         PlayerController.instance.canDoAction[slot] = false;
         dashTime = 1;
         dashing = true;
-        PlayerController.instance.particle.gameObject.SetActive(true);
+        PlayerController.instance.particle.Play();
     }
     public void ActionUpdate()
     {
@@ -50,7 +50,6 @@ public class A_SideStep : IAction
     {
         PlayerController.instance.canDoAction[slot] = true;
         dashing = false;
-        PlayerController.instance.particle.gameObject.SetActive(false);
         dashTimer = 0;
     }
 

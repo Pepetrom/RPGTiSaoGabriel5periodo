@@ -13,6 +13,7 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         lifeActual -= damage;
+        GameManager.instance.SpawnDamageNumber(damage, transform);
         if(lifeActual <= 0)
         {
             Destroy(this.gameObject);

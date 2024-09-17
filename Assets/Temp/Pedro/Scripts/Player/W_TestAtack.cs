@@ -10,7 +10,7 @@ public class W_TestAtack : IWeapon
     bool canBeInterupted = false;
     bool interupted = true;
     bool atacking = false;
-
+    int comboSize = 3;
     public bool CanBeInterupted()
     {
         return canBeInterupted;
@@ -24,12 +24,10 @@ public class W_TestAtack : IWeapon
     {
         PlayerController.instance.canDoAtack[slot] = false;
         PlayerController.instance.moveDirection = Vector3.zero;
-        PlayerController.instance.runningMultiplier = 1;
         PlayerController.instance.animator.SetBool("Atacking", true);
         PlayerController.instance.animator.SetBool("Walk", false);
-        //PlayerController.instance.animator.SetBool("Run", false);
         PlayerController.instance.canMove = false;
-        canBeInterupted = true;
+        canBeInterupted = false;
         interupted = false;
         PlayerController.instance.animator.SetTrigger(("Atack"+ PlayerController.instance.comboCounter));
     }
@@ -58,7 +56,7 @@ public class W_TestAtack : IWeapon
     {
         if (!interupted)
         {
-            other.GetComponent<EnemyHealth>().TakeDamage(1);
+            other.GetComponent<EnemyHealth>().TakeDamage(PlayerController.instance.baseDamage);
         }
     }
     public void OpenComboWindow()
@@ -66,29 +64,31 @@ public class W_TestAtack : IWeapon
         if (!interupted)
         {
             PlayerController.instance.comboCounter ++;
-            PlayerController.instance.comboCounter = Mathf.Clamp(PlayerController.instance.comboCounter, 1, 2);
+            if(PlayerController.instance.comboCounter > comboSize) PlayerController.instance.comboCounter = 1;
             PlayerController.instance.canDoAtack[slot] = true;
+            canBeInterupted = true;
         }
     }
     public void CloseComboWindow()
     {
         PlayerController.instance.comboCounter = 1;
         PlayerController.instance.canDoAtack[slot] = false;
+        canBeInterupted = false;
     }
     public void AtackEnd()
     {
         PlayerController.instance.canDoAtack[slot] = true;
         PlayerController.instance.canMove = true;
         PlayerController.instance.comboCounter = 1;
+        canBeInterupted = false;
         PlayerController.instance.animator.SetBool("Atacking", false);
-        interupted = true;
     }
 
     public void InteruptAtack()
     {
-        interupted = true;
         PlayerController.instance.animator.SetTrigger("stopAnim");
+        interupted = true;
+        StopRegisterHit();
         AtackEnd();
-        PlayerController.instance.atackCollider.gameObject.SetActive(false);
     }
 }

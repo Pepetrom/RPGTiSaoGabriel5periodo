@@ -20,10 +20,11 @@ public class PlayerController : MonoBehaviour
     public float baseDashCooldown;
     public ParticleSystem particle;
     [Header("Atack Settings------------------")]
-    public float baseDamage;
+    public int baseDamage;
     public float atackSpeed;
     float damage = 0;
     public int comboCounter = 1;
+    Transform target = null;
     public AtackCollider atackCollider;
     [Header("Defese Settings------------------")]
     public float maxlife, invencibilityTime;
@@ -64,10 +65,7 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (canMove)
-        {
-            Move();
-        }
+        Move();
         DoActions();
         rb.velocity = moveDirection;
     }
@@ -111,6 +109,7 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
+        if (!canMove) return;
         moveDirection.x = Input.GetAxis("Horizontal");
         moveDirection.z = Input.GetAxis("Vertical");
         moveDirection.Normalize();
@@ -138,8 +137,16 @@ public class PlayerController : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void LookAtTarget()
+    {
+        if (!canMove || !target ) return;
+        direction = target.position;
+        direction.y = model.transform.position.y;
+        model.transform.LookAt(direction);
+    }
     public void LookAtMouse()
     {
+        if (!canMove) return;
         mousePosition = Input.mousePosition;
         mousePosition.z = fakeCamera.transform.position.y; 
         worldMousePosition = fakeCamera.ScreenToWorldPoint(mousePosition);

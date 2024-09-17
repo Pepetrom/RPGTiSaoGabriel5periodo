@@ -67,12 +67,14 @@ public class HPBar : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        GameManager.instance.SpawnDamageNumber((int)damage, PlayerController.instance.transform);
+
         // If the ease bar is still higher than the HP bar (mid-transition), snap it to the current HP value
         if (easebar.value != hpbar.value)
         {
             easebar.value = hpbar.value; // Force the easebar to catch up before applying new damage
         }
-
+        
         // Now apply the new damage
         currentHP -= damage;
         currentHP = Mathf.Max(currentHP, 0); // Ensure currentHP doesn't go below 0
