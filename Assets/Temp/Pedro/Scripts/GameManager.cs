@@ -12,7 +12,8 @@ public class GameManager : MonoBehaviour
     }
     public void SpawnDamageNumber(int damageNumber, Transform targetLocation)
     {
-        DamagePopUp dmp = Instantiate(damagePopUp, targetLocation.position, transform.rotation).GetComponent<DamagePopUp>();
+        GameObject temp = Instantiate(damagePopUp, targetLocation.position, transform.rotation);
+        DamagePopUp dmp = temp.GetComponent<DamagePopUp>();
         dmp.StartDamage(damageNumber);
     }
 }

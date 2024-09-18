@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class DamagePopUp : MonoBehaviour
 {
-    public Text damageText;
-    public float damageTime = 1;
+    public TextMesh damageText;
+    public float damageTime = 2;
     float damageTimer = 0;
     public void StartDamage(int damageNumber)
     {
@@ -17,7 +17,7 @@ public class DamagePopUp : MonoBehaviour
     void FixedUpdate()
     {
         damageTimer += Time.fixedDeltaTime;
-        transform.position += Vector3.up * Time.fixedDeltaTime;
+        transform.position += Vector3.up * Time.fixedDeltaTime * 10;
         if(damageTimer >= damageTime)
         {
             Destroy(this.gameObject);

@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     public Vector3 moveDirection;
     public Animator animator;
     public GameObject model;
-    public Camera fakeCamera;
     [Header("Move Settings------------------")]
     public float moveSpeed;
     public float runningMultiplier = 1;
@@ -61,6 +60,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         LookAtMouse();
+        LookAtTarget();
         Controls();
     }
     void FixedUpdate()
@@ -92,12 +92,18 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 Atack(0);
-            }
-            /*
-            else if (Input.GetKeyDown(KeyCode.Mouse1))
+            }           
+        }
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            if (target)
             {
-                //Atack(1);
-            }*/
+                target = null;
+            }
+            else
+            {
+                DetectClosestEnemy();
+            }
         }
     }
     void Atack(int slot)
@@ -137,6 +143,27 @@ public class PlayerController : MonoBehaviour
         Destroy(gameObject);
     }
 
+    void DetectClosestEnemy()
+    {
+        Collider[] hits = Physics.OverlapSphere(model.transform.position, 15);
+        float closestDistance = Mathf.Infinity;
+        Transform closestEnemy = null;
+
+        foreach (Collider hit in hits)
+        {
+            if (hit.CompareTag("Enemy"))
+            {
+                
+                float distance = Vector3.Distance(transform.position, hit.transform.position);
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestEnemy = hit.transform;
+                }
+            }
+        }
+        target = closestEnemy;
+    }
     public void LookAtTarget()
     {
         if (!canMove || !target ) return;
@@ -146,10 +173,10 @@ public class PlayerController : MonoBehaviour
     }
     public void LookAtMouse()
     {
-        if (!canMove) return;
+        if (!canMove || target) return;
         mousePosition = Input.mousePosition;
-        mousePosition.z = fakeCamera.transform.position.y; 
-        worldMousePosition = fakeCamera.ScreenToWorldPoint(mousePosition);
+        mousePosition.z = mainCamera.transform.position.y; 
+        worldMousePosition = mainCamera.ScreenToWorldPoint(mousePosition);   
         direction = worldMousePosition;
         direction.y = model.transform.position.y;
         model.transform.LookAt(direction);
