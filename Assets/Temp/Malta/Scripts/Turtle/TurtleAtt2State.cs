@@ -28,7 +28,7 @@ public class TurtleAtt2State : ITurtleStateMachine
     {
         if (controller.impulse && !impulseApplied)
         {
-            controller.Impulse();
+            //controller.Impulse();
             impulseApplied = true;
         }
         if (!controller.antecipation)

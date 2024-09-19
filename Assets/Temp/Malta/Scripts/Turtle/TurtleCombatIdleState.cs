@@ -31,14 +31,18 @@ public class TurtleCombatIdleState : ITurtleStateMachine
 
     public void OnUpdate()
     {
-        /*if(controller.TargetDir().magnitude > controller.minCannonRange + 4 && controller.TargetDir().magnitude < controller.maxCannonRange)
+        if(controller.TargetDir().magnitude >= controller.minCannonRange && controller.TargetDir().magnitude <= controller.maxCannonRange)
         {
             controller.SetState(new TurtleCannonState(controller));
-        }*/
-        if(controller.TargetDir().magnitude < controller.minCannonRange + 10 && controller.TargetDir().magnitude > controller.minCannonRange)
+        }
+        else if(controller.TargetDir().magnitude >= controller.meleeRange && controller.TargetDir().magnitude < controller.minCannonRange)
         {
             controller.animator.SetBool("IsWalking", true);
             controller.SetState(new TurtleWalkState(controller));
+        }
+        else if (controller.TargetDir().magnitude > controller.maxCannonRange)
+        {
+            controller.SetState(new TurtleRunState(controller));
         }
         else
         {

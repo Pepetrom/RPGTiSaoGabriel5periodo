@@ -949,7 +949,7 @@ Rigidbody:
   serializedVersion: 4
   m_Mass: 80
   m_Drag: 0
-  m_AngularDrag: 0
+  m_AngularDrag: 30
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -983,8 +983,9 @@ MonoBehaviour:
   animator: {fileID: 381612274}
   agent: {fileID: 580531434}
   player: {fileID: 224354700}
-  maxCannonRange: 40
-  minCannonRange: 10
+  maxCannonRange: 50
+  minCannonRange: 30
+  meleeRange: 15
   attIdle: 0
   combo: 0
   antecipation: 0

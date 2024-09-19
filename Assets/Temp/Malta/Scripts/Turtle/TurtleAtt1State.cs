@@ -14,7 +14,7 @@ public class TurtleAtt1State : ITurtleStateMachine
     public void OnEnter()
     {
         impulseApplied = false;
-        controller.attackSpeed = 1000f;
+        controller.attackSpeed = 400f;
         controller.animator.SetBool("Attack1", true);
         controller.SortNumber();
         impulseApplied = false; 
@@ -33,7 +33,7 @@ public class TurtleAtt1State : ITurtleStateMachine
     {
         if (controller.impulse && !impulseApplied)
         {
-            controller.Impulse();
+            //controller.Impulse();
             impulseApplied = true;
         }
         if (!controller.antecipation)
@@ -43,12 +43,12 @@ public class TurtleAtt1State : ITurtleStateMachine
 
         if (controller.sortedNumber < 0.8f)
         {
-            if (controller.combo && controller.TargetDir().magnitude <= controller.minCannonRange)
+            if (controller.combo && controller.TargetDir().magnitude <= controller.meleeRange)
             {
                 controller.combed = true;
                 controller.SetState(new TurtleAtt2State(controller));
             }
-            else if(controller.attIdle && controller.TargetDir().magnitude >= controller.minCannonRange)
+            else if(controller.combo && controller.TargetDir().magnitude >= controller.meleeRange)
             {
                 controller.animator.SetBool("Attack1", false);
                 controller.SetState(new TurtleCombatIdleState(controller));

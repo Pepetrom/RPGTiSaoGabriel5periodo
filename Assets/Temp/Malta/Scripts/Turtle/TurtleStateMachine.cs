@@ -13,6 +13,7 @@ public class TurtleStateMachine : MonoBehaviour
     public GameObject player;
     public float maxCannonRange;
     public float minCannonRange;
+    public float meleeRange;
 
     //bools de ataques
     public bool attIdle;
@@ -73,11 +74,7 @@ public class TurtleStateMachine : MonoBehaviour
     {
         Vector3 dir = (player.transform.position - transform.position).normalized;
         Quaternion lookRot = Quaternion.LookRotation(new Vector3(dir.x, 0, dir.z));
-
-        // Calcula o ângulo entre a direção atual e a direção do jogador
         float angle = Vector3.Angle(transform.forward, dir);
-
-        // Rotaciona somente se o ângulo for maior que um pequeno valor
         if (angle > 1f)
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRot, Time.deltaTime * 10);
