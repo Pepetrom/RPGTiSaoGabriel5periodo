@@ -43,10 +43,15 @@ public class TurtleAtt1State : ITurtleStateMachine
 
         if (controller.sortedNumber < 0.8f)
         {
-            if (controller.combo)
+            if (controller.combo && controller.TargetDir().magnitude <= controller.minCannonRange)
             {
                 controller.combed = true;
                 controller.SetState(new TurtleAtt2State(controller));
+            }
+            else if(controller.attIdle && controller.TargetDir().magnitude >= controller.minCannonRange)
+            {
+                controller.animator.SetBool("Attack1", false);
+                controller.SetState(new TurtleCombatIdleState(controller));
             }
         }
         else
