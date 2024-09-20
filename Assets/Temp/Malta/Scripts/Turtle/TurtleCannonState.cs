@@ -5,10 +5,13 @@ using UnityEngine;
 public class TurtleCannonState : ITurtleStateMachine
 {
     TurtleStateMachine controller;
+    private bool hasFired = false;
+
     public TurtleCannonState(TurtleStateMachine controller)
     {
         this.controller = controller;
     }
+
     public void OnEnter()
     {
         controller.animator.SetBool("Cannon", true);
@@ -20,15 +23,22 @@ public class TurtleCannonState : ITurtleStateMachine
         controller.combo = false;
         controller.antecipation = false;
         controller.animator.SetBool("Cannonatt3", false);
+        controller.cannonFire = false;
+        hasFired = false;
     }
 
     public void OnUpdate()
     {
+        if (controller.cannonFire && !hasFired)
+        {
+            controller.Fire();
+            hasFired = true;
+        }
         if (!controller.antecipation)
         {
             controller.RotateTowardsPlayer();
         }
-        if(!controller.antecipation && controller.TargetDir().magnitude < controller.minCannonRange)
+        if (!controller.antecipation && controller.TargetDir().magnitude < controller.minCannonRange)
         {
             controller.animator.SetBool("Cannonatt3", true);
             controller.SetState(new TurtleAtt3State(controller));

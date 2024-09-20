@@ -21,4 +21,16 @@ public class TurtleFSMReceiver : MonoBehaviour
     {
         turtle.ImpulseEvent();
     }
+    public void CannonFire()
+    {
+        turtle.CannonFire();
+    }
+    public void Activate()
+    {
+        turtle.Activate();
+    }
+    public void Deactivate()
+    {
+        turtle.Deactivate();
+    }
 }

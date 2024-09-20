@@ -6,25 +6,35 @@ using UnityEngine.AI;
 public class TurtleStateMachine : MonoBehaviour
 {
     ITurtleStateMachine state;
-    public float sortedNumber;
-    public float attackSpeed;
+    [HideInInspector] public float sortedNumber;
+
+    [Header("Elements")]
     public Animator animator;
     public NavMeshAgent agent;
     public GameObject player;
+
+    [Header("Cannon")]
     public float maxCannonRange;
     public float minCannonRange;
     public float meleeRange;
+    public GameObject cannonBallPrefab;
+    public Transform cannonPosition;
 
     //bools de ataques
-    public bool attIdle;
-    public bool combo;
-    public bool antecipation;
-    public bool impulse;
-    public bool combed = false;
-    Rigidbody rb;
+    [HideInInspector] public bool attIdle;
+    [HideInInspector] public bool combo;
+    [HideInInspector] public bool antecipation;
+    [HideInInspector] public bool impulse;
+    [HideInInspector] public bool cannonFire;
+    [HideInInspector] public bool active;
+    [HideInInspector] public bool combed = false;
+    [HideInInspector] private Rigidbody rb;
 
+    [Header("AttacksControllers")]
     public string lastAttack = ""; 
-    public int attack2Counter = 0; 
+    public int attack2Counter = 0;
+    public float attackSpeed;
+    public TurtleHands rightHand;
 
     void Start()
     {
@@ -64,6 +74,18 @@ public class TurtleStateMachine : MonoBehaviour
     {
         impulse = true;
     }
+    public void CannonFire()
+    {
+        cannonFire = true;
+    }
+    public void Activate()
+    {
+        active = true;
+    }
+    public void Deactivate()
+    {
+        active = false;
+    }
     #endregion
     #region Métodos auxiliares de física
     public void Impulse()
@@ -80,17 +102,20 @@ public class TurtleStateMachine : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRot, Time.deltaTime * 10);
         }
     }
-
     public Vector3 TargetDir()
     {
         Vector3 dir = player.transform.position - transform.position;
-        Debug.Log(dir.magnitude);
         return dir;
     }
     public Vector3 Velocity()
     {
         Vector3 vel = rb.velocity;
         return vel;
+    }
+    public void Fire()
+    {
+        Instantiate(cannonBallPrefab, cannonPosition.position,cannonPosition.rotation);
+        Debug.Log("Atirou");
     }
     #endregion
 }

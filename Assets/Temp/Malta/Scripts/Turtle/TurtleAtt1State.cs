@@ -31,6 +31,14 @@ public class TurtleAtt1State : ITurtleStateMachine
 
     public void OnUpdate()
     {
+        if (controller.active)
+        {
+            controller.rightHand.gameObject.SetActive(true);
+        }
+        else
+        {
+            controller.rightHand.gameObject.SetActive(false);
+        }
         if (controller.impulse && !impulseApplied)
         {
             //controller.Impulse();
