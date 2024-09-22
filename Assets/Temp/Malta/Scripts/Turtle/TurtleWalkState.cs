@@ -25,7 +25,7 @@ public class TurtleWalkState : ITurtleStateMachine
         if(controller.TargetDir().magnitude <= controller.meleeRange)
         {
             controller.animator.SetBool("Attack1", true);
-            controller.agent.speed = 1.5f;
+            controller.agent.speed = 0.4f;
             controller.SetState(new TurtleAtt1State(controller));
         }
         if (controller.TargetDir().magnitude >= controller.minCannonRange && controller.TargetDir().magnitude <= controller.maxCannonRange)

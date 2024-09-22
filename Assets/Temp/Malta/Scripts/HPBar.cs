@@ -35,7 +35,7 @@ public class HPBar : MonoBehaviour
     {
         if(currentHP <= 0)
         {
-            Debug.Log("Acabou!!!");
+            SceneController.sceneController.ChangeScene("Menu");
         }
         UpdateHPBarTakingDamage();
     }
