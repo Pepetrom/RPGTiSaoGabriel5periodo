@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,10 +10,12 @@ public class HPBar : MonoBehaviour
     public Slider easebar;
     public float maxHP;
     public float currentHP;
-    public float moveSpeed;
+    public float moveSpeedBase;
     public float lerpSpeed;
     private float targetHP;
     public static HPBar hpbarInstance;
+
+    float moveSpeed;
 
     private void Awake()
     {
@@ -27,7 +30,8 @@ public class HPBar : MonoBehaviour
         easebar.value = currentHP;
     }
 
-    private void Update()
+    //Usa sempre o FixedUpdate quando não tiver input para variar resultado
+    private void FixedUpdate()
     {
         if(currentHP <= 0)
         {
@@ -44,7 +48,7 @@ public class HPBar : MonoBehaviour
         }
         if (easebar.value != hpbar.value)
         {
-            easebar.value = Mathf.MoveTowards(easebar.value, hpbar.value, moveSpeed * Time.deltaTime);
+            easebar.value = Mathf.MoveTowards(easebar.value, hpbar.value, moveSpeed * Time.fixedDeltaTime);
         }
     }
     public void RecoverLifebyHit(int value)
@@ -71,6 +75,7 @@ public class HPBar : MonoBehaviour
         currentHP -= damage;
         currentHP = Mathf.Max(currentHP, 0);
         hpbar.value = currentHP;
+        moveSpeed = moveSpeedBase * damage;
     }
 
 }

@@ -431,9 +431,9 @@ MonoBehaviour:
   baseDashCooldown: 0
   particle: {fileID: 1833192140}
   baseDamage: 40
-  atackSpeed: 0
   comboCounter: 1
   atackCollider: {fileID: 1750994092}
+  detectionAutoTargetRange: 15
   maxlife: 0
   invencibilityTime: 0
   canDoAction: 0101
@@ -447,7 +447,7 @@ Transform:
   m_GameObject: {fileID: 224354700}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -1190,7 +1190,7 @@ MonoBehaviour:
   easebar: {fileID: 1540455864}
   maxHP: 100
   currentHP: 0
-  moveSpeed: 0.8
+  moveSpeedBase: 0.8
   lerpSpeed: 0.08
 --- !u!1 &716174082
 GameObject:

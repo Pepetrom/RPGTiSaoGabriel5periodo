@@ -26,6 +26,7 @@ public class W_TestAtack : IWeapon
         PlayerController.instance.moveDirection = Vector3.zero;
         PlayerController.instance.animator.SetBool("Atacking", true);
         PlayerController.instance.animator.SetBool("Walk", false);
+        PlayerController.instance.LookAtMouse();
         PlayerController.instance.canMove = false;
         canBeInterupted = false;
         interupted = false;

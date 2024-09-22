@@ -20,11 +20,12 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem particle;
     [Header("Atack Settings------------------")]
     public int baseDamage;
-    public float atackSpeed;
+    //public float atackSpeed;
     float damage = 0;
     public int comboCounter = 1;
     Transform target = null;
     public AtackCollider atackCollider;
+    public float detectionAutoTargetRange = 15;
     [Header("Defese Settings------------------")]
     public float maxlife, invencibilityTime;
     bool canTakeDamage = true;
@@ -59,7 +60,7 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-        LookAtMouse();
+        //LookAtMouse();
         LookAtTarget();
         Controls();
     }
@@ -105,11 +106,10 @@ public class PlayerController : MonoBehaviour
                 DetectClosestEnemy();
             }
         }
+        
     }
     void Atack(int slot)
     {
-        canMove = false;
-        //animator.speed = atackSpeed;
         atacks[slot].AtackStart();
     }
 
@@ -119,11 +119,29 @@ public class PlayerController : MonoBehaviour
         moveDirection.x = Input.GetAxis("Horizontal");
         moveDirection.z = Input.GetAxis("Vertical");
         moveDirection.Normalize();
+        Run();
         moveDirection = moveDirection * moveSpeed * runningMultiplier;
         moveDirection.y = 0;
         animator.SetBool("Walk", moveDirection != Vector3.zero);
+        if(target == null)
+        {
+            LookForward();
+        }
     }
-
+    void Run()
+    {
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            runningMultiplier = 2;
+            animator.SetBool("Run", true);
+            target = null;
+        }
+        else
+        {
+            runningMultiplier = 1;
+            animator.SetBool("Run", false);
+        }
+    }
     public void TakeDamage(float damage)
     {
         if (canTakeDamage && life > 0)
@@ -138,14 +156,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Die()
+    void Die()
     {
         Destroy(gameObject);
     }
 
     void DetectClosestEnemy()
     {
-        Collider[] hits = Physics.OverlapSphere(model.transform.position, 15);
+        Collider[] hits = Physics.OverlapSphere(model.transform.position, detectionAutoTargetRange);
         float closestDistance = Mathf.Infinity;
         Transform closestEnemy = null;
 
@@ -164,12 +182,16 @@ public class PlayerController : MonoBehaviour
         }
         target = closestEnemy;
     }
-    public void LookAtTarget()
+    void LookAtTarget()
     {
-        if (!canMove || !target ) return;
+        if (!canMove || target == null ) return;
         direction = target.position;
         direction.y = model.transform.position.y;
         model.transform.LookAt(direction);
+    }
+    void LookForward()
+    {       
+        model.transform.LookAt(transform.position + moveDirection);
     }
     public void LookAtMouse()
     {
