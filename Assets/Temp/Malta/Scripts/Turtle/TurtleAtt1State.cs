@@ -17,7 +17,8 @@ public class TurtleAtt1State : ITurtleStateMachine
         controller.attackSpeed = 400f;
         controller.animator.SetBool("Attack1", true);
         controller.SortNumber();
-        impulseApplied = false; 
+        impulseApplied = false;
+        controller.damage = 20;
     }
 
     public void OnExit()
@@ -27,6 +28,7 @@ public class TurtleAtt1State : ITurtleStateMachine
         controller.attIdle = false;
         controller.combo = false;
         controller.animator.SetBool("att1att2", true);
+        controller.hashitted = false;
     }
 
     public void OnUpdate()

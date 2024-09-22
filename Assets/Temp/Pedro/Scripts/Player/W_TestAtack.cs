@@ -57,6 +57,7 @@ public class W_TestAtack : IWeapon
         if (!interupted)
         {
             other.GetComponent<EnemyHealth>().TakeDamage(PlayerController.instance.baseDamage);
+            HPBar.hpbarInstance.RecoverLifebyHit(PlayerController.instance.baseDamage/10);
         }
     }
     public void OpenComboWindow()

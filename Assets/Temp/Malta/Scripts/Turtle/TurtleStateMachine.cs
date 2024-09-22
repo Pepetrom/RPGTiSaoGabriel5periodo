@@ -34,7 +34,9 @@ public class TurtleStateMachine : MonoBehaviour
     public string lastAttack = ""; 
     public int attack2Counter = 0;
     public float attackSpeed;
-    public TurtleHands rightHand;
+    public TurtleHands rightHand, leftHand;
+    public float damage;
+    public bool hashitted = false;
 
     void Start()
     {

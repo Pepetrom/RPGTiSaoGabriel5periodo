@@ -29,8 +29,11 @@ public class HPBar : MonoBehaviour
 
     private void Update()
     {
+        if(currentHP <= 0)
+        {
+            Debug.Log("Acabou!!!");
+        }
         UpdateHPBarTakingDamage();
-        RecoverLifebyHit();
     }
 
     private void UpdateHPBarTakingDamage()
@@ -39,47 +42,34 @@ public class HPBar : MonoBehaviour
         {
             UpdateHealthBar();
         }
-
-        // Smoothly decrease ease bar to current HP
         if (easebar.value != hpbar.value)
         {
             easebar.value = Mathf.MoveTowards(easebar.value, hpbar.value, moveSpeed * Time.deltaTime);
         }
     }
-    private void RecoverLifebyHit()
+    public void RecoverLifebyHit(int value)
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if(hpbar.value != easebar.value && easebar.value < maxHP && ((value/10) <= easebar.value - currentHP))
         {
-            float d = 8f;
-            if(hpbar.value != easebar.value && easebar.value < maxHP && (d <= easebar.value - currentHP))
-            {
-                currentHP += d;
-            }
-            Debug.Log("Q");
+            Debug.Log("Recuperei");
+            currentHP += value;
         }
     }
     public void UpdateHealthBar()
     {
         hpbar.value = Mathf.Lerp(hpbar.value, currentHP, lerpSpeed);
-        //hpbar.value = easebar.value;
         Debug.Log("Atualizando a barra de vida");
     }
 
     public void TakeDamage(float damage)
     {
         GameManager.instance.SpawnDamageNumber((int)damage, PlayerController.instance.transform);
-
-        // If the ease bar is still higher than the HP bar (mid-transition), snap it to the current HP value
         if (easebar.value != hpbar.value)
         {
-            easebar.value = hpbar.value; // Force the easebar to catch up before applying new damage
+            easebar.value = hpbar.value;
         }
-        
-        // Now apply the new damage
         currentHP -= damage;
-        currentHP = Mathf.Max(currentHP, 0); // Ensure currentHP doesn't go below 0
-
-        // Immediately set the HP bar to reflect the new current HP
+        currentHP = Mathf.Max(currentHP, 0);
         hpbar.value = currentHP;
     }
 

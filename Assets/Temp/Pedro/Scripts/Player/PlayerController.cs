@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
     {
         if (canDoAction[0])
         {
-            if (Input.GetKeyDown(KeyCode.LeftShift))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 actions[0].ActionStart();
                 if (atacks[0].CanBeInterupted())

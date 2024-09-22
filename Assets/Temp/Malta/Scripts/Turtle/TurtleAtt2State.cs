@@ -12,6 +12,7 @@ public class TurtleAtt2State : ITurtleStateMachine
     }
     public void OnEnter()
     {
+        controller.damage = 15;
         controller.attackSpeed = 600f;
         controller.animator.SetBool("Attack2", true);
     }
@@ -22,10 +23,19 @@ public class TurtleAtt2State : ITurtleStateMachine
         controller.attIdle = false;
         controller.combo = false;
         controller.antecipation = false;
+        controller.hashitted = false;
     }
 
     public void OnUpdate()
     {
+        if (controller.active)
+        {
+            controller.leftHand.gameObject.SetActive(true);
+        }
+        else
+        {
+            controller.leftHand.gameObject.SetActive(false);
+        }
         if (controller.impulse && !impulseApplied)
         {
             //controller.Impulse();

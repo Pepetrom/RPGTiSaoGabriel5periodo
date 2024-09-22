@@ -21,6 +21,8 @@ public class TurtleCombatIdleState : ITurtleStateMachine
         controller.animator.SetBool("Cannonatt3", false);
         controller.animator.SetBool("Cannon",false);
         #endregion
+        controller.leftHand.gameObject.SetActive(false);
+        controller.rightHand.gameObject.SetActive(false);
         controller.combed = false;
         controller.SortNumber();
     }

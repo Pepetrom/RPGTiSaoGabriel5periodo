@@ -14,6 +14,7 @@ public class TurtleCannonState : ITurtleStateMachine
 
     public void OnEnter()
     {
+        hasFired = false;
         controller.animator.SetBool("Cannon", true);
     }
 
@@ -24,7 +25,6 @@ public class TurtleCannonState : ITurtleStateMachine
         controller.antecipation = false;
         controller.animator.SetBool("Cannonatt3", false);
         controller.cannonFire = false;
-        hasFired = false;
     }
 
     public void OnUpdate()

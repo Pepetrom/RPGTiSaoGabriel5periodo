@@ -9,4 +9,11 @@ public class Projectile : MonoBehaviour
     {
         transform.Translate(Vector3.forward * p.speed * Time.deltaTime);
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            HPBar.hpbarInstance.TakeDamage(p.damage);
+        }
+    }
 }

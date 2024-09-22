@@ -11,6 +11,7 @@ public class TurtleAtt3State : ITurtleStateMachine
     }
     public void OnEnter()
     {
+        controller.damage = 30;
         controller.animator.SetBool("Attack3", true);
     }
 
@@ -19,10 +20,19 @@ public class TurtleAtt3State : ITurtleStateMachine
         controller.impulse = false;
         controller.attIdle = false;
         controller.antecipation = false;
+        controller.hashitted = false;
     }
 
     public void OnUpdate()
     {
+        if (controller.active)
+        {
+            controller.rightHand.gameObject.SetActive(true);
+        }
+        else
+        {
+            controller.rightHand.gameObject.SetActive(false);
+        }
         if (!controller.antecipation)
         {
             controller.RotateTowardsPlayer();

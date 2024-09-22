@@ -6,4 +6,5 @@ using UnityEngine;
 public class ProjectilesSO : ScriptableObject
 {
     public float speed;
+    public int damage;
 }
