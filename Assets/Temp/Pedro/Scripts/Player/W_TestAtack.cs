@@ -30,6 +30,7 @@ public class W_TestAtack : IWeapon
         PlayerController.instance.canMove = false;
         canBeInterupted = false;
         interupted = false;
+        PlayerController.instance.isAttacking = true; // Está atacando
         PlayerController.instance.animator.SetTrigger(("Atack"+ PlayerController.instance.comboCounter));
     }
     public void AtackUpdate()
@@ -83,6 +84,7 @@ public class W_TestAtack : IWeapon
         PlayerController.instance.canMove = true;
         PlayerController.instance.comboCounter = 1;
         canBeInterupted = false;
+        PlayerController.instance.isAttacking = false; // Parou de atacar
         PlayerController.instance.animator.SetBool("Atacking", false);
     }
 

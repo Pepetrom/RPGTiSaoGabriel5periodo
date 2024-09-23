@@ -1,0 +1,96 @@
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class StaminaBar : MonoBehaviour
+{
+    public Slider stambar;
+    public Slider easebar;
+    public float maxStam;
+    public float currentStam;
+    public float moveSpeedBase;
+    public float lerpSpeed;
+    public float staminaRecover;
+    private float targetHP;
+    public static StaminaBar stambarInstance;
+
+    float moveSpeed;
+
+    private void Awake()
+    {
+        stambarInstance = this;
+    }
+    private void Start()
+    {
+        currentStam = maxStam;
+        stambar.maxValue = maxStam;
+        easebar.maxValue = maxStam;
+        stambar.value = currentStam;
+        easebar.value = currentStam;
+    }
+
+    //Usa sempre o FixedUpdate quando não tiver input para variar resultado
+    private void FixedUpdate()
+    {
+        UpdateDrainStamina();
+        RecoverStamina(staminaRecover);
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            DrainStamina(10);
+        }
+    }
+
+    private void UpdateDrainStamina()
+    {
+        if (stambar.value != currentStam)
+        {
+            UpdateStamina();
+        }
+        if (easebar.value != stambar.value)
+        {
+            easebar.value = Mathf.MoveTowards(easebar.value, stambar.value, moveSpeed * Time.fixedDeltaTime);
+        }
+    }
+    public void UpdateStamina()
+    {
+        stambar.value = Mathf.Lerp(stambar.value, currentStam, lerpSpeed);
+        Debug.Log("Atualizando a barra de estamina");
+    }
+
+    public void DrainStamina(float value)
+    {
+        if(currentStam >= 0)
+        {
+            if (easebar.value != stambar.value)
+            {
+                easebar.value = stambar.value;
+            }
+            currentStam -= value;
+            stambar.value = currentStam;
+            moveSpeed = moveSpeedBase * value;
+        }
+        else
+        {
+            currentStam = 0f;
+            stambar.value = currentStam;
+        }
+    }
+    public void RecoverStamina(float value)
+    {
+        if (!PlayerController.instance.isAttacking)
+        {
+            currentStam += value * Time.deltaTime;
+            if (currentStam > maxStam)
+            {
+                currentStam = maxStam;
+            }
+        }
+    }
+
+
+}

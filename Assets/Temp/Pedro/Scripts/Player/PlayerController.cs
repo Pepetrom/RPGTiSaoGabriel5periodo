@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PlayerController : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem particle;
     [Header("Atack Settings------------------")]
     public int baseDamage;
+    public int stamPerHit; // Variável que indica a quantidade de estamina perdida por hit
+    public bool isAttacking = false; // Variável para saber se o jogador está atacando ou não
     //public float atackSpeed;
     float damage = 0;
     public int comboCounter = 1;
@@ -86,6 +89,7 @@ public class PlayerController : MonoBehaviour
                 {
                     atacks[0].InteruptAtack();
                 }
+                StaminaBar.stambarInstance.DrainStamina(stamPerHit); // Aqui estou tirando a estamina do player
             }
         }
         if (canDoAtack[0])
@@ -93,6 +97,7 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 Atack(0);
+                StaminaBar.stambarInstance.DrainStamina(stamPerHit); // Aqui estou tirando a estamina do player
             }           
         }
         if (Input.GetKeyDown(KeyCode.Mouse1))
