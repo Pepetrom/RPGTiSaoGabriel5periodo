@@ -6,7 +6,7 @@ using UnityEngine;
 public class StateAttack1 : IBossFSM
 {
     BossStateMachine controller;
-    bool isAttackingCombo = false;
+    //bool isAttackingCombo = false;
     float timer;
 
     public StateAttack1(BossStateMachine controller)

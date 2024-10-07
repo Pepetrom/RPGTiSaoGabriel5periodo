@@ -156,7 +156,7 @@ RectTransform:
   m_Father: {fileID: 1188413792}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -353,7 +353,7 @@ GameObject:
   - component: {fileID: 224354701}
   - component: {fileID: 224354705}
   m_Layer: 0
-  m_Name: Player (1)
+  m_Name: Player===============
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -434,6 +434,7 @@ MonoBehaviour:
   stamPerHit: 20
   isAttacking: 0
   comboCounter: 1
+  target: {fileID: 0}
   atackCollider: {fileID: 1750994092}
   detectionAutoTargetRange: 15
   maxlife: 0
@@ -1115,7 +1116,7 @@ GameObject:
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!195 &580531434
 NavMeshAgent:
   m_ObjectHideFlags: 0

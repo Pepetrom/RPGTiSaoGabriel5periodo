@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Rendering;
 
 public class PlayerController : MonoBehaviour
@@ -24,9 +25,9 @@ public class PlayerController : MonoBehaviour
     public int stamPerHit; // Variável que indica a quantidade de estamina perdida por hit
     public bool isAttacking = false; // Variável para saber se o jogador está atacando ou não
     //public float atackSpeed;
-    float damage = 0;
+    //float damage = 0;
     public int comboCounter = 1;
-    Transform target = null;
+    public Transform target = null;
     public AtackCollider atackCollider;
     public float detectionAutoTargetRange = 15;
     [Header("Defese Settings------------------")]
@@ -40,8 +41,8 @@ public class PlayerController : MonoBehaviour
     public bool[] canDoAtack = new bool[2];
     public IWeapon[] atacks = new IWeapon[2];
     //Rotation
-    Quaternion rotation;
-    Vector3 mousePosition, worldMousePosition, direction;
+    Quaternion newRotation;
+    Vector3 mousePosition, worldMousePosition, targetDirection;
     //------------------------------------------------------------------------------------------------------------------------------------
     private void Awake()
     {
@@ -63,15 +64,12 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-        //LookAtMouse();
-        LookAtTarget();
         Controls();
     }
     void FixedUpdate()
     {
         Move();
         DoActions();
-        rb.velocity = moveDirection;
     }
     void DoActions()
     {
@@ -98,7 +96,7 @@ public class PlayerController : MonoBehaviour
             {
                 Atack(0);
                 StaminaBar.stambarInstance.DrainStamina(stamPerHit); // Aqui estou tirando a estamina do player
-            }           
+            }
         }
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
@@ -111,16 +109,16 @@ public class PlayerController : MonoBehaviour
                 DetectClosestEnemy();
             }
         }
-        
+
     }
     void Atack(int slot)
     {
         atacks[slot].AtackStart();
     }
-
     void Move()
     {
         if (!canMove) return;
+
         moveDirection.x = Input.GetAxis("Horizontal");
         moveDirection.z = Input.GetAxis("Vertical");
         moveDirection.Normalize();
@@ -128,14 +126,13 @@ public class PlayerController : MonoBehaviour
         moveDirection = moveDirection * moveSpeed * runningMultiplier;
         moveDirection.y = 0;
         animator.SetBool("Walk", moveDirection != Vector3.zero);
-        if(target == null)
-        {
-            LookForward();
-        }
+        LookForward();
+        LookAtTarget();
+        rb.velocity = moveDirection;
     }
     void Run()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && moveDirection != Vector3.zero)
         {
             runningMultiplier = 2;
             animator.SetBool("Run", true);
@@ -160,12 +157,10 @@ public class PlayerController : MonoBehaviour
             StopCoroutine(InvulnableTime());
         }
     }
-
     void Die()
     {
         Destroy(gameObject);
     }
-
     void DetectClosestEnemy()
     {
         Collider[] hits = Physics.OverlapSphere(model.transform.position, detectionAutoTargetRange);
@@ -176,7 +171,6 @@ public class PlayerController : MonoBehaviour
         {
             if (hit.CompareTag("Enemy"))
             {
-                
                 float distance = Vector3.Distance(transform.position, hit.transform.position);
                 if (distance < closestDistance)
                 {
@@ -189,24 +183,33 @@ public class PlayerController : MonoBehaviour
     }
     void LookAtTarget()
     {
-        if (!canMove || target == null ) return;
-        direction = target.position;
-        direction.y = model.transform.position.y;
-        model.transform.LookAt(direction);
+        if (!canMove || target == null) return;
+
+        targetDirection = (target.position - model.transform.position).normalized;
+        targetDirection.y = model.transform.position.y;
+        newRotation = Quaternion.LookRotation(targetDirection);
+        model.transform.rotation = newRotation;
     }
     void LookForward()
-    {       
-        model.transform.LookAt(transform.position + moveDirection);
-    }
-    public void LookAtMouse()
     {
-        if (!canMove || target) return;
+        if (target != null || moveDirection == Vector3.zero) return;
+
+        newRotation = Quaternion.LookRotation(moveDirection);
+        newRotation = Quaternion.Slerp(model.transform.rotation, newRotation, 0.2f);
+        model.transform.rotation = newRotation;
+    }
+    public Vector3 GetMousePosition()
+    {
+        if (!canMove || target != null) return Vector3.zero;
+
         mousePosition = Input.mousePosition;
-        mousePosition.z = mainCamera.transform.position.y; 
-        worldMousePosition = mainCamera.ScreenToWorldPoint(mousePosition);   
-        direction = worldMousePosition;
-        direction.y = model.transform.position.y;
-        model.transform.LookAt(direction);
+        mousePosition.z = mainCamera.transform.position.y;
+        worldMousePosition = mainCamera.ScreenToWorldPoint(mousePosition);
+        mousePosition = worldMousePosition;
+        mousePosition.y = model.transform.position.y;
+        target = null;
+        
+        return mousePosition;
     }
 
     public IEnumerator InvulnableTime()

@@ -70,7 +70,8 @@ public class StaminaBar : MonoBehaviour
             {
                 easebar.value = stambar.value;
             }
-            currentStam -= value;
+            //Coloquei um Clamp para estamina não ficar negativa
+            currentStam -= Mathf.Clamp(value,0, maxStam);
             stambar.value = currentStam;
             moveSpeed = moveSpeedBase * value;
         }

@@ -1,7 +1,9 @@
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UIElements;
 using UnityEngine.UIElements.Experimental;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class W_TestAtack : IWeapon
 {
@@ -11,6 +13,8 @@ public class W_TestAtack : IWeapon
     bool interupted = true;
     bool atacking = false;
     int comboSize = 3;
+    float positionTimer = 0, turnSpeed;
+    Vector3 atackDirection, newAtackDirection;
     public bool CanBeInterupted()
     {
         return canBeInterupted;
@@ -26,18 +30,49 @@ public class W_TestAtack : IWeapon
         PlayerController.instance.moveDirection = Vector3.zero;
         PlayerController.instance.animator.SetBool("Atacking", true);
         PlayerController.instance.animator.SetBool("Walk", false);
-        PlayerController.instance.LookAtMouse();
+
+        atackDirection = PlayerController.instance.GetMousePosition();
+        newAtackDirection = PlayerController.instance.model.transform.forward;
+
+        atackDirection = (atackDirection - PlayerController.instance.model.transform.position).normalized;
+
+        atackDirection.y = 0;
+        newAtackDirection.y = 0;
+        positionTimer = 0;
+        turnSpeed = Vector3.Distance(newAtackDirection, atackDirection);
+        
+        atacking = true;
         PlayerController.instance.canMove = false;
         canBeInterupted = false;
         interupted = false;
-        PlayerController.instance.isAttacking = true; // Está atacando
-        PlayerController.instance.animator.SetTrigger(("Atack"+ PlayerController.instance.comboCounter));
+        PlayerController.instance.isAttacking = true;         
     }
     public void AtackUpdate()
     {
         if(atacking)
         {
+            if(PlayerController.instance.comboCounter == 1 && atackDirection != Vector3.zero)
+            {
+                FacePlayerMouse();
+            }
+            else
+            {
+                PlayerController.instance.animator.SetTrigger(("Atack" + PlayerController.instance.comboCounter));
+                atacking = false;
+            }
+        }
+    }
+    void FacePlayerMouse()
+    {
+        newAtackDirection = Vector3.Lerp(newAtackDirection, atackDirection, positionTimer);
+        PlayerController.instance.model.transform.LookAt(newAtackDirection);
+        positionTimer += (Time.fixedDeltaTime * 2f) / turnSpeed;
 
+        if (positionTimer >= 1)
+        {
+            PlayerController.instance.animator.SetTrigger(("Atack" + PlayerController.instance.comboCounter));
+            PlayerController.instance.model.transform.LookAt(atackDirection);
+            atacking = false;
         }
     }
     public void StartRegisterHit()
