@@ -67,6 +67,7 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
+        moveDirection.y = rb.velocity.y;
         Controls();
     }
     void FixedUpdate()
