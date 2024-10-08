@@ -45,7 +45,7 @@ public class TurtleAtt2State : ITurtleStateMachine
         {
             controller.RotateTowardsPlayer();
         }
-        else if (controller.combo && controller.TargetDir().magnitude >= controller.meleeRange)
+        else if (controller.combo && controller.TargetDir().magnitude >= controller.meleeRange + 2)
         {
             controller.animator.SetBool("Attack2", false);
             controller.SetState(new TurtleCombatIdleState(controller));

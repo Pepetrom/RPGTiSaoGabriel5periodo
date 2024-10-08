@@ -22,6 +22,7 @@ public class TurtleWalkState : ITurtleStateMachine
     public void OnUpdate()
     {
         controller.agent.SetDestination(controller.player.transform.position);
+        controller.RotateTowardsPlayer();
         if(controller.TargetDir().magnitude <= controller.meleeRange)
         {
             controller.animator.SetBool("Attack1", true);

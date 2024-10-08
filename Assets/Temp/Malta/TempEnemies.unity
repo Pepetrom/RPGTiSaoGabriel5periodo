@@ -156,7 +156,7 @@ RectTransform:
   m_Father: {fileID: 1188413792}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -450,7 +450,7 @@ Transform:
   m_GameObject: {fileID: 224354700}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.27, z: 0}
+  m_LocalPosition: {x: 0, y: 0.27, z: -11.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -1116,7 +1116,7 @@ GameObject:
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!195 &580531434
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1180,7 +1180,7 @@ MonoBehaviour:
   player: {fileID: 224354700}
   maxCannonRange: 50
   minCannonRange: 30
-  meleeRange: 15
+  meleeRange: 9
   cannonBallPrefab: {fileID: 8576731493386660667, guid: b4d314c5c05b7354ba0b21f7c11f3544,
     type: 3}
   cannonPosition: {fileID: 1471964583}
