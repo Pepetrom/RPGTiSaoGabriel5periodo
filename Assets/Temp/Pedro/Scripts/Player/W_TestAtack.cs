@@ -15,6 +15,7 @@ public class W_TestAtack : IWeapon
     int comboSize = 3;
     float positionTimer = 0, turnSpeed;
     Vector3 atackDirection, newAtackDirection;
+    Quaternion newRotation;
     public bool CanBeInterupted()
     {
         return canBeInterupted;
@@ -30,6 +31,8 @@ public class W_TestAtack : IWeapon
         PlayerController.instance.moveDirection = Vector3.zero;
         PlayerController.instance.animator.SetBool("Atacking", true);
         PlayerController.instance.animator.SetBool("Walk", false);
+
+        PlayerController.instance.animator.SetTrigger(("Atack" + PlayerController.instance.comboCounter));
 
         atackDirection = PlayerController.instance.GetMousePosition();
         newAtackDirection = PlayerController.instance.model.transform.forward;
@@ -51,27 +54,20 @@ public class W_TestAtack : IWeapon
     {
         if(atacking)
         {
-            if(PlayerController.instance.comboCounter == 1 && atackDirection != Vector3.zero)
+            if( atackDirection != Vector3.zero)
             {
                 FacePlayerMouse();
-            }
-            else
-            {
-                PlayerController.instance.animator.SetTrigger(("Atack" + PlayerController.instance.comboCounter));
-                atacking = false;
             }
         }
     }
     void FacePlayerMouse()
     {
-        newAtackDirection = Vector3.Lerp(newAtackDirection, atackDirection, positionTimer);
-        PlayerController.instance.model.transform.LookAt(newAtackDirection);
+        newRotation = Quaternion.LookRotation(atackDirection);
+        PlayerController.instance.model.transform.rotation = Quaternion.Slerp(PlayerController.instance.model.transform.rotation, newRotation, positionTimer);
         positionTimer += (Time.fixedDeltaTime * 2f) / turnSpeed;
 
         if (positionTimer >= 1)
         {
-            PlayerController.instance.animator.SetTrigger(("Atack" + PlayerController.instance.comboCounter));
-            PlayerController.instance.model.transform.LookAt(atackDirection);
             atacking = false;
         }
     }

@@ -200,7 +200,7 @@ public class PlayerController : MonoBehaviour
     }
     public Vector3 GetMousePosition()
     {
-        if (!canMove || target != null) return Vector3.zero;
+        if (target != null) return Vector3.zero;
 
         mousePosition = Input.mousePosition;
         mousePosition.z = mainCamera.transform.position.y;
