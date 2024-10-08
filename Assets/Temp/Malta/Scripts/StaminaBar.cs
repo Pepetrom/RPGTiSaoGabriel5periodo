@@ -59,7 +59,7 @@ public class StaminaBar : MonoBehaviour
     public void UpdateStamina()
     {
         stambar.value = Mathf.Lerp(stambar.value, currentStam, lerpSpeed);
-        Debug.Log("Atualizando a barra de estamina");
+        //Debug.Log("Atualizando a barra de estamina");
     }
 
     public void DrainStamina(float value)

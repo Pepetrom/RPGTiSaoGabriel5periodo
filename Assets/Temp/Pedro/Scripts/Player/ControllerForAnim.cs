@@ -25,4 +25,8 @@ public class ControllerForAnim : MonoBehaviour
     {
         PlayerController.instance.atacks[slot].AtackEnd();
     }
+    public void Rune()
+    {
+        PlayerController.instance.RuneEffect();
+    }
 }

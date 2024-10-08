@@ -40,6 +40,9 @@ public class PlayerController : MonoBehaviour
     [Header("Atacks------------------")]
     public bool[] canDoAtack = new bool[2];
     public IWeapon[] atacks = new IWeapon[2];
+    [Header("Runes------------------")]
+    public GameObject[] runes;
+    public int actualRune = 1;
     //Rotation
     Quaternion newRotation;
     Vector3 mousePosition, worldMousePosition, targetDirection;
@@ -211,7 +214,23 @@ public class PlayerController : MonoBehaviour
         
         return mousePosition;
     }
-
+    public void RuneEffect()
+    {
+        switch (actualRune)
+        {
+            case 0:
+                break;
+            case 1:
+                Instantiate(runes[1], model.transform.position, model.transform.rotation);
+                break;
+            case 2:
+                Instantiate(runes[2], model.transform.position, model.transform.rotation);
+                break;
+            case 3:
+                Instantiate(runes[3], model.transform.position, model.transform.rotation);
+                break;
+        }
+    }
     public IEnumerator InvulnableTime()
     {
         canTakeDamage = false;

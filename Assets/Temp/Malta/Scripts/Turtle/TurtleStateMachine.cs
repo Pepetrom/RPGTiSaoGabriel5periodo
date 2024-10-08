@@ -60,12 +60,12 @@ public class TurtleStateMachine : MonoBehaviour
     }
     public void AttackIdle()
     {
-        Debug.Log("Voltei pro Idle");
+        //Debug.Log("Voltei pro Idle");
         attIdle = true;
     }
     public void Combo()
     {
-        Debug.Log("Combo");
+        //Debug.Log("Combo");
         combo = true;
     }
     public void Antecipation()

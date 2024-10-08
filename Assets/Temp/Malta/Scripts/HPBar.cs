@@ -55,14 +55,14 @@ public class HPBar : MonoBehaviour
     {
         if(hpbar.value != easebar.value && easebar.value < maxHP && ((value/10) <= easebar.value - currentHP))
         {
-            Debug.Log("Recuperei");
+            //Debug.Log("Recuperei");
             currentHP += value;
         }
     }
     public void UpdateHealthBar()
     {
         hpbar.value = Mathf.Lerp(hpbar.value, currentHP, lerpSpeed);
-        Debug.Log("Atualizando a barra de vida");
+        //Debug.Log("Atualizando a barra de vida");
     }
 
     public void TakeDamage(float damage)

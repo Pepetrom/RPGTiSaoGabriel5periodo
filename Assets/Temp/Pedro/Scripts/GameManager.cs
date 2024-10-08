@@ -16,4 +16,8 @@ public class GameManager : MonoBehaviour
         DamagePopUp dmp = temp.GetComponent<DamagePopUp>();
         dmp.StartDamage(damageNumber);
     }
+    public void ChangeRune(int rune)
+    {
+        PlayerController.instance.actualRune = rune;
+    }
 }
