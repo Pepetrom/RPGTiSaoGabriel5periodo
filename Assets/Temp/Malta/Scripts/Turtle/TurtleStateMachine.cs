@@ -38,7 +38,6 @@ public class TurtleStateMachine : MonoBehaviour
     public float damage;
     public bool hashitted = false;
 
-
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -123,4 +122,15 @@ public class TurtleStateMachine : MonoBehaviour
         //Debug.Log("Atirou");
     }
     #endregion
+
+    public void TakeDamage()
+    {
+        //Adicionar em quais estados não pode dar "ministun" na tartaruga
+        if (!animator.GetBool("Cannon"))
+        {
+            AttackIdle();
+            animator.SetTrigger("TakeDamage");
+            SetState(new TurtleCombatIdleState(this));
+        }
+    }
 }

@@ -11,7 +11,6 @@ public class EnemyHealth : MonoBehaviour
     public float lerpSpeed;
     float knockbackTime = 0;
     Vector3 knockBackDirection;
-    public GameObject owner;
 
     private void Start()
     {
@@ -31,13 +30,14 @@ public class EnemyHealth : MonoBehaviour
     {
         if(knockbackTime > 0)
         {
-            transform.position += knockBackDirection; 
+            transform.position += knockBackDirection;
+            knockbackTime -= Time.fixedDeltaTime;
         }
     }
     public void TakeDamage(int damage, int knockbackStrenght)
     {
-        knockbackTime = 1;
-        knockBackDirection = PlayerController.instance.moveDirection * Time.fixedDeltaTime * knockbackStrenght * 50;
+        knockbackTime = 0.2f;
+        knockBackDirection = PlayerController.instance.moveDirection.normalized * Time.fixedDeltaTime * knockbackStrenght * 50;
         knockBackDirection.y = 0;
         lifeActual -= damage;
         GameManager.instance.SpawnDamageNumber(damage, transform);

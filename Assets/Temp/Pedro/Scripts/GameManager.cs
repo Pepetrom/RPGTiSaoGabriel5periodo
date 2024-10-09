@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     IEnumerator HitStop(float tempoHitStop)
     {
         actionTime = 0;
+        CameraScript.instance.StartShake();
         yield return new WaitForSeconds(tempoHitStop);
         actionTime = 1;
     }
