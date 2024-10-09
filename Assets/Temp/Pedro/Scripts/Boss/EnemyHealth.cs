@@ -18,12 +18,9 @@ public class EnemyHealth : MonoBehaviour
         hpbar.maxValue = lifeTotal;
         hpbar.value = lifeTotal;
     }
-    private void Update()
-    {
-        UpdateHPBar();
-    }
     private void FixedUpdate()
     {
+        UpdateHPBar();
         KnockBack();
     }
     void KnockBack()
@@ -40,7 +37,7 @@ public class EnemyHealth : MonoBehaviour
         knockBackDirection = PlayerController.instance.moveDirection.normalized * Time.fixedDeltaTime * knockbackStrenght * 50;
         knockBackDirection.y = 0;
         lifeActual -= damage;
-        GameManager.instance.SpawnDamageNumber(damage, transform);
+        GameManager.instance.SpawnNumber((int)damage, Color.yellow, transform);
         if(lifeActual <= 0)
         {
             Destroy(this.gameObject);

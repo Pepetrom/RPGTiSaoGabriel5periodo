@@ -8,18 +8,28 @@ public class A_SideStep : IAction
     float dashTime;
     float dashTimer;
     bool dashing;
+    Vector3 direction;
     public void SetSlot(int slot)
     {
         this.slot = slot;
-        dashForce = PlayerController.instance.baseDashForce;
-        dashCooldown = PlayerController.instance.baseDashCooldown;
     }
     public void ActionStart()
     {
+        HPBar.instance.StartCoroutine(HPBar.instance.InvulnableTime());
+        dashForce = PlayerController.instance.baseDashForce;
+        dashCooldown = PlayerController.instance.baseDashCooldown;
         PlayerController.instance.canDoAction[slot] = false;
         dashTime = 1;
         dashing = true;
-        PlayerController.instance.particle.Play();
+        PlayerController.instance.dustParticle.Play();
+        if (PlayerController.instance.moveDirection == Vector3.zero)
+        {
+            direction = -PlayerController.instance.model.transform.forward * PlayerController.instance.moveSpeed * dashForce * Time.fixedDeltaTime ;
+        }
+        else
+        {
+            direction = PlayerController.instance.moveDirection * dashForce * Time.fixedDeltaTime;
+        }
     }
     public void ActionUpdate()
     {
@@ -31,14 +41,7 @@ public class A_SideStep : IAction
                 return;
             }
             PlayerController.instance.canDoAction[slot] = false;
-            if (PlayerController.instance.moveDirection == Vector3.zero)
-            {
-                PlayerController.instance.moveDirection += -PlayerController.instance.model.transform.forward * dashForce * Time.fixedDeltaTime * PlayerController.instance.moveSpeed;
-            }
-            else
-            {
-                PlayerController.instance.moveDirection += PlayerController.instance.moveDirection * dashForce * Time.fixedDeltaTime;
-            }
+            PlayerController.instance.moveDirection += direction;
             dashTime -= Time.fixedDeltaTime * 4;
         }
         else

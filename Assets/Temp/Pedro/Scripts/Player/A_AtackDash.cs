@@ -6,16 +6,18 @@ public class A_AtackDash : IAction
     float dashForce;
     float dashTime;
     bool dashing;
+    Vector3 direction;
     public void SetSlot(int slot)
     {
         this.slot = slot;
-        dashForce = PlayerController.instance.baseDashForce;
     }
     public void ActionStart()
     {
         dashTime = 1;
         dashing = true;
-        PlayerController.instance.particle.Play();
+        dashForce = PlayerController.instance.baseDashForce;
+        PlayerController.instance.dustParticle.Play();
+        direction = PlayerController.instance.model.transform.forward * dashForce * Time.fixedDeltaTime * PlayerController.instance.moveSpeed;
     }
     public void ActionUpdate()
     {
@@ -26,7 +28,7 @@ public class A_AtackDash : IAction
             ActionEnd();
             return;
         }
-        PlayerController.instance.moveDirection += PlayerController.instance.model.transform.forward * dashForce * Time.fixedDeltaTime * PlayerController.instance.moveSpeed;
+        PlayerController.instance.moveDirection += direction;
         dashTime -= Time.fixedDeltaTime * 8;
     }
     public void ActionEnd()

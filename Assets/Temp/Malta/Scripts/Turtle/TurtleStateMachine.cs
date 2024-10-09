@@ -128,6 +128,7 @@ public class TurtleStateMachine : MonoBehaviour
         //Adicionar em quais estados não pode dar "ministun" na tartaruga
         if (!animator.GetBool("Cannon"))
         {
+            agent.isStopped = true;
             AttackIdle();
             animator.SetTrigger("TakeDamage");
             SetState(new TurtleCombatIdleState(this));

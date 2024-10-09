@@ -23,7 +23,7 @@ public class TurtleFSMReceiver : MonoBehaviour
     }
     public void CannonFire()
     {
-        turtle.CannonFire();
+        turtle.Fire();
     }
     public void Activate()
     {

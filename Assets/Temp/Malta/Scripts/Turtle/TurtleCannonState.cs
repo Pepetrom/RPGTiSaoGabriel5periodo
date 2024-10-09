@@ -5,7 +5,7 @@ using UnityEngine;
 public class TurtleCannonState : ITurtleStateMachine
 {
     TurtleStateMachine controller;
-    private bool hasFired = false;
+    //private bool hasFired = false;
 
     public TurtleCannonState(TurtleStateMachine controller)
     {
@@ -14,7 +14,7 @@ public class TurtleCannonState : ITurtleStateMachine
 
     public void OnEnter()
     {
-        hasFired = false;
+        //hasFired = false;
         controller.animator.SetBool("Cannon", true);
     }
 
@@ -29,11 +29,14 @@ public class TurtleCannonState : ITurtleStateMachine
 
     public void OnUpdate()
     {
+        //Coloquei para o próprio event chamar a instance
+        /*
         if (controller.cannonFire && !hasFired)
         {
             controller.Fire();
             hasFired = true;
         }
+        */
         if (!controller.antecipation)
         {
             controller.RotateTowardsPlayer();

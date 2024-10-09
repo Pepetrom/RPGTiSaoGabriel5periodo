@@ -19,24 +19,23 @@ public class PlayerController : MonoBehaviour
     [Header("Dash Settings------------------")]
     public float baseDashForce;
     public float baseDashCooldown;
-    public ParticleSystem particle;
+    public ParticleSystem dustParticle, bloodParticle;
     [Header("Atack Settings------------------")]
     public int baseDamage;
     public int stamPerHit; // Variável que indica a quantidade de estamina perdida por hit
     public bool isAttacking = false; // Variável para saber se o jogador está atacando ou não
-    //public float atackSpeed;
-    //float damage = 0;
     public int comboCounter = 1;
     public Transform target = null;
     public AtackCollider atackCollider;
     public float detectionAutoTargetRange = 15;
+    public TrailRenderer swordTrail;
     [Header("Defese Settings------------------")]
     public float maxlife, invencibilityTime;
-    bool canTakeDamage = true;
-    float life;
+    public bool canTakeDamage = true;
+    public Transform damageFont;
     [Header("Actions------------------")]
     public bool[] canDoAction = new bool[2];
-    public IAction[] actions = new IAction[2];
+    public IAction[] actions = new IAction[3];
     [Header("Atacks------------------")]
     public bool[] canDoAtack = new bool[2];
     public IWeapon[] atacks = new IWeapon[2];
@@ -55,6 +54,7 @@ public class PlayerController : MonoBehaviour
     }
     void Start()
     {
+        swordTrail.emitting = false;
         InitialActions();
     }
     void InitialActions()
@@ -63,9 +63,11 @@ public class PlayerController : MonoBehaviour
         actions[0].SetSlot(0);
         actions[1] = new A_AtackDash();
         actions[1].SetSlot(1);
+        actions[2] = new A_KnockBack();
+        actions[2].SetSlot(1);
+
         atacks[0] = new W_TestAtack();
         atacks[0].SetSlot(0);
-        life = maxlife;
     }
     void Update()
     {
@@ -83,6 +85,7 @@ public class PlayerController : MonoBehaviour
     {
         actions[0].ActionUpdate();
         actions[1].ActionUpdate();
+        actions[2].ActionUpdate();
         atacks[0].AtackUpdate();
     }
     void Controls()
@@ -92,13 +95,12 @@ public class PlayerController : MonoBehaviour
             //Meu teclado não deixa apertar W+ A+ Space
             if (Input.GetKeyDown(KeyCode.Space) && StaminaBar.stambarInstance.currentStam >= stamPerHit)
             {
-                Debug.Log("tried to do action");
                 actions[0].ActionStart();
                 if (atacks[0].CanBeInterupted())
                 {
                     atacks[0].InteruptAtack();
                 }
-                StaminaBar.stambarInstance.DrainStamina(stamPerHit); // Aqui estou tirando a estamina do player
+                StaminaBar.stambarInstance.DrainStamina(stamPerHit * 2); // Aqui estou tirando a estamina do player
             }
         }
         if (canDoAtack[0])
@@ -157,19 +159,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("Run", false);
         }
     }
-    public void TakeDamage(float damage)
-    {
-        if (canTakeDamage && life > 0)
-        {
-            StartCoroutine(InvulnableTime());
-            life -= damage;
-        }
-        if (life <= 0)
-        {
-            Die();
-            StopCoroutine(InvulnableTime());
-        }
-    }
+
     void Die()
     {
         Destroy(gameObject);
@@ -241,11 +231,6 @@ public class PlayerController : MonoBehaviour
                 break;
         }
     }
-    public IEnumerator InvulnableTime()
-    {
-        canTakeDamage = false;
-        yield return new WaitForSeconds(invencibilityTime);
-        canTakeDamage = true;
-    }
+    
 }
 

@@ -12,11 +12,11 @@ public class GameManager : MonoBehaviour
         instance = this;
         actionTime = 1;
     }
-    public void SpawnDamageNumber(int damageNumber, Transform targetLocation)
+    public void SpawnNumber(int damageNumber, Color color, Transform targetLocation)
     {
         GameObject temp = Instantiate(damagePopUp, targetLocation.position, transform.rotation);
         DamagePopUp dmp = temp.GetComponent<DamagePopUp>();
-        dmp.StartDamage(damageNumber);
+        dmp.StartNumber(damageNumber, color);
     }
     public void ChangeRune(int rune)
     {

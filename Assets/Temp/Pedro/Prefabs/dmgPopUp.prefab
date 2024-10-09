@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2791648651401932709}
   - component: {fileID: 5430731428409194641}
   - component: {fileID: 2685618027278936824}
+  - component: {fileID: 2415161150689083481}
   m_Layer: 0
   m_Name: dmgPopUp
   m_TagString: Untagged
@@ -46,8 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9870d666a056dda4eafab6b916fd70a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageText: {fileID: 2685618027278936824}
-  damageTime: 2
+  numberText: {fileID: 2685618027278936824}
+  numberTime: 2
 --- !u!23 &5430731428409194641
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -112,3 +113,16 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4278247679
+--- !u!114 &2415161150689083481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3818373687071916945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d13366f201211a46812e7b972b9d648, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 0}

@@ -26,7 +26,6 @@ public class PlayerProjetile : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             other.GetComponent<EnemyHealth>().TakeDamage(PlayerController.instance.baseDamage, PlayerController.instance.comboCounter);
-            HPBar.hpbarInstance.RecoverLifebyHit(PlayerController.instance.baseDamage / 10);
             if (endEffect)
             {
                 particle.Play();

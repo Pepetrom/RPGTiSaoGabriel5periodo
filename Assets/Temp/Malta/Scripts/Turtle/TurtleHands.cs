@@ -9,7 +9,7 @@ public class TurtleHands : MonoBehaviour
     {
         if (other.CompareTag("Player") && !turtle.hashitted)
         {
-            HPBar.hpbarInstance.TakeDamage(turtle.damage);
+            HPBar.instance.TakeDamage(turtle.damage,turtle.transform);
             turtle.rightHand.gameObject.SetActive(false);
             turtle.leftHand.gameObject.SetActive(false);
             turtle.hashitted = true;

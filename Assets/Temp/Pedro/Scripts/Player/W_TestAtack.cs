@@ -34,7 +34,8 @@ public class W_TestAtack : IWeapon
 
         atacking = true;
         PlayerController.instance.animator.SetTrigger(("Atack" + PlayerController.instance.comboCounter));
-
+        PlayerController.instance.swordTrail.emitting = true;
+        PlayerController.instance.swordTrail.startColor = Color.white;
         atackDirection = PlayerController.instance.GetMousePosition();
         atackDirection = (atackDirection - PlayerController.instance.model.transform.position).normalized;
 
@@ -96,7 +97,8 @@ public class W_TestAtack : IWeapon
         {
             GameManager.instance.CallHitStop(0.2f);
             other.GetComponent<EnemyHealth>().TakeDamage(PlayerController.instance.baseDamage, PlayerController.instance.comboCounter);
-            HPBar.hpbarInstance.RecoverLifebyHit(PlayerController.instance.baseDamage/10);
+            PlayerController.instance.swordTrail.startColor = Color.green;
+            HPBar.instance.RecoverHPbyHit();
         }
     }
     public void OpenComboWindow()
@@ -107,6 +109,8 @@ public class W_TestAtack : IWeapon
             if(PlayerController.instance.comboCounter > comboSize) PlayerController.instance.comboCounter = 1;
             PlayerController.instance.canDoAtack[slot] = true;
             canBeInterupted = true;
+            PlayerController.instance.swordTrail.startColor = Color.yellow;
+
         }
     }
     public void CloseComboWindow()
@@ -114,6 +118,9 @@ public class W_TestAtack : IWeapon
         PlayerController.instance.comboCounter = 1;
         PlayerController.instance.canDoAtack[slot] = false;
         canBeInterupted = false;
+        PlayerController.instance.swordTrail.startColor = Color.white;
+        PlayerController.instance.swordTrail.emitting = false;
+
     }
     public void AtackEnd()
     {
@@ -123,6 +130,7 @@ public class W_TestAtack : IWeapon
         canBeInterupted = false;
         PlayerController.instance.isAttacking = false; // Parou de atacar
         PlayerController.instance.animator.SetBool("Atacking", false);
+        PlayerController.instance.swordTrail.emitting = false;
     }
 
     public void InteruptAtack()

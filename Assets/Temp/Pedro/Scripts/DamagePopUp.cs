@@ -5,20 +5,21 @@ using UnityEngine.UI;
 
 public class DamagePopUp : MonoBehaviour
 {
-    public TextMesh damageText;
-    public float damageTime = 2;
-    float damageTimer = 0;
-    public void StartDamage(int damageNumber)
+    public TextMesh numberText;
+    public float numberTime = 2;
+    float numberTimer = 0;
+    public void StartNumber(int damageNumber, Color color)
     {
-        damageText.text = "" + damageNumber;
+        numberText.text = "" + damageNumber;
+        numberText.color = color;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        damageTimer += Time.fixedDeltaTime;
+        numberTimer += Time.fixedDeltaTime;
         transform.position += Vector3.up * Time.fixedDeltaTime * 10;
-        if(damageTimer >= damageTime)
+        if(numberTimer >= numberTime)
         {
             Destroy(this.gameObject);
         }

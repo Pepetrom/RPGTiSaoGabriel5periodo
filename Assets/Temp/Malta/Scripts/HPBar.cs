@@ -12,14 +12,11 @@ public class HPBar : MonoBehaviour
     public float currentHP;
     public float moveSpeedBase;
     public float lerpSpeed;
-    private float targetHP;
-    public static HPBar hpbarInstance;
-
-    float moveSpeed;
+    public static HPBar instance;
 
     private void Awake()
     {
-        hpbarInstance = this;
+        instance = this;
     }
     private void Start()
     {
@@ -30,52 +27,77 @@ public class HPBar : MonoBehaviour
         easebar.value = currentHP;
     }
 
-    //Usa sempre o FixedUpdate quando não tiver input para variar resultado
     private void FixedUpdate()
     {
-        if(currentHP <= 0)
-        {
-            SceneController.sceneController.ChangeScene("Menu");
-        }
-        UpdateHPBarTakingDamage();
+        UpdateHealthBar();
     }
-
-    private void UpdateHPBarTakingDamage()
+    public void UpdateHealthBar()
     {
         if (hpbar.value != currentHP)
         {
-            UpdateHealthBar();
+            hpbar.value = Mathf.Lerp(hpbar.value, currentHP, lerpSpeed);
         }
         if (easebar.value != hpbar.value)
         {
-            easebar.value = Mathf.MoveTowards(easebar.value, hpbar.value, moveSpeed * Time.fixedDeltaTime);
+            easebar.value = Mathf.Lerp(easebar.value, hpbar.value, lerpSpeed / 10);
         }
+        //Debug.Log("Atualizando a barra de vida");
     }
-    public void RecoverLifebyHit(int value)
+    public void RecoverHPbyHit()
     {
+        if (easebar.value >= hpbar.value)
+        {
+            currentHP += (easebar.value - currentHP) / 2;
+            easebar.value -= (easebar.value - currentHP) / 2;
+        }
+        /*
         if(hpbar.value != easebar.value && easebar.value < maxHP && ((value/10) <= easebar.value - currentHP))
         {
             //Debug.Log("Recuperei");
             currentHP += value;
         }
+        */
     }
-    public void UpdateHealthBar()
+    public void RecoverHPbyItem(int value)
     {
-        hpbar.value = Mathf.Lerp(hpbar.value, currentHP, lerpSpeed);
-        //Debug.Log("Atualizando a barra de vida");
-    }
-
-    public void TakeDamage(float damage)
-    {
-        GameManager.instance.SpawnDamageNumber((int)damage, PlayerController.instance.transform);
-        if (easebar.value != hpbar.value)
+        currentHP = Mathf.Clamp(currentHP + value, 1, maxHP);
+        GameManager.instance.SpawnNumber(value, Color.green, PlayerController.instance.transform);
+        /*
+        if ((HPBar.hpbarInstance.currentHP + value) < HPBar.hpbarInstance.maxHP)
         {
-            easebar.value = hpbar.value;
+            HPBar.hpbarInstance.currentHP += value;
         }
-        currentHP -= damage;
-        currentHP = Mathf.Max(currentHP, 0);
-        hpbar.value = currentHP;
-        moveSpeed = moveSpeedBase * damage;
+        else
+        {
+            HPBar.hpbarInstance.currentHP = HPBar.hpbarInstance.maxHP;
+        }
+        */
     }
-
+    public void TakeDamage(float damage, Transform damageFont)
+    {
+        if (PlayerController.instance.canTakeDamage && currentHP > 0)
+        {
+            if (easebar.value != hpbar.value)
+            {
+                easebar.value = hpbar.value;
+            }
+            currentHP -= damage;
+            currentHP = Mathf.Clamp(currentHP, 0, maxHP);
+            StartCoroutine(InvulnableTime());
+            GameManager.instance.SpawnNumber((int)damage, Color.red, PlayerController.instance.transform);
+            PlayerController.instance.damageFont = damageFont;
+            PlayerController.instance.actions[2].ActionStart();
+        }
+        if (currentHP <= 0)
+        {
+            StopCoroutine(InvulnableTime());
+            SceneController.sceneController.ChangeScene("Menu");
+        }
+    }
+    public IEnumerator InvulnableTime()
+    {
+        PlayerController.instance.canTakeDamage = false;
+        yield return new WaitForSeconds(PlayerController.instance.invencibilityTime);
+        PlayerController.instance.canTakeDamage = true;
+    }
 }

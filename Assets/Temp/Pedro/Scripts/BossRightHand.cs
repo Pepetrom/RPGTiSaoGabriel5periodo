@@ -11,7 +11,7 @@ public class BossRightHand : MonoBehaviour
         //O attHit e o colisor precisam ir para false quando o boss acerta o player para que não haja ataques consecutivos no mesmo golpe
         if (collision.gameObject.CompareTag("Player") && boss.attHit == true)
         {
-            HPBar.hpbarInstance.TakeDamage(boss.damage);
+            HPBar.instance.TakeDamage(boss.damage, this.transform);
             Debug.Log("Tomou porrada");
             boss.rightHand.enabled = false;
             boss.attHit = false;

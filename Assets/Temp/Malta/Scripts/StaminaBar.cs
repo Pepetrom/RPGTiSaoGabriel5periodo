@@ -13,7 +13,6 @@ public class StaminaBar : MonoBehaviour
     public float moveSpeedBase;
     public float lerpSpeed;
     public float staminaRecover;
-    private float targetHP;
     public static StaminaBar stambarInstance;
 
     float moveSpeed;
@@ -31,7 +30,6 @@ public class StaminaBar : MonoBehaviour
         easebar.value = currentStam;
     }
 
-    //Usa sempre o FixedUpdate quando não tiver input para variar resultado
     private void FixedUpdate()
     {
         UpdateDrainStamina();
