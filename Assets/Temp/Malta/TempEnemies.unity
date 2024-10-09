@@ -9046,6 +9046,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CrocodiloPH
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bb982637e0b67834982a047dc6c277a4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -19701,7 +19706,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}

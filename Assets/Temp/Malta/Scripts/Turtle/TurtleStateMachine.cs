@@ -91,6 +91,7 @@ public class TurtleStateMachine : MonoBehaviour
         active = false;
     }
     #endregion
+
     #region Métodos auxiliares de física
     public void Impulse()
     {
@@ -123,7 +124,7 @@ public class TurtleStateMachine : MonoBehaviour
     }
     #endregion
 
-    public void TakeDamage()
+    /*public void TakeDamage()
     {
         //Adicionar em quais estados não pode dar "ministun" na tartaruga
         if (!animator.GetBool("Cannon"))
@@ -133,5 +134,5 @@ public class TurtleStateMachine : MonoBehaviour
             animator.SetTrigger("TakeDamage");
             SetState(new TurtleCombatIdleState(this));
         }
-    }
+    }*/
 }
