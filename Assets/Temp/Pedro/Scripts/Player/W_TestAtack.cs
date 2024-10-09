@@ -13,8 +13,8 @@ public class W_TestAtack : IWeapon
     bool interupted = true;
     bool atacking = false;
     int comboSize = 3;
-    float positionTimer = 0, turnSpeed;
-    Vector3 atackDirection, newAtackDirection;
+    float positionTimer = 0;
+    Vector3 atackDirection;
     Quaternion newRotation;
     public bool CanBeInterupted()
     {
@@ -32,43 +32,48 @@ public class W_TestAtack : IWeapon
         PlayerController.instance.animator.SetBool("Atacking", true);
         PlayerController.instance.animator.SetBool("Walk", false);
 
+        atacking = true;
         PlayerController.instance.animator.SetTrigger(("Atack" + PlayerController.instance.comboCounter));
 
         atackDirection = PlayerController.instance.GetMousePosition();
-        newAtackDirection = PlayerController.instance.model.transform.forward;
-
         atackDirection = (atackDirection - PlayerController.instance.model.transform.position).normalized;
 
         atackDirection.y = 0;
-        newAtackDirection.y = 0;
         positionTimer = 0;
-        turnSpeed = Vector3.Distance(newAtackDirection, atackDirection);
         
-        atacking = true;
-        PlayerController.instance.canMove = false;
         canBeInterupted = false;
         interupted = false;
+        PlayerController.instance.canMove = false;
         PlayerController.instance.isAttacking = true;         
     }
     public void AtackUpdate()
     {
         if(atacking)
         {
-            if( atackDirection != Vector3.zero)
-            {
-                FacePlayerMouse();
-            }
+            FacePlayerMouse();
         }
     }
     void FacePlayerMouse()
     {
         newRotation = Quaternion.LookRotation(atackDirection);
         PlayerController.instance.model.transform.rotation = Quaternion.Slerp(PlayerController.instance.model.transform.rotation, newRotation, positionTimer);
-        positionTimer += (Time.fixedDeltaTime * 2f) / turnSpeed;
+        positionTimer += (Time.fixedDeltaTime * 2f);
 
         if (positionTimer >= 1)
         {
             atacking = false;
+            switch (PlayerController.instance.comboCounter)
+            {
+                case 1:
+                    PlayerController.instance.actions[1].ActionStart();
+                    break;
+                case 2:
+                    PlayerController.instance.actions[1].ActionStart();
+                    break;
+                case 3:
+                    break;
+            }
+            
         }
     }
     public void StartRegisterHit()
@@ -89,7 +94,8 @@ public class W_TestAtack : IWeapon
     {
         if (!interupted)
         {
-            other.GetComponent<EnemyHealth>().TakeDamage(PlayerController.instance.baseDamage);
+            GameManager.instance.CallHitStop(0.2f);
+            other.GetComponent<EnemyHealth>().TakeDamage(PlayerController.instance.baseDamage, PlayerController.instance.comboCounter);
             HPBar.hpbarInstance.RecoverLifebyHit(PlayerController.instance.baseDamage/10);
         }
     }

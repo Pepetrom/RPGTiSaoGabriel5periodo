@@ -7,14 +7,17 @@ public class PlayerProjetile : MonoBehaviour
     public ParticleSystem particle;
     float timer = 0;
     public float speed, duration;
+    public bool endEffect = false;
     private void FixedUpdate()
     {
         timer += Time.fixedDeltaTime;
         if( timer >= duration)
         {
-            particle.Play();
+            if (endEffect)
+            {
+                particle.Play();
+            }
             Invoke("EndEffect", 0.2f);
-
         }
         transform.position += transform.forward * Time.fixedDeltaTime * speed;
     }
@@ -23,8 +26,11 @@ public class PlayerProjetile : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             PlayerController.instance.atacks[0].Hit(other);
-            particle.Play();
-            Invoke("EndEffect", 0.2f);
+            if (endEffect)
+            {
+                particle.Play();
+                Invoke("EndEffect", 0.2f);
+            }
         }
     }
     void EndEffect()

@@ -61,6 +61,8 @@ public class PlayerController : MonoBehaviour
     {
         actions[0] = new A_SideStep();
         actions[0].SetSlot(0);
+        actions[1] = new A_AtackDash();
+        actions[1].SetSlot(1);
         atacks[0] = new W_TestAtack();
         atacks[0].SetSlot(0);
         life = maxlife;
@@ -74,18 +76,23 @@ public class PlayerController : MonoBehaviour
     {
         Move();
         DoActions();
+        animator.speed = GameManager.instance.actionTime;
+        rb.velocity = moveDirection;
     }
     void DoActions()
     {
         actions[0].ActionUpdate();
+        actions[1].ActionUpdate();
         atacks[0].AtackUpdate();
     }
     void Controls()
     {
         if (canDoAction[0])
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            //Meu teclado não deixa apertar W+ A+ Space
+            if (Input.GetKeyDown(KeyCode.Space) && StaminaBar.stambarInstance.currentStam >= stamPerHit)
             {
+                Debug.Log("tried to do action");
                 actions[0].ActionStart();
                 if (atacks[0].CanBeInterupted())
                 {
@@ -96,7 +103,7 @@ public class PlayerController : MonoBehaviour
         }
         if (canDoAtack[0])
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKeyDown(KeyCode.Mouse0) && StaminaBar.stambarInstance.currentStam >= stamPerHit)
             {
                 Atack(0);
                 StaminaBar.stambarInstance.DrainStamina(stamPerHit); // Aqui estou tirando a estamina do player
@@ -121,8 +128,11 @@ public class PlayerController : MonoBehaviour
     }
     void Move()
     {
-        if (!canMove) return;
-
+        if (!canMove)
+        {
+            moveDirection = Vector3.zero;
+            return;
+        }
         moveDirection.x = Input.GetAxis("Horizontal");
         moveDirection.z = Input.GetAxis("Vertical");
         moveDirection.Normalize();
@@ -132,7 +142,6 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("Walk", moveDirection != Vector3.zero);
         LookForward();
         LookAtTarget();
-        rb.velocity = moveDirection;
     }
     void Run()
     {

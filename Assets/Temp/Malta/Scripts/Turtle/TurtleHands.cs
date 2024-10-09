@@ -13,7 +13,7 @@ public class TurtleHands : MonoBehaviour
             turtle.rightHand.gameObject.SetActive(false);
             turtle.leftHand.gameObject.SetActive(false);
             turtle.hashitted = true;
-            Debug.Log("Colidiu");
+            //Debug.Log("Colidiu");
         }
     }
 }

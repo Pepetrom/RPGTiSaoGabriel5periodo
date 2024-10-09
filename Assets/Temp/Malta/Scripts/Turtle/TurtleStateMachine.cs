@@ -38,6 +38,7 @@ public class TurtleStateMachine : MonoBehaviour
     public float damage;
     public bool hashitted = false;
 
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -46,6 +47,8 @@ public class TurtleStateMachine : MonoBehaviour
     void FixedUpdate()
     {
         state?.OnUpdate();
+        //Tem que colocar esse comando abaixo no script de cada personagem
+        animator.speed = GameManager.instance.actionTime;
     }
     public void SetState(ITurtleStateMachine state)
     {
@@ -117,7 +120,7 @@ public class TurtleStateMachine : MonoBehaviour
     public void Fire()
     {
         Instantiate(cannonBallPrefab, cannonPosition.position,cannonPosition.rotation);
-        Debug.Log("Atirou");
+        //Debug.Log("Atirou");
     }
     #endregion
 }

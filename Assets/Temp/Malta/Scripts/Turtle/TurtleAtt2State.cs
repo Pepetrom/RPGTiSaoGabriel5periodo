@@ -62,7 +62,7 @@ public class TurtleAtt2State : ITurtleStateMachine
         {
             if (controller.combo)
             {
-                Debug.Log("Opa");
+                //Debug.Log("Opa");
                 controller.animator.SetBool("att2att3", true);
                 controller.SetState(new TurtleAtt3State(controller));
             }

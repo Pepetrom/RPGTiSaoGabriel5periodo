@@ -9,6 +9,10 @@ public class EnemyHealth : MonoBehaviour
     public int lifeActual;
     public Slider hpbar;
     public float lerpSpeed;
+    float knockbackTime = 0;
+    Vector3 knockBackDirection;
+    public GameObject owner;
+
     private void Start()
     {
         lifeActual = lifeTotal;
@@ -19,8 +23,22 @@ public class EnemyHealth : MonoBehaviour
     {
         UpdateHPBar();
     }
-    public void TakeDamage(int damage)
+    private void FixedUpdate()
     {
+        KnockBack();
+    }
+    void KnockBack()
+    {
+        if(knockbackTime > 0)
+        {
+            transform.position += knockBackDirection; 
+        }
+    }
+    public void TakeDamage(int damage, int knockbackStrenght)
+    {
+        knockbackTime = 1;
+        knockBackDirection = PlayerController.instance.moveDirection * Time.fixedDeltaTime * knockbackStrenght * 50;
+        knockBackDirection.y = 0;
         lifeActual -= damage;
         GameManager.instance.SpawnDamageNumber(damage, transform);
         if(lifeActual <= 0)
