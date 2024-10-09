@@ -51,7 +51,29 @@ public class W_TestAtack : IWeapon
     {
         if(atacking)
         {
-            FacePlayerMouse();
+            if(PlayerController.instance.target != null)
+            {
+                atackDirection = (PlayerController.instance.target.position - PlayerController.instance.model.transform.position);
+                atackDirection.y = 0;
+                atackDirection = atackDirection.normalized;
+                PlayerController.instance.model.transform.rotation = Quaternion.LookRotation(atackDirection);
+                atacking = false;
+                switch (PlayerController.instance.comboCounter)
+                {
+                    case 1:
+                        PlayerController.instance.actions[1].ActionStart();
+                        break;
+                    case 2:
+                        PlayerController.instance.actions[1].ActionStart();
+                        break;
+                    case 3:
+                        break;
+                }
+            }
+            else
+            {
+                FacePlayerMouse();
+            }
         }
     }
     void FacePlayerMouse()

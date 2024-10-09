@@ -160,10 +160,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Die()
-    {
-        Destroy(gameObject);
-    }
     void DetectClosestEnemy()
     {
         Collider[] hits = Physics.OverlapSphere(model.transform.position, detectionAutoTargetRange);
@@ -189,7 +185,7 @@ public class PlayerController : MonoBehaviour
         if (!canMove || target == null) return;
 
         targetDirection = (target.position - model.transform.position).normalized;
-        targetDirection.y = model.transform.position.y;
+        targetDirection.y = 0;
         newRotation = Quaternion.LookRotation(targetDirection);
         model.transform.rotation = newRotation;
     }
