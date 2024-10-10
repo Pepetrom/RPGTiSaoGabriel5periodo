@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-    Vector3 originalPosition;
     Vector3 cameraPlayerDiference;
     Vector3 newPosition;
     public float maxDistance = 1, speed = 1;
@@ -22,7 +21,6 @@ public class CameraScript : MonoBehaviour
     }
     private void Start()
     {
-        originalPosition = transform.localPosition;
         cameraPlayerDiference = transform.position - PlayerController.instance.model.transform.position;
     }
     void FixedUpdate()
@@ -35,7 +33,7 @@ public class CameraScript : MonoBehaviour
         newPosition = transform.position;
         maxDistance = speed * Vector3.Distance(transform.position, PlayerController.instance.model.transform.position + cameraPlayerDiference);
         newPosition = Vector3.Lerp(transform.position, PlayerController.instance.model.transform.position + cameraPlayerDiference, maxDistance);
-        newPosition.y = PlayerController.instance.model.transform.position.y + cameraPlayerDiference.y;
+        //newPosition.y = PlayerController.instance.model.transform.position.y + cameraPlayerDiference.y;
         transform.position = newPosition;
     }
     void Shake()

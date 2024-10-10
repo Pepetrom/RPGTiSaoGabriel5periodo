@@ -1,15 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Rendering;
 
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
     Camera mainCamera;
     Rigidbody rb;
-    public Vector3 moveDirection;
+    public Vector3 moveDirection, forwardDirection;
     public Animator animator;
     public GameObject model;
     [Header("Move Settings------------------")]
@@ -30,19 +27,30 @@ public class PlayerController : MonoBehaviour
     public float detectionAutoTargetRange = 15;
     public TrailRenderer swordTrail;
     [Header("Defese Settings------------------")]
-    public float maxlife, invencibilityTime;
+    public float invencibilityTime;
     public bool canTakeDamage = true;
     public Transform damageFont;
     [Header("Actions------------------")]
-    public bool[] canDoAction = new bool[2];
-    public IAction[] actions = new IAction[3];
+    public bool[] canDoAction = new bool[4];
+    public IAction[] actions = new IAction[4];
     [Header("Atacks------------------")]
-    public bool[] canDoAtack = new bool[2];
-    public IWeapon[] atacks = new IWeapon[2];
+    public bool[] canDoAtack = new bool[1];
+    public IWeapon[] atacks = new IWeapon[1];
     [Header("Runes------------------")]
     public GameObject[] runes;
     public int actualRune = 1;
-    //Rotation
+    [Header("GroundCheck------------------")]
+    public Transform groundPoint;
+    public LayerMask groundMask;
+    public bool grounded;
+    [Header("Gravity Settings---------------")]
+    public float gravityForce;
+    float gravityPreservation;
+    [Header("Jump Settings------------------")]
+    public float baseJumpForce;
+    public float baseAirTime;
+    public bool jumping;
+    [Header("Rotation------------------")]
     Quaternion newRotation;
     Vector3 mousePosition, worldMousePosition, targetDirection;
     //------------------------------------------------------------------------------------------------------------------------------------
@@ -64,28 +72,31 @@ public class PlayerController : MonoBehaviour
         actions[1] = new A_AtackDash();
         actions[1].SetSlot(1);
         actions[2] = new A_KnockBack();
-        actions[2].SetSlot(1);
+        actions[2].SetSlot(2);
+        actions[3] = new A_Jump();
+        actions[3].SetSlot(3);
 
         atacks[0] = new W_TestAtack();
         atacks[0].SetSlot(0);
     }
     void Update()
     {
-        moveDirection.y = rb.velocity.y;
         Controls();
     }
     void FixedUpdate()
     {
         Move();
+        CheckGround();
         DoActions();
         animator.speed = GameManager.instance.actionTime;
         rb.velocity = moveDirection;
     }
     void DoActions()
     {
-        actions[0].ActionUpdate();
-        actions[1].ActionUpdate();
-        actions[2].ActionUpdate();
+        actions[0].ActionUpdate(); // Dash
+        actions[1].ActionUpdate(); // AtackDash
+        actions[2].ActionUpdate(); // KnockBack
+        actions[3].ActionUpdate(); // Jump
         atacks[0].AtackUpdate();
     }
     void Controls()
@@ -93,7 +104,7 @@ public class PlayerController : MonoBehaviour
         if (canDoAction[0])
         {
             //Meu teclado não deixa apertar W+ A+ Space
-            if (Input.GetKeyDown(KeyCode.Space) && StaminaBar.stambarInstance.currentStam >= stamPerHit)
+            if (Input.GetKeyDown(KeyCode.Q) && StaminaBar.stambarInstance.currentStam >= stamPerHit)
             {
                 actions[0].ActionStart();
                 if (atacks[0].CanBeInterupted())
@@ -103,6 +114,7 @@ public class PlayerController : MonoBehaviour
                 StaminaBar.stambarInstance.DrainStamina(stamPerHit * 2); // Aqui estou tirando a estamina do player
             }
         }
+        if (!grounded) return;
         if (canDoAtack[0])
         {
             if (Input.GetKeyDown(KeyCode.Mouse0) && StaminaBar.stambarInstance.currentStam >= stamPerHit)
@@ -123,6 +135,14 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        if (canDoAction[3])//Jump
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                actions[3].ActionStart();
+                grounded = false;
+            }
+        }
     }
     void Atack(int slot)
     {
@@ -135,15 +155,33 @@ public class PlayerController : MonoBehaviour
             moveDirection = Vector3.zero;
             return;
         }
+        moveDirection.y = 0;
         moveDirection.x = Input.GetAxis("Horizontal");
         moveDirection.z = Input.GetAxis("Vertical");
         moveDirection.Normalize();
         Run();
         moveDirection = moveDirection * moveSpeed * runningMultiplier;
-        moveDirection.y = 0;
+        moveDirection.y = rb.velocity.y;
         animator.SetBool("Walk", moveDirection != Vector3.zero);
         LookForward();
         LookAtTarget();
+    }
+    void CheckGround()
+    {
+        if (!jumping)
+        {
+            moveDirection.y -= gravityForce * Time.deltaTime;
+            if (Physics.CheckSphere(groundPoint.position, 1, groundMask))
+            {
+                grounded = true;
+                moveDirection.y = Mathf.Clamp(moveDirection.y, 0, Mathf.Infinity);
+                canDoAction[3] = true;
+            }
+            else
+            {
+                grounded = false;
+            }
+        }
     }
     void Run()
     {
@@ -193,7 +231,9 @@ public class PlayerController : MonoBehaviour
     {
         if (target != null || moveDirection == Vector3.zero) return;
 
-        newRotation = Quaternion.LookRotation(moveDirection);
+        forwardDirection = moveDirection;
+        forwardDirection.y = 0;
+        newRotation = Quaternion.LookRotation(forwardDirection);
         newRotation = Quaternion.Slerp(model.transform.rotation, newRotation, 0.2f);
         model.transform.rotation = newRotation;
     }
@@ -207,7 +247,7 @@ public class PlayerController : MonoBehaviour
         mousePosition = worldMousePosition;
         mousePosition.y = model.transform.position.y;
         target = null;
-        
+
         return mousePosition;
     }
     public void RuneEffect()
@@ -227,6 +267,6 @@ public class PlayerController : MonoBehaviour
                 break;
         }
     }
-    
+
 }
 
