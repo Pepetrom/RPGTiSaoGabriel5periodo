@@ -21,9 +21,14 @@ public class TurtleStateMachine : MonoBehaviour
     public float meleeRange;
     public GameObject cannonBallPrefab;
     public Transform cannonPosition;
+    public ParticleSystem cannonExplosion;
 
     [Header("KB")]
     public float kbforce;
+    [Header("Patrol")]
+    public float patrollingRadius;
+    public float patrollingCooldown;
+    [HideInInspector]public Vector3 patrolCenter;
 
     //bools de ataques
     [HideInInspector] public bool attIdle;
@@ -122,11 +127,21 @@ public class TurtleStateMachine : MonoBehaviour
     public void Fire()
     {
         Instantiate(cannonBallPrefab, cannonPosition.position,cannonPosition.rotation);
+        cannonExplosion.Play();
+        CameraScript.instance.StartShake();
         //Debug.Log("Atirou");
     }
     public void Impulse()
     {
         rb.AddForce(PlayerController.instance.moveDirection.normalized * kbforce, ForceMode.Impulse);
+    }
+    public void Patrolling(Vector3 center)
+    {
+        Vector3 pos = Random.insideUnitCircle * patrollingRadius;
+        pos.z = pos.y;
+        pos.y = 0;
+        Vector3 patrolPosition = center + pos;
+        agent.SetDestination(patrolPosition);
     }
     #endregion
 

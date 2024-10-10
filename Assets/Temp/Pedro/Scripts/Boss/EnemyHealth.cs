@@ -23,21 +23,9 @@ public class EnemyHealth : MonoBehaviour
     private void FixedUpdate()
     {
         UpdateHPBar();
-        //KnockBack();
-    }
-    void KnockBack()
-    {
-        if(knockbackTime > 0)
-        {
-            transform.position += knockBackDirection;
-            knockbackTime -= Time.fixedDeltaTime;
-        }
     }
     public void TakeDamage(int damage, int knockbackStrenght)
     {
-        //knockbackTime = 0.2f;
-        //knockBackDirection = PlayerController.instance.moveDirection.normalized * Time.fixedDeltaTime * knockbackStrenght * 50;
-        //knockBackDirection.y = 0;
         turtle.Impulse();
         lifeActual -= damage;
         GameManager.instance.SpawnNumber((int)damage, Color.yellow, transform);

@@ -24,6 +24,7 @@ public class TurtleRunState : ITurtleStateMachine
     public void OnUpdate()
     {
         controller.agent.SetDestination(controller.player.transform.position);
+        controller.RotateTowardsPlayer();
         if(controller.sortedNumber < 0.3f)
         {
             controller.agent.speed = 0f;
