@@ -29,7 +29,7 @@ public class TurtleStateMachine : MonoBehaviour
     public float patrollingRadius;
     public float patrollingCooldown;
     [HideInInspector]public Vector3 patrolCenter;
-    Vector3 patrolPosition;
+    [HideInInspector]public Vector3 patrolPosition;
 
     //bools de ataques
     [HideInInspector] public bool attIdle;
@@ -130,30 +130,38 @@ public class TurtleStateMachine : MonoBehaviour
     {
         Instantiate(cannonBallPrefab, cannonPosition.position,cannonPosition.rotation);
         cannonExplosion.Play();
+        CannonKB();
         CameraScript.instance.StartShake();
         //Debug.Log("Atirou");
     }
-    public void Impulse()
+    public void Impulse(float kbforce)
     {
         rb.AddForce(PlayerController.instance.moveDirection.normalized * kbforce, ForceMode.Impulse);
     }
+    public void CannonKB()
+    {
+        rb.AddForce(-transform.forward.normalized * (kbforce * 2),ForceMode.Impulse);
+    }
     public void Patrolling(Vector3 center)
     {
-        Vector3 pos = Random.insideUnitCircle * patrollingRadius;
+        Vector3 pos = Random.insideUnitCircle.normalized * Random.Range(0.9f, 1f) * patrollingRadius;
         pos.z = pos.y;
         pos.y = 0;
         patrolPosition = center + pos;
+    }
+    public void Patrol()
+    {
         agent.SetDestination(patrolPosition);
     }
 
     public void RotateTowards()
     {
-        Vector3 dir = (patrolPosition - transform.position).normalized;
-        Quaternion lookRot = Quaternion.LookRotation(new Vector3(dir.x, 0, dir.z));
-        float angle = Vector3.Angle(transform.forward, dir);
-        if (angle > 1f)
+        Vector3 direction = patrolPosition - transform.position;
+        direction.y = 0;
+        if (direction != Vector3.zero)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookRot, Time.deltaTime * 10);
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10);
         }
     }
     #endregion

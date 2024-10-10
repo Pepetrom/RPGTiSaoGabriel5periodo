@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
+    public Camera cam;
     Vector3 cameraPlayerDiference;
     Vector3 newPosition;
     public float maxDistance = 1, speed = 1;
@@ -14,6 +15,12 @@ public class CameraScript : MonoBehaviour
     public float shakeIntensity = 0.1f;
     public float shakeDuration = 1.0f;
     private float shakeTime = 0.0f;
+
+    //Zoom de combate
+    public float zoomSpeed;
+    public float targetZoom;
+    private float currentZoom = 60;
+
 
     private void Awake()
     {
@@ -27,6 +34,11 @@ public class CameraScript : MonoBehaviour
     {
         FollowPlayer();
         Shake();
+        if(GameManager.instance.isCombat)
+        {
+            currentZoom = Mathf.Lerp(currentZoom, targetZoom, Time.deltaTime * zoomSpeed);
+            cam.fieldOfView = currentZoom;
+        }
     }
     void FollowPlayer()
     {

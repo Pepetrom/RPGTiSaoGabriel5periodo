@@ -26,7 +26,7 @@ public class EnemyHealth : MonoBehaviour
     }
     public void TakeDamage(int damage, int knockbackStrenght)
     {
-        turtle.Impulse();
+        turtle.Impulse(turtle.kbforce);
         lifeActual -= damage;
         GameManager.instance.SpawnNumber((int)damage, Color.yellow, transform);
         if(lifeActual <= 0)

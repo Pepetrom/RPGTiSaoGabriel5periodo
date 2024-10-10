@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public GameObject damagePopUp;
     public static GameManager instance;
     public float actionTime = 1;
+    public bool isCombat;
     private void Awake()
     {
         instance = this;
@@ -32,5 +33,13 @@ public class GameManager : MonoBehaviour
         CameraScript.instance.StartShake();
         yield return new WaitForSeconds(tempoHitStop);
         actionTime = 1;
+    }
+    public void StartCombat()
+    {
+        isCombat = true;
+    }
+    public void EndCombat()
+    {
+        isCombat = false;
     }
 }
