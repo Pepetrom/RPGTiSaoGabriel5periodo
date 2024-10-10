@@ -983,7 +983,7 @@ MonoBehaviour:
   baseDashCooldown: 0
   dustParticle: {fileID: 1833192140}
   bloodParticle: {fileID: 732205608}
-  baseDamage: 10
+  baseDamage: 25
   stamPerHit: 10
   isAttacking: 0
   comboCounter: 1
@@ -3427,6 +3427,7 @@ GameObject:
   - component: {fileID: 580531435}
   - component: {fileID: 580531434}
   - component: {fileID: 580531439}
+  - component: {fileID: 580531440}
   m_Layer: 0
   m_Name: Turtle_Tuco
   m_TagString: Enemy
@@ -3491,6 +3492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57f070fd70b5d1f43818b089e885c149, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: {fileID: 580531439}
   sortedNumber: 0
   animator: {fileID: 381612274}
   agent: {fileID: 580531434}
@@ -3501,6 +3503,7 @@ MonoBehaviour:
   cannonBallPrefab: {fileID: 8576731493386660667, guid: b4d314c5c05b7354ba0b21f7c11f3544,
     type: 3}
   cannonPosition: {fileID: 1471964583}
+  kbforce: 1440
   attIdle: 0
   combo: 0
   antecipation: 0
@@ -3508,6 +3511,7 @@ MonoBehaviour:
   cannonFire: 0
   active: 0
   combed: 0
+  rb: {fileID: 0}
   lastAttack: 
   attack2Counter: 0
   attackSpeed: 1
@@ -3550,6 +3554,35 @@ MonoBehaviour:
   lifeActual: 3
   hpbar: {fileID: 1188413793}
   lerpSpeed: 0.08
+  turtle: {fileID: 580531437}
+  playerHit: 0
+--- !u!54 &580531440
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 580531433}
+  serializedVersion: 4
+  m_Mass: 120
+  m_Drag: 1
+  m_AngularDrag: 20
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 80
+  m_CollisionDetection: 0
 --- !u!1 &598053525
 GameObject:
   m_ObjectHideFlags: 0
@@ -19740,6 +19773,8 @@ MonoBehaviour:
   lifeActual: 3
   hpbar: {fileID: 0}
   lerpSpeed: 0
+  turtle: {fileID: 0}
+  playerHit: 0
 --- !u!1 &1911494610
 GameObject:
   m_ObjectHideFlags: 0

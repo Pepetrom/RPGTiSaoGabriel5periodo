@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 public class TurtleAtt1State : ITurtleStateMachine
 {
     TurtleStateMachine controller;
@@ -19,6 +16,7 @@ public class TurtleAtt1State : ITurtleStateMachine
         controller.SortNumber();
         impulseApplied = false;
         controller.damage = 20;
+        controller.rb.isKinematic = false;
     }
 
     public void OnExit()
@@ -27,12 +25,17 @@ public class TurtleAtt1State : ITurtleStateMachine
         controller.antecipation = false;
         controller.attIdle = false;
         controller.combo = false;
-        controller.animator.SetBool("att1att2", true);
         controller.hashitted = false;
     }
 
     public void OnUpdate()
     {
+        if (controller.hp.playerHit)
+        {
+            controller.SetState(new TurtleStunState(controller));
+            controller.hp.playerHit = false;
+            return;
+        }
         if (controller.active)
         {
             controller.rightHand.gameObject.SetActive(true);
@@ -41,6 +44,7 @@ public class TurtleAtt1State : ITurtleStateMachine
         {
             controller.rightHand.gameObject.SetActive(false);
         }
+
         if (controller.impulse && !impulseApplied)
         {
             //controller.Impulse();
@@ -56,9 +60,10 @@ public class TurtleAtt1State : ITurtleStateMachine
             if (controller.combo && controller.TargetDir().magnitude <= controller.meleeRange + 4)
             {
                 controller.combed = true;
+                controller.animator.SetBool("att1att2", true);
                 controller.SetState(new TurtleAtt2State(controller));
             }
-            else if(controller.combo && controller.TargetDir().magnitude >= controller.meleeRange + 4)
+            else if (controller.combo && controller.TargetDir().magnitude >= controller.meleeRange + 4)
             {
                 controller.animator.SetBool("Attack1", false);
                 controller.SetState(new TurtleCombatIdleState(controller));

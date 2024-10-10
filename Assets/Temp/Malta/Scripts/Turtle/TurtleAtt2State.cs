@@ -15,6 +15,7 @@ public class TurtleAtt2State : ITurtleStateMachine
         controller.damage = 15;
         controller.attackSpeed = 600f;
         controller.animator.SetBool("Attack2", true);
+        controller.rb.isKinematic = false;
     }
 
     public void OnExit()
@@ -28,6 +29,12 @@ public class TurtleAtt2State : ITurtleStateMachine
 
     public void OnUpdate()
     {
+        if (controller.hp.playerHit)
+        {
+            controller.SetState(new TurtleStunState(controller));
+            controller.hp.playerHit = false;
+            return;
+        }
         if (controller.active)
         {
             controller.leftHand.gameObject.SetActive(true);

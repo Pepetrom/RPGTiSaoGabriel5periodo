@@ -5,7 +5,9 @@ using UnityEngine.AI;
 
 public class TurtleStateMachine : MonoBehaviour
 {
+    #region Variables
     ITurtleStateMachine state;
+    public EnemyHealth hp;
     [HideInInspector] public float sortedNumber;
 
     [Header("Elements")]
@@ -20,6 +22,9 @@ public class TurtleStateMachine : MonoBehaviour
     public GameObject cannonBallPrefab;
     public Transform cannonPosition;
 
+    [Header("KB")]
+    public float kbforce;
+
     //bools de ataques
     [HideInInspector] public bool attIdle;
     [HideInInspector] public bool combo;
@@ -28,7 +33,7 @@ public class TurtleStateMachine : MonoBehaviour
     [HideInInspector] public bool cannonFire;
     [HideInInspector] public bool active;
     [HideInInspector] public bool combed = false;
-    [HideInInspector] private Rigidbody rb;
+    [HideInInspector] public Rigidbody rb;
 
     [Header("AttacksControllers")]
     public string lastAttack = ""; 
@@ -37,6 +42,7 @@ public class TurtleStateMachine : MonoBehaviour
     public TurtleHands rightHand, leftHand;
     public float damage;
     public bool hashitted = false;
+    #endregion
 
     void Start()
     {
@@ -93,10 +99,6 @@ public class TurtleStateMachine : MonoBehaviour
     #endregion
 
     #region Métodos auxiliares de física
-    public void Impulse()
-    {
-        rb.AddForce(transform.forward * attackSpeed,ForceMode.Impulse);
-    }
     public void RotateTowardsPlayer()
     {
         Vector3 dir = (player.transform.position - transform.position).normalized;
@@ -121,6 +123,10 @@ public class TurtleStateMachine : MonoBehaviour
     {
         Instantiate(cannonBallPrefab, cannonPosition.position,cannonPosition.rotation);
         //Debug.Log("Atirou");
+    }
+    public void Impulse()
+    {
+        rb.AddForce(PlayerController.instance.moveDirection.normalized * kbforce, ForceMode.Impulse);
     }
     #endregion
 

@@ -25,6 +25,7 @@ public class TurtleCombatIdleState : ITurtleStateMachine
         controller.rightHand.gameObject.SetActive(false);
         controller.combed = false;
         controller.SortNumber();
+        controller.rb.isKinematic = false;
     }
 
     public void OnExit()
@@ -33,7 +34,12 @@ public class TurtleCombatIdleState : ITurtleStateMachine
 
     public void OnUpdate()
     {
-        if(controller.TargetDir().magnitude >= controller.minCannonRange && controller.TargetDir().magnitude <= controller.maxCannonRange)
+        if (controller.hp.playerHit)
+        {
+            controller.SetState(new TurtleStunState(controller));
+            controller.hp.playerHit = false;
+        }
+        if (controller.TargetDir().magnitude >= controller.minCannonRange && controller.TargetDir().magnitude <= controller.maxCannonRange)
         {
             controller.SetState(new TurtleCannonState(controller));
         }

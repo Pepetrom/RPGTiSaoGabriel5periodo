@@ -9,8 +9,10 @@ public class EnemyHealth : MonoBehaviour
     public int lifeActual;
     public Slider hpbar;
     public float lerpSpeed;
+    public TurtleStateMachine turtle;
     float knockbackTime = 0;
     Vector3 knockBackDirection;
+    public bool playerHit = false;
 
     private void Start()
     {
@@ -21,7 +23,7 @@ public class EnemyHealth : MonoBehaviour
     private void FixedUpdate()
     {
         UpdateHPBar();
-        KnockBack();
+        //KnockBack();
     }
     void KnockBack()
     {
@@ -33,15 +35,17 @@ public class EnemyHealth : MonoBehaviour
     }
     public void TakeDamage(int damage, int knockbackStrenght)
     {
-        knockbackTime = 0.2f;
-        knockBackDirection = PlayerController.instance.moveDirection.normalized * Time.fixedDeltaTime * knockbackStrenght * 50;
-        knockBackDirection.y = 0;
+        //knockbackTime = 0.2f;
+        //knockBackDirection = PlayerController.instance.moveDirection.normalized * Time.fixedDeltaTime * knockbackStrenght * 50;
+        //knockBackDirection.y = 0;
+        turtle.Impulse();
         lifeActual -= damage;
         GameManager.instance.SpawnNumber((int)damage, Color.yellow, transform);
         if(lifeActual <= 0)
         {
             Destroy(this.gameObject);
         }
+        playerHit = true;
     }
     public void UpdateHPBar()
     {
