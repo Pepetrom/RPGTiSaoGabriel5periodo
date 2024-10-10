@@ -20,6 +20,7 @@ public class TurtlePatrolState : ITurtleStateMachine
     public void OnExit()
     {
         Debug.Log("Parei de patrulhar");
+        controller.agent.angularSpeed = 0f;
     }
 
     public void OnUpdate()
@@ -37,8 +38,9 @@ public class TurtlePatrolState : ITurtleStateMachine
             controller.Patrolling(controller.patrolCenter);
             time = Time.time + controller.patrollingCooldown;
         }
-        if (controller.TargetDir().magnitude >= controller.minCannonRange)
+        if (controller.TargetDir().magnitude <= controller.minCannonRange)
         {
+            controller.animator.SetBool("patrolling", false);
             controller.SetState(new TurtleCombatIdleState(controller));
         }
     }

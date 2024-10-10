@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using UnityEngine;
 public class TurtleCombatIdleState : ITurtleStateMachine
 {
@@ -34,6 +35,13 @@ public class TurtleCombatIdleState : ITurtleStateMachine
 
     public void OnUpdate()
     {
+        if (!controller.isInCombat)
+        {
+            controller.isInCombat = true;
+            controller.animator.SetBool("patrolling", true);
+            controller.SetState(new TurtlePatrolState(controller));
+            return;
+        }
         if (controller.hp.playerHit)
         {
             controller.SetState(new TurtleStunState(controller));

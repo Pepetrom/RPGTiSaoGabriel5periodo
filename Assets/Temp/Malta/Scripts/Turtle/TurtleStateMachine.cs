@@ -47,6 +47,7 @@ public class TurtleStateMachine : MonoBehaviour
     public TurtleHands rightHand, leftHand;
     public float damage;
     public bool hashitted = false;
+    public bool isInCombat = false;
     #endregion
 
     void Start()
@@ -143,6 +144,7 @@ public class TurtleStateMachine : MonoBehaviour
         Vector3 patrolPosition = center + pos;
         agent.SetDestination(patrolPosition);
     }
+
     #endregion
 
     /*public void TakeDamage()
