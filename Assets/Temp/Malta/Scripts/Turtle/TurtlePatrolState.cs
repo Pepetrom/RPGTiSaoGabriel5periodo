@@ -25,6 +25,7 @@ public class TurtlePatrolState : ITurtleStateMachine
 
     public void OnUpdate()
     {
+        controller.RotateTowards();
         if(controller.rb.velocity.magnitude >= 0)
         {
             controller.animator.SetFloat("speed", 0.03f);

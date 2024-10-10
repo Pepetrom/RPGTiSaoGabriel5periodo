@@ -29,6 +29,7 @@ public class TurtleStateMachine : MonoBehaviour
     public float patrollingRadius;
     public float patrollingCooldown;
     [HideInInspector]public Vector3 patrolCenter;
+    Vector3 patrolPosition;
 
     //bools de ataques
     [HideInInspector] public bool attIdle;
@@ -141,10 +142,20 @@ public class TurtleStateMachine : MonoBehaviour
         Vector3 pos = Random.insideUnitCircle * patrollingRadius;
         pos.z = pos.y;
         pos.y = 0;
-        Vector3 patrolPosition = center + pos;
+        patrolPosition = center + pos;
         agent.SetDestination(patrolPosition);
     }
 
+    public void RotateTowards()
+    {
+        Vector3 dir = (patrolPosition - transform.position).normalized;
+        Quaternion lookRot = Quaternion.LookRotation(new Vector3(dir.x, 0, dir.z));
+        float angle = Vector3.Angle(transform.forward, dir);
+        if (angle > 1f)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRot, Time.deltaTime * 10);
+        }
+    }
     #endregion
 
     /*public void TakeDamage()
