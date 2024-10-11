@@ -13,7 +13,7 @@ public class TurtleAtt3State : ITurtleStateMachine
     {
         controller.damage = 30;
         controller.animator.SetBool("Attack3", true);
-        controller.rb.isKinematic = true;
+        controller.rb.isKinematic = false;
     }
 
     public void OnExit()

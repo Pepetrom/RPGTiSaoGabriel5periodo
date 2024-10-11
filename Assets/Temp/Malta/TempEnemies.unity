@@ -308,6 +308,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 21364013}
   m_CullTransparentMesh: 1
+--- !u!137 &65840670 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7336792510131001265, guid: 2057a3bdcbc9ddb40a0a0a4ce86dc389,
+    type: 3}
+  m_PrefabInstance: {fileID: 396114194}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &83812596
 GameObject:
   m_ObjectHideFlags: 0
@@ -1103,7 +1109,7 @@ MonoBehaviour:
   baseDashCooldown: 0
   dustParticle: {fileID: 1833192140}
   bloodParticle: {fileID: 732205608}
-  baseDamage: 25
+  baseDamage: 30
   stamPerHit: 10
   isAttacking: 0
   comboCounter: 1
@@ -1733,6 +1739,12 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
+--- !u!137 &307731957 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1167786290741714694, guid: 2057a3bdcbc9ddb40a0a0a4ce86dc389,
+    type: 3}
+  m_PrefabInstance: {fileID: 396114194}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &311989601
 GameObject:
   m_ObjectHideFlags: 0
@@ -2387,6 +2399,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 45.96888
       objectReference: {fileID: 0}
+    - target: {fileID: -8074688436793591737, guid: 2057a3bdcbc9ddb40a0a0a4ce86dc389,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 48e7a5622140a2e40abf7ae4f9aae115, type: 2}
     - target: {fileID: -8022495212362797301, guid: 2057a3bdcbc9ddb40a0a0a4ce86dc389,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2421,7 +2438,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 8d4ac38f082edf24aaeea726d7bed291, type: 2}
+      objectReference: {fileID: 2100000, guid: 48e7a5622140a2e40abf7ae4f9aae115, type: 2}
     - target: {fileID: -5943672942500001993, guid: 2057a3bdcbc9ddb40a0a0a4ce86dc389,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2691,12 +2708,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 8d4ac38f082edf24aaeea726d7bed291, type: 2}
+      objectReference: {fileID: 2100000, guid: 48e7a5622140a2e40abf7ae4f9aae115, type: 2}
     - target: {fileID: 1167786290741714694, guid: 2057a3bdcbc9ddb40a0a0a4ce86dc389,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 8d4ac38f082edf24aaeea726d7bed291, type: 2}
+      objectReference: {fileID: 2100000, guid: 48e7a5622140a2e40abf7ae4f9aae115, type: 2}
     - target: {fileID: 2038648840454312621, guid: 2057a3bdcbc9ddb40a0a0a4ce86dc389,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2871,7 +2888,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 8d4ac38f082edf24aaeea726d7bed291, type: 2}
+      objectReference: {fileID: 2100000, guid: 48e7a5622140a2e40abf7ae4f9aae115, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -2978,6 +2995,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 403497174}
   m_CullTransparentMesh: 1
+--- !u!137 &418998298 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -8074688436793591737, guid: 2057a3bdcbc9ddb40a0a0a4ce86dc389,
+    type: 3}
+  m_PrefabInstance: {fileID: 396114194}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &422279332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3726,6 +3749,12 @@ MonoBehaviour:
   damage: 0
   hashitted: 0
   isInCombat: 0
+  turtleRenderers:
+  - {fileID: 418998298}
+  - {fileID: 1998289322}
+  - {fileID: 1289089421}
+  - {fileID: 307731957}
+  - {fileID: 65840670}
 --- !u!4 &580531438
 Transform:
   m_ObjectHideFlags: 0
@@ -3759,7 +3788,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5912f83d37fd6254bafed7efffff4a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTotal: 140
+  lifeTotal: 120
   lifeActual: 3
   hpbar: {fileID: 1188413793}
   lerpSpeed: 0.08
@@ -11828,6 +11857,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1265605270}
   m_CullTransparentMesh: 1
+--- !u!137 &1289089421 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1123054084368432229, guid: 2057a3bdcbc9ddb40a0a0a4ce86dc389,
+    type: 3}
+  m_PrefabInstance: {fileID: 396114194}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1300659937
 GameObject:
   m_ObjectHideFlags: 0
@@ -20361,6 +20396,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1982722508}
   m_CullTransparentMesh: 1
+--- !u!137 &1998289322 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 9173078291042267164, guid: 2057a3bdcbc9ddb40a0a0a4ce86dc389,
+    type: 3}
+  m_PrefabInstance: {fileID: 396114194}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2001434485 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: baaf9b4ae02b0b844b4f905f24665dd2,

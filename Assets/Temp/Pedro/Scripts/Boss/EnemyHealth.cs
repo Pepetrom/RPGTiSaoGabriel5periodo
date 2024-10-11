@@ -31,7 +31,8 @@ public class EnemyHealth : MonoBehaviour
         GameManager.instance.SpawnNumber((int)damage, Color.yellow, transform);
         if(lifeActual <= 0)
         {
-            Destroy(this.gameObject);
+            turtle.animator.SetBool("Dead", true);
+            turtle.Die();
         }
         playerHit = true;
     }

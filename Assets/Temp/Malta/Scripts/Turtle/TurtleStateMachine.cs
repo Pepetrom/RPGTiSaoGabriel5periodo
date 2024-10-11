@@ -49,6 +49,9 @@ public class TurtleStateMachine : MonoBehaviour
     public float damage;
     public bool hashitted = false;
     public bool isInCombat = false;
+
+    //DeathShader
+    public Renderer[] turtleRenderers;
     #endregion
 
     void Start()
@@ -103,6 +106,14 @@ public class TurtleStateMachine : MonoBehaviour
     {
         active = false;
     }
+    public void DestroyTurtle(GameObject enemy)
+    {
+        Destroy(enemy);
+    }
+    public void Die()
+    {
+        SetState(new TurtleDeathState(this));
+    }
     #endregion
 
     #region Métodos auxiliares de física
@@ -130,7 +141,7 @@ public class TurtleStateMachine : MonoBehaviour
     {
         Instantiate(cannonBallPrefab, cannonPosition.position,cannonPosition.rotation);
         cannonExplosion.Play();
-        CannonKB();
+        CannonKB(2);
         CameraScript.instance.StartShake();
         //Debug.Log("Atirou");
     }
@@ -138,9 +149,9 @@ public class TurtleStateMachine : MonoBehaviour
     {
         rb.AddForce(PlayerController.instance.moveDirection.normalized * kbforce, ForceMode.Impulse);
     }
-    public void CannonKB()
+    public void CannonKB(float value)
     {
-        rb.AddForce(-transform.forward.normalized * (kbforce * 2),ForceMode.Impulse);
+        rb.AddForce(-transform.forward.normalized * (kbforce * value),ForceMode.Impulse);
     }
     public void Patrolling(Vector3 center)
     {
