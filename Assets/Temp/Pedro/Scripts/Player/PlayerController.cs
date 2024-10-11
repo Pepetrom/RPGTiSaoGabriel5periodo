@@ -162,7 +162,7 @@ public class PlayerController : MonoBehaviour
         Run();
         moveDirection = moveDirection * moveSpeed * runningMultiplier;
         moveDirection.y = rb.velocity.y;
-        animator.SetBool("Walk", moveDirection != Vector3.zero);
+        animator.SetBool("Walk", moveDirection != Vector3.zero );
         LookForward();
         LookAtTarget();
     }
