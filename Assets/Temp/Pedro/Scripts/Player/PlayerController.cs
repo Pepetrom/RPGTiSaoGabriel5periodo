@@ -114,7 +114,7 @@ public class PlayerController : MonoBehaviour
                 StaminaBar.stambarInstance.DrainStamina(stamPerHit * 2); // Aqui estou tirando a estamina do player
             }
         }
-        if (!grounded) return;
+        //if (!grounded) return;
         if (canDoAtack[0])
         {
             if (Input.GetKeyDown(KeyCode.Mouse0) && StaminaBar.stambarInstance.currentStam >= stamPerHit)
