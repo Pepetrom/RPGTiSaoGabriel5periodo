@@ -29,14 +29,6 @@ public class TurtleCannonState : ITurtleStateMachine
 
     public void OnUpdate()
     {
-        //Coloquei para o próprio event chamar a instance
-        /*
-        if (controller.cannonFire && !hasFired)
-        {
-            controller.Fire();
-            hasFired = true;
-        }
-        */
         if (!controller.antecipation)
         {
             controller.RotateTowardsPlayer();

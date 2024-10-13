@@ -21,6 +21,10 @@ public class CameraScript : MonoBehaviour
     public float targetZoom;
     private float currentZoom = 60;
 
+    //Dissolver objetos do cenário
+
+    private ObjectDisssolveShader dissolve; 
+
 
     private void Awake()
     {
@@ -29,6 +33,10 @@ public class CameraScript : MonoBehaviour
     private void Start()
     {
         cameraPlayerDiference = transform.position - PlayerController.instance.model.transform.position;
+    }
+    private void Update()
+    {
+        FindPlayer();
     }
     void FixedUpdate()
     {
@@ -61,5 +69,32 @@ public class CameraScript : MonoBehaviour
     public void StartShake()
     {
         shakeTime = shakeDuration;
+    }
+
+    public void FindPlayer()
+    {
+        Vector3 dir = PlayerController.instance.model.transform.position - transform.position;
+        Ray ray = new Ray(transform.position, dir);
+        RaycastHit hit;
+        if(Physics.Raycast(ray, out hit))
+        {
+            if (hit.collider == null)
+                return;
+            if(hit.collider.gameObject == PlayerController.instance.gameObject)
+            {
+                if(dissolve != null)
+                {
+                    dissolve.CanFade = false;
+                }
+            }
+            else
+            {
+                dissolve = hit.collider.gameObject.GetComponent<ObjectDisssolveShader>();
+                if(dissolve != null)
+                {
+                    dissolve.CanFade = true;
+                }
+            }
+        }
     }
 }

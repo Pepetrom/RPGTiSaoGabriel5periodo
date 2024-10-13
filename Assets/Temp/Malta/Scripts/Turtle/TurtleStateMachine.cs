@@ -21,7 +21,7 @@ public class TurtleStateMachine : MonoBehaviour
     public float meleeRange;
     public GameObject cannonBallPrefab;
     public Transform cannonPosition;
-    public ParticleSystem cannonExplosion;
+    public ParticleSystem cannonExplosion, cannonDust;
 
     [Header("KB")]
     public float kbforce;
@@ -143,6 +143,7 @@ public class TurtleStateMachine : MonoBehaviour
         cannonExplosion.Play();
         CannonKB(2);
         CameraScript.instance.StartShake();
+        cannonDust.Play();
         //Debug.Log("Atirou");
     }
     public void Impulse(float kbforce)

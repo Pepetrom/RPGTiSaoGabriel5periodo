@@ -43,7 +43,6 @@ public class TurtleDeathState : ITurtleStateMachine
             float dissolveValue = Mathf.Lerp(0, 1, elapsedTime / duration); // Alterar os valores conforme necessário
             for (int i = 0; i < turtleMaterials.Length; i++)
             {
-                Debug.Log("Ta no for");
                 turtleMaterials[i].SetFloat("_Dissolve", dissolveValue); // Assume que a propriedade dissolve no shader é chamada _Dissolve
             }
             yield return null;
