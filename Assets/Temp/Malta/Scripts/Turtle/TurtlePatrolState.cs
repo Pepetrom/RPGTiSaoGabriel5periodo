@@ -14,8 +14,9 @@ public class TurtlePatrolState : ITurtleStateMachine
     public void OnEnter()
     {
         time = controller.patrollingCooldown;
-        controller.Patrolling(controller.patrolCenter);
+        controller.agent.SetDestination(controller.patrolPoints[controller.currentPatrolIndex].position);
         Debug.Log("Comecei a patrulha");
+        controller.animator.SetBool("patrolling", true);
     }
 
     public void OnExit()
@@ -26,8 +27,8 @@ public class TurtlePatrolState : ITurtleStateMachine
 
     public void OnUpdate()
     {
-        controller.RotateTowards();
         controller.Patrol();
+        controller.RotateTowards();
         if (controller.agent.velocity.magnitude > 0)
         {
             timer = 0;
@@ -39,8 +40,8 @@ public class TurtlePatrolState : ITurtleStateMachine
             controller.animator.SetFloat("speed", 0f);
             if (timer > time)
             {
-                controller.Patrolling(controller.patrolCenter);
-                Debug.Log("Tempo funfou tb");
+                controller.Patrolling();
+                timer = 0;
             }
         }
         if (controller.TargetDir().magnitude <= controller.minCannonRange)

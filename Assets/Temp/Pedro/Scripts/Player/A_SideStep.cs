@@ -30,6 +30,7 @@ public class A_SideStep : IAction
         {
             direction = PlayerController.instance.moveDirection * dashForce * Time.fixedDeltaTime;
         }
+        direction.y = 0;
     }
     public void ActionUpdate()
     {

@@ -30,6 +30,9 @@ public class TurtleStateMachine : MonoBehaviour
     public float patrollingCooldown;
     [HideInInspector]public Vector3 patrolCenter;
     [HideInInspector]public Vector3 patrolPosition;
+    public float nextPatrolTime = 0f;
+    public int currentPatrolIndex = 0;
+    public Transform[] patrolPoints;
 
     //bools de ataques
     [HideInInspector] public bool attIdle;
@@ -57,7 +60,7 @@ public class TurtleStateMachine : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        SetState(new TurtleCombatIdleState(this));
+        SetState(new TurtlePatrolState(this));
     }
     void FixedUpdate()
     {
@@ -154,21 +157,29 @@ public class TurtleStateMachine : MonoBehaviour
     {
         rb.AddForce(-transform.forward.normalized * (kbforce * value),ForceMode.Impulse);
     }
-    public void Patrolling(Vector3 center)
+    /*public void Patrolling(Vector3 center)
     {
         Vector3 pos = Random.insideUnitCircle.normalized * Random.Range(0.9f, 1f) * patrollingRadius;
         pos.z = pos.y;
         pos.y = 0;
         patrolPosition = center + pos;
+    }*/
+    public void Patrolling()
+    {
+        if (Vector3.Distance(agent.transform.position, patrolPoints[currentPatrolIndex].position) < 0.1f)
+        {
+            currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
+        }
     }
+
     public void Patrol()
     {
-        agent.SetDestination(patrolPosition);
+        agent.SetDestination(patrolPoints[currentPatrolIndex].position);
     }
 
     public void RotateTowards()
     {
-        Vector3 direction = patrolPosition - transform.position;
+        Vector3 direction = patrolPoints[currentPatrolIndex].position - transform.position;
         direction.y = 0;
         if (direction != Vector3.zero)
         {
