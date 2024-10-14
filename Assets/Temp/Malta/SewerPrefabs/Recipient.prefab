@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1174542236329576021
+--- !u!1 &8808091593579217514
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,47 +8,48 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7953566058095846929}
-  - component: {fileID: 5813388882230888077}
-  - component: {fileID: 2984023781855892035}
-  - component: {fileID: 2276944035434971154}
+  - component: {fileID: 6009972511433233349}
+  - component: {fileID: 3670881627249603778}
+  - component: {fileID: 7097767070227249957}
+  - component: {fileID: 5307712187844373390}
+  - component: {fileID: 8810414546940437872}
   m_Layer: 3
-  m_Name: Stair2
+  m_Name: Recipient
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7953566058095846929
+--- !u!4 &6009972511433233349
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1174542236329576021}
+  m_GameObject: {fileID: 8808091593579217514}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.7069834, z: -0.7072302, w: 0}
-  m_LocalPosition: {x: 89.45038, y: -9.345093, z: -59.899666}
-  m_LocalScale: {x: 300, y: 299.9999, z: 299.9999}
+  m_LocalRotation: {x: -0, y: -0.7071067, z: -0.7071068, w: 0}
+  m_LocalPosition: {x: 38, y: -66, z: -138}
+  m_LocalScale: {x: 300, y: 299.99988, z: 299.99988}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: -180}
---- !u!33 &5813388882230888077
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &3670881627249603778
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1174542236329576021}
-  m_Mesh: {fileID: 2159027678128164409, guid: 4a4aac3792ad0a048bfc804ad0d754ec, type: 3}
---- !u!23 &2984023781855892035
+  m_GameObject: {fileID: 8808091593579217514}
+  m_Mesh: {fileID: 2534964839176971238, guid: 4a4aac3792ad0a048bfc804ad0d754ec, type: 3}
+--- !u!23 &7097767070227249957
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1174542236329576021}
+  m_GameObject: {fileID: 8808091593579217514}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -62,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 40598ecf603ac4d41b1f525da75d9d89, type: 2}
+  - {fileID: 2100000, guid: d7f8cc80222cb8b469e96eb18b609157, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,13 +85,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2276944035434971154
-MeshCollider:
+--- !u!65 &5307712187844373390
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1174542236329576021}
+  m_GameObject: {fileID: 8808091593579217514}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -102,7 +103,21 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2159027678128164409, guid: 4a4aac3792ad0a048bfc804ad0d754ec, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 0.047360264, y: 0.047360305, z: 0.12382645}
+  m_Center: {x: -0.000000009313225, y: 0.00000003769037, z: 0.007339625}
+--- !u!114 &8810414546940437872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8808091593579217514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c552a3f6b8608b8409a4373c4ad988e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeSpeed: 8
+  fadeValue: 0
+  CanFade: 0

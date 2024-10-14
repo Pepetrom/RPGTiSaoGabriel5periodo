@@ -13,6 +13,8 @@ public class EnemyHealth : MonoBehaviour
     float knockbackTime = 0;
     Vector3 knockBackDirection;
     public bool playerHit = false;
+    public ParticleSystem hit;
+    bool playhit = false;
 
     private void Start()
     {
@@ -29,12 +31,12 @@ public class EnemyHealth : MonoBehaviour
         turtle.Impulse(turtle.kbforce);
         lifeActual -= damage;
         GameManager.instance.SpawnNumber((int)damage, Color.yellow, transform);
+        hit.Play();
         if(lifeActual <= 0)
         {
             turtle.animator.SetBool("Dead", true);
             turtle.Die();
         }
-        playerHit = true;
     }
     public void UpdateHPBar()
     {
