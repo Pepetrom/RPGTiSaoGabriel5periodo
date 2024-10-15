@@ -23,7 +23,7 @@ public class CameraScript : MonoBehaviour
 
     //Dissolver objetos do cenário
 
-    private ObjectDisssolveShader dissolve; 
+    private ObjectDissolver dissolve; 
 
 
     private void Awake()
@@ -89,7 +89,7 @@ public class CameraScript : MonoBehaviour
             }
             else
             {
-                dissolve = hit.collider.gameObject.GetComponent<ObjectDisssolveShader>();
+                dissolve = hit.collider.gameObject.GetComponent<ObjectDissolver>();
                 if(dissolve != null)
                 {
                     dissolve.CanFade = true;
