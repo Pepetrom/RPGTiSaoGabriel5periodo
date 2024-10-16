@@ -9,9 +9,8 @@ public class ObjectDissolver : MonoBehaviour
 
     void Start()
     {
-        m = GetComponent<Renderer>().sharedMaterial; // Use sharedMaterial para evitar cópia do material
-        dissolveAmount = m.GetFloat("_Cutoff"); // Inicia com o valor atual de dissolução
-        m.SetFloat("_Cutoff", dissolveAmount);  // Aplica o valor no material
+        m = Instantiate(GetComponent<Renderer>().sharedMaterial);
+        GetComponent<Renderer>().material = m; // Garante que o material instanciado será usado
     }
 
     void Update()
