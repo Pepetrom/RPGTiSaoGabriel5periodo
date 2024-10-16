@@ -164,7 +164,7 @@ public class PlayerController : MonoBehaviour
         moveDirection.y = rb.velocity.y;
         // Pai, fiz esse ajuste para consertar alguns problemas de colisão. Depois tem que tirar o pulo e colocar a esquiva na barra de espaço
         Vector3 movementXZ = new Vector3(moveDirection.x, 0, moveDirection.z);
-        animator.SetBool("Walk", movementXZ != Vector3.zero);
+        animator.SetBool("Walk", (moveDirection.x != 0 || moveDirection.z != 0));
         LookForward();
         LookAtTarget();
     }
