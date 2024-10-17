@@ -15,7 +15,7 @@ public class ObjectDissolver : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("Current Dissolve Value: " + m.GetFloat("_Cutoff")); // Mostra o valor atual de dissolve
+        //Debug.Log("Current Dissolve Value: " + m.GetFloat("_Cutoff")); // Mostra o valor atual de dissolve
         if (CanFade)
             Fade();
         else

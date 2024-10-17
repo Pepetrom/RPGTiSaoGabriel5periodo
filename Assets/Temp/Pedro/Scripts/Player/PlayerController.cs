@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviour
     [Header("Rotation------------------")]
     Quaternion newRotation;
     Vector3 mousePosition, worldMousePosition, targetDirection;
+    Vector3 cameraAlignValue;
     //------------------------------------------------------------------------------------------------------------------------------------
     private void Awake()
     {
@@ -62,6 +63,9 @@ public class PlayerController : MonoBehaviour
     }
     void Start()
     {
+        cameraAlignValue = mainCamera.transform.forward;
+        cameraAlignValue.y = 0;
+        cameraAlignValue = cameraAlignValue.normalized;
         swordTrail.emitting = false;
         InitialActions();
     }
@@ -73,8 +77,6 @@ public class PlayerController : MonoBehaviour
         actions[1].SetSlot(1);
         actions[2] = new A_KnockBack();
         actions[2].SetSlot(2);
-        actions[3] = new A_Jump();
-        actions[3].SetSlot(3);
 
         atacks[0] = new W_TestAtack();
         atacks[0].SetSlot(0);
@@ -85,10 +87,10 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        Move();
+        animator.speed = GameManager.instance.actionTime;
+        SetDirection();
         CheckGround();
         DoActions();
-        animator.speed = GameManager.instance.actionTime;
         rb.velocity = moveDirection;
     }
     void DoActions()
@@ -96,7 +98,6 @@ public class PlayerController : MonoBehaviour
         actions[0].ActionUpdate(); // Dash
         actions[1].ActionUpdate(); // AtackDash
         actions[2].ActionUpdate(); // KnockBack
-        actions[3].ActionUpdate(); // Jump
         atacks[0].AtackUpdate();
     }
     void Controls()
@@ -104,7 +105,7 @@ public class PlayerController : MonoBehaviour
         if (canDoAction[0])
         {
             //Meu teclado não deixa apertar W+ A+ Space
-            if (Input.GetKeyDown(KeyCode.Q) && StaminaBar.stambarInstance.currentStam >= stamPerHit)
+            if (Input.GetKeyDown(KeyCode.Space) && StaminaBar.stambarInstance.currentStam >= stamPerHit)
             {
                 actions[0].ActionStart();
                 if (atacks[0].CanBeInterupted())
@@ -134,39 +135,10 @@ public class PlayerController : MonoBehaviour
                 DetectClosestEnemy();
             }
         }
-
-        if (canDoAction[3])//Jump
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                actions[3].ActionStart();
-                grounded = false;
-            }
-        }
     }
     void Atack(int slot)
     {
         atacks[slot].AtackStart();
-    }
-    void Move()
-    {
-        if (!canMove)
-        {
-            moveDirection = Vector3.zero;
-            return;
-        }
-        moveDirection.y = 0;
-        moveDirection.x = Input.GetAxis("Horizontal");
-        moveDirection.z = Input.GetAxis("Vertical");
-        moveDirection.Normalize();
-        Run();
-        moveDirection = moveDirection * moveSpeed * runningMultiplier;
-        moveDirection.y = rb.velocity.y;
-        // Pai, fiz esse ajuste para consertar alguns problemas de colisão. Depois tem que tirar o pulo e colocar a esquiva na barra de espaço
-        Vector3 movementXZ = new Vector3(moveDirection.x, 0, moveDirection.z);
-        animator.SetBool("Walk", (moveDirection.x != 0 || moveDirection.z != 0));
-        LookForward();
-        LookAtTarget();
     }
     void CheckGround()
     {
@@ -184,6 +156,24 @@ public class PlayerController : MonoBehaviour
                 grounded = false;
             }
         }
+    }
+    void SetDirection()
+    {
+        if (!canMove)
+        {
+            moveDirection = Vector3.zero;
+            return;
+        }
+        moveDirection.y = 0;
+        moveDirection.x = Input.GetAxis("Horizontal") * cameraAlignValue.x + (Input.GetAxis("Vertical") * cameraAlignValue.z);
+        moveDirection.z = Input.GetAxis("Vertical") * cameraAlignValue.x - (Input.GetAxis("Horizontal") * cameraAlignValue.z);
+        moveDirection.Normalize();
+        Run();
+        moveDirection = moveDirection * moveSpeed * runningMultiplier;
+        moveDirection.y = rb.velocity.y;
+        animator.SetBool("Walk", (moveDirection.x != 0 || moveDirection.z != 0));
+        LookForward();
+        LookAtTarget();
     }
     void Run()
     {
@@ -231,10 +221,10 @@ public class PlayerController : MonoBehaviour
     }
     void LookForward()
     {
-        if (target != null || moveDirection == Vector3.zero) return;
-
+        if (target != null) return;
         forwardDirection = moveDirection;
         forwardDirection.y = 0;
+        if (forwardDirection == Vector3.zero) return;
         newRotation = Quaternion.LookRotation(forwardDirection);
         newRotation = Quaternion.Slerp(model.transform.rotation, newRotation, 0.2f);
         model.transform.rotation = newRotation;
@@ -242,10 +232,10 @@ public class PlayerController : MonoBehaviour
     public Vector3 GetMousePosition()
     {
         if (target != null) return Vector3.zero;
-
         mousePosition = Input.mousePosition;
         mousePosition.z = mainCamera.transform.position.y;
         worldMousePosition = mainCamera.ScreenToWorldPoint(mousePosition);
+        Debug.Log(worldMousePosition);
         mousePosition = worldMousePosition;
         mousePosition.y = model.transform.position.y;
         target = null;
