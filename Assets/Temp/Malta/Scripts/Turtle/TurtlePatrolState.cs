@@ -17,6 +17,7 @@ public class TurtlePatrolState : ITurtleStateMachine
         controller.agent.SetDestination(controller.patrolPoints[controller.currentPatrolIndex].position);
         Debug.Log("Comecei a patrulha");
         controller.animator.SetBool("patrolling", true);
+        controller.agent.angularSpeed = 70f;
     }
 
     public void OnExit()
@@ -28,7 +29,7 @@ public class TurtlePatrolState : ITurtleStateMachine
     public void OnUpdate()
     {
         controller.Patrol();
-        controller.RotateTowards();
+        //controller.RotateTowards();
         if (controller.agent.velocity.magnitude > 0)
         {
             timer = 0;

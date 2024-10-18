@@ -33,6 +33,7 @@ public class TurtleStateMachine : MonoBehaviour
     public float nextPatrolTime = 0f;
     public int currentPatrolIndex = 0;
     public Transform[] patrolPoints;
+    public float patrolDistance;
 
     //bools de ataques
     [HideInInspector] public bool attIdle;
@@ -166,7 +167,7 @@ public class TurtleStateMachine : MonoBehaviour
     }*/
     public void Patrolling()
     {
-        if (Vector3.Distance(agent.transform.position, patrolPoints[currentPatrolIndex].position) < 0.1f)
+        if (Vector3.Distance(agent.transform.position, patrolPoints[currentPatrolIndex].position) <= 3f)
         {
             currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
         }

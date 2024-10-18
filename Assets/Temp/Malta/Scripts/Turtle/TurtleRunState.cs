@@ -25,7 +25,11 @@ public class TurtleRunState : ITurtleStateMachine
     {
         controller.agent.SetDestination(controller.player.transform.position);
         controller.RotateTowardsPlayer();
-        if(controller.sortedNumber < 0.3f)
+        if (controller.TargetDir().magnitude > controller.patrolDistance)
+        {
+            controller.SetState(new TurtlePatrolState(controller));
+        }
+        if (controller.sortedNumber < 0.3f)
         {
             controller.agent.speed = 0f;
             controller.SetState(new TurtleCannonState(controller));
@@ -35,7 +39,7 @@ public class TurtleRunState : ITurtleStateMachine
             if(controller.TargetDir().magnitude <= controller.meleeRange)
             {
                 controller.animator.SetBool("Attack1", true);
-                controller.agent.speed = 0.8f;
+                controller.agent.speed = 0f;
                 controller.SetState(new TurtleAtt1State(controller));
             }
         }

@@ -20,6 +20,7 @@ public class TurtleDeathState : ITurtleStateMachine
     public void OnEnter()
     {
         controller.CannonKB(1.5f);
+        controller.GetComponent<Collider>().enabled = false;
     }
 
     public void OnExit()

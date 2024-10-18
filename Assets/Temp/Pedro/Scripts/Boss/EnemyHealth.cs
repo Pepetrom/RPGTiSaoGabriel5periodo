@@ -30,6 +30,7 @@ public class EnemyHealth : MonoBehaviour
     {
         turtle.Impulse(turtle.kbforce);
         lifeActual -= damage;
+        playerHit = true;
         GameManager.instance.SpawnNumber((int)damage, Color.yellow, transform);
         hit.Play();
         if(lifeActual <= 0)

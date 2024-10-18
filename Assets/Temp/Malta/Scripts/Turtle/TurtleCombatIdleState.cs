@@ -27,6 +27,7 @@ public class TurtleCombatIdleState : ITurtleStateMachine
         controller.combed = false;
         controller.SortNumber();
         controller.rb.isKinematic = false;
+        controller.agent.angularSpeed = 0f;
     }
 
     public void OnExit()
@@ -59,6 +60,10 @@ public class TurtleCombatIdleState : ITurtleStateMachine
         else if (controller.TargetDir().magnitude > controller.maxCannonRange)
         {
             controller.SetState(new TurtleRunState(controller));
+        }
+        else if(controller.TargetDir().magnitude > controller.patrolDistance)
+        {
+            controller.SetState(new TurtlePatrolState(controller));
         }
         else
         {
