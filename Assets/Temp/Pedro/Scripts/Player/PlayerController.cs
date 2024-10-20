@@ -1,3 +1,4 @@
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -229,6 +230,7 @@ public class PlayerController : MonoBehaviour
         newRotation = Quaternion.Slerp(model.transform.rotation, newRotation, 0.2f);
         model.transform.rotation = newRotation;
     }
+    /*
     public Vector3 GetMousePosition()
     {
         if (target != null) return Vector3.zero;
@@ -242,7 +244,22 @@ public class PlayerController : MonoBehaviour
 
         return mousePosition;
     }
-    public void RuneEffect()
+    */
+    public Vector3 GetMousePosition()
+    {
+        if (target != null) return Vector3.zero;
+        Ray ray;
+        RaycastHit hit;
+        ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out hit))
+        {
+            mousePosition = hit.point;
+        }
+
+        return mousePosition;
+    }
+   
+public void RuneEffect()
     {
         switch (actualRune)
         {
