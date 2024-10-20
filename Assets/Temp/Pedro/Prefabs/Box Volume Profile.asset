@@ -20,14 +20,36 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 1
   colorFilter:
-    m_OverrideState: 1
-    m_Value: {r: 0.96998286, g: 1, b: 0.9669811, a: 1}
+    m_OverrideState: 0
+    m_Value: {r: 0.7920968, g: 1.8867924, b: 0.7920968, a: 1}
   hueShift:
     m_OverrideState: 0
     m_Value: 0
   saturation:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: -8.8
+--- !u!114 &-6343976536591080314
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5485954d14dfb9a4c8ead8edb0ded5b1, type: 3}
+  m_Name: LiftGammaGain
+  m_EditorClassIdentifier: 
+  active: 1
+  lift:
+    m_OverrideState: 1
+    m_Value: {x: 0.8216266, y: 0.8856029, z: 1, w: -0.03270646}
+  gamma:
+    m_OverrideState: 1
+    m_Value: {x: 1, y: 0.87735844, z: 0.86709106, w: 0}
+  gain:
+    m_OverrideState: 1
+    m_Value: {x: 0.8504355, y: 1, z: 0.8950826, w: -0.15535569}
 --- !u!114 &-3592885919988472896
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -122,9 +144,9 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
   green:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value:
-      <length>k__BackingField: 2
+      <length>k__BackingField: 3
       m_Loop: 0
       m_ZeroValue: 0
       m_Range: 1
@@ -141,10 +163,19 @@ MonoBehaviour:
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 1
-          outSlope: 1
+          time: 0.5314685
+          value: 0.6911765
+          inSlope: 0.45468995
+          outSlope: 0.45468995
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 0.97669
+          value: 0.8088235
+          inSlope: 0.24452779
+          outSlope: 0.24452779
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
@@ -286,6 +317,9 @@ MonoBehaviour:
   - {fileID: -3592885919988472896}
   - {fileID: -359052193776498163}
   - {fileID: 1824070083749155908}
+  - {fileID: -6343976536591080314}
+  - {fileID: 2459924193032845362}
+  - {fileID: 8907715915016522883}
 --- !u!114 &1824070083749155908
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -331,5 +365,67 @@ MonoBehaviour:
     m_Value: {fileID: 0}
     dimension: 1
   dirtIntensity:
+    m_OverrideState: 0
+    m_Value: 0
+--- !u!114 &2459924193032845362
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 558a8e2b6826cf840aae193990ba9f2e, type: 3}
+  m_Name: ShadowsMidtonesHighlights
+  m_EditorClassIdentifier: 
+  active: 1
+  shadows:
+    m_OverrideState: 0
+    m_Value: {x: 1, y: 1, z: 1, w: 0}
+  midtones:
+    m_OverrideState: 1
+    m_Value: {x: 0.8878189, y: 1, z: 0.9084024, w: -0.016849197}
+  highlights:
+    m_OverrideState: 1
+    m_Value: {x: 0.2458277, y: 0.24173146, z: 1, w: 0.10109515}
+  shadowsStart:
+    m_OverrideState: 0
+    m_Value: 0
+  shadowsEnd:
+    m_OverrideState: 0
+    m_Value: 0.3
+  highlightsStart:
+    m_OverrideState: 1
+    m_Value: 0.58
+  highlightsEnd:
+    m_OverrideState: 0
+    m_Value: 1
+--- !u!114 &8907715915016522883
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 899c54efeace73346a0a16faa3afe726, type: 3}
+  m_Name: Vignette
+  m_EditorClassIdentifier: 
+  active: 1
+  color:
+    m_OverrideState: 1
+    m_Value: {r: 0, g: 0, b: 0, a: 1}
+  center:
+    m_OverrideState: 0
+    m_Value: {x: 0.5, y: 0.5}
+  intensity:
+    m_OverrideState: 1
+    m_Value: 0.2
+  smoothness:
+    m_OverrideState: 0
+    m_Value: 0.2
+  rounded:
     m_OverrideState: 0
     m_Value: 0

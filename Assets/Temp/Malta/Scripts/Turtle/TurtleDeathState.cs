@@ -16,6 +16,7 @@ public class TurtleDeathState : ITurtleStateMachine
         {
             turtleMaterials[i] = controller.turtleRenderers[i].material;
         }
+        GameManager.instance.RemoveEnemy(controller.gameObject);
     }
     public void OnEnter()
     {

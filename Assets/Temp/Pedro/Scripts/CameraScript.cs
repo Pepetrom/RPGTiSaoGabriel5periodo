@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class CameraScript : MonoBehaviour
 {
@@ -23,8 +25,16 @@ public class CameraScript : MonoBehaviour
 
     //Dissolver objetos do cenário
 
-    private ObjectDissolver dissolve; 
+    private ObjectDissolver dissolve;
 
+    //PostProcess
+    [Header("PostProcess")]
+    public Volume mainVolume;
+    private Vignette combatVignette;
+    private float currentVig;
+    public float targetVig;
+    private Color currentVigColor;
+    public Color targetVigColor;
 
     private void Awake()
     {
@@ -33,20 +43,35 @@ public class CameraScript : MonoBehaviour
     private void Start()
     {
         cameraPlayerDiference = transform.position - PlayerController.instance.model.transform.position;
+
+        // Tenta buscar o efeito de vinheta no Volume Profile
+        if (mainVolume.profile.TryGet(out Vignette vignette))
+        {
+            combatVignette = vignette; // Armazena a referência ao efeito de vinheta
+        }
+        else
+        {
+            Debug.LogError("Efeito de vinheta não encontrado no Volume Profile.");
+        }
     }
+
     private void Update()
     {
         FindPlayer();
+        if (GameManager.instance.isCombat)
+        {
+            CombatCamera(targetZoom, targetVig);
+        }
+        else
+        {
+            CombatCamera(60, 0.2f);
+            Debug.Log("Tome-lhe");
+        }
     }
     void FixedUpdate()
     {
         FollowPlayer();
         Shake();
-        if(GameManager.instance.isCombat)
-        {
-            currentZoom = Mathf.Lerp(currentZoom, targetZoom, Time.deltaTime * zoomSpeed);
-            cam.fieldOfView = currentZoom;
-        }
     }
     void FollowPlayer()
     {
@@ -96,5 +121,29 @@ public class CameraScript : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void CombatCamera(float target, float value)
+    {
+        currentZoom = Mathf.Lerp(currentZoom, target, Time.deltaTime * zoomSpeed);
+        cam.fieldOfView = currentZoom;
+        currentVig = Mathf.Lerp(currentVig, value, Time.deltaTime * zoomSpeed);
+        combatVignette.intensity.value = currentVig;
+    }
+    public void TakeHit(Color value)
+    {
+        currentVigColor = Color.Lerp(currentVigColor,value, Time.deltaTime * zoomSpeed * 20);
+        combatVignette.color.value = value;
+        StartCoroutine(ResetVignette()); 
+    }
+    IEnumerator ResetVignette()
+    {
+        yield return new WaitForSeconds(0.5f);
+        while(currentVigColor != Color.black)
+        {
+            currentVigColor = Color.Lerp(currentVigColor, Color.black, Time.deltaTime * zoomSpeed);
+            combatVignette.color.value = currentVigColor;
+        }
+        yield return null;
     }
 }

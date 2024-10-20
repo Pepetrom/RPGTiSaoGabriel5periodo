@@ -7,7 +7,9 @@ public class GameManager : MonoBehaviour
     public GameObject damagePopUp;
     public static GameManager instance;
     public float actionTime = 1;
-    public bool isCombat;
+    public bool isCombat = false;
+
+    private List<GameObject> enemiesInCombat = new List<GameObject>(); // Lista para checar inimigos no combate
     private void Awake()
     {
         instance = this;
@@ -41,5 +43,32 @@ public class GameManager : MonoBehaviour
     public void EndCombat()
     {
         isCombat = false;
+    }
+    public void CheckEnemiesOnList()
+    {
+        if(enemiesInCombat.Count > 0)
+        {
+            StartCombat();
+        }
+        else
+        {
+            EndCombat();
+        }
+    }
+    public void AddEnemy(GameObject enemy)
+    {
+        if (!enemiesInCombat.Contains(enemy))
+        {
+            enemiesInCombat.Add(enemy);
+            CheckEnemiesOnList();
+        }
+    }
+    public void RemoveEnemy(GameObject enemy)
+    {
+        if (enemiesInCombat.Contains(enemy))
+        {
+            enemiesInCombat.Remove(enemy);
+            CheckEnemiesOnList();
+        }
     }
 }

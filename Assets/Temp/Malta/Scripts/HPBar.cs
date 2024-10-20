@@ -87,6 +87,7 @@ public class HPBar : MonoBehaviour
             GameManager.instance.SpawnNumber((int)damage, Color.red, PlayerController.instance.transform);
             PlayerController.instance.damageFont = damageFont;
             PlayerController.instance.actions[2].ActionStart();
+            CameraScript.instance.TakeHit(CameraScript.instance.targetVigColor);
         }
         if (currentHP <= 0)
         {
