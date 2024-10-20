@@ -11,7 +11,7 @@ public class PlayerProjetile : MonoBehaviour
     private void FixedUpdate()
     {
         timer += Time.fixedDeltaTime;
-        if( timer >= duration)
+        if (timer >= duration)
         {
             if (endEffect)
             {
@@ -25,7 +25,20 @@ public class PlayerProjetile : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            other.GetComponent<EnemyHealth>().TakeDamage(PlayerController.instance.baseDamage, PlayerController.instance.comboCounter);
+            switch (PlayerController.instance.actualRune)
+            {
+                case 0:
+                    break;
+                case 1:
+                    other.GetComponent<EnemyHealth>().TakeDamage(PlayerController.instance.baseDamage + PlayerController.instance.inteligence, PlayerController.instance.comboCounter);
+                    break;
+                case 2:
+                    other.GetComponent<EnemyHealth>().TakeDamage(PlayerController.instance.baseDamage + PlayerController.instance.strength, PlayerController.instance.comboCounter);
+                    break;
+                case 3:
+                    other.GetComponent<EnemyHealth>().TakeDamage(PlayerController.instance.baseDamage + PlayerController.instance.agility, PlayerController.instance.comboCounter);
+                    break;
+            }
             if (endEffect)
             {
                 particle.Play();

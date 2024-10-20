@@ -55,6 +55,8 @@ public class PlayerController : MonoBehaviour
     Quaternion newRotation;
     Vector3 mousePosition, worldMousePosition, targetDirection;
     Vector3 cameraAlignValue;
+    [Header("Atributes------------------")]
+    public int inteligence=0, agility = 0, strength = 0;
     //------------------------------------------------------------------------------------------------------------------------------------
     private void Awake()
     {
@@ -88,7 +90,7 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        animator.speed = GameManager.instance.actionTime;
+        animator.speed = (GameManager.instance.actionTime)* (1 + (agility * 0.25f));
         SetDirection();
         CheckGround();
         DoActions();
@@ -106,23 +108,23 @@ public class PlayerController : MonoBehaviour
         if (canDoAction[0])
         {
             //Meu teclado não deixa apertar W+ A+ Space
-            if (Input.GetKeyDown(KeyCode.Space) && StaminaBar.stambarInstance.currentStam >= stamPerHit)
+            if (Input.GetKeyDown(KeyCode.Space) && StaminaBar.intance.currentStam >= stamPerHit)
             {
                 actions[0].ActionStart();
                 if (atacks[0].CanBeInterupted())
                 {
                     atacks[0].InteruptAtack();
                 }
-                StaminaBar.stambarInstance.DrainStamina(stamPerHit * 2); // Aqui estou tirando a estamina do player
+                StaminaBar.intance.DrainStamina(stamPerHit * 2); // Aqui estou tirando a estamina do player
             }
         }
         //if (!grounded) return;
         if (canDoAtack[0])
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0) && StaminaBar.stambarInstance.currentStam >= stamPerHit)
+            if (Input.GetKeyDown(KeyCode.Mouse0) && StaminaBar.intance.currentStam >= stamPerHit)
             {
                 Atack(0);
-                StaminaBar.stambarInstance.DrainStamina(stamPerHit); // Aqui estou tirando a estamina do player
+                StaminaBar.intance.DrainStamina(stamPerHit); // Aqui estou tirando a estamina do player
             }
         }
         if (Input.GetKeyDown(KeyCode.Mouse1))
@@ -135,6 +137,10 @@ public class PlayerController : MonoBehaviour
             {
                 DetectClosestEnemy();
             }
+        }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            GameManager.instance.OpenRunes(!GameManager.instance.runePage.activeSelf);
         }
     }
     void Atack(int slot)
@@ -276,6 +282,22 @@ public void RuneEffect()
                 break;
         }
     }
+    public void AddAtribute(string which)
+    {
+        switch (which)
+        {
+            case "inteligence":
+                inteligence += 1;
+                StaminaBar.intance.maxStam += StaminaBar.intance.maxStam * 0.1f;
+                break;
+            case "strength":
+                strength += 1;
 
+                break;
+            case "agility":
+                agility += 1;
+                break;
+        }
+    }
 }
 

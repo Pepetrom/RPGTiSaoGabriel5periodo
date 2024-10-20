@@ -8,7 +8,6 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 public class W_TestAtack : IWeapon
 {
     public int slot;
-    public float atackDamage;
     bool canBeInterupted = false;
     bool interupted = true;
     bool atacking = false;
@@ -23,7 +22,6 @@ public class W_TestAtack : IWeapon
     public void SetSlot(int slot)
     {
         this.slot = slot;
-        atackDamage = PlayerController.instance.baseDamage;
     }
     public void AtackStart()
     {
@@ -118,7 +116,7 @@ public class W_TestAtack : IWeapon
         if (!interupted)
         {
             GameManager.instance.CallHitStop(0.2f);
-            other.GetComponent<EnemyHealth>().TakeDamage(PlayerController.instance.baseDamage, PlayerController.instance.comboCounter);
+            other.GetComponent<EnemyHealth>().TakeDamage( (int)(PlayerController.instance.baseDamage * (PlayerController.instance.comboCounter * 0.5f + (PlayerController.instance.strength * 0.5f))), PlayerController.instance.comboCounter);
             PlayerController.instance.swordTrail.startColor = Color.green;
             HPBar.instance.RecoverHPbyHit();
         }

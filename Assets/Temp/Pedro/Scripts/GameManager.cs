@@ -11,6 +11,10 @@ public class GameManager : MonoBehaviour
     public bool isCombat = false;
     public GameObject runes;
 
+    //Runes 
+    public float skillPoints;
+    public GameObject runePage;
+
     private List<GameObject> enemiesInCombat = new List<GameObject>(); // Lista para checar inimigos no combate
     private void Awake()
     {
@@ -73,7 +77,6 @@ public class GameManager : MonoBehaviour
             CheckEnemiesOnList();
         }
     }
-    
     //TEMPORÁRIO
     public void RunesPanel()
     {
@@ -83,4 +86,16 @@ public class GameManager : MonoBehaviour
     {
         runes.SetActive(false);
     }
+    public void AddSkillPoints()
+    {
+        skillPoints++;
+        UIItems.instance.UpdateSkillPoints();
+    }
+    public void OpenRunes(bool open)
+    {
+        runePage.SetActive(open);
+        if (open) actionTime = 0;
+        else actionTime = 1;
+    }
+    
 }

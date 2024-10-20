@@ -13,13 +13,13 @@ public class StaminaBar : MonoBehaviour
     public float moveSpeedBase;
     public float lerpSpeed;
     public float staminaRecover;
-    public static StaminaBar stambarInstance;
+    public static StaminaBar intance;
 
     float moveSpeed;
 
     private void Awake()
     {
-        stambarInstance = this;
+        intance = this;
     }
     private void Start()
     {

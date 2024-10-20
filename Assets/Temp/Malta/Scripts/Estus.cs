@@ -9,7 +9,7 @@ public class Estus : MonoBehaviour
 
     private void Start()
     {
-        UIItems.UIItemsInstance.UpdateChesseQUI(flaskQuantity);
+        UIItems.instance.UpdateChesseQUI(flaskQuantity);
     }
     private void Update()
     {
@@ -17,7 +17,7 @@ public class Estus : MonoBehaviour
         {
             HPBar.instance.RecoverHPbyItem(healQuantity);
             flaskQuantity--;
-            UIItems.UIItemsInstance.UpdateChesseQUI(flaskQuantity);
+            UIItems.instance.UpdateChesseQUI(flaskQuantity);
         }
     }
     
