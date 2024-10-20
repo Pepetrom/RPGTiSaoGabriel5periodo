@@ -31,10 +31,15 @@ public class CameraScript : MonoBehaviour
     [Header("PostProcess")]
     public Volume mainVolume;
     private Vignette combatVignette;
+    private ChromaticAberration aberration;
+    private WhiteBalance whiteBalance;
     private float currentVig;
     public float targetVig;
     private Color currentVigColor;
     public Color targetVigColor;
+    private bool isHit = false;
+    private float timeSinceHit = 0f; 
+    public float resetDelay = 0.5f; 
 
     private void Awake()
     {
@@ -44,14 +49,18 @@ public class CameraScript : MonoBehaviour
     {
         cameraPlayerDiference = transform.position - PlayerController.instance.model.transform.position;
 
-        // Tenta buscar o efeito de vinheta no Volume Profile
+        // Post Process (Depois eu vou criar um script só para o post process, vai dar uma limpada no camera script) 
         if (mainVolume.profile.TryGet(out Vignette vignette))
         {
-            combatVignette = vignette; // Armazena a referência ao efeito de vinheta
+            combatVignette = vignette;
         }
-        else
+        if(mainVolume.profile.TryGet(out ChromaticAberration ab))
         {
-            Debug.LogError("Efeito de vinheta não encontrado no Volume Profile.");
+            aberration = ab;
+        }
+        if(mainVolume.profile.TryGet(out WhiteBalance wb))
+        {
+            whiteBalance = wb;
         }
     }
 
@@ -67,6 +76,7 @@ public class CameraScript : MonoBehaviour
             CombatCamera(60, 0.2f);
             Debug.Log("Tome-lhe");
         }
+        RedVignette();
     }
     void FixedUpdate()
     {
@@ -130,20 +140,35 @@ public class CameraScript : MonoBehaviour
         currentVig = Mathf.Lerp(currentVig, value, Time.deltaTime * zoomSpeed);
         combatVignette.intensity.value = currentVig;
     }
-    public void TakeHit(Color value)
+    public void RedVignette()
     {
-        currentVigColor = Color.Lerp(currentVigColor,value, Time.deltaTime * zoomSpeed * 20);
-        combatVignette.color.value = value;
-        StartCoroutine(ResetVignette()); 
-    }
-    IEnumerator ResetVignette()
-    {
-        yield return new WaitForSeconds(0.5f);
-        while(currentVigColor != Color.black)
+        if (isHit)
         {
-            currentVigColor = Color.Lerp(currentVigColor, Color.black, Time.deltaTime * zoomSpeed);
+            currentVigColor = Color.Lerp(currentVigColor, targetVigColor, Time.deltaTime * zoomSpeed * 10);
             combatVignette.color.value = currentVigColor;
+            aberration.intensity.value = 0.5f;
+            whiteBalance.temperature.value = 60;
+            whiteBalance.tint.value = 60;
+            timeSinceHit += Time.deltaTime;
+            if (timeSinceHit >= resetDelay)
+            {
+                isHit = false; 
+            }
         }
-        yield return null;
+        else
+        {
+            currentVigColor = Color.Lerp(currentVigColor, Color.black, Time.deltaTime * zoomSpeed * 20);
+            combatVignette.color.value = currentVigColor;
+            aberration.intensity.value = 0f;
+            whiteBalance.temperature.value = 0;
+            whiteBalance.tint.value = 0;
+        }
+    }
+    public void TakeHit(Color hitColor)
+    {
+        // Definir como estado de "dano"
+        isHit = true;
+        timeSinceHit = 0f; // Reiniciar o temporizador
+        targetVigColor = hitColor; // Atualizar para a cor do impacto
     }
 }

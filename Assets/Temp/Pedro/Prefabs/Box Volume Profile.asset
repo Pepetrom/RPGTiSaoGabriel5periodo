@@ -1,5 +1,24 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8687185452363994983
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 221518ef91623a7438a71fef23660601, type: 3}
+  m_Name: WhiteBalance
+  m_EditorClassIdentifier: 
+  active: 1
+  temperature:
+    m_OverrideState: 1
+    m_Value: 0
+  tint:
+    m_OverrideState: 1
+    m_Value: 0
 --- !u!114 &-7722734648341960831
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -17,14 +36,14 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 0
   contrast:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 1
   colorFilter:
     m_OverrideState: 0
-    m_Value: {r: 0.7920968, g: 1.8867924, b: 0.7920968, a: 1}
+    m_Value: {r: 0.98464924, g: 1.1406865, b: 0.98464924, a: 1}
   hueShift:
     m_OverrideState: 0
-    m_Value: 0
+    m_Value: -10
   saturation:
     m_OverrideState: 1
     m_Value: -8.8
@@ -113,9 +132,9 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
   red:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value:
-      <length>k__BackingField: 2
+      <length>k__BackingField: 3
       m_Loop: 0
       m_ZeroValue: 0
       m_Range: 1
@@ -125,6 +144,15 @@ MonoBehaviour:
         - serializedVersion: 3
           time: 0
           value: 0
+          inSlope: 1
+          outSlope: 1
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 0.51232874
+          value: 0.51232874
           inSlope: 1
           outSlope: 1
           tangentMode: 0
@@ -299,7 +327,7 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.066
+    m_Value: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,6 +348,7 @@ MonoBehaviour:
   - {fileID: -6343976536591080314}
   - {fileID: 2459924193032845362}
   - {fileID: 8907715915016522883}
+  - {fileID: -8687185452363994983}
 --- !u!114 &1824070083749155908
 MonoBehaviour:
   m_ObjectHideFlags: 3

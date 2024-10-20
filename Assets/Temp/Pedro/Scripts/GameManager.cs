@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public float actionTime = 1;
     public bool isCombat = false;
+    public GameObject runes;
 
     private List<GameObject> enemiesInCombat = new List<GameObject>(); // Lista para checar inimigos no combate
     private void Awake()
@@ -70,5 +72,15 @@ public class GameManager : MonoBehaviour
             enemiesInCombat.Remove(enemy);
             CheckEnemiesOnList();
         }
+    }
+    
+    //TEMPORÁRIO
+    public void RunesPanel()
+    {
+        runes.SetActive(true);
+    }
+    public void ClosePanelRunes()
+    {
+        runes.SetActive(false);
     }
 }
