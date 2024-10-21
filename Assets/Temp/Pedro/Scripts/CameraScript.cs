@@ -67,7 +67,7 @@ public class CameraScript : MonoBehaviour
     private void Update()
     {
         FindPlayer();
-        if (GameManager.instance.isCombat)
+        /*if (GameManager.instance.isCombat)
         {
             CombatCamera(targetZoom, targetVig);
         }
@@ -76,7 +76,7 @@ public class CameraScript : MonoBehaviour
             CombatCamera(60, 0.2f);
             Debug.Log("Tome-lhe");
         }
-        RedVignette();
+        RedVignette();*/
     }
     void FixedUpdate()
     {
@@ -111,27 +111,40 @@ public class CameraScript : MonoBehaviour
         Vector3 dir = PlayerController.instance.model.transform.position - transform.position;
         Ray ray = new Ray(transform.position, dir);
         RaycastHit hit;
-        if(Physics.Raycast(ray, out hit))
+
+        // Desenha um raio visível na cena para depuração
+        Debug.DrawRay(transform.position, dir * 100f, Color.red);
+
+        if (Physics.Raycast(ray, out hit))
         {
-            if (hit.collider == null)
-                return;
-            if(hit.collider.gameObject == PlayerController.instance.gameObject)
+            Debug.Log("Raycast atingiu: " + hit.collider.gameObject.name); // Exibe qual objeto foi atingido
+
+            if (hit.collider == null) return;
+
+            if (hit.collider.gameObject == PlayerController.instance.gameObject)
             {
-                if(dissolve != null)
+                if (dissolve != null)
                 {
                     dissolve.CanFade = false;
+                    Debug.Log("Jogador visível. Desativando fade.");
                 }
             }
             else
             {
                 dissolve = hit.collider.gameObject.GetComponent<ObjectDissolver>();
-                if(dissolve != null)
+                if (dissolve != null)
                 {
                     dissolve.CanFade = true;
+                    Debug.Log("Objeto bloqueando. Ativando fade.");
                 }
             }
         }
+        else
+        {
+            Debug.Log("Raycast não atingiu nenhum objeto.");
+        }
     }
+
 
     public void CombatCamera(float target, float value)
     {
