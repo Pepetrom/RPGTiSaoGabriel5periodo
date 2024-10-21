@@ -20,6 +20,10 @@ public class HPBar : MonoBehaviour
     }
     private void Start()
     {
+        ResetBar();
+    }
+    void ResetBar()
+    {
         currentHP = maxHP;
         hpbar.maxValue = maxHP;
         easebar.maxValue = maxHP;
@@ -92,7 +96,9 @@ public class HPBar : MonoBehaviour
         if (currentHP <= 0)
         {
             StopCoroutine(InvulnableTime());
-            SceneController.sceneController.ChangeScene("Menu");
+            GameManager.instance.Respawn();
+            ResetBar();
+            //SceneController.sceneController.ChangeScene("Menu");
         }
     }
     public IEnumerator InvulnableTime()

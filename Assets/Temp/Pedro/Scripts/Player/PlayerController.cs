@@ -107,24 +107,30 @@ public class PlayerController : MonoBehaviour
     {
         if (canDoAction[0])
         {
-            //Meu teclado não deixa apertar W+ A+ Space
             if (Input.GetKeyDown(KeyCode.Space) && StaminaBar.intance.currentStam >= stamPerHit)
             {
-                actions[0].ActionStart();
-                if (atacks[0].CanBeInterupted())
+                if (isAttacking)
                 {
-                    atacks[0].InteruptAtack();
+                    if (atacks[0].CanBeInterupted())
+                    {
+                        atacks[0].InteruptAtack();
+                        actions[0].ActionStart();
+                        StaminaBar.intance.DrainStamina(stamPerHit * 2);
+                    }
                 }
-                StaminaBar.intance.DrainStamina(stamPerHit * 2); // Aqui estou tirando a estamina do player
+                else
+                {
+                    actions[0].ActionStart();
+                    StaminaBar.intance.DrainStamina(stamPerHit * 2);
+                }
             }
         }
-        //if (!grounded) return;
         if (canDoAtack[0])
         {
             if (Input.GetKeyDown(KeyCode.Mouse0) && StaminaBar.intance.currentStam >= stamPerHit)
             {
                 Atack(0);
-                StaminaBar.intance.DrainStamina(stamPerHit); // Aqui estou tirando a estamina do player
+                StaminaBar.intance.DrainStamina(stamPerHit); 
             }
         }
         if (Input.GetKeyDown(KeyCode.Mouse1))
@@ -236,21 +242,6 @@ public class PlayerController : MonoBehaviour
         newRotation = Quaternion.Slerp(model.transform.rotation, newRotation, 0.2f);
         model.transform.rotation = newRotation;
     }
-    /*
-    public Vector3 GetMousePosition()
-    {
-        if (target != null) return Vector3.zero;
-        mousePosition = Input.mousePosition;
-        mousePosition.z = mainCamera.transform.position.y;
-        worldMousePosition = mainCamera.ScreenToWorldPoint(mousePosition);
-        Debug.Log(worldMousePosition);
-        mousePosition = worldMousePosition;
-        mousePosition.y = model.transform.position.y;
-        target = null;
-
-        return mousePosition;
-    }
-    */
     public Vector3 GetMousePosition()
     {
         if (target != null) return Vector3.zero;

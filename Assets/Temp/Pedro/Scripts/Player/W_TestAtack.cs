@@ -8,8 +8,7 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 public class W_TestAtack : IWeapon
 {
     public int slot;
-    bool canBeInterupted = false;
-    bool interupted = true;
+    bool canBeInterupted = false, interrupted = false;
     bool atacking = false;
     int comboSize = 3;
     float positionTimer = 0;
@@ -29,7 +28,7 @@ public class W_TestAtack : IWeapon
         PlayerController.instance.moveDirection = Vector3.zero;
         PlayerController.instance.animator.SetBool("Atacking", true);
         PlayerController.instance.animator.SetBool("Walk", false);
-
+        interrupted = false;
         atacking = true;
         PlayerController.instance.animator.SetTrigger(("Atack" + PlayerController.instance.comboCounter));
         PlayerController.instance.swordTrail.emitting = true;
@@ -39,17 +38,17 @@ public class W_TestAtack : IWeapon
 
         atackDirection.y = 0;
         positionTimer = 0;
-        
+
         canBeInterupted = false;
-        interupted = false;
         PlayerController.instance.canMove = false;
-        PlayerController.instance.isAttacking = true;         
+        PlayerController.instance.isAttacking = true;
     }
     public void AtackUpdate()
     {
-        if(atacking)
+        if (interrupted) return;
+        if (atacking)
         {
-            if(PlayerController.instance.target != null)
+            if (PlayerController.instance.target != null)
             {
                 atackDirection = (PlayerController.instance.target.position - PlayerController.instance.model.transform.position);
                 atackDirection.y = 0;
@@ -94,47 +93,39 @@ public class W_TestAtack : IWeapon
                 case 3:
                     break;
             }
-            
+
         }
     }
     public void StartRegisterHit()
     {
-        if (!interupted)
-        {
-        PlayerController.instance.atackCollider.gameObject.SetActive(true); 
-        }
+        if (interrupted) return;
+        PlayerController.instance.atackCollider.gameObject.SetActive(true);
     }
     public void StopRegisterHit()
     {
-        if (!interupted)
-        {
-            PlayerController.instance.atackCollider.gameObject.SetActive(false);
-        }
+        if (interrupted) return;
+        PlayerController.instance.atackCollider.gameObject.SetActive(false);
     }
     public void Hit(Collider other)
     {
-        if (!interupted)
-        {
-            GameManager.instance.CallHitStop(0.2f);
-            other.GetComponent<EnemyHealth>().TakeDamage( (int)(PlayerController.instance.baseDamage * (PlayerController.instance.comboCounter * 0.5f + (PlayerController.instance.strength * 0.5f))), PlayerController.instance.comboCounter);
-            PlayerController.instance.swordTrail.startColor = Color.green;
-            HPBar.instance.RecoverHPbyHit();
-        }
+        if (interrupted) return;
+        GameManager.instance.CallHitStop(0.2f);
+        other.GetComponent<EnemyHealth>().TakeDamage((int)(PlayerController.instance.baseDamage * (PlayerController.instance.comboCounter * 0.5f + (PlayerController.instance.strength * 0.5f))), PlayerController.instance.comboCounter);
+        PlayerController.instance.swordTrail.startColor = Color.green;
+        HPBar.instance.RecoverHPbyHit();
     }
     public void OpenComboWindow()
     {
-        if (!interupted)
-        {
-            PlayerController.instance.comboCounter ++;
-            if(PlayerController.instance.comboCounter > comboSize) PlayerController.instance.comboCounter = 1;
-            PlayerController.instance.canDoAtack[slot] = true;
-            canBeInterupted = true;
-            PlayerController.instance.swordTrail.startColor = Color.yellow;
-
-        }
+        if (interrupted) return;
+        PlayerController.instance.comboCounter++;
+        if (PlayerController.instance.comboCounter > comboSize) PlayerController.instance.comboCounter = 1;
+        PlayerController.instance.canDoAtack[slot] = true;
+        canBeInterupted = true;
+        PlayerController.instance.swordTrail.startColor = Color.yellow;
     }
     public void CloseComboWindow()
     {
+        if (interrupted) return;
         PlayerController.instance.comboCounter = 1;
         PlayerController.instance.canDoAtack[slot] = false;
         canBeInterupted = false;
@@ -144,6 +135,7 @@ public class W_TestAtack : IWeapon
     }
     public void AtackEnd()
     {
+        if (interrupted) return;
         PlayerController.instance.canDoAtack[slot] = true;
         PlayerController.instance.canMove = true;
         PlayerController.instance.comboCounter = 1;
@@ -155,9 +147,14 @@ public class W_TestAtack : IWeapon
 
     public void InteruptAtack()
     {
-        PlayerController.instance.animator.SetTrigger("stopAnim");
-        interupted = true;
-        StopRegisterHit();
-        AtackEnd();
+        if (interrupted) return;
+        interrupted = true;
+        canBeInterupted = false;
+        PlayerController.instance.isAttacking = false;
+        PlayerController.instance.canMove = true;
+        PlayerController.instance.canDoAtack[slot] = true;
+        PlayerController.instance.animator.SetBool("Atacking", false);
+        PlayerController.instance.comboCounter = 1;
+        PlayerController.instance.swordTrail.emitting = false;
     }
 }

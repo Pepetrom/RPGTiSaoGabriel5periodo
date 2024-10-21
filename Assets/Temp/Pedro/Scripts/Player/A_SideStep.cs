@@ -21,6 +21,7 @@ public class A_SideStep : IAction
         PlayerController.instance.canDoAction[slot] = false;
         dashTime = 1;
         dashing = true;
+        dashTimer = 0;
         PlayerController.instance.dustParticle.Play();
         if (PlayerController.instance.moveDirection == Vector3.zero)
         {
@@ -44,6 +45,7 @@ public class A_SideStep : IAction
             PlayerController.instance.canDoAction[slot] = false;
             PlayerController.instance.moveDirection += direction;
             dashTime -= Time.fixedDeltaTime * 4;
+            dashTimer = 0;
         }
         else
         {
@@ -52,6 +54,8 @@ public class A_SideStep : IAction
                 dashTimer += Time.fixedDeltaTime;
                 if (dashTimer >= dashCooldown)
                 {
+                    Debug.Log("CanDo");
+                    dashTimer = 0;
                     PlayerController.instance.canDoAction[slot] = true;
                 }
             }
@@ -59,7 +63,6 @@ public class A_SideStep : IAction
     }
     public void ActionEnd()
     {
-        PlayerController.instance.canDoAction[slot] = true;
         dashing = false;
         dashTimer = 0;
     }

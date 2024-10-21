@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     public bool isCombat = false;
     public GameObject runes;
 
+    //SpawnPoint/Checkpoint
+    public Transform checkPoint;
+
     //Runes 
     public float skillPoints;
     public GameObject runePage;
@@ -97,5 +100,8 @@ public class GameManager : MonoBehaviour
         if (open) actionTime = 0;
         else actionTime = 1;
     }
-    
+    public void Respawn()
+    {
+        PlayerController.instance.transform.position = checkPoint.transform.position;
+    }
 }
