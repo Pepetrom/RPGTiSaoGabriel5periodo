@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     [Header("Dash Settings------------------")]
     public float baseDashForce;
     public float baseDashCooldown;
-    public ParticleSystem dustParticle, bloodParticle;
+    public ParticleSystem dustParticle, bloodParticle, critical;
     [Header("Atack Settings------------------")]
     public int baseDamage;
     public int stamPerHit; // Variável que indica a quantidade de estamina perdida por hit
@@ -46,14 +46,13 @@ public class PlayerController : MonoBehaviour
     public bool grounded;
     [Header("Gravity Settings---------------")]
     public float gravityForce;
-    float gravityPreservation;
     [Header("Jump Settings------------------")]
     public float baseJumpForce;
     public float baseAirTime;
     public bool jumping;
     [Header("Rotation------------------")]
     Quaternion newRotation;
-    Vector3 mousePosition, worldMousePosition, targetDirection;
+    Vector3 mousePosition, targetDirection;
     Vector3 cameraAlignValue;
     [Header("Atributes------------------")]
     public int inteligence=0, agility = 0, strength = 0;
@@ -131,6 +130,13 @@ public class PlayerController : MonoBehaviour
             {
                 Atack(0);
                 StaminaBar.intance.DrainStamina(stamPerHit); 
+            }
+        }
+        else
+        {
+            if(Input.GetKeyDown(KeyCode.Mouse0) && StaminaBar.intance.currentStam >= stamPerHit)
+            {
+                atacks[0].StoreCommand(0);
             }
         }
         if (Input.GetKeyDown(KeyCode.Mouse1))

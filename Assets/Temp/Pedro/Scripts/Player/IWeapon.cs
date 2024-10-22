@@ -15,4 +15,5 @@ public interface IWeapon
     public void Hit(Collider other);
     public void InteruptAtack();
     public void AtackEnd();
+    public void StoreCommand(int which);
 }

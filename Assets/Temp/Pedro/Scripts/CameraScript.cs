@@ -67,7 +67,7 @@ public class CameraScript : MonoBehaviour
     private void Update()
     {
         FindPlayer();
-        /*if (GameManager.instance.isCombat)
+        if (GameManager.instance.isCombat)
         {
             CombatCamera(targetZoom, targetVig);
         }
@@ -76,7 +76,7 @@ public class CameraScript : MonoBehaviour
             CombatCamera(60, 0.2f);
             Debug.Log("Tome-lhe");
         }
-        RedVignette();*/
+        RedVignette();
     }
     void FixedUpdate()
     {

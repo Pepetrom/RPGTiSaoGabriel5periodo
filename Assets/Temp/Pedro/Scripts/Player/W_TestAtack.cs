@@ -14,6 +14,7 @@ public class W_TestAtack : IWeapon
     float positionTimer = 0;
     Vector3 atackDirection;
     Quaternion newRotation;
+    int storedCommand = -1;
     public bool CanBeInterupted()
     {
         return canBeInterupted;
@@ -109,9 +110,19 @@ public class W_TestAtack : IWeapon
     public void Hit(Collider other)
     {
         if (interrupted) return;
-        GameManager.instance.CallHitStop(0.2f);
-        other.GetComponent<EnemyHealth>().TakeDamage((int)(PlayerController.instance.baseDamage * (PlayerController.instance.comboCounter * 0.5f + (PlayerController.instance.strength * 0.5f))), PlayerController.instance.comboCounter);
-        PlayerController.instance.swordTrail.startColor = Color.green;
+        if(storedCommand == -1)
+        {
+            GameManager.instance.CallHitStop(0.35f);
+            other.GetComponent<EnemyHealth>().TakeDamage((int)(PlayerController.instance.baseDamage * 2 * (PlayerController.instance.comboCounter * 0.5f + (PlayerController.instance.strength * 0.5f))), PlayerController.instance.comboCounter);
+            PlayerController.instance.swordTrail.startColor = Color.red;
+            PlayerController.instance.critical.Play();
+        }
+        else
+        {
+            GameManager.instance.CallHitStop(0.2f);
+            other.GetComponent<EnemyHealth>().TakeDamage((int)(PlayerController.instance.baseDamage * (PlayerController.instance.comboCounter * 0.5f + (PlayerController.instance.strength * 0.5f))), PlayerController.instance.comboCounter);
+            PlayerController.instance.swordTrail.startColor = Color.green;
+        }
         HPBar.instance.RecoverHPbyHit();
     }
     public void OpenComboWindow()
@@ -122,6 +133,13 @@ public class W_TestAtack : IWeapon
         PlayerController.instance.canDoAtack[slot] = true;
         canBeInterupted = true;
         PlayerController.instance.swordTrail.startColor = Color.yellow;
+        switch (storedCommand)
+        {
+            case 0:
+                AtackStart();
+                break;
+        }
+        storedCommand = -1;
     }
     public void CloseComboWindow()
     {
@@ -131,7 +149,6 @@ public class W_TestAtack : IWeapon
         canBeInterupted = false;
         PlayerController.instance.swordTrail.startColor = Color.white;
         PlayerController.instance.swordTrail.emitting = false;
-
     }
     public void AtackEnd()
     {
@@ -156,5 +173,9 @@ public class W_TestAtack : IWeapon
         PlayerController.instance.animator.SetBool("Atacking", false);
         PlayerController.instance.comboCounter = 1;
         PlayerController.instance.swordTrail.emitting = false;
+    }
+    public void StoreCommand(int which)
+    {
+        storedCommand = which;
     }
 }
