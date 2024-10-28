@@ -110,40 +110,27 @@ public class CameraScript : MonoBehaviour
     {
         Vector3 dir = PlayerController.instance.model.transform.position - transform.position;
         Ray ray = new Ray(transform.position, dir);
-        RaycastHit hit;
-
-        // Desenha um raio visível na cena para depuração
+        RaycastHit[] hits = Physics.RaycastAll(ray);
         Debug.DrawRay(transform.position, dir * 100f, Color.red);
-
-        if (Physics.Raycast(ray, out hit))
+        ObjectDissolver[] dissolvers = FindObjectsOfType<ObjectDissolver>();
+        foreach (var d in dissolvers)
         {
-            Debug.Log("Raycast atingiu: " + hit.collider.gameObject.name); // Exibe qual objeto foi atingido
-
-            if (hit.collider == null) return;
-
-            if (hit.collider.gameObject == PlayerController.instance.gameObject)
-            {
-                if (dissolve != null)
-                {
-                    dissolve.CanFade = false;
-                    Debug.Log("Jogador visível. Desativando fade.");
-                }
-            }
-            else
-            {
-                dissolve = hit.collider.gameObject.GetComponent<ObjectDissolver>();
-                if (dissolve != null)
-                {
-                    dissolve.CanFade = true;
-                    Debug.Log("Objeto bloqueando. Ativando fade.");
-                }
-            }
+            d.CanFade = false;
         }
-        else
+        foreach (RaycastHit hit in hits)
         {
-            Debug.Log("Raycast não atingiu nenhum objeto.");
+            Debug.Log("Raycast atingiu: " + hit.collider.gameObject.name);
+
+            if (hit.collider == null) continue;
+
+            ObjectDissolver dissolve = hit.collider.gameObject.GetComponent<ObjectDissolver>();
+            if (dissolve != null)
+            {
+                dissolve.CanFade = true;
+            }
         }
     }
+
 
 
     public void CombatCamera(float target, float value)
