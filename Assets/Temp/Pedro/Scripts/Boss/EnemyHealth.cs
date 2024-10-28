@@ -28,15 +28,15 @@ public class EnemyHealth : MonoBehaviour
     }
     public void TakeDamage(int damage, int knockbackStrenght)
     {
-        turtle.Impulse(turtle.kbforce);
+        turtle?.Impulse(turtle.kbforce);
         lifeActual -= damage;
         playerHit = true;
         GameManager.instance.SpawnNumber((int)damage, Color.yellow, transform);
         hit.Play();
         if(lifeActual <= 0)
         {
-            turtle.animator.SetBool("Dead", true);
-            turtle.Die();
+            turtle?.animator.SetBool("Dead", true);
+            turtle?.Die();
         }
     }
     public void UpdateHPBar()

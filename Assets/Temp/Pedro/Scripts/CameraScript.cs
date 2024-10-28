@@ -74,7 +74,7 @@ public class CameraScript : MonoBehaviour
         else
         {
             CombatCamera(60, 0.2f);
-            Debug.Log("Tome-lhe");
+            //Debug.Log("Tome-lhe");
         }
         RedVignette();
     }
@@ -119,7 +119,7 @@ public class CameraScript : MonoBehaviour
         }
         foreach (RaycastHit hit in hits)
         {
-            Debug.Log("Raycast atingiu: " + hit.collider.gameObject.name);
+            //Debug.Log("Raycast atingiu: " + hit.collider.gameObject.name);
 
             if (hit.collider == null) continue;
 

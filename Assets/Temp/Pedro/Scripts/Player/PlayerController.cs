@@ -124,20 +124,9 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-        if (canDoAtack[0])
+        if (Input.GetKeyDown(KeyCode.Mouse0) && StaminaBar.intance.currentStam >= stamPerHit)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0) && StaminaBar.intance.currentStam >= stamPerHit)
-            {
-                Atack(0);
-                StaminaBar.intance.DrainStamina(stamPerHit); 
-            }
-        }
-        else
-        {
-            if(Input.GetKeyDown(KeyCode.Mouse0) && StaminaBar.intance.currentStam >= stamPerHit)
-            {
-                atacks[0].StoreCommand(0);
-            }
+            Atack(0);
         }
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {

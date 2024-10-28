@@ -15,6 +15,7 @@ public class W_TestAtack : IWeapon
     Vector3 atackDirection;
     Quaternion newRotation;
     int storedCommand = -1;
+    bool firstAtack = true, canDoAtack = true;
     public bool CanBeInterupted()
     {
         return canBeInterupted;
@@ -25,7 +26,14 @@ public class W_TestAtack : IWeapon
     }
     public void AtackStart()
     {
-        PlayerController.instance.canDoAtack[slot] = false;
+        if (!canDoAtack)
+        {
+            StoreCommand(0);
+            return;
+        }
+        StaminaBar.intance.DrainStamina(PlayerController.instance.stamPerHit);
+        canDoAtack = false;
+        //PlayerController.instance.canDoAtack[slot] = false;
         PlayerController.instance.moveDirection = Vector3.zero;
         PlayerController.instance.animator.SetBool("Atacking", true);
         PlayerController.instance.animator.SetBool("Walk", false);
@@ -43,9 +51,20 @@ public class W_TestAtack : IWeapon
         canBeInterupted = false;
         PlayerController.instance.canMove = false;
         PlayerController.instance.isAttacking = true;
+
+        if(PlayerController.instance.comboCounter > 1 && firstAtack)
+        {
+            firstAtack = false;
+        }
     }
     public void AtackUpdate()
     {
+        if(PlayerController.instance.animator.GetBool("Walk") == true)
+        {
+            storedCommand = -1;
+            PlayerController.instance.comboCounter = 1;
+            firstAtack = true;
+        }
         if (interrupted) return;
         if (atacking)
         {
@@ -110,7 +129,7 @@ public class W_TestAtack : IWeapon
     public void Hit(Collider other)
     {
         if (interrupted) return;
-        if(storedCommand == -1)
+        if(storedCommand == -1 && !firstAtack)
         {
             GameManager.instance.CallHitStop(0.35f);
             other.GetComponent<EnemyHealth>().TakeDamage((int)(PlayerController.instance.baseDamage * 2 * (PlayerController.instance.comboCounter * 0.5f + (PlayerController.instance.strength * 0.5f))), PlayerController.instance.comboCounter);
@@ -130,22 +149,22 @@ public class W_TestAtack : IWeapon
         if (interrupted) return;
         PlayerController.instance.comboCounter++;
         if (PlayerController.instance.comboCounter > comboSize) PlayerController.instance.comboCounter = 1;
-        PlayerController.instance.canDoAtack[slot] = true;
         canBeInterupted = true;
+        canDoAtack = true;
+        //PlayerController.instance.canDoAtack[slot] = true;
         PlayerController.instance.swordTrail.startColor = Color.yellow;
-        switch (storedCommand)
+        if (storedCommand == 0)
         {
-            case 0:
-                AtackStart();
-                break;
+            AtackStart();
+            storedCommand = -1;
         }
-        storedCommand = -1;
     }
     public void CloseComboWindow()
     {
         if (interrupted) return;
-        PlayerController.instance.comboCounter = 1;
-        PlayerController.instance.canDoAtack[slot] = false;
+        //PlayerController.instance.comboCounter = 1;
+        //PlayerController.instance.canDoAtack[slot] = false;
+        canDoAtack = false;
         canBeInterupted = false;
         PlayerController.instance.swordTrail.startColor = Color.white;
         PlayerController.instance.swordTrail.emitting = false;
@@ -153,9 +172,10 @@ public class W_TestAtack : IWeapon
     public void AtackEnd()
     {
         if (interrupted) return;
-        PlayerController.instance.canDoAtack[slot] = true;
+        canDoAtack = true;
+        //PlayerController.instance.canDoAtack[slot] = true;
         PlayerController.instance.canMove = true;
-        PlayerController.instance.comboCounter = 1;
+        //PlayerController.instance.comboCounter = 1;
         canBeInterupted = false;
         PlayerController.instance.isAttacking = false; // Parou de atacar
         PlayerController.instance.animator.SetBool("Atacking", false);
@@ -169,9 +189,11 @@ public class W_TestAtack : IWeapon
         canBeInterupted = false;
         PlayerController.instance.isAttacking = false;
         PlayerController.instance.canMove = true;
-        PlayerController.instance.canDoAtack[slot] = true;
+        canDoAtack = true;
+        //PlayerController.instance.canDoAtack[slot] = true;
         PlayerController.instance.animator.SetBool("Atacking", false);
         PlayerController.instance.comboCounter = 1;
+        storedCommand = -1;
         PlayerController.instance.swordTrail.emitting = false;
     }
     public void StoreCommand(int which)
