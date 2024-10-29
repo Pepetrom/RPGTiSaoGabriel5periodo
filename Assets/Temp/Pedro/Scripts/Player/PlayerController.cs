@@ -128,10 +128,12 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
+            //light Atack
             Atack(0, false);
         }
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
+            //heavy Atack
             Atack(0, true);
         }
         if (Input.GetKeyDown(KeyCode.Mouse2))

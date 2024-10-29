@@ -5,7 +5,6 @@ public class W_TestAtack : IWeapon
     public int slot;
     bool canBeInterupted = false, interrupted = false;
     bool atacking = false;
-    int comboSize = 3;
     float positionTimer = 0;
     Vector3 atackDirection;
     Quaternion newRotation;
@@ -23,7 +22,14 @@ public class W_TestAtack : IWeapon
     {
         if (!PlayerController.instance.canDoAtack || StaminaBar.intance.currentStam < PlayerController.instance.stamPerHit)
         {
-            StoreCommand(0);
+            if (heavy)
+            {
+                StoreCommand(1);
+            }
+            else
+            {
+                StoreCommand(0);
+            }
             return;
         }
         isHeavyAtack = heavy;
@@ -42,6 +48,7 @@ public class W_TestAtack : IWeapon
         else
         {
             PlayerController.instance.animator.SetTrigger(("Atack" + PlayerController.instance.comboCounter));
+            Debug.Log("Atack " + PlayerController.instance.comboCounter);
         }
         PlayerController.instance.swordTrail.emitting = true;
         PlayerController.instance.swordTrail.startColor = Color.white;
@@ -146,7 +153,7 @@ public class W_TestAtack : IWeapon
     {
         if (interrupted) return;
         PlayerController.instance.comboCounter++;
-        if (PlayerController.instance.comboCounter > comboSize) PlayerController.instance.comboCounter = 1;
+        if (PlayerController.instance.comboCounter > 3) PlayerController.instance.comboCounter = 1;
         canBeInterupted = true;
         PlayerController.instance.canDoAtack = true;
         PlayerController.instance.swordTrail.startColor = Color.yellow;
@@ -169,9 +176,8 @@ public class W_TestAtack : IWeapon
         if (interrupted) return;
         PlayerController.instance.canDoAtack = true;
         PlayerController.instance.canMove = true;
-        //PlayerController.instance.comboCounter = 1;
         canBeInterupted = false;
-        PlayerController.instance.isAttacking = false; // Parou de atacar
+        PlayerController.instance.isAttacking = false; 
         PlayerController.instance.animator.SetBool("Atacking", false);
         PlayerController.instance.swordTrail.emitting = false;
     }
