@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     public static PlayerController instance;
     Camera mainCamera;
     Rigidbody rb;
-    public Vector3 moveDirection, forwardDirection;
+    public Vector3 moveDirection, forwardDirection, moveForwardDiference;
     public Animator animator;
     public GameObject model;
     [Header("Move Settings------------------")]
@@ -35,10 +35,11 @@ public class PlayerController : MonoBehaviour
     public bool[] canDoAction = new bool[4];
     public IAction[] actions = new IAction[4];
     [Header("Atacks------------------")]
-    public bool[] canDoAtack = new bool[1];
+    public bool canDoAtack = true;
     public IWeapon[] atacks = new IWeapon[1];
     [Header("Runes------------------")]
-    public GameObject[] runes;
+    //public GameObject[] runes;
+    public IRune[] runes;
     public int actualRune = 1;
     [Header("GroundCheck------------------")]
     public Transform groundPoint;
@@ -55,7 +56,7 @@ public class PlayerController : MonoBehaviour
     Vector3 mousePosition, targetDirection;
     Vector3 cameraAlignValue;
     [Header("Atributes------------------")]
-    public int inteligence=0, agility = 0, strength = 0;
+    public int inteligence = 0, agility = 0, strength = 0;
     //------------------------------------------------------------------------------------------------------------------------------------
     private void Awake()
     {
@@ -89,7 +90,7 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        animator.speed = (GameManager.instance.actionTime)* (1 + (agility * 0.25f));
+        animator.speed = (GameManager.instance.actionTime) * (1 + (agility * 0.25f));
         SetDirection();
         CheckGround();
         DoActions();
@@ -104,6 +105,7 @@ public class PlayerController : MonoBehaviour
     }
     void Controls()
     {
+        WalkInput();
         if (canDoAction[0])
         {
             if (Input.GetKeyDown(KeyCode.Space) && StaminaBar.intance.currentStam >= stamPerHit)
@@ -124,11 +126,15 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-        if (Input.GetKeyDown(KeyCode.Mouse0) && StaminaBar.intance.currentStam >= stamPerHit)
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Atack(0);
+            Atack(0, false);
         }
         if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            Atack(0, true);
+        }
+        if (Input.GetKeyDown(KeyCode.Mouse2))
         {
             if (target)
             {
@@ -144,9 +150,9 @@ public class PlayerController : MonoBehaviour
             GameManager.instance.OpenRunes(!GameManager.instance.runePage.activeSelf);
         }
     }
-    void Atack(int slot)
+    void Atack(int slot, bool heavy)
     {
-        atacks[slot].AtackStart();
+        atacks[slot].AtackStart(heavy);
     }
     void CheckGround()
     {
@@ -165,13 +171,8 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-    void SetDirection()
+    void WalkInput()
     {
-        if (!canMove)
-        {
-            moveDirection = Vector3.zero;
-            return;
-        }
         moveDirection.y = 0;
         moveDirection.x = Input.GetAxis("Horizontal") * cameraAlignValue.x + (Input.GetAxis("Vertical") * cameraAlignValue.z);
         moveDirection.z = Input.GetAxis("Vertical") * cameraAlignValue.x - (Input.GetAxis("Horizontal") * cameraAlignValue.z);
@@ -180,6 +181,15 @@ public class PlayerController : MonoBehaviour
         moveDirection = moveDirection * moveSpeed * runningMultiplier;
         moveDirection.y = rb.velocity.y;
         animator.SetBool("Walk", (moveDirection.x != 0 || moveDirection.z != 0));
+
+    }
+    void SetDirection()
+    {
+        if (!canMove)
+        {
+            moveDirection = Vector3.zero;
+            return;
+        }
         LookForward();
         LookAtTarget();
     }
@@ -250,23 +260,9 @@ public class PlayerController : MonoBehaviour
 
         return mousePosition;
     }
-   
-public void RuneEffect()
+    public void InstantiateEffect(GameObject effect)
     {
-        switch (actualRune)
-        {
-            case 0:
-                break;
-            case 1:
-                Instantiate(runes[1], model.transform.position, model.transform.rotation);
-                break;
-            case 2:
-                Instantiate(runes[2], model.transform.position, model.transform.rotation);
-                break;
-            case 3:
-                Instantiate(runes[3], model.transform.position, model.transform.rotation);
-                break;
-        }
+        Instantiate(effect, model.transform.position, model.transform.rotation);
     }
     public void AddAtribute(string which)
     {

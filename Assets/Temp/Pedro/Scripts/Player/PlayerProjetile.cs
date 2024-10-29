@@ -25,6 +25,8 @@ public class PlayerProjetile : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
+            PlayerController.instance.runes[PlayerController.instance.actualRune].ProjectileHitEffect(other);
+            /*
             switch (PlayerController.instance.actualRune)
             {
                 case 0:
@@ -39,6 +41,7 @@ public class PlayerProjetile : MonoBehaviour
                     other.GetComponent<EnemyHealth>().TakeDamage(PlayerController.instance.baseDamage + PlayerController.instance.agility, PlayerController.instance.comboCounter);
                     break;
             }
+            */
             if (endEffect)
             {
                 particle.Play();

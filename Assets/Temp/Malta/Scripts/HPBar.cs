@@ -45,7 +45,6 @@ public class HPBar : MonoBehaviour
         {
             easebar.value = Mathf.Lerp(easebar.value, hpbar.value, lerpSpeed / 10);
         }
-        //Debug.Log("Atualizando a barra de vida");
     }
     public void RecoverHPbyHit()
     {
@@ -54,28 +53,11 @@ public class HPBar : MonoBehaviour
             currentHP += (easebar.value - currentHP) / 2;
             easebar.value -= (easebar.value - currentHP) / 2;
         }
-        /*
-        if(hpbar.value != easebar.value && easebar.value < maxHP && ((value/10) <= easebar.value - currentHP))
-        {
-            //Debug.Log("Recuperei");
-            currentHP += value;
-        }
-        */
     }
     public void RecoverHPbyItem(int value)
     {
         currentHP = Mathf.Clamp(currentHP + value, 1, maxHP);
         GameManager.instance.SpawnNumber(value, Color.green, PlayerController.instance.transform);
-        /*
-        if ((HPBar.hpbarInstance.currentHP + value) < HPBar.hpbarInstance.maxHP)
-        {
-            HPBar.hpbarInstance.currentHP += value;
-        }
-        else
-        {
-            HPBar.hpbarInstance.currentHP = HPBar.hpbarInstance.maxHP;
-        }
-        */
     }
     public void TakeDamage(float damage, Transform damageFont)
     {
