@@ -31,7 +31,6 @@ public class RunePage : MonoBehaviour
     }
     void Update()
     {
-        // Verifica se o botão esquerdo do mouse está sendo pressionado
         if (Input.GetMouseButtonDown(0))
         {
             lastMousePosition.x = Input.mousePosition.x;
@@ -81,7 +80,7 @@ public class RunePage : MonoBehaviour
             case 0:
                 break;
             case 1:
-                PlayerController.instance.AddAtribute("strength");
+                PlayerController.instance.AddAtribute("resistance");
                 break;
             case 2:
                 PlayerController.instance.AddAtribute("inteligence");

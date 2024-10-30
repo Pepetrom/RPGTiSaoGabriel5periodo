@@ -25,23 +25,7 @@ public class PlayerProjetile : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            PlayerController.instance.runes[PlayerController.instance.actualRune].ProjectileHitEffect(other);
-            /*
-            switch (PlayerController.instance.actualRune)
-            {
-                case 0:
-                    break;
-                case 1:
-                    other.GetComponent<EnemyHealth>().TakeDamage(PlayerController.instance.baseDamage + PlayerController.instance.inteligence, PlayerController.instance.comboCounter);
-                    break;
-                case 2:
-                    other.GetComponent<EnemyHealth>().TakeDamage(PlayerController.instance.baseDamage + PlayerController.instance.strength, PlayerController.instance.comboCounter);
-                    break;
-                case 3:
-                    other.GetComponent<EnemyHealth>().TakeDamage(PlayerController.instance.baseDamage + PlayerController.instance.agility, PlayerController.instance.comboCounter);
-                    break;
-            }
-            */
+            PlayerController.instance.runes[PlayerController.instance.equipedPrimaryRune].ProjectileHitEffect(other);
             if (endEffect)
             {
                 particle.Play();

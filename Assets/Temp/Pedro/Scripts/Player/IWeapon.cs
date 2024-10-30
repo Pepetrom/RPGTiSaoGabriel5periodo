@@ -17,12 +17,10 @@ public interface IWeapon
     public void AtackEnd();
     public void InteruptAtack();
     public void StoreCommand(int which);
-    public void Atack1Start();
-    public void Atack1Hit();
-    public void Atack2Start();
-    public void Atack2Hit();
-    public void Atack3Start();
-    public void Atack3Hit();
-    public void AtackHeavyStart();
-    public void AtackHeavyHit();
+    public void AtackStartAction();
+    public void AtackHeavyStartAction();
+    public void AtackHit(Collider other);
+    public void AtackCriticalHit(Collider other);
+    public void AtackHeavyHit(Collider other);
+    public void AtackHeavyEffect();
 }

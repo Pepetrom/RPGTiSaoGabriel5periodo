@@ -13,13 +13,13 @@ public class StaminaBar : MonoBehaviour
     public float moveSpeedBase;
     public float lerpSpeed;
     public float staminaRecover;
-    public static StaminaBar intance;
+    public static StaminaBar instance;
 
     float moveSpeed;
 
     private void Awake()
     {
-        intance = this;
+        instance = this;
     }
     private void Start()
     {
@@ -77,6 +77,14 @@ public class StaminaBar : MonoBehaviour
         {
             currentStam = 0f;
             stambar.value = currentStam;
+        }
+    }
+    public void RecoverRecoverStaminabyHit()
+    {
+        if (easebar.value >= stambar.value)
+        {
+            currentStam += (easebar.value - currentStam) / 2;
+            easebar.value -= (easebar.value - currentStam) / 2;
         }
     }
     public void RecoverStamina(float value)

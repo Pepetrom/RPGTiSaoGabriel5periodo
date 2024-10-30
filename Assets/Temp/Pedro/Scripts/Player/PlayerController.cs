@@ -38,9 +38,10 @@ public class PlayerController : MonoBehaviour
     public bool canDoAtack = true;
     public IWeapon[] atacks = new IWeapon[1];
     [Header("Runes------------------")]
-    //public GameObject[] runes;
+    public GameObject[] runesForIRune;
     public IRune[] runes;
-    public int actualRune = 1;
+    public int equipedPrimaryRune = 0, equipedSecondaryRune = 0, equipedTerciaryRune = 0;
+    public float temporaryDamageAdd, temporaryDamageMultiplier;
     [Header("GroundCheck------------------")]
     public Transform groundPoint;
     public LayerMask groundMask;
@@ -56,7 +57,7 @@ public class PlayerController : MonoBehaviour
     Vector3 mousePosition, targetDirection;
     Vector3 cameraAlignValue;
     [Header("Atributes------------------")]
-    public int inteligence = 0, agility = 0, strength = 0;
+    public int resistance = 0, agility = 0, strength = 0;
     //------------------------------------------------------------------------------------------------------------------------------------
     private void Awake()
     {
@@ -74,15 +75,22 @@ public class PlayerController : MonoBehaviour
     }
     void InitialActions()
     {
-        actions[0] = new A_SideStep();
+        actions[0] = new A_DashTowardMovement();
         actions[0].SetSlot(0);
         actions[1] = new A_AtackDash();
         actions[1].SetSlot(1);
         actions[2] = new A_KnockBack();
         actions[2].SetSlot(2);
 
-        atacks[0] = new W_TestAtack();
+        atacks[0] = new W_BigSwordAtack();
         atacks[0].SetSlot(0);
+
+        
+        runes = new IRune[runesForIRune.Length];
+        for (int i = 0; i< runesForIRune.Length; i++)
+        {
+            runes[i] = runesForIRune[i].GetComponent<IRune>();
+        }
     }
     void Update()
     {
@@ -90,7 +98,7 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        animator.speed = (GameManager.instance.actionTime) * (1 + (agility * 0.25f));
+        animator.speed = (GameManager.instance.actionTime) * (1 + (agility * 0.1f));
         SetDirection();
         CheckGround();
         DoActions();
@@ -108,7 +116,7 @@ public class PlayerController : MonoBehaviour
         WalkInput();
         if (canDoAction[0])
         {
-            if (Input.GetKeyDown(KeyCode.Space) && StaminaBar.intance.currentStam >= stamPerHit)
+            if (Input.GetKeyDown(KeyCode.Space) && StaminaBar.instance.currentStam >= stamPerHit)
             {
                 if (isAttacking)
                 {
@@ -116,13 +124,13 @@ public class PlayerController : MonoBehaviour
                     {
                         atacks[0].InteruptAtack();
                         actions[0].ActionStart();
-                        StaminaBar.intance.DrainStamina(stamPerHit * 2);
+                        StaminaBar.instance.DrainStamina(stamPerHit * 2);
                     }
                 }
                 else
                 {
                     actions[0].ActionStart();
-                    StaminaBar.intance.DrainStamina(stamPerHit * 2);
+                    StaminaBar.instance.DrainStamina(stamPerHit * 2);
                 }
             }
         }
@@ -270,9 +278,9 @@ public class PlayerController : MonoBehaviour
     {
         switch (which)
         {
-            case "inteligence":
-                inteligence += 1;
-                StaminaBar.intance.maxStam += StaminaBar.intance.maxStam * 0.1f;
+            case "resistance":
+                resistance += 1;
+                StaminaBar.instance.maxStam += StaminaBar.instance.maxStam * 0.1f;
                 break;
             case "strength":
                 strength += 1;
