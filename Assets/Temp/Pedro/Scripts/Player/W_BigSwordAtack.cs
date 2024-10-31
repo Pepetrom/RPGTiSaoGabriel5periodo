@@ -48,7 +48,6 @@ public class W_BigSwordAtack : IWeapon
         else
         {
             PlayerController.instance.animator.SetTrigger(("Atack" + PlayerController.instance.comboCounter));
-            Debug.Log("Atack " + PlayerController.instance.comboCounter);
         }
         PlayerController.instance.swordTrail.emitting = true;
         PlayerController.instance.swordTrail.startColor = Color.white;
@@ -179,11 +178,11 @@ public class W_BigSwordAtack : IWeapon
     }
     public void AtackEnd()
     {
-        if (interrupted) return;
-        PlayerController.instance.canDoAtack = true;
-        PlayerController.instance.canMove = true;
+        //if (interrupted) return;
         canBeInterupted = false;
         PlayerController.instance.isAttacking = false; 
+        PlayerController.instance.canMove = true;
+        PlayerController.instance.canDoAtack = true;
         PlayerController.instance.animator.SetBool("Atacking", false);
         PlayerController.instance.swordTrail.emitting = false;
     }
@@ -191,14 +190,16 @@ public class W_BigSwordAtack : IWeapon
     {
         if (interrupted) return;
         interrupted = true;
+        AtackEnd();
+        /*
         canBeInterupted = false;
         PlayerController.instance.isAttacking = false;
         PlayerController.instance.canMove = true;
         PlayerController.instance.canDoAtack = true;
         PlayerController.instance.animator.SetBool("Atacking", false);
+        PlayerController.instance.swordTrail.emitting = false;*/
         PlayerController.instance.comboCounter = 1;
         storedCommand = -1;
-        PlayerController.instance.swordTrail.emitting = false;
     }
     public void StoreCommand(int which)
     {

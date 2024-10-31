@@ -102,6 +102,7 @@ public class GameManager : MonoBehaviour
     }
     public void Respawn()
     {
+        PlayerController.instance.ResetAllActions();
         PlayerController.instance.transform.position = checkPoint.transform.position;
     }
 }

@@ -15,22 +15,28 @@ public class A_DashTowardMovement : IAction
     }
     public void ActionStart()
     {
+        PlayerController.instance.animator.SetTrigger("Dash");
         HPBar.instance.StartCoroutine(HPBar.instance.InvulnableTime());
-        dashForce = PlayerController.instance.baseDashForce;
+        dashForce = PlayerController.instance.baseDashForce * 12;
         dashCooldown = PlayerController.instance.baseDashCooldown;
         PlayerController.instance.canDoAction[slot] = false;
         dashTime = 1;
         dashing = true;
         dashTimer = 0;
         PlayerController.instance.dustParticle.Play();
-        if (PlayerController.instance.moveDirection == Vector3.zero)
+
+        direction = PlayerController.instance.moveDirection;
+        direction.y = 0;
+        direction = direction.normalized;
+        if (direction == Vector3.zero)
         {
-            direction = -PlayerController.instance.model.transform.forward * PlayerController.instance.moveSpeed * dashForce * Time.fixedDeltaTime ;
+            direction = -PlayerController.instance.model.transform.forward * dashForce * Time.fixedDeltaTime ;
         }
         else
         {
-            direction = PlayerController.instance.moveDirection * dashForce * Time.fixedDeltaTime;
+            direction = direction * dashForce * Time.fixedDeltaTime;
         }
+            Debug.Log(direction);
         direction.y = 0;
     }
     public void ActionUpdate()

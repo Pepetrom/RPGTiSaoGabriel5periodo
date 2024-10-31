@@ -15,7 +15,7 @@ public class TurtlePatrolState : ITurtleStateMachine
     {
         time = controller.patrollingCooldown;
         controller.agent.SetDestination(controller.patrolPoints[controller.currentPatrolIndex].position);
-        Debug.Log("Comecei a patrulha");
+        //Debug.Log("Comecei a patrulha");
         controller.animator.SetBool("patrolling", true);
         controller.agent.angularSpeed = 70f;
         GameManager.instance.RemoveEnemy(controller.gameObject);
@@ -23,7 +23,7 @@ public class TurtlePatrolState : ITurtleStateMachine
 
     public void OnExit()
     {
-        Debug.Log("Parei de patrulhar");
+        //Debug.Log("Parei de patrulhar");
         controller.agent.angularSpeed = 0f;
         GameManager.instance.AddEnemy(controller.gameObject);
     }

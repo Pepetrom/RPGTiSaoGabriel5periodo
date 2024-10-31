@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public Vector3 moveDirection, forwardDirection;
     public Animator animator;
     public GameObject model;
+    bool masterCanDo = true;
     [Header("Move Settings------------------")]
     public float moveSpeed;
     public float runningMultiplier = 1;
@@ -99,6 +100,7 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
+        if (!masterCanDo) return;
         Controls();
     }
     void FixedUpdate()
@@ -330,6 +332,19 @@ public class PlayerController : MonoBehaviour
                 agility += 1;
                 break;
         }
+    }
+    public void StopAllActions()
+    {
+        masterCanDo = false;
+        atacks[0].InteruptAtack();
+        canDoAtack = false;
+        canMove = false;
+    }
+    public void ResetAllActions()
+    {
+        masterCanDo = true;
+        canDoAtack = true;
+        canMove = true;
     }
 }
 
