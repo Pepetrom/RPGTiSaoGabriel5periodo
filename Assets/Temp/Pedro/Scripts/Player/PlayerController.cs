@@ -1,4 +1,5 @@
 using Unity.Burst.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -7,7 +8,7 @@ public class PlayerController : MonoBehaviour
     public static PlayerController instance;
     Camera mainCamera;
     Rigidbody rb;
-    public Vector3 moveDirection, forwardDirection, moveForwardDiference;
+    public Vector3 moveDirection, forwardDirection;
     public Animator animator;
     public GameObject model;
     [Header("Move Settings------------------")]
@@ -48,16 +49,20 @@ public class PlayerController : MonoBehaviour
     public bool grounded;
     [Header("Gravity Settings---------------")]
     public float gravityForce;
-    [Header("Jump Settings------------------")]
-    public float baseJumpForce;
-    public float baseAirTime;
-    public bool jumping;
     [Header("Rotation------------------")]
     Quaternion newRotation;
     Vector3 mousePosition, targetDirection;
     Vector3 cameraAlignValue;
     [Header("Atributes------------------")]
     public int resistance = 0, agility = 0, strength = 0;
+
+    //ABSURDLY COMPLICATED RENAN SHENANIGANS
+    Vector3 playerRight;
+    Vector3 playerForward;
+    float targetLockedX, targetLockedY;
+    float rightAmount;
+    float forwardAmount;
+
     //------------------------------------------------------------------------------------------------------------------------------------
     private void Awake()
     {
@@ -103,6 +108,42 @@ public class PlayerController : MonoBehaviour
         CheckGround();
         DoActions();
         rb.velocity = moveDirection;
+    }
+    void CheckDistanceTarget()
+    {
+        targetDirection = (target.position - transform.position).normalized;
+        playerRight = Vector3.Cross(targetDirection, Vector3.up);
+        playerForward = Vector3.Cross(playerRight, Vector3.up);
+
+        rightAmount = Vector3.Dot(moveDirection.normalized, playerRight);
+        forwardAmount = Vector3.Dot(moveDirection.normalized, playerForward);
+        
+        if (forwardAmount < 0)
+        {
+            //Debug.Log("Moving Forward relative to target");
+            targetLockedY += Time.fixedDeltaTime;
+        }
+        else if (forwardAmount > 0)
+        {
+            //Debug.Log("Moving Backward relative to target");
+            targetLockedY -= Time.fixedDeltaTime;
+        }
+        if (rightAmount < 0)
+        {
+            //Debug.Log("Moving Right relative to target");
+            targetLockedX += Time.fixedDeltaTime;
+        }
+        else if (rightAmount > 0)
+        {
+            //Debug.Log("Moving Left relative to target");
+            targetLockedX -= Time.fixedDeltaTime;
+        }
+
+        targetLockedX = Mathf.Clamp(targetLockedX, -1, 1);
+        targetLockedY = Mathf.Clamp(targetLockedY, -1, 1);
+
+        animator.SetFloat("X", targetLockedX);
+        animator.SetFloat("Y", targetLockedY);
     }
     void DoActions()
     {
@@ -166,19 +207,16 @@ public class PlayerController : MonoBehaviour
     }
     void CheckGround()
     {
-        if (!jumping)
+        moveDirection.y -= gravityForce * Time.deltaTime;
+        if (Physics.CheckSphere(groundPoint.position, 1, groundMask))
         {
-            moveDirection.y -= gravityForce * Time.deltaTime;
-            if (Physics.CheckSphere(groundPoint.position, 1, groundMask))
-            {
-                grounded = true;
-                moveDirection.y = Mathf.Clamp(moveDirection.y, 0, Mathf.Infinity);
-                canDoAction[3] = true;
-            }
-            else
-            {
-                grounded = false;
-            }
+            grounded = true;
+            moveDirection.y = Mathf.Clamp(moveDirection.y, 0, Mathf.Infinity);
+            canDoAction[3] = true;
+        }
+        else
+        {
+            grounded = false;
         }
     }
     void WalkInput()
@@ -191,7 +229,6 @@ public class PlayerController : MonoBehaviour
         moveDirection = moveDirection * moveSpeed * runningMultiplier;
         moveDirection.y = rb.velocity.y;
         animator.SetBool("Walk", (moveDirection.x != 0 || moveDirection.z != 0));
-
     }
     void SetDirection()
     {
@@ -211,13 +248,12 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("Run", true);
             target = null;
         }
-        else
+        else 
         {
             runningMultiplier = 1;
             animator.SetBool("Run", false);
         }
     }
-
     void DetectClosestEnemy()
     {
         Collider[] hits = Physics.OverlapSphere(model.transform.position, detectionAutoTargetRange);
@@ -244,12 +280,16 @@ public class PlayerController : MonoBehaviour
 
         targetDirection = (target.position - model.transform.position).normalized;
         targetDirection.y = 0;
+
         newRotation = Quaternion.LookRotation(targetDirection);
         model.transform.rotation = newRotation;
+        CheckDistanceTarget();
     }
     void LookForward()
     {
         if (target != null) return;
+        animator.SetFloat("X", 0);
+        animator.SetFloat("Y", 1);
         forwardDirection = moveDirection;
         forwardDirection.y = 0;
         if (forwardDirection == Vector3.zero) return;
