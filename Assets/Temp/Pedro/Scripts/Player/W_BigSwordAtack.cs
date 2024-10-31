@@ -22,7 +22,7 @@ public class W_BigSwordAtack : IWeapon
     {
         if (!PlayerController.instance.canDoAtack || StaminaBar.instance.currentStam < PlayerController.instance.stamPerHit)
         {
-            if (heavy)
+            if (heavy )
             {
                 StoreCommand(1);
             }
@@ -66,9 +66,11 @@ public class W_BigSwordAtack : IWeapon
             storedCommand = -1;
             PlayerController.instance.comboCounter = 1;
             firstAtack = true;
+            /*
             PlayerController.instance.temporaryDamageAdd = 0;
             PlayerController.instance.temporaryDamageMultiplier = 1;
-        }
+        */
+            }
         if (interrupted) return;
         if (atacking)
         {
@@ -83,6 +85,7 @@ public class W_BigSwordAtack : IWeapon
             if (positionTimer >= 1)
             {
                 atacking = false;
+                /*
                 if (isHeavyAtack)
                 {
                     AtackHeavyStartAction();
@@ -90,7 +93,7 @@ public class W_BigSwordAtack : IWeapon
                 else
                 {
                     AtackStartAction();
-                }
+                }*/
             }
         }
     }
@@ -207,24 +210,20 @@ public class W_BigSwordAtack : IWeapon
     }
     public void AtackStartAction()
     {
-        switch (PlayerController.instance.comboCounter)
+        if (isHeavyAtack)
         {
-            case 1:
-                PlayerController.instance.actions[1].ActionStart();
-                break;
-            case 2:
-                PlayerController.instance.actions[1].ActionStart();
-                break;
-            case 3:
-                break;
-        }
-    }
-    
-    public void AtackHeavyStartAction()
-    {
-        if (firstAtack)
-        {
-            PlayerController.instance.actions[1].ActionStart();
+            switch (PlayerController.instance.comboCounter)
+            {
+                case 1:
+                    //PlayerController.instance.actions[1].ActionStart();
+                    break;
+                case 2:
+                    //PlayerController.instance.actions[1].ActionStart();
+                    break;
+                case 3:
+                    PlayerController.instance.actions[1].ActionStart();
+                    break;
+            }
         }
         else
         {
@@ -234,7 +233,7 @@ public class W_BigSwordAtack : IWeapon
                     PlayerController.instance.actions[1].ActionStart();
                     break;
                 case 2:
-                    PlayerController.instance.actions[1].ActionStart();
+                    //PlayerController.instance.actions[1].ActionStart();
                     break;
                 case 3:
                     PlayerController.instance.actions[1].ActionStart();
@@ -250,13 +249,13 @@ public class W_BigSwordAtack : IWeapon
         switch (PlayerController.instance.comboCounter)
         {
             case 1:
-                other.GetComponent<EnemyHealth>().TakeDamage((int)(PlayerController.instance.baseDamage * (1 * PlayerController.instance.temporaryDamageMultiplier + PlayerController.instance.agility * 0.1f) + PlayerController.instance.temporaryDamageAdd), 1);
+                other.GetComponent<EnemyHealth>().TakeDamage((int)(PlayerController.instance.baseDamage * (1 * PlayerController.instance.temporaryDamageMultiplier + PlayerController.instance.agility * 0.1f) + PlayerController.instance.temporaryDamageAdd), 1f);
                 break;
             case 2:
-                other.GetComponent<EnemyHealth>().TakeDamage((int)(PlayerController.instance.baseDamage * (1.25f * PlayerController.instance.temporaryDamageMultiplier + PlayerController.instance.agility * 0.25f) + PlayerController.instance.temporaryDamageAdd), 1);
+                other.GetComponent<EnemyHealth>().TakeDamage((int)(PlayerController.instance.baseDamage * (1.25f * PlayerController.instance.temporaryDamageMultiplier + PlayerController.instance.agility * 0.25f) + PlayerController.instance.temporaryDamageAdd), 1f);
                 break;
             case 3:
-                other.GetComponent<EnemyHealth>().TakeDamage((int)(PlayerController.instance.baseDamage * (1.5f * PlayerController.instance.temporaryDamageMultiplier + PlayerController.instance.agility * 0.35f) + PlayerController.instance.temporaryDamageAdd), 1);
+                other.GetComponent<EnemyHealth>().TakeDamage((int)(PlayerController.instance.baseDamage * (1.5f * PlayerController.instance.temporaryDamageMultiplier + PlayerController.instance.agility * 0.35f) + PlayerController.instance.temporaryDamageAdd), 1.5f);
                 break;
         }
         
@@ -269,15 +268,15 @@ public class W_BigSwordAtack : IWeapon
         switch (PlayerController.instance.comboCounter)
         {
             case 1:
-                other.GetComponent<EnemyHealth>().TakeDamage((int)(PlayerController.instance.baseDamage * (1.5f + PlayerController.instance.agility * 0.1f)), 1);
+                other.GetComponent<EnemyHealth>().TakeDamage((int)(PlayerController.instance.baseDamage * (1.5f + PlayerController.instance.agility * 0.1f)), 2);
                 PlayerController.instance.runes[PlayerController.instance.equipedPrimaryRune].AtackCriticalEffect1();
                 break;
             case 2:
-                other.GetComponent<EnemyHealth>().TakeDamage((int)(PlayerController.instance.baseDamage * (1.75f + PlayerController.instance.agility * 0.25f)), 1);
+                other.GetComponent<EnemyHealth>().TakeDamage((int)(PlayerController.instance.baseDamage * (1.75f + PlayerController.instance.agility * 0.25f)), 2.5f);
                 PlayerController.instance.runes[PlayerController.instance.equipedPrimaryRune].AtackCriticalEffect2();
                 break;
             case 3:
-                other.GetComponent<EnemyHealth>().TakeDamage((int)(PlayerController.instance.baseDamage * (2.25f + PlayerController.instance.agility * 0.35f)), 1);
+                other.GetComponent<EnemyHealth>().TakeDamage((int)(PlayerController.instance.baseDamage * (2.25f + PlayerController.instance.agility * 0.35f)), 3);
                 PlayerController.instance.runes[PlayerController.instance.equipedPrimaryRune].AtackCriticalEffect3();
                 break;
         }

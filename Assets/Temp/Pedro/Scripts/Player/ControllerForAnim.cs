@@ -21,6 +21,10 @@ public class ControllerForAnim : MonoBehaviour
     {
         PlayerController.instance.atacks[slot].CloseComboWindow();
     }
+    public void Dash()
+    {
+        PlayerController.instance.atacks[slot].AtackStartAction();
+    }
     public void AtackEnd()
     {
         PlayerController.instance.atacks[slot].AtackEnd();

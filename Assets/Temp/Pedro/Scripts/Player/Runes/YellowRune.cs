@@ -12,14 +12,17 @@ public class YellowRune : MonoBehaviour, IRune
     public void AtackCriticalEffect1()
     {
         PlayerController.instance.temporaryDamageAdd = PlayerController.instance.resistance * 2;
+        Debug.Log("Crito");
     }
     public void AtackCriticalEffect2()
     {
         PlayerController.instance.temporaryDamageAdd = PlayerController.instance.resistance * 2.5f;
+        Debug.Log("Crito");
     }
     public void AtackCriticalEffect3()
     {
         PlayerController.instance.temporaryDamageAdd = PlayerController.instance.resistance * 3;
+        Debug.Log("Crito");
     }
     //Secondary
     public void HeavyEffect1()

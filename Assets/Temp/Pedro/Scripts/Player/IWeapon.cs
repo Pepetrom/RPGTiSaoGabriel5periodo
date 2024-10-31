@@ -18,7 +18,6 @@ public interface IWeapon
     public void InteruptAtack();
     public void StoreCommand(int which);
     public void AtackStartAction();
-    public void AtackHeavyStartAction();
     public void AtackHit(Collider other);
     public void AtackCriticalHit(Collider other);
     public void AtackHeavyHit(Collider other);
