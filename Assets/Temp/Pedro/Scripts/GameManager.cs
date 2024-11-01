@@ -33,6 +33,9 @@ public class GameManager : MonoBehaviour
     public void ChangeRune(int rune)
     {
         PlayerController.instance.equipedPrimaryRune = rune;
+        PlayerController.instance.equipedSecondaryRune = rune;
+        PlayerController.instance.equipedTerciaryRune = rune;
+
     }
     public void CallHitStop(float tempo)
     {
