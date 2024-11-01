@@ -6,16 +6,15 @@ using UnityEngine.UI;
 public class EnemyHealth : MonoBehaviour
 {
     public int lifeTotal;
-    public int lifeActual;
+    int lifeActual;
     public Slider hpbar;
     public float lerpSpeed;
     public TurtleStateMachine turtle;
-    float knockbackTime = 0;
-    Vector3 knockBackDirection;
+    //float knockbackTime = 0;
+    //Vector3 knockBackDirection;
+    //bool playhit = false;
     public bool playerHit = false;
     public ParticleSystem hit;
-    bool playhit = false;
-
     private void Start()
     {
         lifeActual = lifeTotal;
@@ -32,12 +31,13 @@ public class EnemyHealth : MonoBehaviour
         turtle?.Impulse(turtle.kbforce * knockbackStrenght);
         lifeActual -= damage;
         playerHit = true;
-        GameManager.instance.SpawnNumber((int)damage, Color.yellow, transform);
         hit.Play();
-        if(lifeActual <= 0)
+        GameManager.instance.SpawnNumber((int)damage, Color.yellow, transform);
+        if (lifeActual <= 0)
         {
             turtle?.animator.SetBool("Dead", true);
             turtle?.Die();
+
         }
     }
     public void UpdateHPBar()

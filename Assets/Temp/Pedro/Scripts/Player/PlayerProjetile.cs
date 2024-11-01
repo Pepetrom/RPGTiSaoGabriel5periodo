@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 
 public class PlayerProjetile : MonoBehaviour
@@ -8,18 +9,28 @@ public class PlayerProjetile : MonoBehaviour
     float timer = 0;
     public float speed, duration;
     public bool endEffect = false;
+    public SphereCollider colisor;
     private void FixedUpdate()
     {
-        timer += Time.fixedDeltaTime;
-        if (timer >= duration)
+        if (colisor.enabled)
         {
-            if (endEffect)
+            timer += Time.fixedDeltaTime;
+            if (timer >= duration)
             {
-                particle.Play();
+                if (endEffect)
+                {
+                    colisor.enabled = false;
+                    particle.Play();
+                    Invoke("EndEffect", 0.3f);
+                }
+                else
+                {
+                    colisor.enabled = false;
+                    EndEffect();
+                }
             }
-            Invoke("EndEffect", 0.2f);
+            transform.position += transform.forward * Time.fixedDeltaTime * speed;
         }
-        transform.position += transform.forward * Time.fixedDeltaTime * speed;
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -28,8 +39,9 @@ public class PlayerProjetile : MonoBehaviour
             PlayerController.instance.runes[PlayerController.instance.equipedPrimaryRune].ProjectileHitEffect(other);
             if (endEffect)
             {
+                colisor.enabled = false;
                 particle.Play();
-                Invoke("EndEffect", 0.2f);
+                Invoke("EndEffect", 0.3f);
             }
         }
     }
