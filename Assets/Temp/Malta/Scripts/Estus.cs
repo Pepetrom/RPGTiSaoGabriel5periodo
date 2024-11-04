@@ -5,10 +5,16 @@ using UnityEngine;
 
 public class Estus : MonoBehaviour
 {
-    public int healQuantity,flaskQuantity; // quantity VAI RESUMIR NOME DE VARIAVEL NAO
+    public static Estus estus;
+    public int healQuantity,flaskQuantity, maxFlaskQuantity; // quantity VAI RESUMIR NOME DE VARIAVEL NAO
 
+    private void Awake()
+    {
+        estus = this;
+    }
     private void Start()
     {
+        flaskQuantity = maxFlaskQuantity;
         UIItems.instance.UpdateChesseQUI(flaskQuantity);
     }
     private void Update()

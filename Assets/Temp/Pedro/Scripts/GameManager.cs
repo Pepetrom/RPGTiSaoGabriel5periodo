@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     //Runes 
     public float skillPoints;
     public GameObject runePage;
+    public GameObject bonfire;
+    public int score;
 
     private List<GameObject> enemiesInCombat = new List<GameObject>(); // Lista para checar inimigos no combate
     private void Awake()
@@ -99,12 +101,39 @@ public class GameManager : MonoBehaviour
     public void OpenRunes(bool open)
     {
         runePage.SetActive(open);
-        if (open) actionTime = 0;
+        if (open)
+        {
+            actionTime = 0;
+            bonfire.SetActive(false);
+        } 
+        else actionTime = 1;
+    }
+    public void Bonfire(bool open)
+    {
+        bonfire.SetActive(open);
+        if (open)
+        {
+            actionTime = 0;
+        }
         else actionTime = 1;
     }
     public void Respawn()
     {
         PlayerController.instance.ResetAllActions();
         PlayerController.instance.transform.position = checkPoint.transform.position;
+    }
+    public void Rest()
+    {
+        Estus.estus.flaskQuantity = Estus.estus.maxFlaskQuantity;
+        UIItems.instance.UpdateChesseQUI(Estus.estus.flaskQuantity);
+        HPBar.instance.currentHP = HPBar.instance.maxHP;
+        bonfire.SetActive(false);
+        actionTime = 1;
+    }
+    public void Score(int amount)
+    {
+        score += amount;
+        Debug.Log(score);
+        UIItems.instance.UpdateScoreQUI(score);
     }
 }
