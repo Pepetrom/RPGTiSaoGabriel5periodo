@@ -92,8 +92,8 @@ public class RunePage : MonoBehaviour
     }
     public void UnlockRune(int which)
     {
-        UIItems.instance.UnlockSkill(which);
-    } 
+        GameManager.instance.unlockedRunes[which] = true;
+     } 
     public void StartRunePage()
     {
         for (int i = 1;i< RuneBorders.Length; i++)

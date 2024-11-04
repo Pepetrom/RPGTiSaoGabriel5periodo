@@ -12,17 +12,17 @@ public class RedRune : MonoBehaviour,IRune
     }
     public void AtackCriticalEffect1()
     {
-        PlayerController.instance.temporaryDamageAdd = PlayerController.instance.strength * 2;
+        PlayerController.instance.DamageAdd = PlayerController.instance.strength * 2;
         Debug.Log("Crito");
     }
     public void AtackCriticalEffect2()
     {
-        PlayerController.instance.temporaryDamageAdd = PlayerController.instance.strength * 2.5f;
+        PlayerController.instance.DamageAdd = PlayerController.instance.strength * 2.5f;
         Debug.Log("Crito");
     }
     public void AtackCriticalEffect3()
     {
-        PlayerController.instance.temporaryDamageAdd = PlayerController.instance.strength * 3;
+        PlayerController.instance.DamageAdd = PlayerController.instance.strength * 3;
         Debug.Log("Crito");
     }
     //Secondary
@@ -41,6 +41,6 @@ public class RedRune : MonoBehaviour,IRune
     //Terciary
     public void HitEffect()
     {
-        PlayerController.instance.temporaryDamageMultiplier = 1.25f;
+        PlayerController.instance.DamageMultiplier = 1.25f;
     }
 }

@@ -22,8 +22,4 @@ public class UIItems : MonoBehaviour
     {
         runePageText.text = GameManager.instance.skillPoints.ToString();
     }
-    public void UnlockSkill(int which)
-    {
-        skillButtons[which].SetActive(true);
-    }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -9,8 +10,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public float actionTime = 1;
     public bool isCombat = false;
-    public GameObject runes;
-
+    public GameObject runesPanel;
+    public bool[] unlockedRunes = new bool[4];
     //SpawnPoint/Checkpoint
     public Transform checkPoint;
 
@@ -29,13 +30,6 @@ public class GameManager : MonoBehaviour
         GameObject temp = Instantiate(damagePopUp, targetLocation.position, transform.rotation);
         DamagePopUp dmp = temp.GetComponent<DamagePopUp>();
         dmp.StartNumber(damageNumber, color);
-    }
-    public void ChangeRune(int rune)
-    {
-        PlayerController.instance.equipedPrimaryRune = rune;
-        PlayerController.instance.equipedSecondaryRune = rune;
-        PlayerController.instance.equipedTerciaryRune = rune;
-
     }
     public void CallHitStop(float tempo)
     {
@@ -86,11 +80,16 @@ public class GameManager : MonoBehaviour
     //TEMPORÁRIO
     public void RunesPanel()
     {
-        runes.SetActive(true);
-    }
-    public void ClosePanelRunes()
-    {
-        runes.SetActive(false);
+        if (!runesPanel.activeSelf)
+        {
+            runesPanel.SetActive(true);
+            Time.timeScale = 0;
+        }
+        else
+        {
+            runesPanel.SetActive(false);
+            Time.timeScale = 1;
+        }
     }
     public void AddSkillPoints()
     {

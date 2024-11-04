@@ -154,8 +154,8 @@ public class W_BigSwordAtack : IWeapon
             }
         }
         PlayerController.instance.runes[PlayerController.instance.equipedTerciaryRune].HitEffect();
-        PlayerController.instance.temporaryDamageAdd = 0;
-        PlayerController.instance.temporaryDamageMultiplier = 1;
+        PlayerController.instance.DamageAdd = 0;
+        PlayerController.instance.DamageMultiplier = 1;
     }
     public void OpenComboWindow()
     {
@@ -249,13 +249,13 @@ public class W_BigSwordAtack : IWeapon
         switch (PlayerController.instance.comboCounter)
         {
             case 1:
-                other.GetComponent<EnemyHealth>().TakeDamage((int)(PlayerController.instance.baseDamage * (1 * PlayerController.instance.temporaryDamageMultiplier + PlayerController.instance.agility * 0.1f) + PlayerController.instance.temporaryDamageAdd), 1f);
+                other.GetComponent<EnemyHealth>().TakeDamage((int)(PlayerController.instance.baseDamage * (1 * PlayerController.instance.DamageMultiplier + PlayerController.instance.agility * 0.1f) + PlayerController.instance.DamageAdd), 1f);
                 break;
             case 2:
-                other.GetComponent<EnemyHealth>().TakeDamage((int)(PlayerController.instance.baseDamage * (1.25f * PlayerController.instance.temporaryDamageMultiplier + PlayerController.instance.agility * 0.25f) + PlayerController.instance.temporaryDamageAdd), 1f);
+                other.GetComponent<EnemyHealth>().TakeDamage((int)(PlayerController.instance.baseDamage * (1.25f * PlayerController.instance.DamageMultiplier + PlayerController.instance.agility * 0.25f) + PlayerController.instance.DamageAdd), 1f);
                 break;
             case 3:
-                other.GetComponent<EnemyHealth>().TakeDamage((int)(PlayerController.instance.baseDamage * (1.5f * PlayerController.instance.temporaryDamageMultiplier + PlayerController.instance.agility * 0.35f) + PlayerController.instance.temporaryDamageAdd), 1.5f);
+                other.GetComponent<EnemyHealth>().TakeDamage((int)(PlayerController.instance.baseDamage * (1.5f * PlayerController.instance.DamageMultiplier + PlayerController.instance.agility * 0.35f) + PlayerController.instance.DamageAdd), 1.5f);
                 break;
         }
         
