@@ -4945,7 +4945,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 2
+  m_Radius: 3
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2005241550183553453
 MonoBehaviour:
@@ -4963,6 +4963,7 @@ MonoBehaviour:
   speed: 25
   duration: 0.5
   endEffect: 1
+  MultiHit: 0
   colisor: {fileID: 1813221522355808945}
 --- !u!54 &5158110399224894808
 Rigidbody:

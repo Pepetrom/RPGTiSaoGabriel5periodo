@@ -8,7 +8,7 @@ public class PlayerProjetile : MonoBehaviour
     public ParticleSystem particle;
     float timer = 0;
     public float speed, duration;
-    public bool endEffect = false;
+    public bool endEffect = false, MultiHit = false;
     public SphereCollider colisor;
     private void FixedUpdate()
     {
@@ -37,9 +37,12 @@ public class PlayerProjetile : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             PlayerController.instance.runes[PlayerController.instance.equipedPrimaryRune].ProjectileHitEffect(other);
-            if (endEffect)
+            if (!MultiHit)
             {
                 colisor.enabled = false;
+            }
+            if (endEffect)
+            {
                 particle.Play();
                 Invoke("EndEffect", 0.3f);
             }

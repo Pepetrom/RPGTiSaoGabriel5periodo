@@ -84,6 +84,7 @@ public class GameManager : MonoBehaviour
     {
         if (!runesPanel.activeSelf)
         {
+            PlayerController.instance.StopAllActions();
             runesPanel.SetActive(true);
             Time.timeScale = 0;
         }
@@ -91,6 +92,7 @@ public class GameManager : MonoBehaviour
         {
             runesPanel.SetActive(false);
             Time.timeScale = 1;
+            PlayerController.instance.ResetAllActions();
         }
     }
     public void AddSkillPoints()
@@ -105,17 +107,27 @@ public class GameManager : MonoBehaviour
         {
             actionTime = 0;
             bonfire.SetActive(false);
-        } 
-        else actionTime = 1;
+            PlayerController.instance.StopAllActions();
+        }
+        else
+        {
+            actionTime = 1;
+            PlayerController.instance.ResetAllActions();
+        }
     }
     public void Bonfire(bool open)
     {
         bonfire.SetActive(open);
         if (open)
         {
+            PlayerController.instance.StopAllActions();
             actionTime = 0;
         }
-        else actionTime = 1;
+        else
+        {
+            actionTime = 1;
+            PlayerController.instance.ResetAllActions();
+        }
     }
     public void Respawn()
     {
@@ -127,8 +139,7 @@ public class GameManager : MonoBehaviour
         Estus.estus.flaskQuantity = Estus.estus.maxFlaskQuantity;
         UIItems.instance.UpdateChesseQUI(Estus.estus.flaskQuantity);
         HPBar.instance.currentHP = HPBar.instance.maxHP;
-        bonfire.SetActive(false);
-        actionTime = 1;
+        Bonfire(false);
     }
     public void Score(int amount)
     {

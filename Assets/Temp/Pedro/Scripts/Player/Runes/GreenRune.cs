@@ -12,15 +12,18 @@ public class GreenRune : MonoBehaviour,IRune
     }
     public void AtackCriticalEffect1()
     {
-        PlayerController.instance.DamageAdd = PlayerController.instance.agility * 2;
+        PlayerController.instance.DamageAdd = 400;
+        // PlayerController.instance.DamageAdd = PlayerController.instance.agility * 2;
     }
     public void AtackCriticalEffect2()
     {
-        PlayerController.instance.DamageAdd = PlayerController.instance.agility * 2.5f;
+        PlayerController.instance.DamageAdd = 400;
+        //PlayerController.instance.DamageAdd = PlayerController.instance.agility * 2.5f;
     }
     public void AtackCriticalEffect3()
     {
-        PlayerController.instance.DamageAdd = PlayerController.instance.agility * 3;
+        PlayerController.instance.DamageAdd = 400;
+        //PlayerController.instance.DamageAdd = PlayerController.instance.agility * 3;
     }
     //Secondary
     public void HeavyEffect1()
@@ -38,6 +41,6 @@ public class GreenRune : MonoBehaviour,IRune
     //Terciary
     public void HitEffect()
     {
-        HPBar.instance.RecoverHPbyHit();
+        StaminaBar.instance.RecoverRecoverStaminabyHit();
     }
 }

@@ -40,6 +40,6 @@ public class YellowRune : MonoBehaviour, IRune
     //Terciary
     public void HitEffect()
     {
-        StaminaBar.instance.RecoverRecoverStaminabyHit();
+        HPBar.instance.RecoverHPbyHit();
     }
 }

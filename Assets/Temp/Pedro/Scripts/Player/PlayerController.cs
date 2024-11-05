@@ -343,6 +343,7 @@ public class PlayerController : MonoBehaviour
     public void ResetAllActions()
     {
         masterCanDo = true;
+        atacks[0].InteruptAtack();
         canDoAtack = true;
         canMove = true;
     }

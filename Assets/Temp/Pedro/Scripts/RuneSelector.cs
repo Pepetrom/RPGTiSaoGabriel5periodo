@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static Unity.Collections.Unicode;
 
 public class RuneSelector : MonoBehaviour
 {
@@ -8,117 +9,74 @@ public class RuneSelector : MonoBehaviour
     [SerializeField] Sprite[] rune1, rune2, rune3;
     public void SelectPrimaryRune(int which)
     {
-        int temp = PlayerController.instance.equipedPrimaryRune;
-        temp = temp + which;
-        if (temp > rune1.Length - 1) temp = 0;
+        int temp = PlayerController.instance.equipedPrimaryRune + which;
         if (temp < 0) temp = rune1.Length - 1;
-
+        else temp = temp % rune1.Length;
         if (!GameManager.instance.unlockedRunes[temp])
         {
-            if (which > 0)
+            for (int i = temp; i < rune1.Length && i >= 0; i += which)
             {
-                for (int i = temp; i < rune1.Length; i++)
+                if (i == rune1.Length)
                 {
-                    if (GameManager.instance.unlockedRunes[i])
-                    {
-                        temp = i;
-                        break;
-                    }
+                    temp = PlayerController.instance.equipedPrimaryRune;
+                    break;
                 }
-            }
-            else
-            {
-                for (int i = temp; i >= 0; i--)
+                if (GameManager.instance.unlockedRunes[i])
                 {
-                    if (GameManager.instance.unlockedRunes[i])
-                    {
-                        temp = i;
-                        break;
-                    }
+                    temp = i;
+                    break;
                 }
             }
         }
-        if (temp == PlayerController.instance.equipedPrimaryRune) temp = 0;
-        if (GameManager.instance.unlockedRunes[temp])
-        {
         PlayerController.instance.equipedPrimaryRune = temp;
         images[0].sprite = rune1[temp];
-        }
     }
     public void SelectSecondaryRune(int which)
     {
-        int temp = PlayerController.instance.equipedSecondaryRune;
-        temp = temp + which;
-        if (temp > rune2.Length - 1) temp = 0;
+        int temp = PlayerController.instance.equipedSecondaryRune + which;
         if (temp < 0) temp = rune2.Length - 1;
+        else temp = temp % rune2.Length;
         if (!GameManager.instance.unlockedRunes[temp])
         {
-            if (which > 0)
+            for (int i = temp; i < rune2.Length && i >= 0; i += which)
             {
-                for (int i = temp; i < rune2.Length; i++)
+                if (i == rune2.Length)
                 {
-                    if (GameManager.instance.unlockedRunes[i])
-                    {
-                        temp = i;
-                        break;
-                    }
+                    temp = PlayerController.instance.equipedSecondaryRune;
+                    break;
                 }
-            }
-            else
-            {
-                for (int i = temp; i >= 0; i--)
+                if (GameManager.instance.unlockedRunes[i])
                 {
-                    if (GameManager.instance.unlockedRunes[i])
-                    {
-                        temp = i;
-                        break;
-                    }
+                    temp = i;
+                    break;
                 }
             }
         }
-        if (temp == PlayerController.instance.equipedSecondaryRune) temp = 0;
-        if (GameManager.instance.unlockedRunes[temp])
-        {
-            PlayerController.instance.equipedSecondaryRune = temp;
-            images[1].sprite = rune2[temp];
-        }
+        PlayerController.instance.equipedSecondaryRune = temp;
+        images[1].sprite = rune2[temp];
     }
     public void SelectTerciaryRune(int which)
     {
-        int temp = PlayerController.instance.equipedTerciaryRune;
-        temp = temp + which;
-        if (temp > rune3.Length - 1) temp = 0;
+        int temp = PlayerController.instance.equipedTerciaryRune + which;
         if (temp < 0) temp = rune3.Length - 1;
+        else temp = temp % rune3.Length;
         if (!GameManager.instance.unlockedRunes[temp])
         {
-            if (which > 0)
+            for (int i = temp; i < rune3.Length && i >= 0; i += which)
             {
-                for (int i = temp; i < rune3.Length; i++)
+                if (i == rune3.Length)
                 {
-                    if (GameManager.instance.unlockedRunes[i])
-                    {
-                        temp = i;
-                        break;
-                    }
+                    temp = PlayerController.instance.equipedTerciaryRune;
+                    break;
                 }
-            }
-            else
-            {
-                for (int i = temp; i >= 0; i--)
+                if (GameManager.instance.unlockedRunes[i])
                 {
-                    if (GameManager.instance.unlockedRunes[i])
-                    {
-                        temp = i;
-                        break;
-                    }
+                    temp = i;
+                    break;
                 }
             }
         }
-        if (temp == PlayerController.instance.equipedTerciaryRune) temp = 0;
-        if (GameManager.instance.unlockedRunes[temp])
-        {
-            PlayerController.instance.equipedTerciaryRune = temp;
-            images[2].sprite = rune3[temp];
-        }
+        PlayerController.instance.equipedTerciaryRune = temp;
+        images[2].sprite = rune3[temp];
     }
 }
