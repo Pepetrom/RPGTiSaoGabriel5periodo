@@ -22,10 +22,15 @@ public class GameManager : MonoBehaviour
     public int score;
 
     private List<GameObject> enemiesInCombat = new List<GameObject>(); // Lista para checar inimigos no combate
+    public Bonfire bonfireRest;
     private void Awake()
     {
         instance = this;
         actionTime = 1;
+    }
+    private void Start()
+    {
+        bonfireRest.AllEnemies();
     }
     public void SpawnNumber(int damageNumber, Color color, Transform targetLocation)
     {
@@ -139,6 +144,7 @@ public class GameManager : MonoBehaviour
         Estus.estus.flaskQuantity = Estus.estus.maxFlaskQuantity;
         UIItems.instance.UpdateChesseQUI(Estus.estus.flaskQuantity);
         HPBar.instance.currentHP = HPBar.instance.maxHP;
+        bonfireRest.AllEnemies();
         Bonfire(false);
     }
     public void Score(int amount)

@@ -28,11 +28,11 @@ public class TurtleStateMachine : MonoBehaviour
     [Header("Patrol")]
     public float patrollingRadius;
     public float patrollingCooldown;
-    [HideInInspector]public Vector3 patrolCenter;
-    [HideInInspector]public Vector3 patrolPosition;
+    [HideInInspector] public Vector3 patrolCenter;
+    [HideInInspector] public Vector3 patrolPosition;
     public float nextPatrolTime = 0f;
     public int currentPatrolIndex = 0;
-    public Transform[] patrolPoints;
+    //public Transform[] patrolPoints;
     public float patrolDistance;
     [Header("Status")]
     public int maxHP;
@@ -53,7 +53,7 @@ public class TurtleStateMachine : MonoBehaviour
     [HideInInspector] public Rigidbody rb;
 
     [Header("AttacksControllers")]
-    public string lastAttack = ""; 
+    public string lastAttack = "";
     public int attack2Counter = 0;
     public float attackSpeed;
     public TurtleHands rightHand, leftHand;
@@ -63,16 +63,42 @@ public class TurtleStateMachine : MonoBehaviour
 
     //DeathShader
     public Renderer[] turtleRenderers;
+
+    // Instancia
+    public PatrolData patrolData; // Referência ao ScriptableObject
+    public Transform[] patrolPoints;
     #endregion
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        SetState(new TurtlePatrolState(this));
         hp = maxHP;
         hpBar.maxValue = maxHP;
         hpBar.value = maxHP;
-    }
+        if (player == null)
+        {
+            player = GameObject.FindWithTag("Player");
+        }
+        if (patrolData != null)
+        {
+            // Criando pontos de patrulha a partir das posições
+            patrolPoints = new Transform[patrolData.patrolPositions.Length];
+
+            for (int i = 0; i < patrolData.patrolPositions.Length; i++)
+            {
+                // Instanciando um novo objeto vazio para cada ponto de patrulha
+                GameObject patrolPoint = new GameObject("PatrolPoint_" + i);
+                patrolPoint.transform.position = patrolData.patrolPositions[i];
+                patrolPoints[i] = patrolPoint.transform;
+            }
+        }
+        else
+        {
+            Debug.LogError("PatrolData não foi atribuído ao inimigo!");
+        }
+        SetState(new TurtlePatrolState(this));
+    } 
+
     void FixedUpdate()
     {
         state?.OnUpdate();
