@@ -305,11 +305,10 @@ public class PlayerController : MonoBehaviour
         Ray ray;
         RaycastHit hit;
         ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity,groundMask)) // agora está funcionando os raycasts
         {
             mousePosition = hit.point;
         }
-
         return mousePosition;
     }
     public void InstantiateEffect(GameObject effect)

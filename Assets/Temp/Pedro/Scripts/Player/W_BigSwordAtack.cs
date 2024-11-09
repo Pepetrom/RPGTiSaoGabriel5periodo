@@ -249,13 +249,13 @@ public class W_BigSwordAtack : IWeapon
         switch (PlayerController.instance.comboCounter)
         {
             case 1:
-                other.GetComponent<EnemyHealth>().TakeDamage((int)(PlayerController.instance.baseDamage * (1 * PlayerController.instance.DamageMultiplier + PlayerController.instance.agility * 0.1f) + PlayerController.instance.DamageAdd), 1f);
+                other.GetComponent<TurtleStateMachine>().TakeDamage((int)(PlayerController.instance.baseDamage * (1 * PlayerController.instance.DamageMultiplier + PlayerController.instance.agility * 0.1f) + PlayerController.instance.DamageAdd), 1f);
                 break;
             case 2:
-                other.GetComponent<EnemyHealth>().TakeDamage((int)(PlayerController.instance.baseDamage * (1.25f * PlayerController.instance.DamageMultiplier + PlayerController.instance.agility * 0.25f) + PlayerController.instance.DamageAdd), 1f);
+                other.GetComponent<TurtleStateMachine>().TakeDamage((int)(PlayerController.instance.baseDamage * (1.25f * PlayerController.instance.DamageMultiplier + PlayerController.instance.agility * 0.25f) + PlayerController.instance.DamageAdd), 1f);
                 break;
             case 3:
-                other.GetComponent<EnemyHealth>().TakeDamage((int)(PlayerController.instance.baseDamage * (1.5f * PlayerController.instance.DamageMultiplier + PlayerController.instance.agility * 0.35f) + PlayerController.instance.DamageAdd), 1.5f);
+                other.GetComponent<TurtleStateMachine>().TakeDamage((int)(PlayerController.instance.baseDamage * (1.5f * PlayerController.instance.DamageMultiplier + PlayerController.instance.agility * 0.35f) + PlayerController.instance.DamageAdd), 1.5f);
                 break;
         }
         
@@ -268,15 +268,15 @@ public class W_BigSwordAtack : IWeapon
         switch (PlayerController.instance.comboCounter)
         {
             case 1:
-                other.GetComponent<EnemyHealth>().TakeDamage((int)(PlayerController.instance.baseDamage * (1.5f + PlayerController.instance.agility * 0.1f)), 2);
+                other.GetComponent<TurtleStateMachine>().TakeDamage((int)(PlayerController.instance.baseDamage * (1.5f + PlayerController.instance.agility * 0.1f)), 2);
                 PlayerController.instance.runes[PlayerController.instance.equipedPrimaryRune].AtackCriticalEffect1();
                 break;
             case 2:
-                other.GetComponent<EnemyHealth>().TakeDamage((int)(PlayerController.instance.baseDamage * (1.75f + PlayerController.instance.agility * 0.25f)), 2.5f);
+                other.GetComponent<TurtleStateMachine>().TakeDamage((int)(PlayerController.instance.baseDamage * (1.75f + PlayerController.instance.agility * 0.25f)), 2.5f);
                 PlayerController.instance.runes[PlayerController.instance.equipedPrimaryRune].AtackCriticalEffect2();
                 break;
             case 3:
-                other.GetComponent<EnemyHealth>().TakeDamage((int)(PlayerController.instance.baseDamage * (2.25f + PlayerController.instance.agility * 0.35f)), 3);
+                other.GetComponent<TurtleStateMachine>().TakeDamage((int)(PlayerController.instance.baseDamage * (2.25f + PlayerController.instance.agility * 0.35f)), 3);
                 PlayerController.instance.runes[PlayerController.instance.equipedPrimaryRune].AtackCriticalEffect3();
                 break;
         }
@@ -308,13 +308,13 @@ public class W_BigSwordAtack : IWeapon
             switch (PlayerController.instance.comboCounter)
             {
                 case 1:
-                    other.GetComponent<EnemyHealth>().TakeDamage((int)(PlayerController.instance.baseDamage * (1.3f + PlayerController.instance.strength * 0.1f)), 1);
+                    other.GetComponent<TurtleStateMachine>().TakeDamage((int)(PlayerController.instance.baseDamage * (1.3f + PlayerController.instance.strength * 0.1f)), 1);
                     break;
                 case 2:
-                    other.GetComponent<EnemyHealth>().TakeDamage((int)(PlayerController.instance.baseDamage * (1.3f + PlayerController.instance.strength * 0.25f)), 1);
+                    other.GetComponent<TurtleStateMachine>().TakeDamage((int)(PlayerController.instance.baseDamage * (1.3f + PlayerController.instance.strength * 0.25f)), 1);
                     break;
                 case 3:
-                    other.GetComponent<EnemyHealth>().TakeDamage((int)(PlayerController.instance.baseDamage * (1.3f + PlayerController.instance.strength * 0.5f)), 1);
+                    other.GetComponent<TurtleStateMachine>().TakeDamage((int)(PlayerController.instance.baseDamage * (1.3f + PlayerController.instance.strength * 0.5f)), 1);
                     break;
             }
         }

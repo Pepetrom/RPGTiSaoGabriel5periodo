@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class TurtleStateMachine : MonoBehaviour
 {
     #region Variables
     ITurtleStateMachine state;
-    public EnemyHealth hp;
     [HideInInspector] public float sortedNumber;
 
     [Header("Elements")]
@@ -34,6 +34,13 @@ public class TurtleStateMachine : MonoBehaviour
     public int currentPatrolIndex = 0;
     public Transform[] patrolPoints;
     public float patrolDistance;
+    [Header("Status")]
+    public int maxHP;
+    public int hp;
+    public Slider hpBar;
+    public float lerpSpeed;
+    public bool playerHit = false;
+    public ParticleSystem hit;
 
     //bools de ataques
     [HideInInspector] public bool attIdle;
@@ -62,12 +69,16 @@ public class TurtleStateMachine : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         SetState(new TurtlePatrolState(this));
+        hp = maxHP;
+        hpBar.maxValue = maxHP;
+        hpBar.value = maxHP;
     }
     void FixedUpdate()
     {
         state?.OnUpdate();
         //Tem que colocar esse comando abaixo no script de cada personagem
         animator.speed = GameManager.instance.actionTime;
+        UpdateHPBar();
     }
     public void SetState(ITurtleStateMachine state)
     {
@@ -190,15 +201,23 @@ public class TurtleStateMachine : MonoBehaviour
     }
     #endregion
 
-    /*public void TakeDamage()
+    #region Status/Life
+    void UpdateHPBar()
     {
-        //Adicionar em quais estados não pode dar "ministun" na tartaruga
-        if (!animator.GetBool("Cannon"))
+        hpBar.value = Mathf.Lerp(hpBar.value,hp,lerpSpeed);
+    }
+    public void TakeDamage(int damage, float knockbackStrenght)
+    {
+        Impulse(kbforce * knockbackStrenght);
+        hp -= damage;
+        playerHit = true;
+        hit.Play();
+        GameManager.instance.SpawnNumber((int)damage, Color.yellow, transform);
+        if(hp <= 0)
         {
-            agent.isStopped = true;
-            AttackIdle();
-            animator.SetTrigger("TakeDamage");
-            SetState(new TurtleCombatIdleState(this));
+            animator.SetBool("Dead", true);
+            Die();
         }
-    }*/
+    }
+    #endregion
 }

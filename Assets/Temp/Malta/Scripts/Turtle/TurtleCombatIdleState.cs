@@ -43,10 +43,10 @@ public class TurtleCombatIdleState : ITurtleStateMachine
             controller.SetState(new TurtlePatrolState(controller));
             return;
         }
-        if (controller.hp.playerHit)
+        if (controller.playerHit)
         {
             controller.SetState(new TurtleStunState(controller));
-            controller.hp.playerHit = false;
+            controller.playerHit = false;
         }
         if (controller.TargetDir().magnitude >= controller.minCannonRange && controller.TargetDir().magnitude <= controller.maxCannonRange)
         {

@@ -26,6 +26,7 @@ public class CameraScript : MonoBehaviour
     //Dissolver objetos do cenário
 
     private ObjectDissolver dissolve;
+    public LayerMask layerMask;
 
     //PostProcess
     [Header("PostProcess")]
@@ -105,13 +106,15 @@ public class CameraScript : MonoBehaviour
     {
         shakeTime = shakeDuration;
     }
-
     public void FindPlayer()
     {
         Vector3 dir = PlayerController.instance.model.transform.position - transform.position;
         Ray ray = new Ray(transform.position, dir);
-        RaycastHit[] hits = Physics.RaycastAll(ray);
+
+        // Usa o LayerMask no RaycastAll para considerar apenas a camada específica
+        RaycastHit[] hits = Physics.RaycastAll(ray, Mathf.Infinity, layerMask);
         Debug.DrawRay(transform.position, dir * 100f, Color.red);
+
         ObjectDissolver[] dissolvers = FindObjectsOfType<ObjectDissolver>();
         foreach (var d in dissolvers)
         {
@@ -119,8 +122,6 @@ public class CameraScript : MonoBehaviour
         }
         foreach (RaycastHit hit in hits)
         {
-            //Debug.Log("Raycast atingiu: " + hit.collider.gameObject.name);
-
             if (hit.collider == null) continue;
 
             ObjectDissolver dissolve = hit.collider.gameObject.GetComponent<ObjectDissolver>();
@@ -130,6 +131,7 @@ public class CameraScript : MonoBehaviour
             }
         }
     }
+
 
 
 

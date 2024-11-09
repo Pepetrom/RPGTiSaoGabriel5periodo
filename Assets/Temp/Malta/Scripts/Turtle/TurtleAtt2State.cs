@@ -29,10 +29,10 @@ public class TurtleAtt2State : ITurtleStateMachine
 
     public void OnUpdate()
     {
-        if (controller.hp.playerHit)
+        if (controller.playerHit)
         {
             controller.SetState(new TurtleStunState(controller));
-            controller.hp.playerHit = false;
+            controller.playerHit = false;
             return;
         }
         if (controller.active)
