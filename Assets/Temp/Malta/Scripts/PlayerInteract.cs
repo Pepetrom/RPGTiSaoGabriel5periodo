@@ -5,13 +5,18 @@ using UnityEngine;
 public class PlayerInteract : MonoBehaviour
 {
     private bool isNearBonfire = false;
-
+    public GameObject pressF;
+    private void Start()
+    {
+        pressF.SetActive(false);
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Bonfire"))
         {
             isNearBonfire = true;
-            Debug.Log("To na fogueira");
+            GameManager.instance.lastBonfireRestedAt.position = transform.position;
+            pressF.SetActive(true);
         }
     }
     private void OnCollisionExit(Collision collision)
@@ -19,11 +24,11 @@ public class PlayerInteract : MonoBehaviour
         if (collision.gameObject.CompareTag("Bonfire"))
         {
             isNearBonfire = false;
-            Debug.Log("Sai da fogueira");
             GameManager.instance.Bonfire(false);
+            pressF.SetActive(false);
         }
     }
-
+    
     private void Update()
     {
         if (isNearBonfire && Input.GetKeyDown(KeyCode.F))

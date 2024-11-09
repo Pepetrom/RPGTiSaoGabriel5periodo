@@ -22,10 +22,21 @@ public class Bonfire : MonoBehaviour
             Debug.LogError("Desgrama alada alegrada entristecida");
         }
     }
+    void DestroyAllEnemies()
+    {
+        Enemy[] enemies = FindObjectsOfType<Enemy>();
+        foreach (Enemy enemy in enemies)
+        {
+            Debug.Log(enemies);
+            Destroy(enemy.gameObject);
+        }
+    }
     public void AllEnemies()
     {
+        DestroyAllEnemies();
         SpawnEnemy(0);
         SpawnEnemy(1);
     }
+    
 }
 

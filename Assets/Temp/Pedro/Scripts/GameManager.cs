@@ -13,7 +13,8 @@ public class GameManager : MonoBehaviour
     public GameObject runesPanel;
     public bool[] unlockedRunes = new bool[4];
     //SpawnPoint/Checkpoint
-    public Transform checkPoint;
+    public Transform lastBonfireRestedAt;
+    public Transform spawn;
 
     //Runes 
     public float skillPoints;
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
 
     private List<GameObject> enemiesInCombat = new List<GameObject>(); // Lista para checar inimigos no combate
     public Bonfire bonfireRest;
+    public bool canFade = false;
     private void Awake()
     {
         instance = this;
@@ -31,6 +33,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         bonfireRest.AllEnemies();
+        lastBonfireRestedAt = spawn;
     }
     public void SpawnNumber(int damageNumber, Color color, Transform targetLocation)
     {
@@ -136,8 +139,9 @@ public class GameManager : MonoBehaviour
     }
     public void Respawn()
     {
+        bonfireRest.AllEnemies();
         PlayerController.instance.ResetAllActions();
-        PlayerController.instance.transform.position = checkPoint.transform.position;
+        PlayerController.instance.transform.position = lastBonfireRestedAt.position;
     }
     public void Rest()
     {
@@ -145,6 +149,7 @@ public class GameManager : MonoBehaviour
         UIItems.instance.UpdateChesseQUI(Estus.estus.flaskQuantity);
         HPBar.instance.currentHP = HPBar.instance.maxHP;
         bonfireRest.AllEnemies();
+        canFade = true;
         Bonfire(false);
     }
     public void Score(int amount)
