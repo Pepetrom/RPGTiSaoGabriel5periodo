@@ -81,12 +81,10 @@ public class TurtleStateMachine : MonoBehaviour
         }
         if (patrolData != null)
         {
-            // Criando pontos de patrulha a partir das posições
             patrolPoints = new Transform[patrolData.patrolPositions.Length];
 
             for (int i = 0; i < patrolData.patrolPositions.Length; i++)
             {
-                // Instanciando um novo objeto vazio para cada ponto de patrulha
                 GameObject patrolPoint = new GameObject("PatrolPoint_" + i);
                 patrolPoint.transform.position = patrolData.patrolPositions[i];
                 patrolPoints[i] = patrolPoint.transform;

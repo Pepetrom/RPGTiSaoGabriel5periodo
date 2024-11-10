@@ -19635,10 +19635,6 @@ MonoBehaviour:
   patrolPosition: {x: 0, y: 0, z: 0}
   nextPatrolTime: 0
   currentPatrolIndex: 0
-  patrolPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   patrolDistance: 90
   maxHP: 120
   hp: 0
@@ -19668,6 +19664,8 @@ MonoBehaviour:
   - {fileID: 4390375452589430256}
   - {fileID: 2543570593276491411}
   - {fileID: 2978610664983085530}
+  patrolData: {fileID: 0}
+  patrolPoints: []
 --- !u!136 &7611085224993756480
 CapsuleCollider:
   m_ObjectHideFlags: 0

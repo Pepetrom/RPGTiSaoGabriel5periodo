@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class Bonfire : MonoBehaviour
 {
-    public GameObject turtlePrefab;
+    public GameObject []enemyPrefabs;
     public PatrolData[] patrolDataArray;
 
-    void SpawnEnemy(int patrolDataIndex)
+    void SpawnEnemy(int patrolDataIndex, GameObject enemyPrefabs)
     {
         if (patrolDataIndex >= 0 && patrolDataIndex < patrolDataArray.Length)
         {
             PatrolData patrolData = patrolDataArray[patrolDataIndex];
 
-            GameObject enemy = Instantiate(turtlePrefab, patrolData.patrolPositions[1], Quaternion.identity);
+            GameObject enemy = Instantiate(enemyPrefabs, patrolData.patrolPositions[1], Quaternion.identity);
             TurtleStateMachine turtleScript = enemy.GetComponent<TurtleStateMachine>();
             turtleScript.patrolData = patrolData;
         }
@@ -34,8 +34,8 @@ public class Bonfire : MonoBehaviour
     public void AllEnemies()
     {
         DestroyAllEnemies();
-        SpawnEnemy(0);
-        SpawnEnemy(1);
+        SpawnEnemy(0, enemyPrefabs[0]);
+        SpawnEnemy(1, enemyPrefabs[1]);
     }
     
 }
