@@ -7,15 +7,25 @@ public class Bonfire : MonoBehaviour
     public GameObject []enemyPrefabs;
     public PatrolData[] patrolDataArray;
 
-    void SpawnEnemy(int patrolDataIndex, GameObject enemyPrefabs)
+    void SpawnEnemy(int patrolDataIndex, GameObject enemyPrefabs, string name)
     {
         if (patrolDataIndex >= 0 && patrolDataIndex < patrolDataArray.Length)
         {
             PatrolData patrolData = patrolDataArray[patrolDataIndex];
 
             GameObject enemy = Instantiate(enemyPrefabs, patrolData.patrolPositions[1], Quaternion.identity);
-            TurtleStateMachine turtleScript = enemy.GetComponent<TurtleStateMachine>();
-            turtleScript.patrolData = patrolData;
+            switch (name)
+            {
+                case "turtle":
+                    TurtleStateMachine turtleScript = enemy.GetComponent<TurtleStateMachine>();
+                    turtleScript.patrolData = patrolData;
+                    break;
+                case "porquin":
+                    PorquinStateMachine porquin = enemy.GetComponent<PorquinStateMachine>();
+                    porquin.patrolData = patrolData;
+                    break;
+
+            }
         }
         else
         {
@@ -34,8 +44,9 @@ public class Bonfire : MonoBehaviour
     public void AllEnemies()
     {
         DestroyAllEnemies();
-        SpawnEnemy(0, enemyPrefabs[0]);
-        SpawnEnemy(1, enemyPrefabs[1]);
+        SpawnEnemy(0, enemyPrefabs[0], "turtle");
+        SpawnEnemy(1, enemyPrefabs[0], "turtle");
+        //SpawnEnemy(2, enemyPrefabs[1], "porquin");
     }
     
 }
