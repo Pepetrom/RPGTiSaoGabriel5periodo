@@ -44,5 +44,10 @@ public class PorquinPatrolState : IPorquinStateMachine
                 timer = 0;
             }
         }
+        if(controller.TargetDir().magnitude < controller.patrolRange)
+        {
+            controller.animator.SetBool("patrolling", false);
+            controller.SetState(new PorquinCombatIdleState(controller));
+        }
     }
 }
