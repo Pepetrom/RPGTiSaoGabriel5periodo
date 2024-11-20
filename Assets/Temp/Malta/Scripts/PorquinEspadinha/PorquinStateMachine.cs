@@ -132,7 +132,7 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
     {
         SetState(new PorquinDeathState(this));
     }
-    public void Destroy(GameObject porquin)
+    public void DestroyPorquin(GameObject porquin)
     {
         Destroy(porquin);
     }
@@ -167,6 +167,10 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
     public void Impulse(float kbforce)
     {
         rb.AddForce(PlayerController.instance.moveDirection.normalized * kbforce, ForceMode.Impulse);
+    }
+    public void KB(float value)
+    {
+        rb.AddForce(-transform.forward.normalized * (kbForce * value), ForceMode.Impulse);
     }
 
     public void TakeDamage(int damage, float knockbackStrenght)

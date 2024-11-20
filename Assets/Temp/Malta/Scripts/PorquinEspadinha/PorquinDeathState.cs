@@ -19,9 +19,7 @@ public class PorquinDeathState : IPorquinStateMachine
     }
     public void OnEnter()
     {
-        Debug.Log("Morri");
-        controller.animator.SetBool("death", true);
-        //controller.CannonKB(1.5f);
+        controller.KB(4f);
         //controller.GetComponent<Collider>().enabled = false;
         GameManager.instance.Score(100);
     }
@@ -35,7 +33,7 @@ public class PorquinDeathState : IPorquinStateMachine
     {
         if (controller.attIdle)
         {
-            //controller.StartCoroutine(DissolveOverTime(2f));
+            controller.StartCoroutine(DissolveOverTime(2f));
         }
     }
     private IEnumerator DissolveOverTime(float duration)
@@ -51,6 +49,6 @@ public class PorquinDeathState : IPorquinStateMachine
             }
             yield return null;
         }
-        controller.Destroy(controller.gameObject);
+        controller.DestroyPorquin(controller.gameObject);
     }
 }
