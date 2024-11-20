@@ -35,7 +35,7 @@ public class PorquinDeathState : IPorquinStateMachine
     {
         if (controller.attIdle)
         {
-            controller.StartCoroutine(DissolveOverTime(2f));
+            //controller.StartCoroutine(DissolveOverTime(2f));
         }
     }
     private IEnumerator DissolveOverTime(float duration)
