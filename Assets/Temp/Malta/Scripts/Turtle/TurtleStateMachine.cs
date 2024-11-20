@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class TurtleStateMachine : MonoBehaviour
+public class TurtleStateMachine : MonoBehaviour, IDamageable
 {
     #region Variables
     ITurtleStateMachine state;

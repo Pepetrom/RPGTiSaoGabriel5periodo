@@ -11,13 +11,22 @@ public class PorquinCombatIdleState : IPorquinStateMachine
     }
     public void OnEnter()
     {
+        controller.SortNumber();
         #region reset de bools
         controller.antecipation = false;
         controller.attIdle = false;
         controller.impulse = false;
+        controller.combo = false;
+        controller.animator.SetBool("att1att2", false);
+        controller.animator.SetBool("att2att3", false);
+        controller.animator.SetBool("attack1", false);
+        controller.animator.SetBool("attack2", false);
+        controller.animator.SetBool("attack3", false);
+        controller.animator.SetBool("stun", false);
         #endregion
         controller.agent.angularSpeed = 0f;
         controller.agent.speed = 0f;
+
     }
 
     public void OnExit()
@@ -27,6 +36,12 @@ public class PorquinCombatIdleState : IPorquinStateMachine
 
     public void OnUpdate()
     {
+        if (controller.playerHit)
+        {
+            controller.SetState(new PorquinStunState(controller));
+            controller.playerHit = false;
+            return;
+        }
         if (!controller.isInCombat)
         {
             controller.isInCombat = true;
@@ -46,7 +61,30 @@ public class PorquinCombatIdleState : IPorquinStateMachine
         }
         else
         {
-            controller.SetState(new PorquinAtt1State(controller));
+            if (controller.attack2Counter >= 2)
+            {
+                controller.attack2Counter = 0;
+                controller.SetState(new PorquinAtt1State(controller));
+            }
+            else
+            {
+                if (controller.sortedNumber <= 0.4f)
+                {
+                    controller.attack2Counter = 0;
+                    controller.SetState(new PorquinAtt1State(controller));
+                }
+                else if (controller.sortedNumber > 0.4f)
+                {
+                    if(controller.attack2Counter >= 2)
+                    {
+                        controller.SetState(new PorquinAtt1State(controller));
+                    }
+                    else 
+                    {
+                        controller.SetState(new PorquinAtt2State(controller));
+                    }
+                }
+            }
         }
     }
 }

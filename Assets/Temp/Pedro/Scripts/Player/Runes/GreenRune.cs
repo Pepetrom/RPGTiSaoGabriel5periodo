@@ -8,7 +8,7 @@ public class GreenRune : MonoBehaviour,IRune
     [SerializeField] GameObject[] runeEffect;
     public void ProjectileHitEffect(Collider other)
     {
-        other.GetComponent<TurtleStateMachine>().TakeDamage((int)(PlayerController.instance.baseDamage * (2f + PlayerController.instance.agility * 0.2f)), 0);
+        other.GetComponent<IDamageable>().TakeDamage((int)(PlayerController.instance.baseDamage * (2f + PlayerController.instance.agility * 0.2f)), 0);
     }
     public void AtackCriticalEffect1()
     {

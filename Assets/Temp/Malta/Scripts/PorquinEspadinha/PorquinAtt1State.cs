@@ -18,19 +18,28 @@ public class PorquinAtt1State : IPorquinStateMachine
 
     public void OnExit()
     {
-
+        controller.antecipation = false;
+        controller.attIdle = false;
+        controller.impulse = false;
+        controller.combo = false;
     }
 
     public void OnUpdate()
     {
+        if (controller.playerHit)
+        {
+            controller.SetState(new PorquinStunState(controller));
+            controller.playerHit = false;
+            return;
+        }
         if (!controller.antecipation)
             controller.RotateTowardsPlayer();
-        /*if (controller.impulse && !impulseApplied)
+        if (controller.combo && controller.TargetDir().magnitude < controller.meleeRange + 5)
         {
-            impulseApplied = true;
-            controller.AttacksKB(controller.kbForce);
-        }*/
-        if (controller.attIdle)
+            controller.animator.SetBool("att1att2", true);
+            controller.SetState(new PorquinAtt2State(controller));
+        }
+        else if (controller.attIdle)
         {
             controller.animator.SetBool("attack1", false);
             controller.SetState(new PorquinCombatIdleState(controller));

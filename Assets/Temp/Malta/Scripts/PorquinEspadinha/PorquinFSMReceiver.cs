@@ -21,9 +21,9 @@ public class PorquinFSMReceiver : MonoBehaviour
     {
         porquin.Activate();
     }
-    public void Impulse()
+    public void ImpulseEvent()
     {
-        porquin.Impulse();
+        porquin.ImpulseEvent();
     }
     public void Deactivate()
     {

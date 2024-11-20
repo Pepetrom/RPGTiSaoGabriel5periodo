@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
-public class PorquinStateMachine : MonoBehaviour
+public class PorquinStateMachine : MonoBehaviour, IDamageable
 {
     IPorquinStateMachine state;
     public Animator animator;
@@ -26,7 +28,21 @@ public class PorquinStateMachine : MonoBehaviour
     [HideInInspector]public bool isInCombat = false;
     public float meleeRange;
     public float kbForce;
-    
+    public string lastAttack = "";
+    public int attack2Counter = 0;
+    public float attackSpeed;
+    public TurtleHands rightHand, leftHand;
+    public float damage;
+    public bool hashitted = false;
+
+    [Header("Status")]
+    public int maxHP;
+    public int hp;
+    public Slider hpBar;
+    public float lerpSpeed;
+    public bool playerHit = false;
+    public ParticleSystem hit;
+
     //bools de ataques
     [HideInInspector] public bool attIdle;
     [HideInInspector] public bool combo;
@@ -35,8 +51,13 @@ public class PorquinStateMachine : MonoBehaviour
     [HideInInspector] public bool cannonFire;
     [HideInInspector] public bool active;
     [HideInInspector] public bool combed = false;
+
+    public Renderer[] porquinRenderers;
+
+    public float sortedNumber;
     private void Start()
     {
+        attack2Counter = 0;
         if(player == null)
         {
             player = GameObject.FindWithTag("Player");
@@ -58,6 +79,7 @@ public class PorquinStateMachine : MonoBehaviour
         }
         rb = GetComponent<Rigidbody>(); 
         SetState(new PorquinPatrolState(this));
+        hp = maxHP;
     }
     private void FixedUpdate()
     {
@@ -71,12 +93,9 @@ public class PorquinStateMachine : MonoBehaviour
         this.state?.OnEnter();
     }
     #region Métodos auxiliares de lógica
-    public void Patrolling()
+    public void SortNumber()
     {
-        if (Vector3.Distance(agent.transform.position, patrolPoints[currentPatrolIndex].position) <= 3f)
-        {
-            currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
-        }
+        sortedNumber = Random.value;
     }
     public void AttackIdle()
     {
@@ -88,7 +107,7 @@ public class PorquinStateMachine : MonoBehaviour
         //Debug.Log("Combo");
         combo = true;
     }
-    public void Impulse()
+    public void ImpulseEvent()
     {
        impulse = true;
     }
@@ -109,7 +128,14 @@ public class PorquinStateMachine : MonoBehaviour
     {
         agent.SetDestination(patrolPoints[currentPatrolIndex].position);
     }
-
+    public void Die()
+    {
+        SetState(new PorquinDeathState(this));
+    }
+    public void Destroy(GameObject porquin)
+    {
+        Destroy(porquin);
+    }
     #endregion
     #region Métodos auxiliares de física
     public Vector3 TargetDir()
@@ -130,6 +156,31 @@ public class PorquinStateMachine : MonoBehaviour
     public void AttacksKB(float value)
     {
         rb.AddForce(transform.forward.normalized * value, ForceMode.Impulse);
+    }
+    public void Patrolling()
+    {
+        if (Vector3.Distance(agent.transform.position, patrolPoints[currentPatrolIndex].position) <= 3f)
+        {
+            currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
+        }
+    }
+    public void Impulse(float kbforce)
+    {
+        rb.AddForce(PlayerController.instance.moveDirection.normalized * kbforce, ForceMode.Impulse);
+    }
+
+    public void TakeDamage(int damage, float knockbackStrenght)
+    {
+        Impulse(kbForce * knockbackStrenght);
+        hp -= damage;
+        playerHit = true;
+        //hit.Play();
+        GameManager.instance.SpawnNumber((int)damage, Color.yellow, transform);
+        if (hp <= 0)
+        {
+            animator.SetBool("death", true);
+            Die();
+        }
     }
     #endregion
 }
