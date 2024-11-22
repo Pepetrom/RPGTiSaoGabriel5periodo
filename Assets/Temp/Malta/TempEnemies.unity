@@ -5964,7 +5964,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: REST
+  m_Text: DESCANSAR
 --- !u!222 &188042790
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11985,7 +11985,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ATTRIBUTES
+  m_Text: ATRIBUTOS
 --- !u!222 &338721327
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -23946,6 +23946,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PorquinEspadinha
+      objectReference: {fileID: 0}
+    - target: {fileID: 2731425484836999421, guid: 0682f2b78565b614ba4115b086906e0f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2731425484836999421, guid: 0682f2b78565b614ba4115b086906e0f,
         type: 3}
@@ -52491,9 +52496,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'RUNES
-
-'
+  m_Text: RUNAS
 --- !u!222 &1114877115
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -78733,7 +78736,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 28
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -78744,7 +78747,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Press F to open it
+  m_Text: PRESSIONE F PARA INTERAGIR
 --- !u!222 &1412011481
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -114968,7 +114971,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &923637656951128334
 RectTransform:
   m_ObjectHideFlags: 0
