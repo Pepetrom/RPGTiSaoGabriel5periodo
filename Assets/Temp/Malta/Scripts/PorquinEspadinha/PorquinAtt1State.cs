@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using UnityEngine;
 
 public class PorquinAtt1State : IPorquinStateMachine
@@ -12,6 +13,7 @@ public class PorquinAtt1State : IPorquinStateMachine
     }
     public void OnEnter()
     {
+        controller.damage = 40f;
         controller.animator.SetBool("attack1", true);
         impulseApplied = false;
     }
@@ -22,6 +24,7 @@ public class PorquinAtt1State : IPorquinStateMachine
         controller.attIdle = false;
         controller.impulse = false;
         controller.combo = false;
+        controller.hashitted = false;
     }
 
     public void OnUpdate()
@@ -31,6 +34,14 @@ public class PorquinAtt1State : IPorquinStateMachine
             controller.SetState(new PorquinStunState(controller));
             controller.playerHit = false;
             return;
+        }
+        if (controller.active)
+        {
+            controller.sword.gameObject.SetActive(true);
+        }
+        else
+        {
+            controller.sword.gameObject.SetActive(false);
         }
         if (!controller.antecipation)
             controller.RotateTowardsPlayer();

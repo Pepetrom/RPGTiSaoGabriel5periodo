@@ -17,6 +17,7 @@ public class PorquinCombatIdleState : IPorquinStateMachine
         controller.attIdle = false;
         controller.impulse = false;
         controller.combo = false;
+        controller.active = false;
         controller.animator.SetBool("att1att2", false);
         controller.animator.SetBool("att2att3", false);
         controller.animator.SetBool("attack1", false);

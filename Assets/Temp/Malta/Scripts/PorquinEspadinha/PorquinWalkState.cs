@@ -31,15 +31,17 @@ public class PorquinWalkState : IPorquinStateMachine
                 controller.animator.SetBool("isWalking", false);
                 controller.SetState(new PorquinCombatIdleState(controller));
             }
+            else if (controller.sortedNumber > 0.2 && controller.sortedNumber < 0.6f)
+            {
+                controller.SetState(new PorquinAtt3State(controller));
+            }
             else
             {
-                controller.animator.SetBool("isWalking", false);
                 controller.SetState(new PorquinAtt2State(controller));
             }
         }
         else if (controller.TargetDir().magnitude > controller.patrolRange * 2)
         {
-            Debug.Log("Patrulha");
             controller.SetState(new PorquinPatrolState(controller));
         }
     }

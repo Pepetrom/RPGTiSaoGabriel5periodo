@@ -34,6 +34,7 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
     public TurtleHands rightHand, leftHand;
     public float damage;
     public bool hashitted = false;
+    public GameObject sword;
 
     [Header("Status")]
     public int maxHP;
@@ -80,6 +81,7 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
         rb = GetComponent<Rigidbody>(); 
         SetState(new PorquinPatrolState(this));
         hp = maxHP;
+        sword.gameObject.SetActive(false);
     }
     private void FixedUpdate()
     {

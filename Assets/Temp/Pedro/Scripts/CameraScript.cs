@@ -108,32 +108,47 @@ public class CameraScript : MonoBehaviour
     }
     public void FindPlayer()
     {
+        // Obtém a direção do jogador em relação ao objeto atual
         Vector3 dir = PlayerController.instance.model.transform.position - transform.position;
+
+        // Cria o raio partindo da posição atual em direção ao jogador
         Ray ray = new Ray(transform.position, dir);
 
-        // Usa o LayerMask no RaycastAll para considerar apenas a camada específica
-        RaycastHit[] hits = Physics.RaycastAll(ray, Mathf.Infinity, layerMask);
-        Debug.DrawRay(transform.position, dir * 100f, Color.red);
+        // Raycast apenas para os objetos na camada especificada
+        RaycastHit[] hits = Physics.RaycastAll(ray, dir.magnitude, layerMask);
+        Debug.DrawRay(transform.position, dir, Color.red);
 
+        // Obtém todos os dissolvers e reseta a propriedade CanFade
         ObjectDissolver[] dissolvers = FindObjectsOfType<ObjectDissolver>();
         foreach (var d in dissolvers)
         {
             d.CanFade = false;
         }
+
+        // Posição da câmera (ou ponto de visão)
+        Vector3 cameraPosition = Camera.main.transform.position;
+
+        // Verifica os objetos atingidos pelo Raycast
         foreach (RaycastHit hit in hits)
         {
             if (hit.collider == null) continue;
 
+            // Verifica se o objeto tem o componente ObjectDissolver
             ObjectDissolver dissolve = hit.collider.gameObject.GetComponent<ObjectDissolver>();
             if (dissolve != null)
             {
-                dissolve.CanFade = true;
+                // Garante que o objeto está entre a câmera e o jogador
+                Vector3 playerDir = PlayerController.instance.model.transform.position - cameraPosition;
+                Vector3 hitDir = hit.point - cameraPosition;
+
+                // Se o objeto estiver entre a câmera e o jogador, ativa o fade
+                if (Vector3.Dot(playerDir.normalized, hitDir.normalized) > 0.99f) // Ajuste o valor, se necessário
+                {
+                    dissolve.CanFade = true;
+                }
             }
         }
     }
-
-
-
 
     public void CombatCamera(float target, float value)
     {
