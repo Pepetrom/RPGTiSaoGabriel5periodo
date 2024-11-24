@@ -49,6 +49,7 @@ public class PorquinAtt1State : IPorquinStateMachine
         {
             controller.animator.SetBool("att1att2", true);
             controller.SetState(new PorquinAtt2State(controller));
+            controller.fullCombatCounter++;
         }
         else if (controller.attIdle)
         {

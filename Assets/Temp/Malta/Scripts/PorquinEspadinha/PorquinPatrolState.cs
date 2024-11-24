@@ -13,6 +13,7 @@ public class PorquinPatrolState : IPorquinStateMachine
     }
     public void OnEnter()
     {
+        controller.agent.speed = 3.5f;
         time = controller.patrollingCooldown;
         controller.agent.SetDestination(controller.patrolPoints[controller.currentPatrolIndex].position);
         controller.animator.SetBool("patrolling", true);

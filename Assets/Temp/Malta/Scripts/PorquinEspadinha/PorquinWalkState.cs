@@ -18,6 +18,7 @@ public class PorquinWalkState : IPorquinStateMachine
     public void OnExit()
     {
         controller.agent.speed = 0f;
+        Debug.Log("Sai");
     }
 
     public void OnUpdate()
@@ -26,21 +27,20 @@ public class PorquinWalkState : IPorquinStateMachine
         controller.RotateTowardsPlayer();
         if(controller.TargetDir().magnitude < controller.meleeRange)
         {
-            if(controller.sortedNumber <= 0.2f)
-            {
-                controller.animator.SetBool("isWalking", false);
-                controller.SetState(new PorquinCombatIdleState(controller));
-            }
-            else if (controller.sortedNumber > 0.2 && controller.sortedNumber < 0.6f)
+            if (controller.sortedNumber <= 0.3f)
             {
                 controller.SetState(new PorquinAtt3State(controller));
+            }
+            else if (controller.sortedNumber > 0.3f && controller.sortedNumber < 0.6f)
+            {
+                controller.SetState(new PorquinAtt1State(controller));
             }
             else
             {
                 controller.SetState(new PorquinAtt2State(controller));
             }
         }
-        else if (controller.TargetDir().magnitude > controller.patrolRange * 2)
+        if (controller.TargetDir().magnitude > controller.patrolRange * 2)
         {
             controller.SetState(new PorquinPatrolState(controller));
         }

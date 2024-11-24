@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -27,6 +28,7 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
     [Header("COMBAT")]
     [HideInInspector]public bool isInCombat = false;
     public float meleeRange;
+    public float safeRange;
     public float kbForce;
     public string lastAttack = "";
     public int attack2Counter = 0;
@@ -35,6 +37,8 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
     public float damage;
     public bool hashitted = false;
     public GameObject sword;
+    public int fullCombatCounter;
+    public Collider selfCollider;
 
     [Header("Status")]
     public int maxHP;
@@ -174,7 +178,6 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
     {
         rb.AddForce(-transform.forward.normalized * (kbForce * value), ForceMode.Impulse);
     }
-
     public void TakeDamage(int damage, float knockbackStrenght)
     {
         Impulse(kbForce * knockbackStrenght);

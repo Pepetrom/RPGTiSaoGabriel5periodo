@@ -139,7 +139,7 @@ public class GameManager : MonoBehaviour
     }
     public void Respawn()
     {
-        //bonfireRest.AllEnemies();
+        bonfireRest.AllEnemies();
         PlayerController.instance.ResetAllActions();
         PlayerController.instance.transform.position = lastBonfireRestedAt.position;
     }
@@ -148,7 +148,7 @@ public class GameManager : MonoBehaviour
         Estus.estus.flaskQuantity = Estus.estus.maxFlaskQuantity;
         UIItems.instance.UpdateChesseQUI(Estus.estus.flaskQuantity);
         HPBar.instance.currentHP = HPBar.instance.maxHP;
-        //bonfireRest.AllEnemies();
+        bonfireRest.AllEnemies();
         canFade = true;
         Bonfire(false);
     }

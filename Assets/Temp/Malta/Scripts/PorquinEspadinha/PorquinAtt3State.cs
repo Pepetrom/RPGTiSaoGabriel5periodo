@@ -41,6 +41,8 @@ public class PorquinAtt3State : IPorquinStateMachine
         }
         if (!controller.antecipation)
             controller.RotateTowardsPlayer();
+        if (controller.fullCombatCounter >= 2)
+            controller.SetState(new PorquinDashState(controller));
         if (controller.attIdle)
         {
             controller.animator.SetBool("attack3", false);

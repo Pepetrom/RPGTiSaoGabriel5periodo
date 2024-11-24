@@ -44,9 +44,13 @@ public class Bonfire : MonoBehaviour
     public void AllEnemies()
     {
         DestroyAllEnemies();
-        SpawnEnemy(0, enemyPrefabs[0], "turtle");
-        SpawnEnemy(1, enemyPrefabs[0], "turtle");
-        //SpawnEnemy(2, enemyPrefabs[1], "porquin");
+        SpawnEnemy(0, enemyPrefabs[1], "porquin");
+        SpawnEnemy(1, enemyPrefabs[1], "porquin");
+        SpawnEnemy(2, enemyPrefabs[1], "porquin");
+        SpawnEnemy(3, enemyPrefabs[1], "porquin");
+        SpawnEnemy(4, enemyPrefabs[0], "turtle");
+        SpawnEnemy(5, enemyPrefabs[0], "turtle");
+        SpawnEnemy(6, enemyPrefabs[1], "porquin");
     }
     
 }
