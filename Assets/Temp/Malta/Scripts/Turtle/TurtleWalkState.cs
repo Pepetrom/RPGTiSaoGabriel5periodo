@@ -17,6 +17,7 @@ public class TurtleWalkState : ITurtleStateMachine
     public void OnExit()
     {
         controller.animator.SetBool("IsWalking", false);
+        controller.agent.speed = 0f;
     }
 
     public void OnUpdate()

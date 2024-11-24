@@ -51,8 +51,8 @@ public class RunePage : MonoBehaviour
     }
     public void PurchaseSkill(int which)
     {
-        if (GameManager.instance.skillPoints <= 0 || purchased[which]) return;
-        GameManager.instance.skillPoints -= 1;
+        if (GameManager.instance.skillPoints <= 300 || purchased[which]) return;
+        GameManager.instance.skillPoints -= 300;
         purchased[which] = true;
         if (Runes[which].nextRunes.Length > 0)
         {

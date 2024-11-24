@@ -5,6 +5,9 @@ using UnityEngine;
 public class PlayerInteract : MonoBehaviour
 {
     private bool isNearBonfire = false;
+    private bool isNearItem = false;
+    private bool isNearNote = false;
+    private GameObject coll;
     public GameObject pressF;
     private void Start()
     {
@@ -18,6 +21,17 @@ public class PlayerInteract : MonoBehaviour
             GameManager.instance.lastBonfireRestedAt.position = transform.position;
             pressF.SetActive(true);
         }
+        if (collision.gameObject.CompareTag("basicItem"))
+        {
+            isNearItem = true;
+            coll = collision.gameObject;
+            pressF.SetActive(true);
+        }
+        if (collision.gameObject.CompareTag("Notes"))
+        {
+            isNearNote = true;
+            pressF.SetActive(true);
+        }
     }
     private void OnCollisionExit(Collision collision)
     {
@@ -27,6 +41,17 @@ public class PlayerInteract : MonoBehaviour
             GameManager.instance.Bonfire(false);
             pressF.SetActive(false);
         }
+        if (collision.gameObject.CompareTag("basicItem"))
+        {
+            pressF.SetActive(false);
+            isNearItem = false;
+            coll = null;
+        }
+        if (collision.gameObject.CompareTag("Notes"))
+        {
+            isNearNote = false;
+            pressF.SetActive(false);
+        }
     }
     
     private void Update()
@@ -34,6 +59,16 @@ public class PlayerInteract : MonoBehaviour
         if (isNearBonfire && Input.GetKeyDown(KeyCode.F))
         {
             GameManager.instance.Bonfire(!GameManager.instance.bonfire.activeSelf);
+        }
+        if(isNearItem && Input.GetKeyDown(KeyCode.F))
+        {
+            GameManager.instance.Score(50);
+            Destroy(coll);
+            pressF.SetActive(false);
+        }
+        if (isNearNote && Input.GetKeyDown(KeyCode.F))
+        {
+            UIItems.instance.ShowNotes();
         }
     }
 }

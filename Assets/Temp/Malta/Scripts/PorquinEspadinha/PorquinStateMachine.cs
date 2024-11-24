@@ -85,12 +85,15 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
         rb = GetComponent<Rigidbody>(); 
         SetState(new PorquinPatrolState(this));
         hp = maxHP;
+        hpBar.maxValue = maxHP;
+        hpBar.value = hp;
         sword.gameObject.SetActive(false);
     }
     private void FixedUpdate()
     {
         animator.speed = GameManager.instance.actionTime;
         state?.OnUpdate();
+        UpdateHPBar();
     }
     public void SetState(IPorquinStateMachine state)
     {
@@ -178,12 +181,16 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
     {
         rb.AddForce(-transform.forward.normalized * (kbForce * value), ForceMode.Impulse);
     }
+    void UpdateHPBar()
+    {
+        hpBar.value = Mathf.Lerp(hpBar.value, hp, lerpSpeed);
+    }
     public void TakeDamage(int damage, float knockbackStrenght)
     {
         Impulse(kbForce * knockbackStrenght);
         hp -= damage;
         playerHit = true;
-        //hit.Play();
+        hit.Play();
         GameManager.instance.SpawnNumber((int)damage, Color.yellow, transform);
         if (hp <= 0)
         {

@@ -11,6 +11,7 @@ public class UIItems : MonoBehaviour
     public Text cheeseQ;
     public Text score;
     public GameObject[] skillButtons;
+    public GameObject notes;
     void Awake()
     {
         instance = this;
@@ -27,8 +28,12 @@ public class UIItems : MonoBehaviour
     {
         runePageText.text = GameManager.instance.skillPoints.ToString();
     }
-    public void UpdateScoreQUI(int value)
+    public void UpdateScoreQUI(float value)
     {
         score.text = value.ToString();
+    }
+    public void ShowNotes()
+    {
+        notes.SetActive(true);
     }
 }

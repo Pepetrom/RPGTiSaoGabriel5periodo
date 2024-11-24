@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     public float skillPoints;
     public GameObject runePage;
     public GameObject bonfire;
+    public GameObject tutorialPanel;
+    public bool tutorial;
     public int score;
 
     private List<GameObject> enemiesInCombat = new List<GameObject>(); // Lista para checar inimigos no combate
@@ -34,6 +36,21 @@ public class GameManager : MonoBehaviour
     {
         lastBonfireRestedAt = spawn;
         bonfireRest.AllEnemies();
+        tutorialPanel.gameObject.SetActive(false);
+        tutorial = false;
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && !tutorial)
+        {
+            tutorialPanel.gameObject.SetActive(true);
+            tutorial = true;
+        }
+        else if(Input.GetKeyDown(KeyCode.Escape) && tutorial)
+        {
+            tutorialPanel.gameObject.SetActive(false);
+            tutorial = false;
+        }
     }
     public void SpawnNumber(int damageNumber, Color color, Transform targetLocation)
     {
@@ -105,7 +122,7 @@ public class GameManager : MonoBehaviour
     }
     public void AddSkillPoints()
     {
-        skillPoints++;
+        skillPoints += 5000;
         UIItems.instance.UpdateSkillPoints();
     }
     public void OpenRunes(bool open)
@@ -154,8 +171,8 @@ public class GameManager : MonoBehaviour
     }
     public void Score(int amount)
     {
-        score += amount;
-        Debug.Log(score);
-        UIItems.instance.UpdateScoreQUI(score);
+        skillPoints += amount;
+        UIItems.instance.UpdateSkillPoints();
+        UIItems.instance.UpdateScoreQUI(skillPoints);
     }
 }
