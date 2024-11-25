@@ -85,15 +85,6 @@ public class W_BigSwordAtack : IWeapon
             if (positionTimer >= 1)
             {
                 atacking = false;
-                /*
-                if (isHeavyAtack)
-                {
-                    AtackHeavyStartAction();
-                }
-                else
-                {
-                    AtackStartAction();
-                }*/
             }
         }
     }
@@ -181,7 +172,6 @@ public class W_BigSwordAtack : IWeapon
     }
     public void AtackEnd()
     {
-        //if (interrupted) return;
         canBeInterupted = false;
         PlayerController.instance.isAttacking = false; 
         PlayerController.instance.canMove = true;
@@ -194,13 +184,6 @@ public class W_BigSwordAtack : IWeapon
         if (interrupted) return;
         interrupted = true;
         AtackEnd();
-        /*
-        canBeInterupted = false;
-        PlayerController.instance.isAttacking = false;
-        PlayerController.instance.canMove = true;
-        PlayerController.instance.canDoAtack = true;
-        PlayerController.instance.animator.SetBool("Atacking", false);
-        PlayerController.instance.swordTrail.emitting = false;*/
         PlayerController.instance.comboCounter = 1;
         storedCommand = -1;
     }
@@ -287,13 +270,13 @@ public class W_BigSwordAtack : IWeapon
         switch (PlayerController.instance.comboCounter)
         {
             case 1:
-                PlayerController.instance.runes[PlayerController.instance.equipedPrimaryRune].HeavyEffect1();
+                PlayerController.instance.runes[PlayerController.instance.equipedSecondaryRune].HeavyEffect1();
                 break;
             case 2:
-                PlayerController.instance.runes[PlayerController.instance.equipedPrimaryRune].HeavyEffect2();
+                PlayerController.instance.runes[PlayerController.instance.equipedSecondaryRune].HeavyEffect2();
                 break;
             case 3:
-                PlayerController.instance.runes[PlayerController.instance.equipedPrimaryRune].HeavyEffect3();
+                PlayerController.instance.runes[PlayerController.instance.equipedSecondaryRune].HeavyEffect3();
                 break;
         }
     }

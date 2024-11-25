@@ -41,6 +41,6 @@ public class RedRune : MonoBehaviour,IRune
     //Terciary
     public void HitEffect()
     {
-        PlayerController.instance.DamageMultiplier = 1.25f;
+        PlayerController.instance.DamageMultiplier = 2f;
     }
 }

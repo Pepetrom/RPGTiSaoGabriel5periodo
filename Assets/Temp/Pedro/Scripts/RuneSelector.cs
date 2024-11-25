@@ -6,7 +6,8 @@ using static Unity.Collections.Unicode;
 public class RuneSelector : MonoBehaviour
 {
     [SerializeField] Image[] images;
-    [SerializeField] Sprite[] rune1, rune2, rune3;
+    //[SerializeField] Sprite[] rune1, rune2, rune3;
+    [SerializeField] GameObject[] rune1, rune2, rune3;
     public void SelectPrimaryRune(int which)
     {
         int temp = PlayerController.instance.equipedPrimaryRune + which;
@@ -29,7 +30,12 @@ public class RuneSelector : MonoBehaviour
             }
         }
         PlayerController.instance.equipedPrimaryRune = temp;
-        images[0].sprite = rune1[temp];
+        rune1[0].SetActive(false);
+        rune1[1].SetActive(false);
+        rune1[2].SetActive(false);
+        rune1[3].SetActive(false);
+        rune1[temp].SetActive(true);
+        //images[0].sprite = rune1[temp];
     }
     public void SelectSecondaryRune(int which)
     {
@@ -53,7 +59,12 @@ public class RuneSelector : MonoBehaviour
             }
         }
         PlayerController.instance.equipedSecondaryRune = temp;
-        images[1].sprite = rune2[temp];
+        rune2[0].SetActive(false);
+        rune2[1].SetActive(false);
+        rune2[2].SetActive(false);
+        rune2[3].SetActive(false);
+        rune2[temp].SetActive(true);
+        //images[1].sprite = rune2[temp];
     }
     public void SelectTerciaryRune(int which)
     {
@@ -77,6 +88,11 @@ public class RuneSelector : MonoBehaviour
             }
         }
         PlayerController.instance.equipedTerciaryRune = temp;
-        images[2].sprite = rune3[temp];
+        rune3[0].SetActive(false);
+        rune3[1].SetActive(false);
+        rune3[2].SetActive(false);
+        rune3[3].SetActive(false);
+        rune3[temp].SetActive(true);
+        //images[2].sprite = rune3[temp];
     }
 }
