@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
     Camera mainCamera;
-    Rigidbody rb;
+    //Rigidbody rb;
     public Vector3 moveDirection, forwardDirection;
     public Animator animator;
     public GameObject model;
@@ -64,11 +64,14 @@ public class PlayerController : MonoBehaviour
     float rightAmount;
     float forwardAmount;
 
+    public CharacterController cc;
+    public float gravity = 0;
+
     //------------------------------------------------------------------------------------------------------------------------------------
     private void Awake()
     {
         instance = this;
-        rb = GetComponent<Rigidbody>();
+        //rb = GetComponent<Rigidbody>();
         mainCamera = Camera.main;
     }
     void Start()
@@ -109,7 +112,10 @@ public class PlayerController : MonoBehaviour
         SetDirection();
         CheckGround();
         DoActions();
-        rb.velocity = moveDirection;
+        moveDirection.y = gravity;
+        cc.Move(moveDirection * Time.fixedDeltaTime);
+        //cc.SimpleMove(moveDirection);
+        //rb.velocity = moveDirection;
     }
     void CheckDistanceTarget()
     {
@@ -209,15 +215,16 @@ public class PlayerController : MonoBehaviour
     }
     void CheckGround()
     {
-        moveDirection.y -= gravityForce * Time.deltaTime;
+        //moveDirection.y -= gravityForce * Time.deltaTime;
         if (Physics.CheckSphere(groundPoint.position, 1, groundMask))
         {
             grounded = true;
-            moveDirection.y = Mathf.Clamp(moveDirection.y, 0, Mathf.Infinity);
+            if (grounded) gravity = 0;
             canDoAction[3] = true;
         }
         else
         {
+            gravity -= 3 * 9.81f * Time.fixedDeltaTime;
             grounded = false;
         }
     }
@@ -229,7 +236,7 @@ public class PlayerController : MonoBehaviour
         moveDirection.Normalize();
         Run();
         moveDirection = moveDirection * moveSpeed * runningMultiplier;
-        moveDirection.y = rb.velocity.y;
+        //moveDirection.y = rb.velocity.y;
         animator.SetBool("Walk", (moveDirection.x != 0 || moveDirection.z != 0));
     }
     void SetDirection()
