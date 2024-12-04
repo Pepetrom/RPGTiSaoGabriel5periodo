@@ -37,7 +37,7 @@ public class Bonfire : MonoBehaviour
         Enemy[] enemies = FindObjectsOfType<Enemy>();
         foreach (Enemy enemy in enemies)
         {
-            Debug.Log(enemies);
+            //Debug.Log(enemies);
             Destroy(enemy.gameObject);
         }
     }

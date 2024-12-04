@@ -8,7 +8,7 @@ public class PorquinWalkBackState : IPorquinStateMachine
 
     public PorquinWalkBackState(PorquinStateMachine controller)
     {
-        Debug.Log("To aqui");
+        //Debug.Log("To aqui");
         this.controller = controller;
     }
     public void OnEnter()
@@ -18,7 +18,7 @@ public class PorquinWalkBackState : IPorquinStateMachine
 
     public void OnExit()
     {
-        Debug.Log("Sai mane");
+        //Debug.Log("Sai mane");
     }
 
     public void OnUpdate()

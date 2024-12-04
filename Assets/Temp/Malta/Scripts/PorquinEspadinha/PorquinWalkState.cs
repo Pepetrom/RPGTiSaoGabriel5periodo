@@ -18,7 +18,7 @@ public class PorquinWalkState : IPorquinStateMachine
     public void OnExit()
     {
         controller.agent.speed = 0f;
-        Debug.Log("Sai");
+        //Debug.Log("Sai");
     }
 
     public void OnUpdate()
