@@ -154,12 +154,10 @@ public class GameManager : MonoBehaviour
     }
     public void Respawn()
     {
+        Rest();
         PlayerController.instance.cc.enabled = false;
         PlayerController.instance.transform.position = lastBonfireRestedAt.position;
         PlayerController.instance.cc.enabled = true;
-        Debug.Log(lastBonfireRestedAt.position);
-        bonfireRest.AllEnemies();
-        PlayerController.instance.ResetAllActions();
     }
     public void Rest()
     {
@@ -167,6 +165,7 @@ public class GameManager : MonoBehaviour
         UIItems.instance.UpdateChesseQUI(Estus.estus.flaskQuantity);
         HPBar.instance.currentHP = HPBar.instance.maxHP;
         bonfireRest.AllEnemies();
+        PlayerController.instance.ResetAllActions();
         canFade = true;
         Bonfire(false);
     }
