@@ -66,10 +66,6 @@ public class W_BigSwordAtack : IWeapon
             storedCommand = -1;
             PlayerController.instance.comboCounter = 1;
             firstAtack = true;
-            /*
-            PlayerController.instance.temporaryDamageAdd = 0;
-            PlayerController.instance.temporaryDamageMultiplier = 1;
-        */
             }
         if (interrupted) return;
         if (atacking)
@@ -122,31 +118,28 @@ public class W_BigSwordAtack : IWeapon
     public void Hit(Collider other)
     {
         if (interrupted) return;
-        if(storedCommand == -1 && !firstAtack)
+
+        if (isHeavyAtack)
         {
-            if (isHeavyAtack)
-            {
-                AtackHeavyHit(other);
-            }
-            else
-            {
-                AtackCriticalHit(other);
-            }
+            AudioManager.instance.PlayAudioHere(1, PlayerController.instance.transform);
+            AtackHeavyHit(other);
         }
         else
         {
-            if (isHeavyAtack)
+            if(storedCommand == -1 && !firstAtack)
             {
-                AtackHeavyHit(other);
+                AudioManager.instance.PlayAudioHere(2, PlayerController.instance.transform);
+                AtackCriticalHit(other);
             }
             else
             {
+                AudioManager.instance.PlayAudioHere(1, PlayerController.instance.transform);
                 AtackHit(other);
             }
         }
         PlayerController.instance.runes[PlayerController.instance.equipedTerciaryRune].HitEffect();
-        PlayerController.instance.DamageAdd = 0;
-        PlayerController.instance.DamageMultiplier = 1;
+        PlayerController.instance.damageAdd = 0;
+        PlayerController.instance.damageMultiplier = 1;
     }
     public void OpenComboWindow()
     {
@@ -191,17 +184,19 @@ public class W_BigSwordAtack : IWeapon
     {
         storedCommand = which;
     }
+    //Chamado Pela Animação
     public void AtackStartAction()
     {
         if (isHeavyAtack)
         {
+            AudioManager.instance.PlayAudioHere(0, PlayerController.instance.transform);
             switch (PlayerController.instance.comboCounter)
             {
                 case 1:
-                    //PlayerController.instance.actions[1].ActionStart();
+                    PlayerController.instance.actions[1].ActionStart();
                     break;
                 case 2:
-                    //PlayerController.instance.actions[1].ActionStart();
+                    PlayerController.instance.actions[1].ActionStart();
                     break;
                 case 3:
                     PlayerController.instance.actions[1].ActionStart();
@@ -213,12 +208,15 @@ public class W_BigSwordAtack : IWeapon
             switch (PlayerController.instance.comboCounter)
             {
                 case 1:
+                    AudioManager.instance.PlayAudioHere(0, PlayerController.instance.transform);
                     PlayerController.instance.actions[1].ActionStart();
                     break;
                 case 2:
+                    AudioManager.instance.PlayAudioHere(0, PlayerController.instance.transform);
                     //PlayerController.instance.actions[1].ActionStart();
                     break;
                 case 3:
+                    AudioManager.instance.PlayAudioHere(1, PlayerController.instance.transform);
                     PlayerController.instance.actions[1].ActionStart();
                     break;
             }
@@ -232,13 +230,13 @@ public class W_BigSwordAtack : IWeapon
         switch (PlayerController.instance.comboCounter)
         {
             case 1:
-                other.GetComponent<IDamageable>().TakeDamage((int)(PlayerController.instance.baseDamage * (1 * PlayerController.instance.DamageMultiplier + PlayerController.instance.agility * 0.1f) + PlayerController.instance.DamageAdd), 1f);
+                other.GetComponent<IDamageable>().TakeDamage(damageCalc(5, 1, 0.4f, 0.1f, 0), 1);
                 break;
             case 2:
-                other.GetComponent<IDamageable>().TakeDamage((int)(PlayerController.instance.baseDamage * (1.25f * PlayerController.instance.DamageMultiplier + PlayerController.instance.agility * 0.25f) + PlayerController.instance.DamageAdd), 1f);
+                other.GetComponent<IDamageable>().TakeDamage(damageCalc(7, 1.5f, 0.6f, 0.15f, 0), 1);
                 break;
             case 3:
-                other.GetComponent<IDamageable>().TakeDamage((int)(PlayerController.instance.baseDamage * (1.5f * PlayerController.instance.DamageMultiplier + PlayerController.instance.agility * 0.35f) + PlayerController.instance.DamageAdd), 1.5f);
+                other.GetComponent<IDamageable>().TakeDamage(damageCalc(10, 2f, 0.8f, 0.2f, 0), 1);
                 break;
         }
         
@@ -251,15 +249,15 @@ public class W_BigSwordAtack : IWeapon
         switch (PlayerController.instance.comboCounter)
         {
             case 1:
-                other.GetComponent<IDamageable>().TakeDamage((int)(PlayerController.instance.baseDamage * (1.5f + PlayerController.instance.agility * 0.1f)), 2);
+                other.GetComponent<IDamageable>().TakeDamage(damageCalc(5, 1.75f, 0.4f, 0.1f, 0), 1);
                 PlayerController.instance.runes[PlayerController.instance.equipedPrimaryRune].AtackCriticalEffect1();
                 break;
             case 2:
-                other.GetComponent<IDamageable>().TakeDamage((int)(PlayerController.instance.baseDamage * (1.75f + PlayerController.instance.agility * 0.25f)), 2.5f);
+                other.GetComponent<IDamageable>().TakeDamage(damageCalc(7, 2.25f, 0.6f, 0.15f, 0), 1);
                 PlayerController.instance.runes[PlayerController.instance.equipedPrimaryRune].AtackCriticalEffect2();
                 break;
             case 3:
-                other.GetComponent<IDamageable>().TakeDamage((int)(PlayerController.instance.baseDamage * (2.25f + PlayerController.instance.agility * 0.35f)), 3);
+                other.GetComponent<IDamageable>().TakeDamage(damageCalc(10, 3f, 0.8f, 0.2f, 0), 1);
                 PlayerController.instance.runes[PlayerController.instance.equipedPrimaryRune].AtackCriticalEffect3();
                 break;
         }
@@ -284,22 +282,40 @@ public class W_BigSwordAtack : IWeapon
     {
         if (firstAtack)
         {
-            return;
+            switch (PlayerController.instance.comboCounter)
+            {
+                case 1:
+                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(15, 1.3f, 0.1f, 0.4f, 0), 1);
+                    break;
+                case 2:
+                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(15, 1.3f, 0.15f, 0.6f, 0), 1);
+                    break;
+                case 3:
+                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(15, 1.3f, 0.2f, 0.8f, 0), 1);
+                    break;
+            }
         }
         else
         {
             switch (PlayerController.instance.comboCounter)
             {
                 case 1:
-                    other.GetComponent<IDamageable>().TakeDamage((int)(PlayerController.instance.baseDamage * (1.3f + PlayerController.instance.strength * 0.1f)), 1);
+                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(20, 1.3f, 0.1f, 0.4f, 0), 1);
                     break;
                 case 2:
-                    other.GetComponent<IDamageable>().TakeDamage((int)(PlayerController.instance.baseDamage * (1.3f + PlayerController.instance.strength * 0.25f)), 1);
+                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(20, 1.3f, 0.15f, 0.6f, 0), 1);
                     break;
                 case 3:
-                    other.GetComponent<IDamageable>().TakeDamage((int)(PlayerController.instance.baseDamage * (1.3f + PlayerController.instance.strength * 0.5f)), 1);
+                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(20, 1.3f, 0.2f, 0.8f, 0), 1);
                     break;
             }
         }
+    }
+    public int damageCalc(float baseDamage, float baseMultiplier, float agilityModifier, float strenghtModifier, float resistanceMultiplier)
+    {
+        return (int)
+            ((PlayerController.instance.damageMultiplier + baseMultiplier) *
+            (baseDamage + (baseMultiplier + (PlayerController.instance.strength * strenghtModifier) + (PlayerController.instance.agility * agilityModifier) + (PlayerController.instance.resistance * resistanceMultiplier))
+            + PlayerController.instance.damageAdd));
     }
 }

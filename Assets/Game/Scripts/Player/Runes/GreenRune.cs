@@ -12,17 +12,17 @@ public class GreenRune : MonoBehaviour,IRune
     }
     public void AtackCriticalEffect1()
     {
-        PlayerController.instance.DamageAdd = 400;
+        PlayerController.instance.damageAdd = 400;
         // PlayerController.instance.DamageAdd = PlayerController.instance.agility * 2;
     }
     public void AtackCriticalEffect2()
     {
-        PlayerController.instance.DamageAdd = 400;
+        PlayerController.instance.damageAdd = 400;
         //PlayerController.instance.DamageAdd = PlayerController.instance.agility * 2.5f;
     }
     public void AtackCriticalEffect3()
     {
-        PlayerController.instance.DamageAdd = 400;
+        PlayerController.instance.damageAdd = 400;
         //PlayerController.instance.DamageAdd = PlayerController.instance.agility * 3;
     }
     //Secondary

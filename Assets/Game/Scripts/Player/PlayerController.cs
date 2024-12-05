@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
     public GameObject[] runesForIRune;
     public IRune[] runes;
     public int equipedPrimaryRune = 0, equipedSecondaryRune = 0, equipedTerciaryRune = 0;
-    public float DamageAdd, DamageMultiplier;
+    public float damageAdd, damageMultiplier, criticalMultiplier;
     [Header("GroundCheck------------------")]
     public Transform groundPoint;
     public LayerMask groundMask;
