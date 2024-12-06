@@ -6,15 +6,15 @@ using UnityEngine.Audio;
 [RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager instance;
     [SerializeField] AudioClip[] audios;
     [SerializeField] AudioMixer audioMixer;
-    public void PlayAudioHere(int audioId, Transform audioPosition)
+    [SerializeField] AudioSource audioSource;
+    public void PlayAudio(int audioId, int audioSourceId )
     {
-        AudioSource.PlayClipAtPoint(audios[audioId], audioPosition.position,1);
+        audioSource.clip = audios[audioId];
     }
-    private void Awake()
+    private void Start()
     {
-        instance = this;
+        if (!audioSource) audioSource = GetComponent<AudioSource>();
     }
 }

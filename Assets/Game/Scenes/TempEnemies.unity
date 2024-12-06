@@ -2379,6 +2379,7 @@ GameObject:
   - component: {fileID: 224354706}
   - component: {fileID: 224354707}
   - component: {fileID: 224354708}
+  - component: {fileID: 224354709}
   m_Layer: 0
   m_Name: Player===============
   m_TagString: Player
@@ -2451,9 +2452,9 @@ MonoBehaviour:
   - {fileID: 5178769036365680400, guid: 80e6eda674b0eb0478ffee9a9e2ea235, type: 3}
   - {fileID: 5178769036365680400, guid: 491eda7b22918f140b3bf9b27de1ad18, type: 3}
   - {fileID: 5178769036365680400, guid: cc59be004afa748429a4280810ab66a8, type: 3}
-  equipedPrimaryRune: 0
-  equipedSecondaryRune: 0
-  equipedTerciaryRune: 0
+  equipedPrimaryRune: 3
+  equipedSecondaryRune: 3
+  equipedTerciaryRune: 3
   damageAdd: 0
   damageMultiplier: 0
   criticalMultiplier: 0
@@ -2468,6 +2469,7 @@ MonoBehaviour:
   strength: 0
   cc: {fileID: 224354707}
   gravity: 0
+  audioSource: {fileID: 0}
 --- !u!4 &224354704
 Transform:
   m_ObjectHideFlags: 0
@@ -2549,9 +2551,9 @@ AudioSource:
   m_GameObject: {fileID: 224354700}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: f3f489328922a2e4884ba0698f87a01f,
+  OutputAudioMixerGroup: {fileID: -2243790318636002142, guid: f3f489328922a2e4884ba0698f87a01f,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 3f82c07c880d56b4ea560191ca83a8b2, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -2637,6 +2639,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &224354709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 224354700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ce258ef552bde746a0cc698e6994158, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audios: []
+  audioMixer: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!1 &224398045 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 131073001911439035, guid: 83572ae95e16128408c94dc8472e0ac0,
@@ -23131,8 +23148,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: -18.01, z: 0}
---- !u!65 &1532307749
-BoxCollider:
+--- !u!135 &1532307749
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -23146,12 +23163,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 26.474592, y: 32.455605, z: 0.20000078}
-  m_Center: {x: -5.3008165, y: -5.0026774, z: -4.5604098e-14}
+  m_Radius: 150
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1532340479
 GameObject:
   m_ObjectHideFlags: 0
@@ -28264,6 +28281,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f35464e226f9c4e48939e7d505523db7, type: 3}
   - {fileID: 8300000, guid: 4a67b55228df73e41b6e9b4e95b160a0, type: 3}
   audioMixer: {fileID: 24100000, guid: f3f489328922a2e4884ba0698f87a01f, type: 2}
+  audioSource: {fileID: 0}
 --- !u!1 &2027070099
 GameObject:
   m_ObjectHideFlags: 0
@@ -59926,6 +59944,7 @@ GameObject:
   - component: {fileID: 3190239596109078106}
   - component: {fileID: 8000140193049517640}
   - component: {fileID: 8000140193049517641}
+  - component: {fileID: 8000140193049517642}
   m_Layer: 0
   m_Name: Bonfire
   m_TagString: Bonfire
@@ -63700,7 +63719,28 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 2.7335017
+  m_Radius: 2.5
+  m_Center: {x: 0.492889, y: 0.6288034, z: 1.8570706}
+--- !u!135 &8000140193049517642
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7166520397181803959}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 3
   m_Center: {x: 0.492889, y: 0.6288034, z: 1.8570706}
 --- !u!4 &8005166743369914086
 Transform:

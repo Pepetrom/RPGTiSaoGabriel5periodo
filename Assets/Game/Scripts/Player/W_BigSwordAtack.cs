@@ -121,19 +121,16 @@ public class W_BigSwordAtack : IWeapon
 
         if (isHeavyAtack)
         {
-            AudioManager.instance.PlayAudioHere(1, PlayerController.instance.transform);
             AtackHeavyHit(other);
         }
         else
         {
             if(storedCommand == -1 && !firstAtack)
             {
-                AudioManager.instance.PlayAudioHere(2, PlayerController.instance.transform);
                 AtackCriticalHit(other);
             }
             else
             {
-                AudioManager.instance.PlayAudioHere(1, PlayerController.instance.transform);
                 AtackHit(other);
             }
         }
@@ -189,7 +186,6 @@ public class W_BigSwordAtack : IWeapon
     {
         if (isHeavyAtack)
         {
-            AudioManager.instance.PlayAudioHere(0, PlayerController.instance.transform);
             switch (PlayerController.instance.comboCounter)
             {
                 case 1:
@@ -208,15 +204,12 @@ public class W_BigSwordAtack : IWeapon
             switch (PlayerController.instance.comboCounter)
             {
                 case 1:
-                    AudioManager.instance.PlayAudioHere(0, PlayerController.instance.transform);
                     PlayerController.instance.actions[1].ActionStart();
                     break;
                 case 2:
-                    AudioManager.instance.PlayAudioHere(0, PlayerController.instance.transform);
                     //PlayerController.instance.actions[1].ActionStart();
                     break;
                 case 3:
-                    AudioManager.instance.PlayAudioHere(1, PlayerController.instance.transform);
                     PlayerController.instance.actions[1].ActionStart();
                     break;
             }

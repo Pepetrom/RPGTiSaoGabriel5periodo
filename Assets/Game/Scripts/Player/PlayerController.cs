@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     public int comboCounter = 1;
     public Transform target = null;
     public AtackCollider atackCollider;
-    public float detectionAutoTargetRange = 15;
+    [SerializeField] float detectionAutoTargetRange = 15;
     public TrailRenderer swordTrail;
     [Header("Defese Settings------------------")]
     public float invencibilityTime;
@@ -40,16 +40,16 @@ public class PlayerController : MonoBehaviour
     public bool canDoAtack = true;
     public IWeapon[] atacks = new IWeapon[1];
     [Header("Runes------------------")]
-    public GameObject[] runesForIRune;
+    [SerializeField] GameObject[] runesForIRune;
     public IRune[] runes;
     public int equipedPrimaryRune = 0, equipedSecondaryRune = 0, equipedTerciaryRune = 0;
     public float damageAdd, damageMultiplier, criticalMultiplier;
     [Header("GroundCheck------------------")]
-    public Transform groundPoint;
-    public LayerMask groundMask;
+    [SerializeField] Transform groundPoint;
+    [SerializeField] LayerMask groundMask;
     public bool grounded;
     [Header("Gravity Settings---------------")]
-    public float gravityForce;
+    [SerializeField] float gravityForce;
     [Header("Rotation------------------")]
     Quaternion newRotation;
     Vector3 mousePosition, targetDirection;
@@ -65,8 +65,10 @@ public class PlayerController : MonoBehaviour
     float forwardAmount;
 
     public CharacterController cc;
-    public float gravity = 0;
+    [SerializeField] float gravity = 0;
 
+    //Audio
+    public AudioSource audioSource;
     //------------------------------------------------------------------------------------------------------------------------------------
     private void Awake()
     {
@@ -76,6 +78,7 @@ public class PlayerController : MonoBehaviour
     }
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         cameraAlignValue = mainCamera.transform.forward;
         cameraAlignValue.y = 0;
         cameraAlignValue = cameraAlignValue.normalized;

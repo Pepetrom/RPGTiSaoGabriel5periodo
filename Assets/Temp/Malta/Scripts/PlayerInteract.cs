@@ -13,7 +13,7 @@ public class PlayerInteract : MonoBehaviour
     {
         pressF.SetActive(false);
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.CompareTag("Bonfire"))
         {
@@ -33,7 +33,7 @@ public class PlayerInteract : MonoBehaviour
             pressF.SetActive(true);
         }
     }
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider collision)
     {
         if (collision.gameObject.CompareTag("Bonfire"))
         {
