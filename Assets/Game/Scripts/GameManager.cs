@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     public int score;
 
     private List<GameObject> enemiesInCombat = new List<GameObject>(); // Lista para checar inimigos no combate
-    public Bonfire bonfireRest;
+    public EnemySpawner enemySpawner;
     public bool canFade = false;
     private void Awake()
     {
@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        bonfireRest.AllEnemies();
+        enemySpawner.AllEnemies();
         tutorialPanel.gameObject.SetActive(false);
         tutorial = false;
     }
@@ -161,10 +161,10 @@ public class GameManager : MonoBehaviour
     }
     public void Rest()
     {
-        Estus.estus.flaskQuantity = Estus.estus.maxFlaskQuantity;
-        UIItems.instance.UpdateChesseQUI(Estus.estus.flaskQuantity);
+        Estus.instance.flaskQuantity = Estus.instance.maxFlaskQuantity;
+        UIItems.instance.UpdateChesseQUI(Estus.instance.flaskQuantity);
         HPBar.instance.currentHP = HPBar.instance.maxHP;
-        bonfireRest.AllEnemies();
+        enemySpawner.AllEnemies();
         PlayerController.instance.ResetAllActions();
         canFade = true;
         Bonfire(false);

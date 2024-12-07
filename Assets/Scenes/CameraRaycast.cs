@@ -11,9 +11,6 @@ public class CameraRaycast
     private List<Transform> ObjectToShow = new List<Transform>();
     private Dictionary<Transform, Material> originalMaterials = new Dictionary<Transform, Material>();
 
-    void Start()
-    {
-    }
 
     private void LateUpdate()
     {
@@ -29,12 +26,6 @@ public class CameraRaycast
             ShowObstruction(obstruction);
         }
     }
-
-    void Update()
-    {
-     
-    }
-   
     void ManageBlockingView()
     {
         Vector3 playerPosition = player.transform.position + offest;

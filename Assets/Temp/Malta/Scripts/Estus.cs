@@ -5,26 +5,22 @@ using UnityEngine;
 
 public class Estus : MonoBehaviour
 {
-    public static Estus estus;
+    public static Estus instance;
     public int healQuantity,flaskQuantity, maxFlaskQuantity; // quantity VAI RESUMIR NOME DE VARIAVEL NAO
 
     private void Awake()
     {
-        estus = this;
+        instance = this;
     }
     private void Start()
     {
         flaskQuantity = maxFlaskQuantity;
         UIItems.instance.UpdateChesseQUI(flaskQuantity);
     }
-    private void Update()
+    public void UseEstus()
     {
-        if (Input.GetKeyDown(KeyCode.R) && flaskQuantity > 0 )
-        {
-            HPBar.instance.RecoverHPbyItem(healQuantity);
-            flaskQuantity--;
-            UIItems.instance.UpdateChesseQUI(flaskQuantity);
-        }
-    }
-    
+        HPBar.instance.RecoverHPbyItem(healQuantity);
+        flaskQuantity--;
+        UIItems.instance.UpdateChesseQUI(flaskQuantity);
+    }   
 }

@@ -5,6 +5,8 @@ using UnityEngine;
 public class ControllerForAnim : MonoBehaviour
 {
     public int slot;
+    public AudioManager audioMan;
+    bool step = true;
     public void StartRegisterHit()
     {
         PlayerController.instance.atacks[slot].StartRegisterHit();
@@ -28,5 +30,9 @@ public class ControllerForAnim : MonoBehaviour
     public void AtackEnd()
     {
         PlayerController.instance.atacks[slot].AtackEnd();
+    }
+    public void PlaySound(int soundId)
+    {
+        audioMan.PlayAudio(soundId);
     }
 }

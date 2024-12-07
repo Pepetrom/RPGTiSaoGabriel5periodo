@@ -7,14 +7,18 @@ using UnityEngine.Audio;
 public class AudioManager : MonoBehaviour
 {
     [SerializeField] AudioClip[] audios;
-    [SerializeField] AudioMixer audioMixer;
     [SerializeField] AudioSource audioSource;
-    public void PlayAudio(int audioId, int audioSourceId )
+    float originalPitch;
+    public void PlayAudio(int audioId)
     {
+        audioSource.pitch = originalPitch;
+        audioSource.pitch += Random.Range(-0.2f, 0.2f);
         audioSource.clip = audios[audioId];
+        audioSource.Play();
     }
     private void Start()
     {
         if (!audioSource) audioSource = GetComponent<AudioSource>();
+        if(audioSource) originalPitch = audioSource.pitch;
     }
 }

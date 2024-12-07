@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float gravity = 0;
 
     //Audio
-    public AudioSource audioSource;
+    public AudioManager audioMan;
     //------------------------------------------------------------------------------------------------------------------------------------
     private void Awake()
     {
@@ -78,7 +78,6 @@ public class PlayerController : MonoBehaviour
     }
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
         cameraAlignValue = mainCamera.transform.forward;
         cameraAlignValue.y = 0;
         cameraAlignValue = cameraAlignValue.normalized;
@@ -210,6 +209,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I))
         {
             GameManager.instance.OpenRunes(!GameManager.instance.runePage.activeSelf);
+        }
+        if (Input.GetKeyDown(KeyCode.R) && Estus.instance.flaskQuantity > 0)
+        {
+            StopAllActions();
+            animator.SetTrigger("Estus");
+            Estus.instance.UseEstus();
         }
     }
     void Atack(int slot, bool heavy)
@@ -345,16 +350,31 @@ public class PlayerController : MonoBehaviour
     public void StopAllActions()
     {
         masterCanDo = false;
-        atacks[0].InteruptAtack();
+        //atacks[0].InteruptAtack();
         canDoAtack = false;
         canMove = false;
+        comboCounter = 1;
+
+        animator.SetBool("Atacking", false);
+        animator.SetBool("Walk", false);
+        animator.SetBool("Run", false);
+
+        isAttacking = false;
+        swordTrail.emitting = false;
     }
     public void ResetAllActions()
     {
         masterCanDo = true;
-        atacks[0].InteruptAtack();
+        //atacks[0].InteruptAtack();
         canDoAtack = true;
         canMove = true;
+
+        animator.SetBool("Atacking", false);
+        animator.SetBool("Walk", false);
+        animator.SetBool("Run", false);
+
+        isAttacking = false;
+        swordTrail.emitting = false;
     }
 }
 
