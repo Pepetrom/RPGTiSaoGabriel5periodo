@@ -7,6 +7,7 @@ public class PlayerInteract : MonoBehaviour
     private bool isNearBonfire = false;
     private bool isNearItem = false;
     private bool isNearNote = false;
+    private bool isNearLever = false;
     private GameObject coll;
     public GameObject pressF;
     private void Start()
@@ -32,6 +33,12 @@ public class PlayerInteract : MonoBehaviour
             isNearNote = true;
             pressF.SetActive(true);
         }
+        if (collision.gameObject.CompareTag("Lever"))
+        {
+            isNearLever = true;
+            coll = collision.gameObject;
+            pressF.SetActive(true);
+        }
     }
     private void OnTriggerExit(Collider collision)
     {
@@ -52,26 +59,40 @@ public class PlayerInteract : MonoBehaviour
             isNearNote = false;
             pressF.SetActive(false);
         }
+        if (collision.gameObject.CompareTag("Lever"))
+        {
+            isNearLever = false;
+            coll = null;
+            pressF.SetActive(false);
+        }
     }
     
     private void Update()
     {
-        if (isNearBonfire && Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F))
         {
-            GameManager.instance.Bonfire(!GameManager.instance.bonfire.activeSelf);
-            PlayerController.instance.audioMan.PlayAudio(6);
+            if (isNearBonfire )
+            {
+                GameManager.instance.Bonfire(!GameManager.instance.bonfire.activeSelf);
+                PlayerController.instance.audioMan.PlayAudio(6);
+            }
+            if (isNearItem )
+            {
+                GameManager.instance.Score(50);
+                Destroy(coll);
+                pressF.SetActive(false);
+                PlayerController.instance.audioMan.PlayAudio(5);
+            }
+            if (isNearNote )
+            {
+                UIItems.instance.ShowNotes();
+                PlayerController.instance.audioMan.PlayAudio(5);
+            }
+            if (isNearLever)
+            {
+                coll.GetComponent<WaterLevelLever>().Activate();
+            }
         }
-        if(isNearItem && Input.GetKeyDown(KeyCode.F))
-        {
-            GameManager.instance.Score(50);
-            Destroy(coll);
-            pressF.SetActive(false);
-            PlayerController.instance.audioMan.PlayAudio(5);
-        }
-        if (isNearNote && Input.GetKeyDown(KeyCode.F))
-        {
-            UIItems.instance.ShowNotes();
-            PlayerController.instance.audioMan.PlayAudio(5);
-        }
+        
     }
 }

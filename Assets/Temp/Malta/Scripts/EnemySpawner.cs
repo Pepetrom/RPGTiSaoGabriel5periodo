@@ -60,6 +60,8 @@ public class EnemySpawner : MonoBehaviour
         SpawnEnemy(4, enemyPrefabs[0], "turtle");
         SpawnEnemy(5, enemyPrefabs[0], "turtle");
         SpawnEnemy(6, enemyPrefabs[1], "porquin");
+        SpawnEnemy(7, enemyPrefabs[0], "turtle");
+        SpawnEnemy(8, enemyPrefabs[1], "porquin");
     }
     /*
     public void RegisterEnemy(Enemy target)
