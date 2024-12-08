@@ -6036,6 +6036,7 @@ GameObject:
   - component: {fileID: 489346054}
   - component: {fileID: 489346053}
   - component: {fileID: 489346056}
+  - component: {fileID: 489346057}
   m_Layer: 0
   m_Name: AlavancaMissing
   m_TagString: basicItem
@@ -6143,6 +6144,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lever: {fileID: 2116948709}
+--- !u!135 &489346057
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489346051}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 25
+  m_Center: {x: -0.827971, y: 22.231142, z: -0.3505838}
 --- !u!1 &492934335
 GameObject:
   m_ObjectHideFlags: 0
@@ -55761,6 +55783,7 @@ GameObject:
   - component: {fileID: 6640737413320359285}
   - component: {fileID: 7095359428573010620}
   - component: {fileID: 7095359428573010621}
+  - component: {fileID: 7095359428573010622}
   m_Layer: 0
   m_Name: AlavancaMissing2
   m_TagString: basicItem
@@ -59781,6 +59804,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lever: {fileID: 1596048739}
+--- !u!135 &7095359428573010622
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6128092612835478704}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 3
+  m_Center: {x: -0.000003814699, y: -0.15929036, z: -0.000007629428}
 --- !u!1 &7100770295298435373
 GameObject:
   m_ObjectHideFlags: 0

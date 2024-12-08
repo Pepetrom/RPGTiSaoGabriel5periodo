@@ -18,7 +18,6 @@ public class WaterLevelLever : MonoBehaviour
             PlayerController.instance.audioMan.PlayAudio(6);
             return;
         };
-        lever.SetActive(true);
         if (activated)
         {
             activated = false;

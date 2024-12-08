@@ -8,5 +8,6 @@ public class MissingLever : MonoBehaviour
     private void OnDisable()
     {
         lever.completeLever = true;
+        lever.lever.SetActive(true);
     }
 }
