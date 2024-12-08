@@ -19,6 +19,7 @@ public class RunePage : MonoBehaviour
     public float moveSpeed;
     public RectTransform canvas;
     float limitX, limitY;
+    public AudioManager audioMan;
     void Start()
     {
         instance = this;
@@ -51,7 +52,12 @@ public class RunePage : MonoBehaviour
     }
     public void PurchaseSkill(int which)
     {
-        if (GameManager.instance.skillPoints <= 300 || purchased[which]) return;
+        if (GameManager.instance.skillPoints <= 300 || purchased[which])
+        {
+            audioMan.PlayAudio(1);
+            return;
+        }
+        audioMan.PlayAudio(0);
         GameManager.instance.skillPoints -= 300;
         purchased[which] = true;
         if (Runes[which].nextRunes.Length > 0)
@@ -88,12 +94,22 @@ public class RunePage : MonoBehaviour
             case 3:
                 PlayerController.instance.AddAtribute("agility");
                 break;
+            case 4:
+                UnlockRune(1);
+                break;
+            case 5:
+                UnlockRune(2);
+                break;
+            case 6:
+                UnlockRune(3);
+                break;
         }
     }
     public void UnlockRune(int which)
     {
+        audioMan.PlayAudio(2);
         GameManager.instance.unlockedRunes[which] = true;
-     } 
+    } 
     public void StartRunePage()
     {
         for (int i = 1;i< RuneBorders.Length; i++)
