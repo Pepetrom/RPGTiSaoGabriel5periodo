@@ -26,6 +26,9 @@ public class GameManager : MonoBehaviour
     private List<GameObject> enemiesInCombat = new List<GameObject>(); // Lista para checar inimigos no combate
     public EnemySpawner enemySpawner;
     public bool canFade = false;
+
+    public AudioManager audioMan;
+
     private void Awake()
     {
         instance = this;

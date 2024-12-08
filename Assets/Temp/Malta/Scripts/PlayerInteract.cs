@@ -59,16 +59,19 @@ public class PlayerInteract : MonoBehaviour
         if (isNearBonfire && Input.GetKeyDown(KeyCode.F))
         {
             GameManager.instance.Bonfire(!GameManager.instance.bonfire.activeSelf);
+            PlayerController.instance.audioMan.PlayAudio(6);
         }
         if(isNearItem && Input.GetKeyDown(KeyCode.F))
         {
             GameManager.instance.Score(50);
             Destroy(coll);
             pressF.SetActive(false);
+            PlayerController.instance.audioMan.PlayAudio(5);
         }
         if (isNearNote && Input.GetKeyDown(KeyCode.F))
         {
             UIItems.instance.ShowNotes();
+            PlayerController.instance.audioMan.PlayAudio(5);
         }
     }
 }

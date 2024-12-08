@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 7398271126115238182}
   - component: {fileID: 3354279600282017379}
   - component: {fileID: 7870018716474292514}
-  - component: {fileID: 2880625147936400444}
+  - component: {fileID: 3679124242997926524}
   m_Layer: 5
   m_Name: Runa Agility
   m_TagString: Untagged
@@ -102,7 +102,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1081951395991916671}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -199,18 +199,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: ChangeRune
+        m_TargetAssemblyTypeName: RunePage, Assembly-CSharp
+        m_MethodName: PurchaseSkill
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 8
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &2880625147936400444
+--- !u!114 &3679124242997926524
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -222,8 +222,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c973371735af22d43a4418fefd852b40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextRunes: 
-  nextLines: 
+  nextRunes: 09000000
+  nextLines: 09000000
+  effect: 3
 --- !u!1 &1997373078552299561
 GameObject:
   m_ObjectHideFlags: 0

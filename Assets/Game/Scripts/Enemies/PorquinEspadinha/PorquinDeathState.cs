@@ -22,7 +22,6 @@ public class PorquinDeathState : IPorquinStateMachine
         controller.KB(4f);
         controller.GetComponent<Collider>().enabled = false;
         GameManager.instance.Score(100);
-        //GameManager.instance.enemySpawner.RemoveEnemy(controller.enemy);
     }
 
     public void OnExit()

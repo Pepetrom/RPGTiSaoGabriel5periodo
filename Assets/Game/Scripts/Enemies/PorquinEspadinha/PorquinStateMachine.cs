@@ -61,6 +61,8 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
     public Renderer[] porquinRenderers;
 
     public float sortedNumber;
+
+    public AudioManager audioMan;
     private void Start()
     {
         attack2Counter = 0;

@@ -22,7 +22,6 @@ public class TurtleDeathState : ITurtleStateMachine
     {
         controller.CannonKB(1.5f);
         controller.GetComponent<Collider>().enabled = false;
-        //GameManager.instance.enemySpawner.RemoveEnemy(controller.enemy);
         GameManager.instance.Score(100);
     }
 

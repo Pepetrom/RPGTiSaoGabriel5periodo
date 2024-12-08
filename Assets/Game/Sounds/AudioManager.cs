@@ -9,6 +9,10 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip[] audios;
     [SerializeField] AudioSource audioSource;
     float originalPitch;
+    public void PlayAudioThere(Transform location, int audioId)
+    {
+        AudioSource.PlayClipAtPoint(audios[audioId], location.position,1);
+    }
     public void PlayAudio(int audioId)
     {
         audioSource.pitch = originalPitch;

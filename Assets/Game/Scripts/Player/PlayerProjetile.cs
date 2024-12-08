@@ -12,9 +12,8 @@ public class PlayerProjetile : MonoBehaviour
     public SphereCollider colisor;
     private void FixedUpdate()
     {
-        if (colisor.enabled)
-        {
             timer += Time.fixedDeltaTime;
+            transform.position += transform.forward * Time.fixedDeltaTime * speed;
             if (timer >= duration)
             {
                 if (endEffect)
@@ -29,14 +28,12 @@ public class PlayerProjetile : MonoBehaviour
                     EndEffect();
                 }
             }
-            transform.position += transform.forward * Time.fixedDeltaTime * speed;
-        }
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy"))
         {
-            PlayerController.instance.runes[PlayerController.instance.equipedPrimaryRune].ProjectileHitEffect(other);
+            if(colisor.enabled) PlayerController.instance.runes[PlayerController.instance.equipedPrimaryRune].ProjectileHitEffect(other);
             if (!MultiHit)
             {
                 colisor.enabled = false;

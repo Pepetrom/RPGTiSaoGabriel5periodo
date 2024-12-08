@@ -9,7 +9,10 @@ public class TempTeleport : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            PlayerController.instance.cc.enabled = false;
             PlayerController.instance.transform.position = whereToGo.transform.position;
+            PlayerController.instance.cc.enabled = true;
+
         }
     }
 }

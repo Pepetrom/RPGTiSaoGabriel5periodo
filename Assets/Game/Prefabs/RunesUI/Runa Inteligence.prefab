@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 295834196339652233}
   - component: {fileID: 4652794673566320409}
   - component: {fileID: 9086582829259439876}
-  - component: {fileID: 7532621824930090795}
+  - component: {fileID: 191988245099424544}
   m_Layer: 5
   m_Name: Runa Inteligence
   m_TagString: Untagged
@@ -177,7 +177,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8123196618674779943}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -250,11 +250,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0, g: 0.76966286, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.8160377, g: 1, b: 1, a: 1}
-    m_PressedColor: {r: 0, g: 0.38431373, b: 0.5019608, a: 1}
-    m_SelectedColor: {r: 0, g: 0.76862746, b: 1, a: 1}
-    m_DisabledColor: {r: 0, g: 0.38431358, b: 0.5, a: 1}
+    m_NormalColor: {r: 1, g: 0.9728837, b: 0, a: 1}
+    m_HighlightedColor: {r: 0.9987207, g: 1, b: 0.7877358, a: 1}
+    m_PressedColor: {r: 1, g: 0.6601781, b: 0, a: 1}
+    m_SelectedColor: {r: 1, g: 0.64280593, b: 0, a: 1}
+    m_DisabledColor: {r: 0.6431373, g: 0.5090384, b: 0, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -274,18 +274,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: ChangeRune
+        m_TargetAssemblyTypeName: RunePage, Assembly-CSharp
+        m_MethodName: PurchaseSkill
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 6
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &7532621824930090795
+--- !u!114 &191988245099424544
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -297,5 +297,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c973371735af22d43a4418fefd852b40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextRunes: 
-  nextLines: 
+  nextRunes: 07000000
+  nextLines: 07000000
+  effect: 2

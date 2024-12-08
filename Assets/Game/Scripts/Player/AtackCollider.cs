@@ -11,5 +11,9 @@ public class AtackCollider : MonoBehaviour
         {
             PlayerController.instance.atacks[slot].Hit(other);
         }
+        else if (other.CompareTag("Destroyable"))
+        {
+            other.GetComponent<DestroyableObjects>().Die();
+        }
     }
 }

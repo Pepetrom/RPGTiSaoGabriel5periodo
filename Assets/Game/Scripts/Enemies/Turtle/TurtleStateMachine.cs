@@ -68,8 +68,9 @@ public class TurtleStateMachine : MonoBehaviour, IDamageable
     // Instancia
     public PatrolData patrolData; // Referência ao ScriptableObject
     public Transform[] patrolPoints;
-    #endregion
 
+    public AudioManager audioMan;
+    #endregion
     void Start()
     {
         rb = GetComponent<Rigidbody>();
