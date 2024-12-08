@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class ObjectThatMove : MonoBehaviour
 {
-    public static ObjectThatMove instance;
     public Vector3[] heights;
     Vector3 targetHeight;
     private void Awake()
     {
-        instance = this;
         targetHeight = transform.position;
     }
     

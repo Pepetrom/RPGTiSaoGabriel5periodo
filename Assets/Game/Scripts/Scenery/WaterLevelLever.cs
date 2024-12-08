@@ -15,22 +15,21 @@ public class WaterLevelLever : MonoBehaviour
     {
         if (!completeLever)
         {
-            PlayerController.instance.audioMan.PlayAudio(6);
             return;
-        };
+        }
         if (activated)
         {
-            activated = false;
             PlayerController.instance.audioMan.PlayAudio(5);
-            animator.SetTrigger("Activate");
-            ObjectThatMove.instance.ChangeLocation(heightIds[0]);
+            activated = false;
+            animator.SetTrigger("Deactivate");
+            objectThatMove.ChangeLocation(heightIds[0]);
         }
         else
         {
-            activated = true;
             PlayerController.instance.audioMan.PlayAudio(5);
-            animator.SetTrigger("Deactivate");
-            ObjectThatMove.instance.ChangeLocation(heightIds[1]);
+            activated = true;
+            animator.SetTrigger("Activate");
+            objectThatMove.ChangeLocation(heightIds[1]);
         }
     }
 }

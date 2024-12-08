@@ -80,6 +80,8 @@ public class PlayerInteract : MonoBehaviour
             {
                 GameManager.instance.Score(50);
                 Destroy(coll);
+                coll = null;
+                isNearItem = false;
                 pressF.SetActive(false);
                 PlayerController.instance.audioMan.PlayAudio(5);
             }
