@@ -198,6 +198,7 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
         if (hp <= 0)
         {
             animator.SetBool("death", true);
+            animator.SetBool("stun", false);
             Die();
         }
     }

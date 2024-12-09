@@ -23,6 +23,12 @@ public class PorquinWalkState : IPorquinStateMachine
 
     public void OnUpdate()
     {
+        if (controller.playerHit)
+        {
+            controller.SetState(new PorquinStunState(controller));
+            controller.playerHit = false;
+            return;
+        }
         controller.agent.SetDestination(controller.player.transform.position);
         controller.RotateTowardsPlayer();
         if(controller.TargetDir().magnitude < controller.meleeRange)
