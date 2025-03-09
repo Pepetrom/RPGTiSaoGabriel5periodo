@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
         enemySpawner.AllEnemies();
         tutorialPanel.gameObject.SetActive(false);
         tutorial = false;
+        UIItems.instance.UpdateScoreQUI(0);
     }
     private void Update()
     {
