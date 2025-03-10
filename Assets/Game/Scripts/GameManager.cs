@@ -43,16 +43,6 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !tutorial)
-        {
-            tutorialPanel.gameObject.SetActive(true);
-            tutorial = true;
-        }
-        else if(Input.GetKeyDown(KeyCode.Escape) && tutorial)
-        {
-            tutorialPanel.gameObject.SetActive(false);
-            tutorial = false;
-        }
     }
     public void SpawnNumber(int damageNumber, Color color, Transform targetLocation)
     {

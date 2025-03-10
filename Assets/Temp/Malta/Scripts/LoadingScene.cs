@@ -9,13 +9,6 @@ public class LoadingScene : MonoBehaviour
     public GameObject loadingScene;
     public GameObject button;
     public Slider loadingFill;
-    public GameObject tutorial, pageA, pageB, options;
-
-    private void Update()
-    {
-        TutorialPanel();
-        OptionsPanel();
-    }
     public void LoadingSceneActive(string name)
     {
         StartCoroutine(LoadSceneAsync(name));
@@ -35,38 +28,5 @@ public class LoadingScene : MonoBehaviour
     void ShowButton()
     {
         button.SetActive(true);
-    }
-    void TutorialPanel()
-    {
-        if (tutorial.activeSelf)
-        {
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                if (pageA.activeSelf)
-                {
-                    pageA.SetActive(false);
-                    pageB.SetActive(true);
-                }
-                else
-                {
-                    pageB.SetActive(false);
-                    pageA.SetActive(true);
-                }
-            }
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                tutorial.SetActive(false);
-            }
-        }
-    }
-    void OptionsPanel()
-    {
-        if (options.activeSelf)
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                options.SetActive(false);
-            }
-        }
     }
 }
