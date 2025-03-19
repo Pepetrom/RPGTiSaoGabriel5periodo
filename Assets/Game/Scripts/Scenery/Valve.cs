@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaterLevelLever : MonoBehaviour
+public class Valve : MonoBehaviour
 {
     bool activated = true;
     public Animator animator;
@@ -13,11 +13,16 @@ public class WaterLevelLever : MonoBehaviour
     public ObjectThatMove objectThatMove;
     public void Activate()
     {
-        if (!completeLever)
+        if (!completeLever || activated)
         {
             return;
         }
-        if (activated)
+        PlayerController.instance.audioMan.PlayAudio(5);
+        activated = true;
+        animator.SetTrigger("Activate");
+        objectThatMove.ChangeLocation(heightIds[1]);
+
+        /*if (activated)
         {
             PlayerController.instance.audioMan.PlayAudio(5);
             activated = false;
@@ -30,6 +35,6 @@ public class WaterLevelLever : MonoBehaviour
             activated = true;
             animator.SetTrigger("Activate");
             objectThatMove.ChangeLocation(heightIds[1]);
-        }
+        }*/
     }
 }

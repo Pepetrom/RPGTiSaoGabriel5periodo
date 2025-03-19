@@ -29,26 +29,21 @@ public class EnemySpawner : MonoBehaviour
                     break;
 
             }
+           
         }
         else
         {
-            Debug.LogError("Desgrama alada alegrada entristecida");
+            Debug.LogError("O Inimigo não possui PatrolData Associada");
         }
     }
     void DestroyAllEnemies()
     {
-        
         Enemy[] enemies = FindObjectsOfType<Enemy>();
         foreach (Enemy enemy in enemies)
         {
             //Debug.Log(enemies);
             Destroy(enemy.gameObject);
         }
-        /*
-        for(int i = enemiesInZone.Count; i >= 0; i--)
-        {
-            RemoveEnemy(enemiesInZone[i]);
-        }*/
     }
     public void AllEnemies()
     {
@@ -63,15 +58,5 @@ public class EnemySpawner : MonoBehaviour
         SpawnEnemy(7, enemyPrefabs[0], "turtle");
         SpawnEnemy(8, enemyPrefabs[1], "porquin");
     }
-    /*
-    public void RegisterEnemy(Enemy target)
-    {
-        enemiesInZone.Add(target);
-    }
-    public void RemoveEnemy(Enemy target)
-    {
-        enemiesInZone.Remove(target);
-        Destroy(target.gameObject);
-    }*/
 }
 

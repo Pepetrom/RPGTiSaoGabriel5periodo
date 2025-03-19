@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Audio;
 
 [RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
@@ -23,6 +20,12 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         if (!audioSource) audioSource = GetComponent<AudioSource>();
-        if(audioSource) originalPitch = audioSource.pitch;
+        if (!audioSource) ThisInstanceDoesNotHaveAudioSource();
+        if (audioSource) originalPitch = audioSource.pitch;
+    }
+    void ThisInstanceDoesNotHaveAudioSource()
+    {
+        Debug.LogError($"This {gameObject.name}, located at {transform.position} does not contain an AudioSource, correct or delete this");
+        Destroy(this.gameObject);
     }
 }

@@ -92,7 +92,7 @@ public class PlayerInteract : MonoBehaviour
             }
             if (isNearLever)
             {
-                coll.GetComponent<WaterLevelLever>().Activate();
+                coll.GetComponent<Valve>().Activate();
             }
         }
         
