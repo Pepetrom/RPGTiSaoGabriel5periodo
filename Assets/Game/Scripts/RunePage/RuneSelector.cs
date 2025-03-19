@@ -6,8 +6,41 @@ using static Unity.Collections.Unicode;
 public class RuneSelector : MonoBehaviour
 {
     [SerializeField] Image[] images;
-    //[SerializeField] Sprite[] rune1, rune2, rune3;
     [SerializeField] GameObject[] rune1, rune2, rune3;
+    [SerializeField] GameObject[] buttons;
+    [SerializeField] bool[] runePurchased;
+    [SerializeField] int runeValue, liberados;
+    [SerializeField] Button[] buttonsButtons;
+    public void UpdateRuneSelector()
+    {
+        if (liberados > 3)
+        {
+            buttons[0].SetActive(true);
+            buttons[1].SetActive(true);
+        }
+        if (liberados > 4)
+        {
+            buttons[2].SetActive(true);
+            buttons[3].SetActive(true);
+        }
+        if (liberados > 5)
+        {
+            buttons[4].SetActive(true);
+            buttons[5].SetActive(true);
+        }
+    }
+    public void PurchaseRune(int which)
+    {
+        if (runePurchased[which]) return;
+        if (GameManager.instance.skillPoints < runeValue) return;
+        GameManager.instance.skillPoints -= runeValue;
+        runePurchased[which] = true;
+
+        buttonsButtons[which].interactable = false;
+
+        liberados++;
+        UpdateRuneSelector();
+    }
     public void SelectPrimaryRune(int which)
     {
         int temp = PlayerController.instance.equipedPrimaryRune + which;
