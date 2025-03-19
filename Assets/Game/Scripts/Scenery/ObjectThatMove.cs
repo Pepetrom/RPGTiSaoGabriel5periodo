@@ -4,23 +4,23 @@ using UnityEngine;
 
 public class ObjectThatMove : MonoBehaviour
 {
-    public Vector3[] heights;
-    Vector3 targetHeight;
+    public Vector3[] place;
+    Vector3 targetPosition;
     private void Awake()
     {
-        targetHeight = transform.position;
+        targetPosition = transform.position;
     }
     
-    public void ChangeLocation(int heightId)
+    public void ChangeLocation(int positionID)
     {
-        targetHeight = heights[heightId];
+        targetPosition = place[positionID];
     }
     public void FixedUpdate()
     {
-        if (targetHeight != transform.position)
+        if (targetPosition != transform.position)
         {
-            transform.position = Vector3.Lerp(transform.position, targetHeight, Time.fixedDeltaTime);
-            if (Vector3.Distance(transform.position, targetHeight) < 1) transform.position = targetHeight;
+            transform.position = Vector3.Lerp(transform.position, targetPosition, Time.fixedDeltaTime);
+            if (Vector3.Distance(transform.position, targetPosition) < 1) transform.position = targetPosition;
         }
     }
 }

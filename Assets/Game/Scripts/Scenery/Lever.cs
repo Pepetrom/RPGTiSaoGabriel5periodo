@@ -1,13 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class Lever : MonoBehaviour
 {
+    bool activated = false;
+    public Animator animator;
     public Valve valve;
-    private void OnDisable()
+    public void Activate()
     {
-        valve.leverActivated = true;
-        //valve.lever.SetActive(true);
+        if (activated)
+        {
+            return;
+        }
+        valve.CanBeActivated(true);
+        PlayerController.instance.audioMan.PlayAudio(5);
+        activated = true;
+        animator.SetTrigger("Activate");
     }
 }

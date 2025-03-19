@@ -8,6 +8,7 @@ public class PlayerInteract : MonoBehaviour
     private bool isNearItem = false;
     private bool isNearNote = false;
     private bool isNearLever = false;
+    private bool isNearValve = false;
     private GameObject coll;
     public GameObject pressF;
     private void Start()
@@ -39,6 +40,12 @@ public class PlayerInteract : MonoBehaviour
             coll = collision.gameObject;
             pressF.SetActive(true);
         }
+        if (collision.gameObject.CompareTag("Valve"))
+        {
+            isNearValve = true;
+            coll = collision.gameObject;
+            pressF.SetActive(true);
+        }
     }
     private void OnTriggerExit(Collider collision)
     {
@@ -62,6 +69,12 @@ public class PlayerInteract : MonoBehaviour
         if (collision.gameObject.CompareTag("Lever"))
         {
             isNearLever = false;
+            coll = null;
+            pressF.SetActive(false);
+        }
+        if (collision.gameObject.CompareTag("Valve"))
+        {
+            isNearValve = false;
             coll = null;
             pressF.SetActive(false);
         }
@@ -91,6 +104,10 @@ public class PlayerInteract : MonoBehaviour
                 PlayerController.instance.audioMan.PlayAudio(5);
             }
             if (isNearLever)
+            {
+                coll.GetComponent<Lever>().Activate();
+            }
+            if (isNearValve)
             {
                 coll.GetComponent<Valve>().Activate();
             }

@@ -1,40 +1,27 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Valve : MonoBehaviour
 {
-    bool activated = true;
+    bool activated = false;
+    public bool canBeActivated = false;
     public Animator animator;
-    public int[] heightIds;
-    public bool completeLever = false;
-    public GameObject lever;
     public ObjectThatMove objectThatMove;
+    public int locationID = 0;
+    public GameObject canBeActivatedIndication;
     public void Activate()
     {
-        if (!completeLever || activated)
-        {
-            return;
-        }
+        if (activated) return;
+        if (!canBeActivated) return;
         PlayerController.instance.audioMan.PlayAudio(5);
         activated = true;
         animator.SetTrigger("Activate");
-        objectThatMove.ChangeLocation(heightIds[1]);
-
-        /*if (activated)
-        {
-            PlayerController.instance.audioMan.PlayAudio(5);
-            activated = false;
-            animator.SetTrigger("Deactivate");
-            objectThatMove.ChangeLocation(heightIds[0]);
-        }
-        else
-        {
-            PlayerController.instance.audioMan.PlayAudio(5);
-            activated = true;
-            animator.SetTrigger("Activate");
-            objectThatMove.ChangeLocation(heightIds[1]);
-        }*/
+        objectThatMove.ChangeLocation(locationID);
+    }
+    public void CanBeActivated(bool can)
+    {
+        canBeActivated = can;
+        canBeActivatedIndication.SetActive(can);
     }
 }
