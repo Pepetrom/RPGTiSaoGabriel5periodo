@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
         tutorialPanel.gameObject.SetActive(false);
         tutorial = false;
         UIItems.instance.UpdateScoreQUI(0);
+        UIItems.instance.UpdateSkillPoints();
     }
     private void Update()
     {

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class UIItems : MonoBehaviour
 {
     public static UIItems instance;
-    public TextMeshProUGUI runePageText;
+    public Text runePageText;
     public Text cheeseQ;
     public Text score;
     public GameObject[] skillButtons;

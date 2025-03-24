@@ -96,12 +96,12 @@ public class PlayerInteract : MonoBehaviour
                 coll = null;
                 isNearItem = false;
                 pressF.SetActive(false);
-                PlayerController.instance.audioMan.PlayAudio(5);
+                //PlayerController.instance.audioMan.PlayAudio(5);
             }
             if (isNearNote )
             {
                 UIItems.instance.ShowNotes();
-                PlayerController.instance.audioMan.PlayAudio(5);
+                //PlayerController.instance.audioMan.PlayAudio(5);
             }
             if (isNearLever)
             {
