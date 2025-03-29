@@ -12,8 +12,8 @@ public class PorquinDashState : IPorquinStateMachine
 
     public void OnEnter()
     {
+        controller.playerHit = false;
         controller.KB(2);
-        controller.animator.SetBool("isDashing", true);
         controller.selfCollider.enabled = false;
     }
 

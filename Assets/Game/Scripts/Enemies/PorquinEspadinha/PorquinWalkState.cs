@@ -26,14 +26,27 @@ public class PorquinWalkState : IPorquinStateMachine
         if (controller.playerHit)
         {
             controller.SetState(new PorquinStunState(controller));
-            controller.playerHit = false;
             return;
         }
         controller.agent.SetDestination(controller.player.transform.position);
         controller.RotateTowardsPlayer();
+        if (controller.TargetDir().magnitude > controller.meleeRange && controller.TargetDir().magnitude < controller.meleeRange + 5)
+        {
+            if(controller.sortedNumber < 0.6 && Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                controller.animator.SetBool("isDashing", true);
+                controller.SetState(new PorquinDashState(controller));
+            }
+            if (Input.GetKeyDown(KeyCode.Mouse1))
+            {
+                controller.animator.SetBool("isDashing", true);
+                controller.SetState(new PorquinDashState(controller));
+            }
+
+        }
         if(controller.TargetDir().magnitude < controller.meleeRange)
         {
-            if (controller.sortedNumber <= 0.3f)
+            /*if (controller.sortedNumber <= 0.3f)
             {
                 controller.SetState(new PorquinAtt3State(controller));
             }
@@ -44,7 +57,10 @@ public class PorquinWalkState : IPorquinStateMachine
             else
             {
                 controller.SetState(new PorquinAtt2State(controller));
-            }
+            }*/
+            Debug.Log("Ele não saiu do walk");
+            controller.animator.SetBool("isWalking", false);
+            controller.SetState(new PorquinCombatIdleState(controller));
         }
         if (controller.TargetDir().magnitude > controller.patrolRange * 2)
         {

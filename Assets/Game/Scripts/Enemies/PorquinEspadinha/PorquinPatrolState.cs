@@ -24,6 +24,7 @@ public class PorquinPatrolState : IPorquinStateMachine
     public void OnExit()
     {
         controller.agent.angularSpeed = 0f;
+        controller.animator.SetBool("patrolling", false);
         GameManager.instance.AddEnemy(controller.gameObject);
     }
 
