@@ -7,8 +7,14 @@ using UnityEngine.SceneManagement;
 public class LoadingScene : MonoBehaviour
 {
     public GameObject loadingScene;
-    public GameObject button;
+    public GameObject tutorial, pageA, pageB, options;
+    //public GameObject button;
     public Slider loadingFill;
+    public void Update()
+    {
+        TutorialPanel();
+        OptionsPanel();
+    }
     public void LoadingSceneActive(string name)
     {
         StartCoroutine(LoadSceneAsync(name));
@@ -23,10 +29,52 @@ public class LoadingScene : MonoBehaviour
             loadingFill.value = loadProgress;
             yield return null;
         }
-        ShowButton();
+        //ShowButton();
     }
-    void ShowButton()
+    void TutorialPanel()
+    {
+        if (tutorial.activeSelf)
+        {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                if (pageA.activeSelf)
+                {
+                    pageA.SetActive(false);
+                    pageB.SetActive(true);
+                }
+                else
+                {
+                    pageB.SetActive(false);
+                    pageA.SetActive(true);
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                tutorial.SetActive(false);
+                Debug.Log("Isso aqui ta funfando?");
+            }
+        }
+    }
+    void OptionsPanel()
+    {
+        if (options.activeSelf)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                options.SetActive(false);
+            }
+        }
+    }
+    public void ChangeScene(string scene)
+    {
+        SceneManager.LoadScene(scene);
+    }
+    public void Quit()
+    {
+        Application.Quit();
+    }
+    /*void ShowButton()
     {
         button.SetActive(true);
-    }
+    }*/
 }

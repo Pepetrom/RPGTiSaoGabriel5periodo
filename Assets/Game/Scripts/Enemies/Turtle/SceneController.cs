@@ -58,6 +58,7 @@ public class SceneController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 tutorial.SetActive(false);
+                Debug.Log("Isso aqui ta funfando?");
             }
         }
     }

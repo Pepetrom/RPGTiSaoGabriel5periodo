@@ -15,7 +15,7 @@ public class TurtleAtt1State : ITurtleStateMachine
         controller.animator.SetBool("Attack1", true);
         controller.SortNumber();
         impulseApplied = false;
-        controller.damage = 20;
+        controller.damage = 30;
         controller.rb.isKinematic = false;
     }
 

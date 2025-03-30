@@ -14,12 +14,12 @@ public class PorquinDashState : IPorquinStateMachine
     {
         controller.playerHit = false;
         controller.KB(2);
-        controller.selfCollider.enabled = false;
+        //controller.selfCollider.enabled = false;
     }
 
     public void OnExit()
     {
-        controller.selfCollider.enabled = true;
+        //controller.selfCollider.enabled = true;
     }
 
     public void OnUpdate()

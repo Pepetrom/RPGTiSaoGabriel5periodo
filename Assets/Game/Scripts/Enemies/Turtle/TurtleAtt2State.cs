@@ -12,7 +12,7 @@ public class TurtleAtt2State : ITurtleStateMachine
     }
     public void OnEnter()
     {
-        controller.damage = 15;
+        controller.damage = 25;
         controller.attackSpeed = 600f;
         controller.animator.SetBool("Attack2", true);
         controller.rb.isKinematic = false;
