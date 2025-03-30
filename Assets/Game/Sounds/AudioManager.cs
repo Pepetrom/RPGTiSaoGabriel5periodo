@@ -12,6 +12,7 @@ public class AudioManager : MonoBehaviour
     }
     public void PlayAudio(int audioId)
     {
+        if (!audioSource.isActiveAndEnabled) return;
         audioSource.pitch = originalPitch;
         audioSource.pitch += Random.Range(-0.2f, 0.2f);
         audioSource.clip = audios[audioId];
