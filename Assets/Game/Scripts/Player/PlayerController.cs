@@ -259,7 +259,7 @@ public class PlayerController : MonoBehaviour
     }
     void Run()
     {
-        if (Input.GetKey(KeyCode.LeftShift) && moveDirection != Vector3.zero)
+        if (Input.GetKey(KeyCode.LeftShift) && moveDirection != Vector3.zero && !isAttacking)
         {
             runningMultiplier = 2;
             animator.SetBool("Run", true);
