@@ -8,6 +8,7 @@ public class ScreenFade : MonoBehaviour
     public Image blackImage;
     public float fadeDuration;
     public static ScreenFade instance;
+    bool canFade = true;
     private void Awake()
     {
         instance = this;
@@ -18,23 +19,20 @@ public class ScreenFade : MonoBehaviour
         color.a = 0f;
         blackImage.color = color;
     }
-    private void Update()
-    {
-        if (GameManager.instance.canFade)
-        {
-            StartFadeToBlackAndBack();
-        }
-    }
     public void StartFadeToBlackAndBack()
     {
         StartCoroutine(FadeToBlackAndBack());
     }
     private IEnumerator FadeToBlackAndBack()
     {
-        yield return StartCoroutine(Fade(1));
-        yield return new WaitForSeconds(0.8f);
-        GameManager.instance.canFade = false;
-        yield return StartCoroutine(Fade(0));
+        if (canFade)
+        {
+            canFade = false;
+            yield return StartCoroutine(Fade(1));
+            yield return new WaitForSeconds(0.8f);
+            yield return StartCoroutine(Fade(0));
+            canFade = true;
+        }
     }
     private IEnumerator Fade(float target)
     {

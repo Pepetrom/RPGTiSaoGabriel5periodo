@@ -10,9 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 7752932077568059841}
   - component: {fileID: 1290516592157656115}
+  - component: {fileID: 4314579162078512953}
+  - component: {fileID: 2286638731491262749}
   m_Layer: 0
   m_Name: Caixote
-  m_TagString: Untagged
+  m_TagString: Destroyable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63,6 +65,43 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.36, y: 1.54, z: 4.32}
   m_Center: {x: 2.29, y: -1.96, z: 0.04}
+--- !u!135 &4314579162078512953
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 358694655804748812}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 2
+  m_Center: {x: 2, y: -1, z: 0}
+--- !u!114 &2286638731491262749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 358694655804748812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c15601d4b769c724093c0e9c86be4465, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasDrop: 0
+  drop: {fileID: 0}
+  destroyEffect: {fileID: 5783484673379052555, guid: 0613523a1fa5700429486afb9bd6c223,
+    type: 3}
 --- !u!1001 &872061559251466312
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -75,6 +114,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tabua 1 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4677789514984657096, guid: 8dc412ab837817446b1586beda880ca2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4714516155811990803, guid: 8dc412ab837817446b1586beda880ca2,
         type: 3}
@@ -165,6 +209,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tabua 1 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4677789514984657096, guid: 8dc412ab837817446b1586beda880ca2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4714516155811990803, guid: 8dc412ab837817446b1586beda880ca2,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -253,6 +302,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tabua 1 (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4677789514984657096, guid: 8dc412ab837817446b1586beda880ca2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4714516155811990803, guid: 8dc412ab837817446b1586beda880ca2,
         type: 3}
@@ -343,6 +397,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tabua 1 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 4677789514984657096, guid: 8dc412ab837817446b1586beda880ca2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4714516155811990803, guid: 8dc412ab837817446b1586beda880ca2,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -431,6 +490,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tabua 1 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4677789514984657096, guid: 8dc412ab837817446b1586beda880ca2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4714516155811990803, guid: 8dc412ab837817446b1586beda880ca2,
         type: 3}
@@ -521,6 +585,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tabua 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4677789514984657096, guid: 8dc412ab837817446b1586beda880ca2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4714516155811990803, guid: 8dc412ab837817446b1586beda880ca2,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -609,6 +678,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tabua 1 (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4677789514984657096, guid: 8dc412ab837817446b1586beda880ca2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4714516155811990803, guid: 8dc412ab837817446b1586beda880ca2,
         type: 3}
@@ -699,6 +773,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tabua 1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4677789514984657096, guid: 8dc412ab837817446b1586beda880ca2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4714516155811990803, guid: 8dc412ab837817446b1586beda880ca2,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -788,6 +867,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tabua 1 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4677789514984657096, guid: 8dc412ab837817446b1586beda880ca2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4714516155811990803, guid: 8dc412ab837817446b1586beda880ca2,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -876,6 +960,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tabua 1 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4677789514984657096, guid: 8dc412ab837817446b1586beda880ca2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4714516155811990803, guid: 8dc412ab837817446b1586beda880ca2,
         type: 3}

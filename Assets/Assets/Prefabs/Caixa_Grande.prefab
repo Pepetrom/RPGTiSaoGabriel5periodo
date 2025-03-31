@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 7447279887998875190}
   - component: {fileID: 409311083685042292}
   - component: {fileID: 8442289492515706714}
+  - component: {fileID: 4318100682220470395}
+  - component: {fileID: 5850443129007147776}
   m_Layer: 0
   m_Name: Caixa_Grande
   m_TagString: Untagged
@@ -105,3 +107,40 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.03344313, y: 0.06977204, z: 0.03167304}
   m_Center: {x: 0.00035590059, y: 0.0009070332, z: 0.015905894}
+--- !u!114 &4318100682220470395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8718187435667817536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c15601d4b769c724093c0e9c86be4465, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasDrop: 0
+  drop: {fileID: 0}
+  destroyEffect: {fileID: 5783484673379052555, guid: 0613523a1fa5700429486afb9bd6c223,
+    type: 3}
+--- !u!135 &5850443129007147776
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8718187435667817536}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.03488602
+  m_Center: {x: 0.00035590059, y: 0.0009070481, z: 0.01590588}

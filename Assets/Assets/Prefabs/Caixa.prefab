@@ -12,9 +12,11 @@ GameObject:
   - component: {fileID: 5772191381519567038}
   - component: {fileID: 7026108828487187141}
   - component: {fileID: 546746543484426382}
+  - component: {fileID: 7150456892836773628}
+  - component: {fileID: 4964604870470736044}
   m_Layer: 0
   m_Name: Caixa
-  m_TagString: Untagged
+  m_TagString: Destroyable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,3 +107,40 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.033771675, y: 0.03483311, z: 0.031675417}
   m_Center: {x: 0.00034747148, y: 0.0004799894, z: 0.015934575}
+--- !u!114 &7150456892836773628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8674140020934186434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c15601d4b769c724093c0e9c86be4465, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasDrop: 0
+  drop: {fileID: 0}
+  destroyEffect: {fileID: 5783484673379052555, guid: 0613523a1fa5700429486afb9bd6c223,
+    type: 3}
+--- !u!135 &4964604870470736044
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8674140020934186434}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.017416552
+  m_Center: {x: 0.00034746446, y: 0.0004799885, z: 0.015934577}

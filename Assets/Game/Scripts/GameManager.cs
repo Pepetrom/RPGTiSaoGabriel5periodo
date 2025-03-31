@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
 
     private List<GameObject> enemiesInCombat = new List<GameObject>(); // Lista para checar inimigos no combate
     public EnemySpawner enemySpawner;
-    public bool canFade = false;
+    //public bool canFade = false;
 
     public AudioManager audioMan;
 
@@ -41,9 +41,6 @@ public class GameManager : MonoBehaviour
         tutorial = false;
         UIItems.instance.UpdateScoreQUI(0);
         UIItems.instance.UpdateSkillPoints();
-    }
-    private void Update()
-    {
     }
     public void SpawnNumber(int damageNumber, Color color, Transform targetLocation)
     {
@@ -149,9 +146,9 @@ public class GameManager : MonoBehaviour
     }
     public void Respawn()
     {
-        Rest();
         PlayerController.instance.cc.enabled = false;
         PlayerController.instance.transform.position = lastBonfireRestedAt.position;
+        Rest();
         PlayerController.instance.cc.enabled = true;
     }
     public void Rest()
@@ -161,7 +158,7 @@ public class GameManager : MonoBehaviour
         HPBar.instance.currentHP = HPBar.instance.maxHP;
         enemySpawner.AllEnemies();
         PlayerController.instance.ResetAllActions();
-        canFade = true;
+        ScreenFade.instance.StartFadeToBlackAndBack();
         Bonfire(false);
     }
     public void Score(int amount)
