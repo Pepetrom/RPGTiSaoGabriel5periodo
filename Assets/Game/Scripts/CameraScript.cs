@@ -101,7 +101,6 @@ public class CameraScript : MonoBehaviour
         }
     }
 
-    // Função para iniciar o shake
     public void StartShake()
     {
         shakeTime = shakeDuration;

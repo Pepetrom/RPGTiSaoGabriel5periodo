@@ -13,6 +13,7 @@ public class Projectile : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("Colidiu");
             HPBar.instance.TakeDamage(p.damage, this.transform);
         }
     }
