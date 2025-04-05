@@ -6,6 +6,7 @@ using LitJson;
 public class DialogueManager : MonoBehaviour
 {
     public Text text;
+    public bool dialogueStatus = true;
     private JsonData dialogue;
     private int i;
     private string speaker;
@@ -34,8 +35,10 @@ public class DialogueManager : MonoBehaviour
         if (inDialogue)
         {
             JsonData line = dialogue[i];
+
             if (line[0].ToString() == "EOD")
             {
+                dialogueStatus = false;
                 inDialogue = false;
                 text.text = "";
                 PlayerController.instance.ResetAllActions();

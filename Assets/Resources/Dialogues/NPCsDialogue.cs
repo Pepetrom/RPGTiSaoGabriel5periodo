@@ -34,20 +34,24 @@ public class NPCsDialogue : MonoBehaviour
                         PlayerController.instance.StopAllActions();
                         DialogueManager.instance.LoadDialogue(dialoguePaths[0]);
                         DialogueManager.instance.printLine(DialogueManager.instance.text);
+                        dialogueIndex = 1;
                         break;
                     case 1:
                         PlayerController.instance.StopAllActions();
                         DialogueManager.instance.LoadDialogue(dialoguePaths[1]);
                         DialogueManager.instance.printLine(DialogueManager.instance.text);
+                        // Tocar o solo de guitarra
+                        // Quando o solo terminar o index muda para 3
                         break;
+                    case 2:
+                        PlayerController.instance.StopAllActions();
+                        DialogueManager.instance.LoadDialogue(dialoguePaths[2]);
+                        DialogueManager.instance.printLine(DialogueManager.instance.text);
+                        // Desabilita o colisor e quando o player fizer a quest ele libera o diálogo
+                        break;
+
                 }
             }
-        }
-        if(canTalk && Input.GetKeyDown(KeyCode.F))
-        {
-            PlayerController.instance.StopAllActions();
-            DialogueManager.instance.LoadDialogue(dialoguePath);
-            DialogueManager.instance.printLine(DialogueManager.instance.text);
         }
     }
 }
