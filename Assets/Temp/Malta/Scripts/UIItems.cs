@@ -12,6 +12,8 @@ public class UIItems : MonoBehaviour
     public Text score;
     public GameObject[] skillButtons;
     public GameObject notes;
+    public Image noteImage;
+    public GameObject pressF;
     void Awake()
     {
         instance = this;
@@ -32,8 +34,17 @@ public class UIItems : MonoBehaviour
     {
         score.text = value.ToString();
     }
-    public void ShowNotes()
+    public void ShowNotes(Sprite note)
     {
+        noteImage.sprite = note;
         notes.SetActive(true);
+    }
+    public void ActivatePressF()
+    {
+        pressF.SetActive(true);
+    }
+    public void DeactivatePressF()
+    {
+        pressF.SetActive(false);
     }
 }

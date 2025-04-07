@@ -4,4 +4,5 @@ using UnityEngine;
 public class PatrolData : ScriptableObject
 {
     public Vector3[] patrolPositions; // Agora estamos armazenando posições ao invés de Transforms
+    public Quaternion rotation;
 }

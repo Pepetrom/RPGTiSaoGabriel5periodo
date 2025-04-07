@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInteract : MonoBehaviour
 {
@@ -29,11 +30,6 @@ public class PlayerInteract : MonoBehaviour
             coll = collision.gameObject;
             pressF.SetActive(true);
         }
-        if (collision.gameObject.CompareTag("Notes"))
-        {
-            isNearNote = true;
-            pressF.SetActive(true);
-        }
         if (collision.gameObject.CompareTag("Lever"))
         {
             isNearLever = true;
@@ -60,11 +56,6 @@ public class PlayerInteract : MonoBehaviour
             pressF.SetActive(false);
             isNearItem = false;
             coll = null;
-        }
-        if (collision.gameObject.CompareTag("Notes"))
-        {
-            isNearNote = false;
-            pressF.SetActive(false);
         }
         if (collision.gameObject.CompareTag("Lever"))
         {
@@ -96,11 +87,6 @@ public class PlayerInteract : MonoBehaviour
                 coll = null;
                 isNearItem = false;
                 pressF.SetActive(false);
-                //PlayerController.instance.audioMan.PlayAudio(5);
-            }
-            if (isNearNote )
-            {
-                UIItems.instance.ShowNotes();
                 //PlayerController.instance.audioMan.PlayAudio(5);
             }
             if (isNearLever)
