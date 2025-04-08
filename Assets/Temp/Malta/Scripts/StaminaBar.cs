@@ -8,7 +8,8 @@ public class StaminaBar : MonoBehaviour
 {
     public Slider stambar;
     public Slider easebar;
-    public float maxStam;
+    public float baseStam;
+    float maxStam;
     public float currentStam;
     public float moveSpeedBase;
     public float lerpSpeed;
@@ -23,11 +24,7 @@ public class StaminaBar : MonoBehaviour
     }
     private void Start()
     {
-        currentStam = maxStam;
-        stambar.maxValue = maxStam;
-        easebar.maxValue = maxStam;
-        stambar.value = currentStam;
-        easebar.value = currentStam;
+        UpdateMaxStamina();
     }
 
     private void FixedUpdate()
@@ -35,14 +32,15 @@ public class StaminaBar : MonoBehaviour
         UpdateDrainStamina();
         RecoverStamina(staminaRecover);
     }
-    private void Update()
+    public void UpdateMaxStamina()
     {
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            DrainStamina(10);
-        }
+        maxStam = baseStam + PlayerController.instance.resistance * 10;
+        currentStam = maxStam;
+        stambar.maxValue = maxStam;
+        easebar.maxValue = maxStam;
+        stambar.value = currentStam;
+        easebar.value = currentStam;
     }
-
     private void UpdateDrainStamina()
     {
         if (stambar.value != currentStam)

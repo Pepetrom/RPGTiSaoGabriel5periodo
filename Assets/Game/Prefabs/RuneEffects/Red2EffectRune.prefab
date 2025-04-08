@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1889568651207696343}
   - component: {fileID: 2742187210840377922}
   - component: {fileID: 282614789564233578}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: EndExplosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4901,7 +4901,7 @@ GameObject:
   - component: {fileID: 2005241550183553453}
   - component: {fileID: 5158110399224894808}
   - component: {fileID: -6403487215214758419}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Red2EffectRune
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5100,7 +5100,7 @@ GameObject:
   - component: {fileID: 1476706315090522157}
   - component: {fileID: 1943178653306859752}
   - component: {fileID: 8351362621154757831}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10025,7 +10025,7 @@ GameObject:
   - component: {fileID: 5766471112705392487}
   - component: {fileID: 774378228869459380}
   - component: {fileID: 1232416294090557780}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15027,6 +15027,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Hoff_Sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 61c522be3dae7254f8ff4ae766284105,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

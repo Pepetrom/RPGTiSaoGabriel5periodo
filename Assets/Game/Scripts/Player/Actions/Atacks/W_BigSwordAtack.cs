@@ -166,12 +166,6 @@ public class W_BigSwordAtack : IWeapon
     public void AtackEnd()
     {
         canBeInterupted = false;
-        /*
-        player.isAttacking = false;
-        player.canMove = true;
-        player.canDoAtack = true;
-        player.animator.SetBool("Atacking", false);
-        player.swordTrail.emitting = false;*/
         player.ResetAllActions();
     }
     public void InteruptAtack()

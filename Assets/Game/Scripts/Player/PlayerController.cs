@@ -69,11 +69,19 @@ public class PlayerController : MonoBehaviour
 
     //Audio
     public AudioManager audioMan;
+
+    //Detect Closest Enemy
+    Collider[] hits;
+    float closestDistance = Mathf.Infinity;
+    Transform closestEnemy = null;
+    float enemyDistance = 0;
+    //Raycast
+    Ray ray;
+    RaycastHit hit;
     //------------------------------------------------------------------------------------------------------------------------------------
     private void Awake()
     {
         instance = this;
-        //rb = GetComponent<Rigidbody>();
         mainCamera = Camera.main;
     }
     void Start()
@@ -96,9 +104,9 @@ public class PlayerController : MonoBehaviour
         atacks[0] = new W_BigSwordAtack();
         atacks[0].SetSlot(0);
 
-        
+
         runes = new IRune[runesForIRune.Length];
-        for (int i = 0; i< runesForIRune.Length; i++)
+        for (int i = 0; i < runesForIRune.Length; i++)
         {
             runes[i] = runesForIRune[i].GetComponent<IRune>();
         }
@@ -110,14 +118,11 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        animator.speed = (GameManager.instance.actionTime) * (1 + (agility * 0.1f));
         SetDirection();
         CheckGround();
         DoActions();
         moveDirection.y = gravity;
         cc.Move(moveDirection * Time.fixedDeltaTime);
-        //cc.SimpleMove(moveDirection);
-        //rb.velocity = moveDirection;
     }
     void CheckDistanceTarget()
     {
@@ -127,25 +132,21 @@ public class PlayerController : MonoBehaviour
 
         rightAmount = Vector3.Dot(moveDirection.normalized, playerRight);
         forwardAmount = Vector3.Dot(moveDirection.normalized, playerForward);
-        
+
         if (forwardAmount < 0)
         {
-            //Debug.Log("Moving Forward relative to target");
             targetLockedY += Time.fixedDeltaTime;
         }
         else if (forwardAmount > 0)
         {
-            //Debug.Log("Moving Backward relative to target");
             targetLockedY -= Time.fixedDeltaTime;
         }
         if (rightAmount < 0)
         {
-            //Debug.Log("Moving Right relative to target");
             targetLockedX += Time.fixedDeltaTime;
         }
         else if (rightAmount > 0)
         {
-            //Debug.Log("Moving Left relative to target");
             targetLockedX -= Time.fixedDeltaTime;
         }
 
@@ -165,57 +166,36 @@ public class PlayerController : MonoBehaviour
     void Controls()
     {
         WalkInput();
-        if (canDoAction[0])
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (Input.GetKeyDown(KeyCode.Space) && StaminaBar.instance.currentStam >= stamPerHit)
-            {
-                if (isAttacking)
-                {
-                    if (atacks[0].CanBeInterupted())
-                    {
-                        atacks[0].InteruptAtack();
-                        actions[0].ActionStart();
-                        StaminaBar.instance.DrainStamina(stamPerHit * 2);
-                    }
-                }
-                else
-                {
-                    actions[0].ActionStart();
-                    StaminaBar.instance.DrainStamina(stamPerHit * 2);
-                }
-            }
+            actions[0].ActionStart();
         }
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        //verificar se ficou melhor com GetKey ou GetKeyDown
+        if (Input.GetKey(KeyCode.Mouse0))
         {
             //light Atack
             Atack(0, false);
         }
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKey(KeyCode.Mouse1))
         {
             //heavy Atack
             Atack(0, true);
         }
         if (Input.GetKeyDown(KeyCode.Mouse2))
         {
-            if (target)
-            {
-                target = null;
-            }
-            else
-            {
-                DetectClosestEnemy();
-            }
+            DetectClosestEnemy();
         }
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            GameManager.instance.OpenRunes(!GameManager.instance.runePage.activeSelf);
+            UseEstus();
         }
-        if (Input.GetKeyDown(KeyCode.R) && Estus.instance.flaskQuantity > 0)
-        {
-            StopAllActions();
-            animator.SetTrigger("Estus");
-            Estus.instance.UseEstus();
-        }
+    }
+    void UseEstus()
+    {
+        if (Estus.instance.flaskQuantity <= 0) return;
+        StopAllActions();
+        animator.SetTrigger("Estus");
+        Estus.instance.UseEstus();
     }
     void Atack(int slot, bool heavy)
     {
@@ -223,7 +203,6 @@ public class PlayerController : MonoBehaviour
     }
     void CheckGround()
     {
-        //moveDirection.y -= gravityForce * Time.deltaTime;
         if (Physics.CheckSphere(groundPoint.position, 1, groundMask))
         {
             grounded = true;
@@ -244,7 +223,6 @@ public class PlayerController : MonoBehaviour
         moveDirection.Normalize();
         Run();
         moveDirection = moveDirection * moveSpeed * runningMultiplier;
-        //moveDirection.y = rb.velocity.y;
         animator.SetBool("Walk", (moveDirection.x != 0 || moveDirection.z != 0));
     }
     void SetDirection()
@@ -265,7 +243,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("Run", true);
             target = null;
         }
-        else 
+        else
         {
             runningMultiplier = 1;
             animator.SetBool("Run", false);
@@ -273,18 +251,24 @@ public class PlayerController : MonoBehaviour
     }
     void DetectClosestEnemy()
     {
-        Collider[] hits = Physics.OverlapSphere(model.transform.position, detectionAutoTargetRange);
-        float closestDistance = Mathf.Infinity;
-        Transform closestEnemy = null;
+        if (target)
+        {
+            target = null;
+            return;
+        }
+        hits = Physics.OverlapSphere(model.transform.position, detectionAutoTargetRange);
+        closestDistance = Mathf.Infinity;
+        closestEnemy = null;
+        enemyDistance = 0;
 
         foreach (Collider hit in hits)
         {
             if (hit.CompareTag("Enemy"))
             {
-                float distance = Vector3.Distance(transform.position, hit.transform.position);
-                if (distance < closestDistance)
+                enemyDistance = Vector3.Distance(transform.position, hit.transform.position);
+                if (enemyDistance < closestDistance)
                 {
-                    closestDistance = distance;
+                    closestDistance = enemyDistance;
                     closestEnemy = hit.transform;
                 }
             }
@@ -317,10 +301,8 @@ public class PlayerController : MonoBehaviour
     public Vector3 GetMousePosition()
     {
         if (target != null) return Vector3.zero;
-        Ray ray;
-        RaycastHit hit;
         ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity,groundMask)) // agora está funcionando os raycasts
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundMask)) // agora está funcionando os raycasts
         {
             mousePosition = hit.point;
         }
@@ -336,11 +318,11 @@ public class PlayerController : MonoBehaviour
         {
             case "resistance":
                 resistance += 1;
-                StaminaBar.instance.maxStam += StaminaBar.instance.maxStam * 0.1f;
+                StaminaBar.instance.UpdateMaxStamina();
                 break;
             case "strength":
                 strength += 1;
-
+                HPBar.instance.UpdateMaxHp();
                 break;
             case "agility":
                 agility += 1;
@@ -350,7 +332,6 @@ public class PlayerController : MonoBehaviour
     public void StopAllActions()
     {
         masterCanDo = false;
-        //atacks[0].InteruptAtack();
         canDoAtack = false;
         canMove = false;
         comboCounter = 1;
@@ -365,7 +346,6 @@ public class PlayerController : MonoBehaviour
     public void ResetAllActions()
     {
         masterCanDo = true;
-        //atacks[0].InteruptAtack();
         canDoAtack = true;
         canMove = true;
 
@@ -375,6 +355,10 @@ public class PlayerController : MonoBehaviour
 
         isAttacking = false;
         swordTrail.emitting = false;
+    }
+    public void UpdateActionTime()
+    {
+        animator.speed = GameManager.instance.actionTime;
     }
 }
 

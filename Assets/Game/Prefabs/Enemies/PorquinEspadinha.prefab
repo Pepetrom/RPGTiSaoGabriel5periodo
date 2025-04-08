@@ -4267,7 +4267,7 @@ GameObject:
   - component: {fileID: 8106382448154139010}
   - component: {fileID: 5487982121968141386}
   - component: {fileID: 2155192240457417823}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: PorquinEspadinha
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -20479,6 +20479,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2630371569232613001}
     m_Modifications:
+    - target: {fileID: 5759078148044734595, guid: a0b4a4dca905a7d45b5cfda23ebb0b38,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 5880797563126852495, guid: a0b4a4dca905a7d45b5cfda23ebb0b38,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -20553,6 +20558,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Hit
+      objectReference: {fileID: 0}
+    - target: {fileID: 5880797563127281583, guid: a0b4a4dca905a7d45b5cfda23ebb0b38,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6569807649056357943, guid: a0b4a4dca905a7d45b5cfda23ebb0b38,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

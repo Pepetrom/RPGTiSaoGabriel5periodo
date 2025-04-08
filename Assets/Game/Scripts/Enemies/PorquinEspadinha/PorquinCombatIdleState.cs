@@ -65,7 +65,7 @@ public class PorquinCombatIdleState : IPorquinStateMachine
         }
         else if(controller.TargetDir().magnitude < controller.meleeRange)
         {
-            Debug.Log("Ele ta no update");
+            //Debug.Log("Ele ta no update");
             controller.SetState(new PorquinCombatControllerState(controller));
         }
     }

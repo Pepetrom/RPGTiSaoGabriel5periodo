@@ -8,7 +8,8 @@ public class HPBar : MonoBehaviour
 {
     public Slider hpbar;
     public Slider easebar;
-    public float maxHP;
+    public float baseHP;
+    float maxHP;
     public float currentHP;
     public float moveSpeedBase;
     public float lerpSpeed;
@@ -20,15 +21,20 @@ public class HPBar : MonoBehaviour
     }
     private void Start()
     {
+        UpdateMaxHp();
         ResetBar();
     }
-    void ResetBar()
+    public void ResetBar()
     {
         currentHP = maxHP;
         hpbar.maxValue = maxHP;
         easebar.maxValue = maxHP;
         hpbar.value = currentHP;
         easebar.value = currentHP;
+    }
+    public void UpdateMaxHp()
+    {
+        maxHP = baseHP + 20 * PlayerController.instance.strength;
     }
 
     private void FixedUpdate()

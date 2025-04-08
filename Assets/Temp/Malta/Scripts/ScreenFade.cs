@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class ScreenFade : MonoBehaviour
 {
     public Image blackImage;
-    public float fadeDuration;
     public static ScreenFade instance;
     bool canFade = true;
     private void Awake()
@@ -28,13 +27,13 @@ public class ScreenFade : MonoBehaviour
         if (canFade)
         {
             canFade = false;
-            yield return StartCoroutine(Fade(1));
+            yield return StartCoroutine(Fade(1, 0.1f));
             yield return new WaitForSeconds(0.8f);
-            yield return StartCoroutine(Fade(0));
+            yield return StartCoroutine(Fade(0,1));
             canFade = true;
         }
     }
-    private IEnumerator Fade(float target)
+    private IEnumerator Fade(float target, float fadeDuration)
     {
         float alpha = blackImage.color.a;
         float e = 0;

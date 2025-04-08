@@ -9,28 +9,36 @@ public class A_DashTowardMovement : IAction
     float dashTimer;
     bool dashing;
     Vector3 direction;
+    PlayerController player;
     public void SetSlot(int slot)
     {
         this.slot = slot;
+        player = PlayerController.instance;
     }
     public void ActionStart()
     {
-        PlayerController.instance.animator.SetTrigger("Dash");
+        if (!player.canDoAction[slot]) return;
+        if (StaminaBar.instance.currentStam < player.stamPerHit) return;
+        if(player.isAttacking && player.atacks[0].CanBeInterupted()) player.atacks[0].InteruptAtack();
+
+        StaminaBar.instance.DrainStamina(player.stamPerHit * 2);
+
+        player.animator.SetTrigger("Dash");
         HPBar.instance.StartCoroutine(HPBar.instance.InvulnableTime());
-        dashForce = PlayerController.instance.baseDashForce * 12;
-        dashCooldown = PlayerController.instance.baseDashCooldown;
-        PlayerController.instance.canDoAction[slot] = false;
+        dashForce = player.baseDashForce * 12;
+        dashCooldown = player.baseDashCooldown;
+        player.canDoAction[slot] = false;
         dashTime = 1;
         dashing = true;
         dashTimer = 0;
-        PlayerController.instance.dustParticle.Play();
+        player.dustParticle.Play();
 
-        direction = PlayerController.instance.moveDirection;
+        direction = player.moveDirection;
         direction.y = 0;
         direction = direction.normalized;
         if (direction == Vector3.zero)
         {
-            direction = -PlayerController.instance.model.transform.forward * dashForce * Time.fixedDeltaTime ;
+            direction = -player.model.transform.forward * dashForce * Time.fixedDeltaTime ;
         }
         else
         {
@@ -48,8 +56,8 @@ public class A_DashTowardMovement : IAction
                 ActionEnd();
                 return;
             }
-            PlayerController.instance.canDoAction[slot] = false;
-            PlayerController.instance.moveDirection += direction;
+            player.canDoAction[slot] = false;
+            player.moveDirection += direction;
             dashTime -= Time.fixedDeltaTime * 4;
             dashTimer = 0;
         }
@@ -60,9 +68,8 @@ public class A_DashTowardMovement : IAction
                 dashTimer += Time.fixedDeltaTime;
                 if (dashTimer >= dashCooldown)
                 {
-                    Debug.Log("CanDo");
                     dashTimer = 0;
-                    PlayerController.instance.canDoAction[slot] = true;
+                    player.canDoAction[slot] = true;
                 }
             }
         }
@@ -71,6 +78,7 @@ public class A_DashTowardMovement : IAction
     {
         dashing = false;
         dashTimer = 0;
+        player.ResetAllActions();
     }
 
 }

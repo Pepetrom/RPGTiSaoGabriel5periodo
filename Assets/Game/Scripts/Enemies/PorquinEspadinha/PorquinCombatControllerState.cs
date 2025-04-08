@@ -11,7 +11,7 @@ public class PorquinCombatControllerState : IPorquinStateMachine
     }
     public void OnEnter()
     {
-        Debug.Log("Controle");
+        //Debug.Log("Controle");
     }
 
     public void OnExit()

@@ -58,7 +58,7 @@ public class PorquinWalkState : IPorquinStateMachine
             {
                 controller.SetState(new PorquinAtt2State(controller));
             }*/
-            Debug.Log("Ele não saiu do walk");
+            //Debug.Log("Ele não saiu do walk");
             controller.animator.SetBool("isWalking", false);
             controller.SetState(new PorquinCombatIdleState(controller));
         }

@@ -8,15 +8,20 @@ public class A_Dash : IAction
     float dashTime;
     float dashTimer;
     bool dashing;
+    PlayerController player;
     public void SetSlot(int slot)
     {
         this.slot = slot;
-        dashForce = PlayerController.instance.baseDashForce;
-        dashCooldown = PlayerController.instance.baseDashCooldown;
+        player = PlayerController.instance;
+        dashForce = player.baseDashForce;
+        dashCooldown = player.baseDashCooldown;
     }
     public void ActionStart()
     {
-        PlayerController.instance.canDoAction[slot] = false;
+        if (!player.canDoAction[slot]) return;
+        if (StaminaBar.instance.currentStam < player.stamPerHit) return;
+        StaminaBar.instance.DrainStamina(player.stamPerHit * 2);
+        player.canDoAction[slot] = false;
         dashTime = 1;
         dashing = true;
     }
@@ -29,8 +34,8 @@ public class A_Dash : IAction
                 ActionEnd();
                 return;
             }
-            PlayerController.instance.canDoAction[slot] = false;
-            PlayerController.instance.moveDirection += PlayerController.instance.model.transform.forward * dashForce * 5 * Time.fixedDeltaTime;
+            player.canDoAction[slot] = false;
+            player.moveDirection += player.model.transform.forward * dashForce * 5 * Time.fixedDeltaTime;
             dashTime -= Time.fixedDeltaTime * 4;
         }
         else
@@ -40,14 +45,14 @@ public class A_Dash : IAction
                 dashTimer += Time.fixedDeltaTime;
                 if (dashTimer >= dashCooldown)
                 {
-                    PlayerController.instance.canDoAction[slot] = true;
+                    player.canDoAction[slot] = true;
                 }
             }
         }
     }
     public void ActionEnd()
     {
-        PlayerController.instance.canDoAction[slot] = true;
+        player.canDoAction[slot] = true;
         dashing = false;
         dashTimer = 0;
     }
