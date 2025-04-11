@@ -11,7 +11,6 @@ public class PlayerInteract : MonoBehaviour
     private bool isNearLever = false;
     private bool isNearValve = false;
     private GameObject coll;
-    private Interactable collI;
     public GameObject pressF;
     private void Start()
     {
@@ -19,10 +18,6 @@ public class PlayerInteract : MonoBehaviour
     }
     private void OnTriggerEnter(Collider collision)
     {
-        if(collision.gameObject.CompareTag("Interactable")){
-            collI = collision.GetComponent<Interactable>();
-        }
-
         if (collision.gameObject.CompareTag("Bonfire"))
         {
             isNearBonfire = true;
@@ -35,7 +30,7 @@ public class PlayerInteract : MonoBehaviour
             coll = collision.gameObject;
             pressF.SetActive(true);
         }
-        /*if (collision.gameObject.CompareTag("Lever"))
+        if (collision.gameObject.CompareTag("Lever"))
         {
             isNearLever = true;
             coll = collision.gameObject;
@@ -46,14 +41,10 @@ public class PlayerInteract : MonoBehaviour
             isNearValve = true;
             coll = collision.gameObject;
             pressF.SetActive(true);
-        }*/
+        }
     }
     private void OnTriggerExit(Collider collision)
     {
-        if(collision.gameObject.CompareTag("Interactable")){
-
-        }
-
         if (collision.gameObject.CompareTag("Bonfire"))
         {
             isNearBonfire = false;
@@ -66,7 +57,7 @@ public class PlayerInteract : MonoBehaviour
             isNearItem = false;
             coll = null;
         }
-        /*if (collision.gameObject.CompareTag("Lever"))
+        if (collision.gameObject.CompareTag("Lever"))
         {
             isNearLever = false;
             coll = null;
@@ -77,15 +68,13 @@ public class PlayerInteract : MonoBehaviour
             isNearValve = false;
             coll = null;
             pressF.SetActive(false);
-        }*/
+        }
     }
     
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            collI.Interact();
-
             if (isNearBonfire )
             {
                 GameManager.instance.Bonfire(!GameManager.instance.bonfire.activeSelf);
@@ -100,14 +89,14 @@ public class PlayerInteract : MonoBehaviour
                 pressF.SetActive(false);
                 //PlayerController.instance.audioMan.PlayAudio(5);
             }
-            /*if (isNearLever)
+            if (isNearLever)
             {
                 coll.GetComponent<Lever>().Activate();
             }
             if (isNearValve)
             {
                 coll.GetComponent<Valve>().Activate();
-            }*/
+            }
         }
         
     }

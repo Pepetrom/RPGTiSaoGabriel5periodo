@@ -8,7 +8,7 @@ public class HPBar : MonoBehaviour
 {
     public Slider hpbar;
     public Slider easebar;
-    public float baseHP = 100;
+    public float baseHP;
     float maxHP;
     public float currentHP;
     public float moveSpeedBase;

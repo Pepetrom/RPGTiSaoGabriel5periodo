@@ -8,7 +8,7 @@ public class StaminaBar : MonoBehaviour
 {
     public Slider stambar;
     public Slider easebar;
-    public float baseStam = 50;
+    public float baseStam;
     float maxStam;
     public float currentStam;
     public float moveSpeedBase;
@@ -66,7 +66,7 @@ public class StaminaBar : MonoBehaviour
             {
                 easebar.value = stambar.value;
             }
-            //Coloquei um Clamp para estamina nï¿½o ficar negativa
+            //Coloquei um Clamp para estamina não ficar negativa
             currentStam -= Mathf.Clamp(value,0, maxStam);
             stambar.value = currentStam;
             moveSpeed = moveSpeedBase * value;
