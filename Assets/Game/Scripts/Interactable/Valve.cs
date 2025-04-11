@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Valve : MonoBehaviour
+public class Valve : Interactable
 {
     bool activated = false;
     public bool canBeActivated = false;
@@ -10,6 +10,10 @@ public class Valve : MonoBehaviour
     public ObjectThatMove objectThatMove;
     public int locationID = 0;
     public GameObject canBeActivatedIndication;
+    public override void Interact()
+    {
+        Activate();
+    }
     public void Activate()
     {
         if (activated) return;

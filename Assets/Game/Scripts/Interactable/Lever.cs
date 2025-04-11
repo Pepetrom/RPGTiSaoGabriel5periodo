@@ -1,11 +1,15 @@
 using System;
 using UnityEngine;
 
-public class Lever : MonoBehaviour
+public class Lever : Interactable
 {
     bool activated = false;
     public Animator animator;
     public Valve valve;
+    public override void Interact()
+    {
+        Activate();
+    }
     public void Activate()
     {
         if (activated)

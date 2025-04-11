@@ -302,7 +302,7 @@ GameObject:
   - component: {fileID: 785850297150783927}
   m_Layer: 16
   m_Name: Valve
-  m_TagString: Valve
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -406,6 +406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 347b057a6ed392f4dbed1673acf5509d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInRange: 0
   canBeActivated: 0
   animator: {fileID: 785850297150783927}
   objectThatMove: {fileID: 0}

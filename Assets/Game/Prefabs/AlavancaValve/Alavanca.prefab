@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1048738241727650793}
   m_Layer: 16
   m_Name: Alavanca1
-  m_TagString: Lever
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bb2519319c14c04dac37eb5311b80ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInRange: 0
   animator: {fileID: 2553241071708431551}
   valve: {fileID: 0}
 --- !u!1 &921101561212558919
