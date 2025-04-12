@@ -123,6 +123,7 @@ public class PlayerController : MonoBehaviour
         DoActions();
         moveDirection.y = gravity;
         cc.Move(moveDirection * Time.fixedDeltaTime);
+        PlayerInteract.instance.FixedUpdatePlayerInteract();
     }
     void CheckDistanceTarget()
     {
@@ -188,6 +189,10 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             UseEstus();
+        }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            PlayerInteract.instance.UpdatePlayerInteract();
         }
     }
     void UseEstus()

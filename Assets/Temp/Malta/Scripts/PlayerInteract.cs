@@ -13,6 +13,12 @@ public class PlayerInteract : MonoBehaviour
     private GameObject coll;
     private Interactable collEnter, collExit;
     public GameObject pressF;
+
+    public static PlayerInteract instance;
+    private void Awake()
+    {
+        instance = this;
+    }
     private void Start()
     {
         pressF.SetActive(false);
@@ -26,100 +32,52 @@ public class PlayerInteract : MonoBehaviour
             collEnter.Enter();
             pressF.SetActive(!!collEnter);
         }
-        if (collision.gameObject.CompareTag("Bonfire"))
-        {
-            isNearBonfire = true;
-            GameManager.instance.lastBonfireRestedAt.position = transform.position;
-            pressF.SetActive(true);
-        }
-        if (collision.gameObject.CompareTag("basicItem"))
-        {
-            isNearItem = true;
-            coll = collision.gameObject;
-            pressF.SetActive(true);
-        }
-        /*if (collision.gameObject.CompareTag("Lever"))
-        {
-            isNearLever = true;
-            coll = collision.gameObject;
-            pressF.SetActive(true);
-        }
-        if (collision.gameObject.CompareTag("Valve"))
-        {
-            isNearValve = true;
-            coll = collision.gameObject;
-            pressF.SetActive(true);
-        }*/
     }
     private void OnTriggerExit(Collider collision)
     {
+        if (!collEnter) return;
         if (collision.gameObject.CompareTag("Interactable"))
         {
             collExit = collision.GetComponent<Interactable>();
-            if(collEnter == collExit)
+            if (!collExit || collEnter == collExit)
             {
                 collEnter = null;
             }
             collExit.Exit();
+            collExit = null;
             pressF.SetActive(!!collEnter);
         }
-        if (collision.gameObject.CompareTag("Bonfire"))
-        {
-            isNearBonfire = false;
-            GameManager.instance.Bonfire(false);
-            pressF.SetActive(false);
-        }
-        if (collision.gameObject.CompareTag("basicItem"))
-        {
-            pressF.SetActive(false);
-            isNearItem = false;
-            coll = null;
-        }
-       /* if (collision.gameObject.CompareTag("Lever"))
-        {
-            isNearLever = false;
-            coll = null;
-            pressF.SetActive(false);
-        }
-        if (collision.gameObject.CompareTag("Valve"))
-        {
-            isNearValve = false;
-            coll = null;
-            pressF.SetActive(false);
-        }*/
     }
-    
-    private void Update()
+    public void UpdatePlayerInteract()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (!collEnter || Vector3.Distance(collEnter.transform.position, PlayerController.instance.transform.position) > 10)
         {
-            if (collEnter && collEnter.IsInRange())
-            {
-                collEnter.Interact();
-            }
-            if (isNearBonfire )
-            {
-                GameManager.instance.Bonfire(!GameManager.instance.bonfire.activeSelf);
-                PlayerController.instance.audioMan.PlayAudio(6);
-            }
-            if (isNearItem )
-            {
-                GameManager.instance.Score(50);
-                Destroy(coll);
-                coll = null;
-                isNearItem = false;
-                pressF.SetActive(false);
-                //PlayerController.instance.audioMan.PlayAudio(5);
-            }
-            /*if (isNearLever)
-            {
-                coll.GetComponent<Lever>().Activate();
-            }
-            if (isNearValve)
-            {
-                coll.GetComponent<Valve>().Activate();
-            }*/
+            collEnter?.Exit();
+            collEnter = null;
+            pressF.SetActive(!!collEnter);
         }
-        
+        if (collEnter && collEnter.IsInRange())
+        {
+            collEnter.Interact();
+        }
+    }
+    public void FixedUpdatePlayerInteract()
+    {
+        if (!collEnter || Vector3.Distance(collEnter.transform.position, PlayerController.instance.transform.position) > 10)
+        {
+            collEnter?.Exit();
+            collEnter = null;
+            pressF.SetActive(!!collEnter);
+        }
+    }
+
+    public void ObjectAutoDestruction(Interactable obj)
+    {
+        if (obj == collEnter)
+        {
+            collEnter.Exit();
+            collEnter = null;
+            pressF.SetActive(!!collEnter);
+        }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 public class GameManager : MonoBehaviour
 {
@@ -108,18 +109,23 @@ public class GameManager : MonoBehaviour
         }
     }
     //TEMPORÁRIO
+    public void ExistAllMenus()
+    {
+        runesPanel.SetActive(false);
+        Bonfire(false);
+    }
     public void RunesPanel()
     {
         if (!runesPanel.activeSelf)
         {
             PlayerController.instance.StopAllActions();
             runesPanel.SetActive(true);
-            Time.timeScale = 0;
+            UpdateActionTime(0);
         }
         else
         {
             runesPanel.SetActive(false);
-            Time.timeScale = 1;
+            UpdateActionTime(1);
             PlayerController.instance.ResetAllActions();
         }
     }
@@ -128,26 +134,12 @@ public class GameManager : MonoBehaviour
         skillPoints += 5000;
         UIItems.instance.UpdateSkillPoints();
     }
-    public void OpenRunes(bool open)
-    {
-        runePage.SetActive(open);
-        if (open)
-        {
-            UpdateActionTime(0);
-            bonfire.SetActive(false);
-            PlayerController.instance.StopAllActions();
-        }
-        else
-        {
-            UpdateActionTime(1);
-            PlayerController.instance.ResetAllActions();
-        }
-    }
     public void Bonfire(bool open)
     {
         bonfire.SetActive(open);
         if (open)
         {
+            PlayerController.instance.ResetAllActions();
             PlayerController.instance.StopAllActions();
             UpdateActionTime(0);
         }
