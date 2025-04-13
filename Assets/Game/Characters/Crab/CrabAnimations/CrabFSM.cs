@@ -11,6 +11,15 @@ public class CrabFSM : MonoBehaviour
     public NavMeshAgent agent;
     public GameObject player;
     Rigidbody rb;
+
+    //logic
+    public int randomValue;
+    public bool antecipation = false;
+    public bool end = false;
+    public bool combo = false;
+
+    [Header("CombatAtributes")]
+    public float meleeRange;
     #endregion
     void Start()
     {
@@ -27,6 +36,28 @@ public class CrabFSM : MonoBehaviour
         this.state = state;
         this.state?.OnEnter();
     }
+    #region MÉTODOS AUXILIARES LÓGICA
+    public void SortNumber()
+    {
+        randomValue = Random.Range(0, 100);
+    }
+    public void Antecipation()
+    {
+        antecipation = true;
+    }
+    public void Deactivate()
+    {
+
+    }
+    public void End()
+    {
+        end = true;
+    }
+    public void Combo()
+    {
+        combo = true;
+    }
+    #endregion
     #region MÉTODOS AUXILIARES FÍSICA
     public void RotateTowardsPlayer()
     {

@@ -11,7 +11,7 @@ public class CrabIdleState : ICrabInterface
     }
     public void OnEnter()
     {
-
+        controller.SortNumber();
     }
 
     public void OnExit()
@@ -21,13 +21,10 @@ public class CrabIdleState : ICrabInterface
 
     public void OnUpdate()
     {
-        if(controller.TargetDir().magnitude < 20 && controller.TargetDir().magnitude > 7)
+        if(controller.TargetDir().magnitude <= controller.meleeRange)
         {
-            controller.SetState(new CrabWalkFState(controller));
-        }
-        else if(controller.TargetDir().magnitude <= 7)
-        {
-
+            controller.animator.SetBool("isEnableToAttack", true);
+            controller.SetState(new CrabAttController(controller));
         }
     }
 }

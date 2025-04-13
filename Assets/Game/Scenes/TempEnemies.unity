@@ -5674,6 +5674,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2141669829}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4231e71edf5d7b2408588b308fcdb063,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2141669830}
   m_SourcePrefab: {fileID: 100100000, guid: 4231e71edf5d7b2408588b308fcdb063, type: 3}
 --- !u!4 &225632854 stripped
 Transform:
@@ -7076,6 +7080,10 @@ MonoBehaviour:
   animator: {fileID: 2141669829}
   agent: {fileID: 271218327}
   player: {fileID: 224354700}
+  randomValue: 0
+  antecipation: 0
+  end: 0
+  meleeRange: 10
 --- !u!64 &273607732
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -56150,6 +56158,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2141669830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2141669828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22e36e138a072ae45aebaa70319e8997, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crab: {fileID: 271218329}
 --- !u!64 &2143237587
 MeshCollider:
   m_ObjectHideFlags: 0
