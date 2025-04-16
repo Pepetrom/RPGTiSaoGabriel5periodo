@@ -2837,6 +2837,73 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8897547066870165273}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1846157575158957928
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7009944352053480637}
+  - component: {fileID: 1757167222341269092}
+  - component: {fileID: 4750735359361531527}
+  m_Layer: 0
+  m_Name: Espada (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7009944352053480637
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1846157575158957928}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.67884755, y: -0.6732667, z: 0.16530435, w: -0.24197623}
+  m_LocalPosition: {x: -0.00757, y: 0.00117, z: -0.00155}
+  m_LocalScale: {x: 0.023333339, y: 0.023333332, z: 0.02333333}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1339187129800049232}
+  m_LocalEulerAnglesHint: {x: 176.779, y: -8.114014, z: 145.772}
+--- !u!135 &1757167222341269092
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1846157575158957928}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.16
+  m_Center: {x: -0.01551244, y: 0.43, z: -0.0000001119523}
+--- !u!114 &4750735359361531527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1846157575158957928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff6afae9104ec1d489e0d44334bc030f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  porquin: {fileID: 4938862910709731960}
 --- !u!1 &1847865560835626239
 GameObject:
   m_ObjectHideFlags: 0
@@ -14735,6 +14802,7 @@ Transform:
   - {fileID: 430822647448945815}
   - {fileID: 7509425786466628573}
   - {fileID: 6052375978819735559}
+  - {fileID: 7009944352053480637}
   m_Father: {fileID: 3960779487736071298}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8906169101915038605

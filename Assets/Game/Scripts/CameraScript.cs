@@ -165,6 +165,7 @@ public class CameraScript : MonoBehaviour
             aberration.intensity.value = 0.5f;
             whiteBalance.temperature.value = 60;
             whiteBalance.tint.value = 60;
+            aberration.intensity.value = 0.5f;
             timeSinceHit += Time.deltaTime;
             if (timeSinceHit >= resetDelay)
             {
@@ -178,6 +179,7 @@ public class CameraScript : MonoBehaviour
             aberration.intensity.value = 0f;
             whiteBalance.temperature.value = 0;
             whiteBalance.tint.value = 0;
+            aberration.intensity.value = 0f;
         }
     }
     public void TakeHit(Color hitColor)

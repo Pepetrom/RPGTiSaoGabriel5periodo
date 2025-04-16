@@ -92,10 +92,6 @@ public class TurtleStateMachine : MonoBehaviour, IDamageable
                 patrolPoints[i] = patrolPoint.transform;
             }
         }
-        else
-        {
-            Debug.LogError("PatrolData não foi atribuído ao inimigo!");
-        }
         SetState(new TurtlePatrolState(this));
     } 
 

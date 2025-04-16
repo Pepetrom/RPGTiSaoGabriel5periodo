@@ -11,7 +11,7 @@ public class UIItems : MonoBehaviour
     public Text cheeseQ;
     public Text score;
     public GameObject[] skillButtons;
-    public GameObject notes;
+    public Canvas notes;
     public Image noteImage;
     public GameObject pressF;
     void Awake()
@@ -20,6 +20,7 @@ public class UIItems : MonoBehaviour
     }
     private void Start()
     {
+        pressF.SetActive(false);
         UpdateScoreQUI(GameManager.instance.score);
     }
     public void UpdateChesseQUI(int value)
@@ -37,7 +38,7 @@ public class UIItems : MonoBehaviour
     public void ShowNotes(Sprite note)
     {
         noteImage.sprite = note;
-        notes.SetActive(true);
+        notes.gameObject.SetActive(true);
     }
     public void ActivatePressF()
     {

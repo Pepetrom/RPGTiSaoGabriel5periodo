@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
     public float skillPoints;
     public GameObject runePage;
     public GameObject bonfire;
-    public GameObject tutorialPanel;
     public bool tutorial;
     public int score;
 
@@ -40,7 +39,6 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        tutorialPanel.gameObject.SetActive(false);
         tutorial = false;
         UIItems.instance.UpdateScoreQUI(0);
         UIItems.instance.UpdateSkillPoints();
