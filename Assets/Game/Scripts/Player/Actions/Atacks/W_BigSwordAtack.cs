@@ -220,7 +220,7 @@ public class W_BigSwordAtack : IWeapon
             }
         }
     }
-
+    // acerto de ataque normal
     public void AtackHit(Collider other)
     {
         player.audioMan.PlayAudio(3);
@@ -229,17 +229,18 @@ public class W_BigSwordAtack : IWeapon
         switch (player.comboCounter)
         {
             case 1:
-                other.GetComponent<IDamageable>().TakeDamage(damageCalc(5, 1, 0.4f, 0.1f, 0), 1);
+                other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.3f, 5f, 7.5f, 2.5f), 1);
                 break;
             case 2:
-                other.GetComponent<IDamageable>().TakeDamage(damageCalc(7, 1.5f, 0.6f, 0.15f, 0), 1);
+                other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.4f, 5f, 7.5f, 2.5f), 1);
                 break;
             case 3:
-                other.GetComponent<IDamageable>().TakeDamage(damageCalc(10, 2f, 0.8f, 0.2f, 0), 1);
+                other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.5f, 5f, 7.5f, 2.5f), 1);
                 break;
         }
         
     }
+    //acerto de ataque crítico
     public void AtackCriticalHit(Collider other)
     {
         player.audioMan.PlayAudio(4);
@@ -249,15 +250,15 @@ public class W_BigSwordAtack : IWeapon
         switch (player.comboCounter)
         {
             case 1:
-                other.GetComponent<IDamageable>().TakeDamage(damageCalc(5, 1.75f, 0.4f, 0.1f, 0), 1);
+                other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.5f, 6.5f, 7.5f, 2.5f), 1);
                 player.runes[player.equipedPrimaryRune].AtackCriticalEffect1();
                 break;
             case 2:
-                other.GetComponent<IDamageable>().TakeDamage(damageCalc(7, 2.25f, 0.6f, 0.15f, 0), 1);
+                other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.6f, 7.5f, 7.5f, 2.5f), 1);
                 player.runes[player.equipedPrimaryRune].AtackCriticalEffect2();
                 break;
             case 3:
-                other.GetComponent<IDamageable>().TakeDamage(damageCalc(10, 3f, 0.8f, 0.2f, 0), 1);
+                other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.7f, 8.5f, 7.5f, 3.5f), 1);
                 player.runes[player.equipedPrimaryRune].AtackCriticalEffect3();
                 break;
         }
@@ -278,6 +279,7 @@ public class W_BigSwordAtack : IWeapon
                 break;
         }
     }
+    //acerto de ataque pesado
     public void AtackHeavyHit(Collider other)
     {
         if (firstAtack)
@@ -285,13 +287,13 @@ public class W_BigSwordAtack : IWeapon
             switch (player.comboCounter)
             {
                 case 1:
-                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(15, 1.3f, 0.1f, 0.4f, 0), 1);
+                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.4f, 7.5f, 7.5f, 2.5f), 1);
                     break;
                 case 2:
-                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(15, 1.3f, 0.15f, 0.6f, 0), 1);
+                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.4f, 7.5f, 7.5f, 2.5f), 1);
                     break;
                 case 3:
-                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(15, 1.3f, 0.2f, 0.8f, 0), 1);
+                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.4f, 7.5f, 7.5f, 2.5f), 1);
                     break;
             }
         }
@@ -300,13 +302,13 @@ public class W_BigSwordAtack : IWeapon
             switch (player.comboCounter)
             {
                 case 1:
-                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(20, 1.3f, 0.1f, 0.4f, 0), 1);
+                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.5f, 3f, 5f, 5f), 1);
                     break;
                 case 2:
-                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(20, 1.3f, 0.15f, 0.6f, 0), 1);
+                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.6f, 4f, 5f, 6f), 1);
                     break;
                 case 3:
-                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(20, 1.3f, 0.2f, 0.8f, 0), 1);
+                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.7f, 5f, 5f, 7f), 1);
                     break;
             }
         }
@@ -314,7 +316,7 @@ public class W_BigSwordAtack : IWeapon
     public int damageCalc(float baseDamage, float baseMultiplier, float agilityModifier, float strenghtModifier, float resistanceMultiplier)
     {
         return (int)
-            ((player.damageMultiplier + baseMultiplier) *
+            ((player.damageMultiplier * baseMultiplier) *
             (baseDamage + (baseMultiplier + (player.strength * strenghtModifier) + (player.agility * agilityModifier) + (player.resistance * resistanceMultiplier))
             + player.damageAdd));
     }

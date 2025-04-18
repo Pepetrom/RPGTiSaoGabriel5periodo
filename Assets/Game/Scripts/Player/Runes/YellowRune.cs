@@ -3,26 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 public class YellowRune : MonoBehaviour, IRune
 {
+    //Makes you more Tanky and heals you, basically, makes it easier to not die
     //Primary
     [SerializeField] GameObject[] runeEffect;
     public void ProjectileHitEffect(Collider other)
     {
+        // for each enemy hit, adds a little bit flat damage to the next atack
         other.GetComponent<IDamageable>().TakeDamage((int)(PlayerController.instance.baseDamage * (2f + PlayerController.instance.resistance * 0.2f)), 0);
+        PlayerController.instance.damageAdd += PlayerController.instance.resistance * 1.5f;
     }
     public void AtackCriticalEffect1()
     {
-        PlayerController.instance.damageAdd = PlayerController.instance.resistance * 2;
-        Debug.Log("Crito");
+        HPBar.instance.RecoverHPbyItem((int)(PlayerController.instance.resistance * 1f));
     }
     public void AtackCriticalEffect2()
     {
-        PlayerController.instance.damageAdd = PlayerController.instance.resistance * 2.5f;
-        Debug.Log("Crito");
+        HPBar.instance.RecoverHPbyItem((int)(PlayerController.instance.resistance * 2f));
     }
     public void AtackCriticalEffect3()
     {
-        PlayerController.instance.damageAdd = PlayerController.instance.resistance * 3;
-        Debug.Log("Crito");
+        HPBar.instance.RecoverHPbyItem((int)(PlayerController.instance.resistance * 3f));
     }
     //Secondary
     public void HeavyEffect1()
@@ -40,6 +40,7 @@ public class YellowRune : MonoBehaviour, IRune
     //Terciary
     public void HitEffect()
     {
+        //recupera parte da barra secundária de vida
         HPBar.instance.RecoverHPbyHit();
     }
 }

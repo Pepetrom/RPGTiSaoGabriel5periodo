@@ -4,26 +4,26 @@ using UnityEngine;
 
 public class GreenRune : MonoBehaviour,IRune
 {
+    // Faster atacks and stamina recover
     //Primary
     [SerializeField] GameObject[] runeEffect;
     public void ProjectileHitEffect(Collider other)
     {
+        //for each hit enemy adds a little multiplier to the next hit
         other.GetComponent<IDamageable>().TakeDamage((int)(PlayerController.instance.baseDamage * (2f + PlayerController.instance.agility * 0.2f)), 0);
+        PlayerController.instance.damageMultiplier += (0.1f * (PlayerController.instance.agility));
     }
     public void AtackCriticalEffect1()
     {
-        PlayerController.instance.damageAdd = 400;
-        // PlayerController.instance.DamageAdd = PlayerController.instance.agility * 2;
+        StaminaBar.instance.RecoverStaminabyItem((PlayerController.instance.stamPerHit * (PlayerController.instance.agility + 1)) / 10);
     }
     public void AtackCriticalEffect2()
     {
-        PlayerController.instance.damageAdd = 400;
-        //PlayerController.instance.DamageAdd = PlayerController.instance.agility * 2.5f;
+        StaminaBar.instance.RecoverStaminabyItem((PlayerController.instance.stamPerHit * (PlayerController.instance.agility + 1)) / 7);
     }
     public void AtackCriticalEffect3()
     {
-        PlayerController.instance.damageAdd = 400;
-        //PlayerController.instance.DamageAdd = PlayerController.instance.agility * 3;
+        StaminaBar.instance.RecoverStaminabyItem((PlayerController.instance.stamPerHit * (PlayerController.instance.agility + 1)) / 4);
     }
     //Secondary
     public void HeavyEffect1()
@@ -41,6 +41,7 @@ public class GreenRune : MonoBehaviour,IRune
     //Terciary
     public void HitEffect()
     {
+        //The player recovers part of the spent stamina
         StaminaBar.instance.RecoverRecoverStaminabyHit();
     }
 }

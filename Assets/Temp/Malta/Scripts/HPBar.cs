@@ -32,9 +32,9 @@ public class HPBar : MonoBehaviour
         hpbar.value = currentHP;
         easebar.value = currentHP;
     }
-    public void UpdateMaxHp()
+    public void UpdateMaxHp(float atribute = 1)
     {
-        maxHP = baseHP + 20 * PlayerController.instance.strength;
+        maxHP = baseHP + (20 * atribute);
     }
 
     private void FixedUpdate()

@@ -323,14 +323,14 @@ public class PlayerController : MonoBehaviour
         {
             case "resistance":
                 resistance += 1;
-                StaminaBar.instance.UpdateMaxStamina();
+                HPBar.instance.UpdateMaxHp(resistance);
                 break;
             case "strength":
                 strength += 1;
-                HPBar.instance.UpdateMaxHp();
                 break;
             case "agility":
                 agility += 1;
+                StaminaBar.instance.UpdateMaxStamina(agility);
                 break;
         }
     }

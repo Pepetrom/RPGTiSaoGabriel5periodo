@@ -4,26 +4,31 @@ using UnityEngine;
 
 public class RedRune : MonoBehaviour,IRune
 {
+    // Massive damage, low survavibility in battle, but great recover
     //Primary
     [SerializeField] GameObject[] runeEffect;
+    int random;
     public void ProjectileHitEffect(Collider other)
     {
+        //adds a chance to regain one cheese for each enemy hit with the skill
         other.GetComponent<IDamageable>().TakeDamage((int)(PlayerController.instance.baseDamage * (2f + PlayerController.instance.strength * 0.2f)), 0);
+        random = Random.Range(0, 20);
+        if(random == 1)
+        {
+            Estus.instance.AddEstus();
+        }
     }
     public void AtackCriticalEffect1()
     {
-        PlayerController.instance.damageAdd = PlayerController.instance.strength * 2;
-        Debug.Log("Crito");
+        PlayerController.instance.damageMultiplier = 1 + (0.1f * (PlayerController.instance.strength +1 ));
     }
     public void AtackCriticalEffect2()
     {
-        PlayerController.instance.damageAdd = PlayerController.instance.strength * 2.5f;
-        Debug.Log("Crito");
+        PlayerController.instance.damageMultiplier = 1 + (0.15f * (PlayerController.instance.strength + 1)); ;
     }
     public void AtackCriticalEffect3()
     {
-        PlayerController.instance.damageAdd = PlayerController.instance.strength * 3;
-        Debug.Log("Crito");
+        PlayerController.instance.damageMultiplier = 1 + (0.2f * (PlayerController.instance.strength + 1));
     }
     //Secondary
     public void HeavyEffect1()
@@ -41,6 +46,7 @@ public class RedRune : MonoBehaviour,IRune
     //Terciary
     public void HitEffect()
     {
-        PlayerController.instance.damageMultiplier = 2f;
+        //aumenta seu dano no próximo hit
+        PlayerController.instance.damageAdd += PlayerController.instance.strength * 1.5f;
     }
 }

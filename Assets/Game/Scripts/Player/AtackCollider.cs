@@ -13,7 +13,14 @@ public class AtackCollider : MonoBehaviour
         }
         else if (other.CompareTag("Destroyable"))
         {
-            other.GetComponent<DestroyableObjects>().Die();
+            try
+            {
+                other.GetComponent<DestroyableObjects>().Die();
+            }
+            catch
+            {
+                if (other.gameObject.activeSelf) Destroy(other.gameObject);
+            }
         }
     }
 }

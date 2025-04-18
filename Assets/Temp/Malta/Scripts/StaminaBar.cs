@@ -32,9 +32,9 @@ public class StaminaBar : MonoBehaviour
         UpdateDrainStamina();
         RecoverStamina(staminaRecover);
     }
-    public void UpdateMaxStamina()
+    public void UpdateMaxStamina(float atribute = 1)
     {
-        maxStam = baseStam + PlayerController.instance.resistance * 10;
+        maxStam = baseStam + atribute * 10;
         currentStam = maxStam;
         stambar.maxValue = maxStam;
         easebar.maxValue = maxStam;
@@ -76,6 +76,10 @@ public class StaminaBar : MonoBehaviour
             currentStam = 0f;
             stambar.value = currentStam;
         }
+    }
+    public void RecoverStaminabyItem(int value)
+    {
+        currentStam = Mathf.Clamp(currentStam + value, 0, maxStam);
     }
     public void RecoverRecoverStaminabyHit()
     {

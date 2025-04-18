@@ -19,10 +19,15 @@ public class Estus : MonoBehaviour
     }
     public void UseEstus()
     {
-        flaskQuantity--;
+        flaskQuantity = Mathf.Clamp(flaskQuantity - 1, 0, maxFlaskQuantity);
         HPBar.instance.RecoverHPbyItem(healQuantity);
         UIItems.instance.UpdateChesseQUI(flaskQuantity);
     }   
+    public void AddEstus()
+    {
+        flaskQuantity = Mathf.Clamp(flaskQuantity + 1, 1, maxFlaskQuantity);
+        UIItems.instance.UpdateChesseQUI(flaskQuantity);
+    }
     public void ResetEstus()
     {
         flaskQuantity = maxFlaskQuantity;
