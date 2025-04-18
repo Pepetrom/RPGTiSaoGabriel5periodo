@@ -118,6 +118,7 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
+        animator.speed = GameManager.instance.actionTime;
         SetDirection();
         CheckGround();
         DoActions();
@@ -360,10 +361,6 @@ public class PlayerController : MonoBehaviour
 
         isAttacking = false;
         swordTrail.emitting = false;
-    }
-    public void UpdateActionTime()
-    {
-        animator.speed = GameManager.instance.actionTime;
     }
 }
 

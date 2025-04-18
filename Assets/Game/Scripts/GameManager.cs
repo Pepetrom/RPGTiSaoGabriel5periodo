@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject damagePopUp;
     public static GameManager instance;
-    public float actionTime = 1, playerActionTime = 1;
+    public float actionTime = 1;
     public bool isCombat = false;
     public GameObject runesPanel;
     public bool[] unlockedRunes = new bool[4];
@@ -68,7 +68,6 @@ public class GameManager : MonoBehaviour
     public void UpdateActionTime(float value)
     {
         actionTime = value;
-        playerActionTime = value > 0 ? value * (1 + (PlayerController.instance.agility * 0.1f)) : value;
         PlayerController.instance.UpdateActionTime();
     }
     public void StartCombat()
