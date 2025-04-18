@@ -68,7 +68,6 @@ public class GameManager : MonoBehaviour
     public void UpdateActionTime(float value)
     {
         actionTime = value;
-        PlayerController.instance.UpdateActionTime();
     }
     public void StartCombat()
     {
