@@ -61,9 +61,9 @@ public class PorquinCombatIdleState : IPorquinStateMachine
         }
         else if(controller.TargetDir().magnitude > controller.meleeRange)
         {
-            /*controller.animator.SetBool("isWalking", true);
-            controller.SetState(new PorquinWalkState(controller));*/
-            controller.SetState(new PorquinSwingState(controller));
+            controller.animator.SetBool("isWalking", true);
+            controller.SetState(new PorquinWalkState(controller));
+            //controller.SetState(new PorquinSwingState(controller));
         }
         else if(controller.TargetDir().magnitude < controller.meleeRange)
         {
