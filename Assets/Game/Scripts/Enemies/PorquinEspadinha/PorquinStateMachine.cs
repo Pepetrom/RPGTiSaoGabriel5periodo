@@ -40,6 +40,10 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
     public GameObject sword;
     public int fullCombatCounter;
     public Collider selfCollider;
+    // FUZZY
+    [HideInInspector] public int fuzzyDash, fuzzySwing;
+    public int minDash, maxDash;
+    public float swingRange;
 
     [Header("Status")]
     public int maxHP;
@@ -91,6 +95,8 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
         hpBar.maxValue = maxHP;
         hpBar.value = hp;
         sword.gameObject.SetActive(false);
+        //fuzzy
+        FuzzyGate(out fuzzyDash, out fuzzySwing);
     }
     private void FixedUpdate()
     {
@@ -108,6 +114,18 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
     public void SortNumber()
     {
         sortedNumber = Random.value;
+    }
+    public void FuzzyGate(out int a, out int b)
+    {
+        a = Random.Range(1, 101);
+        b = Random.Range(1, 101);
+    }
+    public float FuzzyLogic(int fuzzy, int min, int max)
+    {
+        float v = fuzzy - min;
+        float size = max - min;
+        float fuzzification = fuzzy/size;
+        return fuzzification;
     }
     public void AttackIdle()
     {
@@ -187,6 +205,11 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
     void UpdateHPBar()
     {
         hpBar.value = Mathf.Lerp(hpBar.value, hp, lerpSpeed);
+    }
+    public Vector3 Swing()
+    {
+        Vector3 pos = Random.insideUnitCircle * swingRange;
+        return pos;
     }
     public void TakeDamage(int damage, float knockbackStrenght)
     {

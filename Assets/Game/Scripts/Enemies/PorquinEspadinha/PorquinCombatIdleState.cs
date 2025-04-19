@@ -25,6 +25,7 @@ public class PorquinCombatIdleState : IPorquinStateMachine
         controller.animator.SetBool("attack3", false);
         controller.animator.SetBool("stun", false);
         controller.animator.SetBool("patrolling", false);
+        controller.animator.SetBool("isWalking", false);
         #endregion
         controller.agent.angularSpeed = 0f;
         controller.agent.speed = 0f;
@@ -60,8 +61,9 @@ public class PorquinCombatIdleState : IPorquinStateMachine
         }
         else if(controller.TargetDir().magnitude > controller.meleeRange)
         {
-            controller.animator.SetBool("isWalking", true);
-            controller.SetState(new PorquinWalkState(controller));
+            /*controller.animator.SetBool("isWalking", true);
+            controller.SetState(new PorquinWalkState(controller));*/
+            controller.SetState(new PorquinSwingState(controller));
         }
         else if(controller.TargetDir().magnitude < controller.meleeRange)
         {

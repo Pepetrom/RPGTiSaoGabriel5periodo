@@ -9,7 +9,7 @@ public class PorquinSword : MonoBehaviour
     {
         if (other.CompareTag("Player") && !porquin.hashitted)
         {
-            porquin.audioMan.PlayAudio(3);
+            //porquin.audioMan.PlayAudio(3);
             HPBar.instance.TakeDamage(porquin.damage, porquin.transform);
             porquin.sword.gameObject.SetActive(false);
             porquin.hashitted = true;

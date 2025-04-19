@@ -3755,7 +3755,7 @@ Transform:
   m_GameObject: {fileID: 990119852125509593}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.98496294, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -10817,6 +10817,11 @@ MonoBehaviour:
   sword: {fileID: 2873561090151340757}
   fullCombatCounter: 0
   selfCollider: {fileID: 5487982121968141386}
+  fuzzyDash: 0
+  fuzzySwing: 0
+  minDash: 20
+  maxDash: 80
+  swingRange: 0.5
   maxHP: 90
   hp: 0
   hpBar: {fileID: 6529320678295994950}
@@ -10831,7 +10836,8 @@ MonoBehaviour:
   active: 0
   combed: 0
   porquinRenderers:
-  - {fileID: 0}
+  - {fileID: 8573673598128687407}
+  - {fileID: 353500824513042564}
   sortedNumber: 0
   audioMan: {fileID: 0}
 --- !u!195 &8106382448154139010
@@ -26809,7 +26815,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 9.54}
+  m_AnchoredPosition: {x: 0, y: 6}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &8062559301405790079
@@ -31256,7 +31262,7 @@ Transform:
   m_GameObject: {fileID: 7927404174043392222}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 0, y: -0.98496294, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -32298,7 +32304,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 48e2763f04686bc459f69155e03f1a36, type: 3}
   - {fileID: 8300000, guid: 150595a2aa6be0e4cb362c37978611c5, type: 3}
   - {fileID: 8300000, guid: 5750761b63a077d47a7f8923e90772d3, type: 3}
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 5938460739121016278}
 --- !u!1 &8152945372922616929
 GameObject:
   m_ObjectHideFlags: 0
