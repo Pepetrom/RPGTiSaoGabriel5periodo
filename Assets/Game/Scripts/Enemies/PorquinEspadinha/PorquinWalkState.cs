@@ -31,7 +31,7 @@ public class PorquinWalkState : IPorquinStateMachine
         }
         controller.agent.SetDestination(controller.player.transform.position);
         controller.RotateTowardsPlayer();
-        if (controller.TargetDir().magnitude > controller.meleeRange && controller.TargetDir().magnitude < controller.meleeRange * 3)
+        if (controller.TargetDir().magnitude > controller.meleeRange && controller.TargetDir().magnitude < controller.meleeRange + 5)
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {

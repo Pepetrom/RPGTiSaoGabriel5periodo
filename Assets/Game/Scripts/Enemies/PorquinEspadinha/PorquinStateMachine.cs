@@ -42,7 +42,7 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
     public Collider selfCollider;
     // FUZZY
     [HideInInspector] public int fuzzyDash, fuzzySwing;
-    public int minDash, maxDash;
+    public int minDash, maxDash, minSwing, maxSwing;
     public float swingRange;
 
     [Header("Status")]
@@ -67,6 +67,7 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
     public float sortedNumber;
 
     public AudioManager audioMan;
+    Vector3 velocity, lVelocity;
     private void Start()
     {
         attack2Counter = 0;
@@ -97,6 +98,7 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
         sword.gameObject.SetActive(false);
         //fuzzy
         FuzzyGate(out fuzzyDash, out fuzzySwing);
+        Debug.Log($"{fuzzySwing}");
     }
     private void FixedUpdate()
     {
@@ -208,9 +210,33 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
     }
     public Vector3 Swing()
     {
-        Vector3 pos = Random.insideUnitCircle * swingRange;
-        return pos;
+        Vector3 randomDirection = Random.insideUnitSphere * swingRange;
+        randomDirection += transform.position;
+
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(randomDirection, out hit, swingRange, NavMesh.AllAreas))
+        {
+            return hit.position;
+        }
+
+        return transform.position;
     }
+    public bool HasReachedDestination()
+    {
+        return !agent.pathPending &&
+               agent.remainingDistance <= agent.stoppingDistance &&
+               (!agent.hasPath || agent.velocity.sqrMagnitude == 0f);
+    }
+    /*public void SwingMove()
+    {
+        velocity = agent.velocity;
+        lVelocity = transform.InverseTransformDirection(velocity);
+        float moveX = lVelocity.x;
+        float moveY = lVelocity.y;
+        animator.SetFloat("MoveX", moveX);
+        animator.SetFloat("MoveY", moveY);
+    }*/
+
     public void TakeDamage(int damage, float knockbackStrenght)
     {
         Impulse(kbForce * knockbackStrenght);

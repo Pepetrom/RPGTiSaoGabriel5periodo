@@ -5,6 +5,8 @@ using UnityEngine;
 public class PorquinCombatIdleState : IPorquinStateMachine
 {
     PorquinStateMachine controller;
+    float a;
+    float fuzzificado;
     public PorquinCombatIdleState(PorquinStateMachine controller)
     {
         this.controller = controller;
@@ -61,9 +63,31 @@ public class PorquinCombatIdleState : IPorquinStateMachine
         }
         else if(controller.TargetDir().magnitude > controller.meleeRange)
         {
-            controller.animator.SetBool("isWalking", true);
-            controller.SetState(new PorquinWalkState(controller));
-            //controller.SetState(new PorquinSwingState(controller));
+            if(controller.fuzzySwing < controller.minSwing)
+            {
+                controller.animator.SetBool("isWalking", true);
+                controller.SetState(new PorquinWalkState(controller));
+            }
+            else if(controller.fuzzySwing > controller.maxSwing)
+            {
+                controller.animator.SetBool("isSwing", true);
+                controller.SetState(new PorquinSwingState(controller));
+            }
+            else
+            {
+                a = Random.Range(0f, 1f);
+                fuzzificado = controller.FuzzyLogic(controller.fuzzySwing, controller.minSwing, controller.maxSwing);
+                if(a > fuzzificado)
+                {
+                    controller.animator.SetBool("isWalking", true);
+                    controller.SetState(new PorquinWalkState(controller));
+                }
+                else
+                {
+                    controller.animator.SetBool("isSwing", true);
+                    controller.SetState(new PorquinSwingState(controller));
+                }
+            }
         }
         else if(controller.TargetDir().magnitude < controller.meleeRange)
         {
