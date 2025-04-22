@@ -58,7 +58,6 @@ public class SceneController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 tutorial.SetActive(false);
-                Debug.Log("Isso aqui ta funfando?");
             }
         }
     }
@@ -78,7 +77,7 @@ public class SceneController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                options.SetActive(false);
+                bonfire.SetActive(false);
                 PlayerController.instance.ResetAllActions();
             }
         }

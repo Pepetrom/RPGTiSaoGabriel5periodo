@@ -16,7 +16,7 @@ public class ButtonHoverEffect : MonoBehaviour, IPointerEnterHandler, IPointerEx
     public Color normalTextColor = Color.white;  // Cor padrão do texto
     public Color hoverTextColor = Color.black;  // Cor do texto ao passar o mouse
     public Color pressedTextColor = Color.white; // Cor do texto ao pressionar
-    public Color selectedTextColor = Color.gray; // Cor do texto quando selecionado
+    public Color selectedTextColor = Color.white; // Cor do texto quando selecionado
 
     private bool isSelected = false; 
     void Start()
@@ -27,40 +27,26 @@ public class ButtonHoverEffect : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (!isSelected) 
-        {
-            buttonImage.color = hoverButtonColor;
-            buttonText.color = hoverTextColor;
-        }
+        buttonImage.color = hoverButtonColor;
+        buttonText.color = hoverTextColor;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (!isSelected)
-        {
-            buttonImage.color = normalButtonColor;
-            buttonText.color = normalTextColor;
-        }
+        buttonImage.color = normalButtonColor;
+        buttonText.color = normalTextColor;
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        buttonImage.color = pressedButtonColor;
-        buttonText.color = pressedTextColor;
+        buttonImage.color = normalButtonColor;
+        buttonText.color = normalTextColor;
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (isSelected)
-        {
-            
-            buttonText.color = selectedTextColor;
-        }
-        else
-        {
-            buttonImage.color = hoverButtonColor;
-            buttonText.color = hoverTextColor;
-        }
+        buttonImage.color = normalButtonColor;
+        buttonText.color = normalTextColor;
     }
 
     public void OnSelect(BaseEventData eventData)

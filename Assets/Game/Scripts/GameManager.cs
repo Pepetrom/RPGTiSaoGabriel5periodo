@@ -137,13 +137,19 @@ public class GameManager : MonoBehaviour
         {
             PlayerController.instance.ResetAllActions();
             PlayerController.instance.StopAllActions();
-            UpdateActionTime(0);
+            //UpdateActionTime(0);
         }
         else
         {
-            UpdateActionTime(1);
+            //UpdateActionTime(1);
             PlayerController.instance.ResetAllActions();
         }
+    }
+    public void Travel(Transform location)
+    {
+        PlayerController.instance.cc.enabled = false;
+        PlayerController.instance.transform.position = location.position;
+        PlayerController.instance.cc.enabled = true;
     }
     public void Respawn()
     {

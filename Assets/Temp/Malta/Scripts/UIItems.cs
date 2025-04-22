@@ -14,6 +14,7 @@ public class UIItems : MonoBehaviour
     public Canvas notes;
     public Image noteImage;
     public GameObject pressF;
+    private List<Button> locations = new List<Button>();
     void Awake()
     {
         instance = this;
@@ -47,5 +48,13 @@ public class UIItems : MonoBehaviour
     public void DeactivatePressF()
     {
         pressF.SetActive(false);
+    }
+    public void AddLocation(Button location)
+    {
+        if (!locations.Contains(location))
+        {
+            locations.Add(location);
+            location.gameObject.SetActive(true);
+        }
     }
 }
