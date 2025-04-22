@@ -26,7 +26,7 @@ public class A_KnockBack : IAction
     public void ActionUpdate()
     {
         if (!knockBacking) return;
-
+        Debug.Log("sou eu dio!");
         if(knockBackTime <= knockBackTime * 0.75f)
         {
             knockBacking = false;

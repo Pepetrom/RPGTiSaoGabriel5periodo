@@ -75,18 +75,19 @@ public class HPBar : MonoBehaviour
             }
             currentHP -= damage;
             currentHP = Mathf.Clamp(currentHP, 0, maxHP);
-            StartCoroutine(InvulnableTime());
-            GameManager.instance.SpawnNumber((int)damage, Color.red, PlayerController.instance.transform);
-            PlayerController.instance.damageFont = damageFont;
-            PlayerController.instance.actions[2].ActionStart();
-            CameraScript.instance.TakeHit(CameraScript.instance.targetVigColor);
+            if(currentHP > 0)
+            {
+                StartCoroutine(InvulnableTime());
+                GameManager.instance.SpawnNumber((int)damage, Color.red, PlayerController.instance.transform);
+                PlayerController.instance.damageFont = damageFont;
+                PlayerController.instance.actions[2].ActionStart();
+                CameraScript.instance.TakeHit(CameraScript.instance.targetVigColor);
+            }
         }
         if (currentHP <= 0)
         {
             StopCoroutine(InvulnableTime());
             GameManager.instance.Respawn();
-            ResetBar();
-            //SceneController.sceneController.ChangeScene("Menu");
         }
     }
     public IEnumerator InvulnableTime()

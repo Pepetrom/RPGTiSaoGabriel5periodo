@@ -31,6 +31,7 @@ public class PlayerInteract : MonoBehaviour
             collEnter = collision.GetComponent<Interactable>();
             collEnter.Enter();
             pressF.SetActive(!!collEnter);
+            Debug.Log("entrou em "+ collision.name);
         }
     }
     private void OnTriggerExit(Collider collision)
@@ -46,16 +47,13 @@ public class PlayerInteract : MonoBehaviour
             collExit.Exit();
             collExit = null;
             pressF.SetActive(!!collEnter);
+            Debug.Log("saiu de " + collision.name);
         }
     }
     public void UpdatePlayerInteract()
     {
-        if (!collEnter || Vector3.Distance(collEnter.transform.position, PlayerController.instance.transform.position) > 10)
-        {
-            collEnter?.Exit();
-            collEnter = null;
-            pressF.SetActive(!!collEnter);
-        }
+
+        CheckDistance();
         if (collEnter && collEnter.IsInRange())
         {
             collEnter.Interact();
@@ -63,7 +61,12 @@ public class PlayerInteract : MonoBehaviour
     }
     public void FixedUpdatePlayerInteract()
     {
-        if (!collEnter || Vector3.Distance(collEnter.transform.position, PlayerController.instance.transform.position) > 10)
+        CheckDistance();
+    }
+
+    void CheckDistance()
+    {
+        if(!collEnter || Vector3.Distance(collEnter.transform.position, PlayerController.instance.transform.position) > 10)
         {
             collEnter?.Exit();
             collEnter = null;

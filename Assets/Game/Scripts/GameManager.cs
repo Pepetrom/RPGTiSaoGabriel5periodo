@@ -154,10 +154,12 @@ public class GameManager : MonoBehaviour
     public void Respawn()
     {
         PlayerController.instance.moveDirection = Vector3.zero;
+        PlayerController.instance.cc.SimpleMove(Vector3.zero);
         PlayerController.instance.cc.enabled = false;
         Rest();
         PlayerController.instance.transform.position = lastBonfireRestedAt.position;
         PlayerController.instance.cc.enabled = true;
+        PlayerController.instance.cc.SimpleMove(Vector3.zero);
     }
     public void Rest()
     {
