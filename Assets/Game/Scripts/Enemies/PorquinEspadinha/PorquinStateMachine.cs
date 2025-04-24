@@ -30,11 +30,10 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
     [HideInInspector]public bool isInCombat = false;
     public float meleeRange;
     public float safeRange;
+    public float runRange;
     public float kbForce;
-    public string lastAttack = "";
     public int attack2Counter = 0;
     public float attackSpeed;
-    public TurtleHands rightHand, leftHand;
     public float damage;
     public bool hashitted = false;
     public GameObject sword;
@@ -61,6 +60,7 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
     [HideInInspector] public bool cannonFire;
     [HideInInspector] public bool active;
     [HideInInspector] public bool combed = false;
+    [HideInInspector] public bool run = true;
 
     public Renderer[] porquinRenderers;
 
@@ -68,6 +68,7 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
 
     public AudioManager audioMan;
     Vector3 velocity, lVelocity;
+    float moveY, moveX;
     private void Start()
     {
         attack2Counter = 0;
@@ -155,6 +156,10 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
     {
         active = false;
     }
+    public void Run()
+    {
+        run = false;
+    }
 
     public void Patrol()
     {
@@ -184,10 +189,6 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRot, Time.deltaTime * 10);
         }
-    }
-    public void AttacksKB(float value)
-    {
-        rb.AddForce(transform.forward.normalized * value, ForceMode.Impulse);
     }
     public void Patrolling()
     {
@@ -231,8 +232,8 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
     {
         velocity = agent.velocity;
         lVelocity = transform.InverseTransformDirection(velocity);
-        float moveX = lVelocity.x;
-        float moveY = lVelocity.y;
+        moveX = lVelocity.x;
+        moveY = lVelocity.y;
         animator.SetFloat("MoveX", lVelocity.x, 0.1f, Time.deltaTime);
         animator.SetFloat("MoveY", lVelocity.z, 0.1f, Time.deltaTime);
     }

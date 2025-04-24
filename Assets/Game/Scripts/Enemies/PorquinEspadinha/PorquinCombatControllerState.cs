@@ -28,7 +28,7 @@ public class PorquinCombatControllerState : IPorquinStateMachine
         }
         else
         {
-            if (controller.sortedNumber <= 0.6f)
+            if (controller.sortedNumber <= 1f)
             {
                 controller.fullCombatCounter++;
                 controller.SetState(new PorquinAtt2State(controller));

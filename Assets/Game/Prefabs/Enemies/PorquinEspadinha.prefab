@@ -4029,7 +4029,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.34
+  m_Radius: 0.29
   m_Center: {x: -0.01551244, y: 0.43, z: -0.0000001119523}
 --- !u!114 &7176363478847682444
 MonoBehaviour:
@@ -10495,6 +10495,7 @@ MonoBehaviour:
   isInCombat: 0
   meleeRange: 7
   safeRange: 9
+  runRange: 15
   kbForce: 200
   lastAttack: 
   attack2Counter: 0
@@ -10504,7 +10505,6 @@ MonoBehaviour:
   damage: 0
   hashitted: 0
   sword: {fileID: 1088570469668092486}
-  sword2: {fileID: 0}
   fullCombatCounter: 0
   selfCollider: {fileID: 5487982121968141386}
   fuzzyDash: 0

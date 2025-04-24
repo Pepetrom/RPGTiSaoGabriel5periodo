@@ -29,5 +29,9 @@ public class PorquinFSMReceiver : MonoBehaviour
     {
         porquin.Deactivate();
     }
+    public void Run()
+    {
+        porquin.Run();
+    }
 }
 

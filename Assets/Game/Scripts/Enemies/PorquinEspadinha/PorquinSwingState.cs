@@ -49,7 +49,7 @@ public class PorquinSwingState : IPorquinStateMachine
             {
                 a = Random.Range(0f, 1f);
                 fuzzificado = controller.FuzzyLogic(controller.fuzzySwing, controller.minSwing, controller.maxSwing);
-                if (a > fuzzificado/2)
+                if (a > fuzzificado/controller.TargetDir().magnitude)
                 {
                     controller.animator.SetBool("isSwing", false);
                     controller.animator.SetBool("isWalking", true);
