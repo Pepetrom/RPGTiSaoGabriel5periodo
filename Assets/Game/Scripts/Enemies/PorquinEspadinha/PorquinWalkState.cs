@@ -14,7 +14,7 @@ public class PorquinWalkState : IPorquinStateMachine
     public void OnEnter()
     {
         controller.SortNumber();
-        controller.agent.speed = 3.5f;
+        controller.agent.speed = 5f;
     }
 
     public void OnExit()

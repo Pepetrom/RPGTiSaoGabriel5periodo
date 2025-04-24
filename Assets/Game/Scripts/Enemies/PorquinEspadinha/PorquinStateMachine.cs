@@ -37,7 +37,7 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
     public TurtleHands rightHand, leftHand;
     public float damage;
     public bool hashitted = false;
-    public GameObject sword;
+    public GameObject sword, sword2;
     public int fullCombatCounter;
     public Collider selfCollider;
     // FUZZY
@@ -96,6 +96,7 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
         hpBar.maxValue = maxHP;
         hpBar.value = hp;
         sword.gameObject.SetActive(false);
+        sword2.gameObject.SetActive(false);
         //fuzzy
         FuzzyGate(out fuzzyDash, out fuzzySwing);
         Debug.Log($"{fuzzySwing}");

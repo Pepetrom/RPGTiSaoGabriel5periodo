@@ -38,10 +38,12 @@ public class PorquinAtt1State : IPorquinStateMachine
         if (controller.active)
         {
             controller.sword.gameObject.SetActive(true);
+            controller.sword2.gameObject.SetActive(true);
         }
         else
         {
             controller.sword.gameObject.SetActive(false);
+            controller.sword2.SetActive(false);
         }
         if (!controller.antecipation)
             controller.RotateTowardsPlayer();
