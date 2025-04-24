@@ -4004,7 +4004,7 @@ Transform:
   m_GameObject: {fileID: 1088570469668092486}
   serializedVersion: 2
   m_LocalRotation: {x: -0.6230897, y: -0.7631978, z: -0.1669604, w: -0.037586104}
-  m_LocalPosition: {x: -0.186, y: 0.061, z: -0.166}
+  m_LocalPosition: {x: -0.438, y: 0.016, z: -0.247}
   m_LocalScale: {x: 2.3333352, y: 2.3333323, z: 2.333333}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -4029,7 +4029,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.22
+  m_Radius: 0.34
   m_Center: {x: -0.01551244, y: 0.43, z: -0.0000001119523}
 --- !u!114 &7176363478847682444
 MonoBehaviour:
@@ -10196,73 +10196,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8637423202957977210}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2685063737001996464
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4947535092661790107}
-  - component: {fileID: 2343929998720858042}
-  - component: {fileID: 4999062410966112140}
-  m_Layer: 0
-  m_Name: SwordBottom
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4947535092661790107
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2685063737001996464}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.6230897, y: -0.7631978, z: -0.1669604, w: -0.037586104}
-  m_LocalPosition: {x: -0.774, y: -0.044, z: -0.355}
-  m_LocalScale: {x: 2.3333352, y: 2.3333323, z: 2.333333}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 8998234638532770383}
-  m_LocalEulerAnglesHint: {x: 192.006, y: 344.254, z: 260.124}
---- !u!135 &2343929998720858042
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2685063737001996464}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.2
-  m_Center: {x: -0.01551244, y: 0.43, z: -0.0000001119523}
---- !u!114 &4999062410966112140
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2685063737001996464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff6afae9104ec1d489e0d44334bc030f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  porquin: {fileID: 4938862910709731960}
 --- !u!1 &2689865532745304021
 GameObject:
   m_ObjectHideFlags: 0
@@ -10571,7 +10504,7 @@ MonoBehaviour:
   damage: 0
   hashitted: 0
   sword: {fileID: 1088570469668092486}
-  sword2: {fileID: 2685063737001996464}
+  sword2: {fileID: 0}
   fullCombatCounter: 0
   selfCollider: {fileID: 5487982121968141386}
   fuzzyDash: 0
@@ -17750,7 +17683,6 @@ Transform:
   - {fileID: 5663467313878441173}
   - {fileID: 3476491254929016078}
   - {fileID: 1743982540609945068}
-  - {fileID: 4947535092661790107}
   m_Father: {fileID: 57508715317344324}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4509164352135609598

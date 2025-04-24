@@ -37,7 +37,7 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
     public TurtleHands rightHand, leftHand;
     public float damage;
     public bool hashitted = false;
-    public GameObject sword, sword2;
+    public GameObject sword;
     public int fullCombatCounter;
     public Collider selfCollider;
     // FUZZY
@@ -96,7 +96,6 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
         hpBar.maxValue = maxHP;
         hpBar.value = hp;
         sword.gameObject.SetActive(false);
-        sword2.gameObject.SetActive(false);
         //fuzzy
         FuzzyGate(out fuzzyDash, out fuzzySwing);
         Debug.Log($"{fuzzySwing}");
@@ -228,15 +227,15 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
                agent.remainingDistance <= agent.stoppingDistance &&
                (!agent.hasPath || agent.velocity.sqrMagnitude == 0f);
     }
-    /*public void SwingMove()
+    public void SwingMove()
     {
         velocity = agent.velocity;
         lVelocity = transform.InverseTransformDirection(velocity);
         float moveX = lVelocity.x;
         float moveY = lVelocity.y;
-        animator.SetFloat("MoveX", moveX);
-        animator.SetFloat("MoveY", moveY);
-    }*/
+        animator.SetFloat("MoveX", lVelocity.x, 0.1f, Time.deltaTime);
+        animator.SetFloat("MoveY", lVelocity.z, 0.1f, Time.deltaTime);
+    }
 
     public void TakeDamage(int damage, float knockbackStrenght)
     {

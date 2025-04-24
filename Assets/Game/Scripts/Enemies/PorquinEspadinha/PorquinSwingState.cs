@@ -26,7 +26,7 @@ public class PorquinSwingState : IPorquinStateMachine
     {
         controller.agent.SetDestination(swingPos);
         controller.RotateTowardsPlayer();
-        // controller.SwingMove();
+        controller.SwingMove();
         if(controller.TargetDir().magnitude < controller.meleeRange)
         {
             controller.animator.SetBool("isSwing", false);
