@@ -9,7 +9,7 @@ public class ChangelogManager : MonoBehaviour
     [TextArea(5, 10)]
     public string content;
 
-    private string filePath;
+    public string filePath;
     public ChangelogData changelogData;
 
     private void Awake()

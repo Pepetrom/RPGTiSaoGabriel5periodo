@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneController : MonoBehaviour
 {
     public static SceneController sceneController;
-    public GameObject tutorial, pageA, pageB, options, bonfire, pause;
+    public GameObject tutorial, pageA, pageB, options, bonfire, pause, changeLog;
     private void Awake()
     {
         sceneController = this;
@@ -60,6 +60,10 @@ public class SceneController : MonoBehaviour
                 tutorial.SetActive(false);
             }
         }
+    }
+    public void Version()
+    {
+        changeLog.SetActive(!changeLog.activeSelf);
     }
     void OptionsPanel()
     {
