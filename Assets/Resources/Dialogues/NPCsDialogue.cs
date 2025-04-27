@@ -7,12 +7,12 @@ public class NPCsDialogue : MonoBehaviour
 {
     public string[] dialoguePaths;
     bool canTalk = false;
-    int dialogueIndex = 0;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             canTalk = true;
+            UIItems.instance.CanTalk(true);
         }
     }
     private void OnTriggerExit(Collider other)
@@ -20,6 +20,7 @@ public class NPCsDialogue : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             canTalk = false;
+            UIItems.instance.CanTalk(false);
         }
     }
     private void Update()
@@ -28,26 +29,37 @@ public class NPCsDialogue : MonoBehaviour
         {
             if (canTalk)
             {
-                switch (dialogueIndex)
+                switch (QuestManager.instance.davidDialogueIndex)
                 {
                     case 0:
                         PlayerController.instance.StopAllActions();
                         DialogueManager.instance.LoadDialogue(dialoguePaths[0]);
                         DialogueManager.instance.printLine(DialogueManager.instance.text);
-                        dialogueIndex = 1;
+                        if (DialogueManager.instance.dialogueEnded)
+                            QuestManager.instance.davidDialogueIndex = 1;
                         break;
                     case 1:
                         PlayerController.instance.StopAllActions();
                         DialogueManager.instance.LoadDialogue(dialoguePaths[1]);
                         DialogueManager.instance.printLine(DialogueManager.instance.text);
-                        // Tocar o solo de guitarra
-                        // Quando o solo terminar o index muda para 3
+                        if (DialogueManager.instance.dialogueEnded)
+                            QuestManager.instance.davidDialogueIndex = 2;
                         break;
                     case 2:
                         PlayerController.instance.StopAllActions();
                         DialogueManager.instance.LoadDialogue(dialoguePaths[2]);
                         DialogueManager.instance.printLine(DialogueManager.instance.text);
-                        // Desabilita o colisor e quando o player fizer a quest ele libera o diálogo
+                        break;
+                    case 3:
+                        PlayerController.instance.StopAllActions();
+                        DialogueManager.instance.LoadDialogue(dialoguePaths[3]);
+                        DialogueManager.instance.printLine(DialogueManager.instance.text);
+                        QuestManager.instance.canDropMedicine = true;
+                        break;
+                    case 4:
+                        PlayerController.instance.StopAllActions();
+                        DialogueManager.instance.LoadDialogue(dialoguePaths[4]);
+                        DialogueManager.instance.printLine(DialogueManager.instance.text);
                         break;
 
                 }

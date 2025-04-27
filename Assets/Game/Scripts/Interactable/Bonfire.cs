@@ -10,8 +10,10 @@ public class Bonfire : Interactable
     public string myName;
     public Text text;
     public int fontSize;
+    public Transform myPosition;
     public override void Interact()
     {
+        GameManager.instance.lastBonfireRestedAt = myPosition;
         UIItems.instance.AddLocation(myLocation);
         text.text = myName;
         text.fontSize = fontSize;

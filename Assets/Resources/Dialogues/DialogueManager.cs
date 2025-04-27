@@ -12,6 +12,7 @@ public class DialogueManager : MonoBehaviour
     private string speaker;
     public static DialogueManager instance;
     bool inDialogue;
+    public bool dialogueEnded;
     private void Awake()
     {
         instance = this;
@@ -21,6 +22,7 @@ public class DialogueManager : MonoBehaviour
         if (!inDialogue)
         {
             i = 0;
+            dialogueEnded = false;
             var jsonTextFile = Resources.Load<TextAsset>(path);
             if (jsonTextFile == null) Debug.LogError("Arquivo JSON não encontrado!");
             else Debug.Log("JSON carregado com sucesso!");
@@ -38,6 +40,7 @@ public class DialogueManager : MonoBehaviour
 
             if (line[0].ToString() == "EOD")
             {
+                dialogueEnded = true;
                 dialogueStatus = false;
                 inDialogue = false;
                 text.text = "";

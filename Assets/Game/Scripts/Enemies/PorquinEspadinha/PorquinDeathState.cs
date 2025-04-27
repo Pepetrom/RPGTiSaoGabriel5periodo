@@ -26,7 +26,7 @@ public class PorquinDeathState : IPorquinStateMachine
 
     public void OnExit()
     {
-
+        QuestManager.instance.DropMedicine();
     }
 
     public void OnUpdate()

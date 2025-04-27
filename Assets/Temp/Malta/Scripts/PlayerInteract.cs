@@ -53,7 +53,7 @@ public class PlayerInteract : MonoBehaviour
     public void UpdatePlayerInteract()
     {
 
-        CheckDistance();
+        //CheckDistance();
         if (collEnter && collEnter.IsInRange())
         {
             collEnter.Interact();
@@ -61,7 +61,7 @@ public class PlayerInteract : MonoBehaviour
     }
     public void FixedUpdatePlayerInteract()
     {
-        CheckDistance();
+        //CheckDistance();
     }
 
     void CheckDistance()

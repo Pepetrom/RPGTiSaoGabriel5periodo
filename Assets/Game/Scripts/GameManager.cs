@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
@@ -153,21 +154,30 @@ public class GameManager : MonoBehaviour
     }
     public void Respawn()
     {
-        PlayerController.instance.moveDirection = Vector3.zero;
-        PlayerController.instance.cc.SimpleMove(Vector3.zero);
-        PlayerController.instance.cc.enabled = false;
-        Rest();
-        PlayerController.instance.transform.position = lastBonfireRestedAt.position;
-        PlayerController.instance.cc.enabled = true;
-        PlayerController.instance.cc.SimpleMove(Vector3.zero);
+        UIItems.instance.PlayerIsDead();
+        if (UIItems.instance.gearEnd)
+            UIItems.instance.GearLoopAnimation(true);
+        if (UIItems.instance.deathAnimationIsOver)
+            UIItems.instance.RespawnButton();
+
     }
     public void Rest()
     {
-        ScreenFade.instance.StartFadeToBlackAndBack();
         Estus.instance.ResetEstus();
         HPBar.instance.ResetBar();
         enemySpawner.AllEnemies();
         Bonfire(false);
+        UIItems.instance.deathAnimationIsOver = false;
+        UIItems.instance.gearEnd = false;
+    }
+    public void ResetPositionPlayer() // Criei essa funçção para resetar a pos do player depois do evento de death animation
+    {
+        PlayerController.instance.moveDirection = Vector3.zero;
+        PlayerController.instance.cc.SimpleMove(Vector3.zero);
+        PlayerController.instance.cc.enabled = false;
+        PlayerController.instance.transform.position = lastBonfireRestedAt.position;
+        PlayerController.instance.cc.enabled = true;
+        PlayerController.instance.cc.SimpleMove(Vector3.zero);
     }
     public void Score(int amount)
     {
