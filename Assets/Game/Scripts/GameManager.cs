@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
 
     public AudioManager audioMan;
     PlayerController player;
+    public bool isOnWater;
 
     private void Awake()
     {
@@ -158,7 +159,10 @@ public class GameManager : MonoBehaviour
         if (UIItems.instance.gearEnd)
             UIItems.instance.GearLoopAnimation(true);
         if (UIItems.instance.deathAnimationIsOver)
+        {
+            Debug.Log(UIItems.instance.deathAnimationIsOver);
             UIItems.instance.RespawnButton();
+        }
 
     }
     public void Rest()
@@ -169,6 +173,7 @@ public class GameManager : MonoBehaviour
         Bonfire(false);
         UIItems.instance.deathAnimationIsOver = false;
         UIItems.instance.gearEnd = false;
+        isOnWater = false;
     }
     public void ResetPositionPlayer() // Criei essa funçção para resetar a pos do player depois do evento de death animation
     {

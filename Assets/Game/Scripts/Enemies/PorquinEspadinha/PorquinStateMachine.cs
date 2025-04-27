@@ -99,7 +99,6 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
         sword.gameObject.SetActive(false);
         //fuzzy
         FuzzyGate(out fuzzyDash, out fuzzySwing);
-        Debug.Log($"{fuzzySwing}");
     }
     private void FixedUpdate()
     {

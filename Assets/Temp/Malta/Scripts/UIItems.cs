@@ -19,7 +19,7 @@ public class UIItems : MonoBehaviour
     private List<Button> locations = new List<Button>();
     [HideInInspector] public bool deathAnimationIsOver, gearEnd;
     public Animator gearAnimator;
-    public GameObject medicine;
+    public GameObject medicine, essence;
     void Awake()
     {
         instance = this;
@@ -79,6 +79,7 @@ public class UIItems : MonoBehaviour
     public void DeathAnim()
     {
         deathAnimationIsOver = true;
+        Debug.Log(deathAnimationIsOver);
     }
     public void RespawnButton()
     {
@@ -96,5 +97,9 @@ public class UIItems : MonoBehaviour
     public void ShowMedicine(bool state)
     {
         medicine.SetActive(state);
+    }
+    public void ShowEssence(bool state)
+    {
+        essence.SetActive(state);
     }
 }

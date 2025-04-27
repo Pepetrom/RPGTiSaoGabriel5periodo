@@ -44,7 +44,7 @@ public class JabutiDialogue : MonoBehaviour
                     DialogueManager.instance.LoadDialogue(dialoguePaths[0]);
                     DialogueManager.instance.printLine(DialogueManager.instance.text);
                     UIItems.instance.ShowMedicine(false);
-                    //QuestManager.instance.Poem();
+                    QuestManager.instance.Poem();
                     if (DialogueManager.instance.dialogueEnded)
                         QuestManager.instance.davidDialogueIndex = 4;
                 }

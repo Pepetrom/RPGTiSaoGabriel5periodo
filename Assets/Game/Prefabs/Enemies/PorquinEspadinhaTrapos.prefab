@@ -1070,11 +1070,8 @@ MonoBehaviour:
   safeRange: 9
   runRange: 25
   kbForce: 200
-  lastAttack: 
   attack2Counter: 0
   attackSpeed: 0
-  rightHand: {fileID: 0}
-  leftHand: {fileID: 0}
   damage: 0
   hashitted: 0
   sword: {fileID: 8011641226230619135}
@@ -1087,7 +1084,7 @@ MonoBehaviour:
   minSwing: 20
   maxSwing: 90
   swingRange: 6
-  maxHP: 90
+  maxHP: 70
   hp: 0
   hpBar: {fileID: 6529320678295994950}
   lerpSpeed: 0.2
@@ -1100,6 +1097,7 @@ MonoBehaviour:
   cannonFire: 0
   active: 0
   combed: 0
+  run: 1
   porquinRenderers:
   - {fileID: 556262607182206927}
   sortedNumber: 0

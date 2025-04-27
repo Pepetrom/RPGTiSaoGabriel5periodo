@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class CrabFSM : MonoBehaviour
+public class CrabFSM : MonoBehaviour, IDamageable
 {
     #region VARIABLES
     ICrabInterface state;
@@ -20,6 +21,7 @@ public class CrabFSM : MonoBehaviour
 
     [Header("CombatAtributes")]
     public float meleeRange;
+    public int hp;
     #endregion
     void Start()
     {
@@ -73,6 +75,24 @@ public class CrabFSM : MonoBehaviour
     {
         Vector3 dir = player.transform.position - transform.position;
         return dir;
+    }
+
+    public void TakeDamage(int damage, float knockbackStrenght)
+    {
+        hp -= damage;
+        //playerHit = true;
+        //hit.Play();
+        GameManager.instance.SpawnNumber((int)damage, Color.yellow, transform);
+        if (hp <= 0)
+        {
+            //animator.SetBool("death", true);
+            //animator.SetBool("stun", false);
+            Die();
+        }
+    }
+    public void Die()
+    {
+        Destroy(gameObject);
     }
     #endregion
 }

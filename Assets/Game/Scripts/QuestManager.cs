@@ -5,19 +5,24 @@ using UnityEngine;
 public class QuestManager : MonoBehaviour
 {
     public static QuestManager instance;
-    public int davidDialogueIndex, tortoiseDialogueIndex;
-    public bool medicine = false, canDropMedicine = false;
+    public int davidDialogueIndex, tortoiseDialogueIndex, annelieseDialogueIndex;
+    public bool medicine = false, canDropMedicine = false, essence = false;
+    public Sprite poem;
     private void Awake()
     {
         instance = this;
     }
     public void Poem()
     {
-
+        UIItems.instance.ShowNotes(poem);
     }
     public void DropMedicine()
     {
         UIItems.instance.ShowMedicine(true);
         medicine = true;    
+    }
+    public void Essence()
+    {
+        essence = true;
     }
 }

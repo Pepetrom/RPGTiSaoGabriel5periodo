@@ -26,17 +26,22 @@ public class PorquinDeathState : IPorquinStateMachine
 
     public void OnExit()
     {
-        QuestManager.instance.DropMedicine();
+        
     }
 
     public void OnUpdate()
     {
         if (controller.attIdle)
         {
-            controller.StartCoroutine(DissolveOverTime(2f));
+            if (QuestManager.instance.canDropMedicine)
+            {
+                Debug.Log("Dropou a medicine");
+                QuestManager.instance.DropMedicine();
+                controller.DestroyPorquin(controller.gameObject);
+            }
         }
     }
-    private IEnumerator DissolveOverTime(float duration)
+    /*private IEnumerator DissolveOverTime(float duration)
     {
         float elapsedTime = 0f;
         while (elapsedTime < duration)
@@ -50,5 +55,5 @@ public class PorquinDeathState : IPorquinStateMachine
             yield return null;
         }
         controller.DestroyPorquin(controller.gameObject);
-    }
+    }*/
 }
