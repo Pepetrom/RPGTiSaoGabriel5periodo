@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public Vector3 moveDirection, forwardDirection;
     public Animator animator;
     public GameObject model;
-    bool masterCanDo = true;
+    public bool masterCanDo { get; private set; }
     [Header("Move Settings------------------")]
     public float moveSpeed;
     public float runningMultiplier = 1;
@@ -345,6 +345,9 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("Atacking", false);
         animator.SetBool("Walk", false);
         animator.SetBool("Run", false);
+        foreach (var action in actions) {
+            action.ActionEnd();
+        }
 
         isAttacking = false;
         swordTrail.emitting = false;

@@ -5,25 +5,32 @@ using static Unity.Collections.Unicode;
 
 public class RuneSelector : MonoBehaviour
 {
-    [SerializeField] Image[] images;
-    [SerializeField] GameObject[] rune1, rune2, rune3;
+    [SerializeField] GameObject[] runesBanner;
     [SerializeField] GameObject[] buttons;
     [SerializeField] bool[] runePurchased;
-    [SerializeField] int runeValue, liberados;
+    [SerializeField] int runeValue;
     [SerializeField] Button[] buttonsButtons;
+    int runeRowSize;
+    int liberados1, liberados2, liberados3;
+    int upperlimit, lowerlimit, selected;
+    int tier = 0;
+    private void Start()
+    {
+        runeRowSize = runesBanner.Length / 3;
+    }
     public void UpdateRuneSelector()
     {
-        if (liberados > 3)
+        if (liberados1 > 1)
         {
             buttons[0].SetActive(true);
             buttons[1].SetActive(true);
         }
-        if (liberados > 4)
+        if (liberados2 > 1)
         {
             buttons[2].SetActive(true);
             buttons[3].SetActive(true);
         }
-        if (liberados > 5)
+        if (liberados3 > 1)
         {
             buttons[4].SetActive(true);
             buttons[5].SetActive(true);
@@ -34,98 +41,102 @@ public class RuneSelector : MonoBehaviour
         if (runePurchased[which]) return;
         if (GameManager.instance.skillPoints < runeValue) return;
         GameManager.instance.skillPoints -= runeValue;
+
         runePurchased[which] = true;
+        if(buttonsButtons[which]) buttonsButtons[which].interactable = false;
 
-        buttonsButtons[which].interactable = false;
+        Debug.Log(runeRowSize);
+        EquipRune();
 
-        liberados++;
+        liberados1 = 0;
+        liberados2 = 0;
+        liberados3 = 0;
+        for (int i = 0; i < runeRowSize; i++)
+        {
+            if(runePurchased[i]) liberados1++; 
+        }
+        for (int i = runeRowSize; i < runeRowSize*2; i++)
+        {
+            if (runePurchased[i]) liberados2++;
+        }
+        for (int i = runeRowSize * 2; i < runeRowSize * 3; i++)
+        {
+            if (runePurchased[i]) liberados3++;
+        }
         UpdateRuneSelector();
+    }
+    void EquipRune()
+    {
+        foreach (var rune in runesBanner)
+        {
+            rune.SetActive(false);
+        }
+        runesBanner[PlayerController.instance.equipedPrimaryRune].SetActive(true);
+        runesBanner[PlayerController.instance.equipedSecondaryRune + runeRowSize].SetActive(true);
+        runesBanner[PlayerController.instance.equipedTerciaryRune + (runeRowSize*2)].SetActive(true);
     }
     public void SelectPrimaryRune(int which)
     {
-        int temp = PlayerController.instance.equipedPrimaryRune + which;
-        if (temp < 0) temp = rune1.Length - 1;
-        else temp = temp % rune1.Length;
-        if (!GameManager.instance.unlockedRunes[temp])
+        upperlimit = runeRowSize -1;
+        lowerlimit = 0;
+        selected = PlayerController.instance.equipedPrimaryRune + which;
+        if (selected < lowerlimit) selected = upperlimit;
+        if (selected > upperlimit) selected = lowerlimit;
+        if (!runePurchased[selected])
         {
-            for (int i = temp; i < rune1.Length && i >= 0; i += which)
+           for( int i = selected; i <= upperlimit && i >= lowerlimit; i += which)
             {
-                if (i == rune1.Length)
+                if (runePurchased[i])
                 {
-                    temp = PlayerController.instance.equipedPrimaryRune;
-                    break;
-                }
-                if (GameManager.instance.unlockedRunes[i])
-                {
-                    temp = i;
+                    selected = i;
                     break;
                 }
             }
         }
-        PlayerController.instance.equipedPrimaryRune = temp;
-        rune1[0].SetActive(false);
-        rune1[1].SetActive(false);
-        rune1[2].SetActive(false);
-        rune1[3].SetActive(false);
-        rune1[temp].SetActive(true);
-        //images[0].sprite = rune1[temp];
+        PlayerController.instance.equipedPrimaryRune = selected % runeRowSize;
+        EquipRune();
     }
     public void SelectSecondaryRune(int which)
     {
-        int temp = PlayerController.instance.equipedSecondaryRune + which;
-        if (temp < 0) temp = rune2.Length - 1;
-        else temp = temp % rune2.Length;
-        if (!GameManager.instance.unlockedRunes[temp])
+        upperlimit = (runeRowSize * 2) - 1;
+        lowerlimit = runeRowSize ;
+        selected = PlayerController.instance.equipedSecondaryRune + runeRowSize + which;
+        if (selected < lowerlimit) selected = upperlimit;
+        if (selected > upperlimit) selected = lowerlimit;
+        if (!runePurchased[selected])
         {
-            for (int i = temp; i < rune2.Length && i >= 0; i += which)
+            for (int i = selected; i <= upperlimit && i >= lowerlimit; i += which)
             {
-                if (i == rune2.Length)
+                if (runePurchased[i])
                 {
-                    temp = PlayerController.instance.equipedSecondaryRune;
-                    break;
-                }
-                if (GameManager.instance.unlockedRunes[i])
-                {
-                    temp = i;
+                    selected = i;
                     break;
                 }
             }
         }
-        PlayerController.instance.equipedSecondaryRune = temp;
-        rune2[0].SetActive(false);
-        rune2[1].SetActive(false);
-        rune2[2].SetActive(false);
-        rune2[3].SetActive(false);
-        rune2[temp].SetActive(true);
-        //images[1].sprite = rune2[temp];
+        PlayerController.instance.equipedSecondaryRune = selected % runeRowSize;
+        EquipRune();
     }
     public void SelectTerciaryRune(int which)
     {
-        int temp = PlayerController.instance.equipedTerciaryRune + which;
-        if (temp < 0) temp = rune3.Length - 1;
-        else temp = temp % rune3.Length;
-        if (!GameManager.instance.unlockedRunes[temp])
+        upperlimit = (runeRowSize * 3) - 1;
+        lowerlimit = runeRowSize*2;
+        selected = PlayerController.instance.equipedTerciaryRune + (runeRowSize * 2) + which;
+
+        if (selected < lowerlimit) selected = upperlimit;
+        if (selected > upperlimit) selected = lowerlimit;
+        if (!runePurchased[selected])
         {
-            for (int i = temp; i < rune3.Length && i >= 0; i += which)
+            for (int i = selected; i <= upperlimit && i >= lowerlimit; i += which)
             {
-                if (i == rune3.Length)
+                if (runePurchased[i])
                 {
-                    temp = PlayerController.instance.equipedTerciaryRune;
-                    break;
-                }
-                if (GameManager.instance.unlockedRunes[i])
-                {
-                    temp = i;
+                    selected = i;
                     break;
                 }
             }
         }
-        PlayerController.instance.equipedTerciaryRune = temp;
-        rune3[0].SetActive(false);
-        rune3[1].SetActive(false);
-        rune3[2].SetActive(false);
-        rune3[3].SetActive(false);
-        rune3[temp].SetActive(true);
-        //images[2].sprite = rune3[temp];
+        PlayerController.instance.equipedTerciaryRune = selected % runeRowSize;
+        EquipRune();
     }
 }
