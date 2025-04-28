@@ -35,10 +35,14 @@ public class PorquinDeathState : IPorquinStateMachine
         {
             if (QuestManager.instance.canDropMedicine)
             {
-                Debug.Log("Dropou a medicine");
                 QuestManager.instance.DropMedicine();
                 controller.DestroyPorquin(controller.gameObject);
             }
+            else
+            {
+                controller.DestroyPorquin(controller.gameObject);
+            }
+           
         }
     }
     /*private IEnumerator DissolveOverTime(float duration)
@@ -47,10 +51,10 @@ public class PorquinDeathState : IPorquinStateMachine
         while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
-            float dissolveValue = Mathf.Lerp(0, 1, elapsedTime / duration); // Alterar os valores conforme necessário
+            float dissolveValue = Mathf.Lerp(0, 1, elapsedTime / duration); // Alterar os valores conforme necessï¿½rio
             for (int i = 0; i < materials.Length; i++)
             {
-                materials[i].SetFloat("_Dissolve", dissolveValue); // Assume que a propriedade dissolve no shader é chamada _Dissolve
+                materials[i].SetFloat("_Dissolve", dissolveValue); // Assume que a propriedade dissolve no shader ï¿½ chamada _Dissolve
             }
             yield return null;
         }
