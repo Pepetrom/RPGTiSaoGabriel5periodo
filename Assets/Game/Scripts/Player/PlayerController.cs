@@ -86,6 +86,7 @@ public class PlayerController : MonoBehaviour
     }
     void Start()
     {
+        masterCanDo = true;
         cameraAlignValue = mainCamera.transform.forward;
         cameraAlignValue.y = 0;
         cameraAlignValue = cameraAlignValue.normalized;
@@ -345,10 +346,10 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("Atacking", false);
         animator.SetBool("Walk", false);
         animator.SetBool("Run", false);
-        foreach (var action in actions) {
+        /*foreach (var action in actions) {
             action.ActionEnd();
-        }
-
+        }*/
+        actions[2].ActionEnd();
         isAttacking = false;
         swordTrail.emitting = false;
     }
