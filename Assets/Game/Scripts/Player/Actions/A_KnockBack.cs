@@ -36,6 +36,7 @@ public class A_KnockBack : IAction
             ActionEnd();
             return;
         }
+        PlayerController.instance.canMove = false;
         PlayerController.instance.moveDirection += direction;
         knockBackTime -= Time.fixedDeltaTime;
     }

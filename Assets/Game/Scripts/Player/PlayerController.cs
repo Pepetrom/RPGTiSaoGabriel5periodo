@@ -65,7 +65,9 @@ public class PlayerController : MonoBehaviour
     float forwardAmount;
 
     public CharacterController cc;
-    [SerializeField] float gravity = 0;
+    float gravity = -9;
+    float gravityToTakeDamage = -20;
+    float baseGravity = -9;
 
     //Audio
     public AudioManager audioMan;
@@ -116,14 +118,15 @@ public class PlayerController : MonoBehaviour
     {
         if (!masterCanDo) return;
         Controls();
+        moveDirection.y = gravity;
+        
     }
     void FixedUpdate()
     {
         animator.speed = GameManager.instance.actionTime;
-        SetDirection();
         CheckGround();
+        SetDirection();
         DoActions();
-        moveDirection.y = gravity;
         cc.Move(moveDirection * Time.fixedDeltaTime);
         PlayerInteract.instance.FixedUpdatePlayerInteract();
     }
@@ -210,15 +213,19 @@ public class PlayerController : MonoBehaviour
     }
     void CheckGround()
     {
-        if (Physics.CheckSphere(groundPoint.position, 1, groundMask))
+        if (cc.isGrounded || !canMove)
         {
             grounded = true;
-            if (grounded) gravity = 0;
+            if (gravity < gravityToTakeDamage)
+            {
+                HPBar.instance.FallDamage(-gravity * 10);
+            }
+            if (grounded) gravity = baseGravity;
             canDoAction[3] = true;
         }
         else
         {
-            gravity -= 3 * 9.81f * Time.fixedDeltaTime;
+            gravity += baseGravity * Time.fixedDeltaTime;
             grounded = false;
         }
     }
@@ -234,13 +241,11 @@ public class PlayerController : MonoBehaviour
     }
     void SetDirection()
     {
-        if (!canMove)
+        if (canMove)
         {
-            moveDirection = Vector3.zero;
-            return;
+            LookForward();
+            LookAtTarget();
         }
-        LookForward();
-        LookAtTarget();
     }
     void Run()
     {

@@ -65,6 +65,28 @@ public class HPBar : MonoBehaviour
         currentHP = Mathf.Clamp(currentHP + value, 1, maxHP);
         GameManager.instance.SpawnNumber(value, Color.green, PlayerController.instance.transform);
     }
+    public void FallDamage(float damage)
+    {
+        if (PlayerController.instance.canTakeDamage && currentHP > 0)
+        {
+            if (easebar.value != hpbar.value)
+            {
+                easebar.value = hpbar.value;
+            }
+            currentHP -= damage;
+            currentHP = Mathf.Clamp(currentHP, 0, maxHP);
+            if (currentHP > 0)
+            {
+                GameManager.instance.SpawnNumber((int)damage, Color.red, PlayerController.instance.transform);
+                CameraScript.instance.TakeHit(CameraScript.instance.targetVigColor);
+            }
+        }
+        if (currentHP <= 0)
+        {
+            StopCoroutine(InvulnableTime());
+            GameManager.instance.Respawn();
+        }
+    }
     public void TakeDamage(float damage, Transform damageFont)
     {
         if (PlayerController.instance.canTakeDamage && currentHP > 0)
