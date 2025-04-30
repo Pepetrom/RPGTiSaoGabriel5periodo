@@ -1,9 +1,12 @@
 using UnityEngine;
 using System.IO;
+using UnityEngine.UI;
+using TMPro;
 
 public class ChangelogManager : MonoBehaviour
 {
     //Campos a serem preenchidos para o ChangeLog
+    public TextMeshProUGUI testeTexto;
     public string title;
     public string[] authors;
     [TextArea(5, 10)]

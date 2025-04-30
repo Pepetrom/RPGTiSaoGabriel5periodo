@@ -27,7 +27,6 @@ public class ChangeLog : MonoBehaviour
             }
             teste.text = $"<color=#F9FF00>{e.title}</color>: " + e.content + $"<color=#00C6B5>{authors}</color>: ";
         }
-
-        version.text = "V " + changelogData.entries[changelogData.entries.Count - 1].version + " ChangeLog(click)";
+        if(changelogData.entries.Count > 0) version.text = "V " + changelogData.entries[changelogData.entries.Count-1].version + " ChangeLog(click)";
     }
 }

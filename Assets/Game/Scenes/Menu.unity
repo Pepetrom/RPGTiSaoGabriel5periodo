@@ -941,7 +941,15 @@ PrefabInstance:
     - {fileID: 5392666536411806834, guid: 05ccfc6f4e1904f478c995303e13b75d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8601538852190378100, guid: 05ccfc6f4e1904f478c995303e13b75d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 482208894}
+    - targetCorrespondingSourceObject: {fileID: 8601538852190378100, guid: 05ccfc6f4e1904f478c995303e13b75d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 482208896}
   m_SourcePrefab: {fileID: 100100000, guid: 05ccfc6f4e1904f478c995303e13b75d, type: 3}
 --- !u!1 &112297881
 GameObject:
@@ -1571,7 +1579,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &262290878
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3054,6 +3062,49 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 441366054}
   m_CullTransparentMesh: 1
+--- !u!1 &482208893 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8601538852190378100, guid: 05ccfc6f4e1904f478c995303e13b75d,
+    type: 3}
+  m_PrefabInstance: {fileID: 102166557}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &482208894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 482208893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76a244a73b8e0bd478e8957b718aeee1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  testeTexto: {fileID: 0}
+  title: 
+  authors: []
+  content: 
+  filePath: 
+  changelogData:
+    entries: []
+--- !u!114 &482208896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 482208893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42f8d690c65cb334cb334a97b55ec9b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changelog: {fileID: 482208894}
+  changelogData:
+    entries: []
+  textScroller: {fileID: 2074330717}
+  logger: {fileID: 3374014482657854543, guid: f9e94a783cfad0f4e8623e7a2e915bde, type: 3}
+  version: {fileID: 617685353}
 --- !u!1 &521278356
 GameObject:
   m_ObjectHideFlags: 0
