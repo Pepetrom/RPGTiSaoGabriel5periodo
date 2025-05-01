@@ -18,15 +18,18 @@ public class CrabFSM : MonoBehaviour, IDamageable
     public bool antecipation = false;
     public bool end = false;
     public bool combo = false;
+    public bool jump = false;
+    public bool fall = false;
 
     [Header("CombatAtributes")]
     public float meleeRange;
     public int hp;
+    public float impulse;
     #endregion
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        SetState(new CrabIdleState(this));
+        SetState(new CrabStartState(this));
     }
     private void FixedUpdate()
     {
@@ -59,6 +62,22 @@ public class CrabFSM : MonoBehaviour, IDamageable
     {
         combo = true;
     }
+    public void Jump()
+    {
+        jump = true;
+    }
+    public void StopJump()
+    {
+        jump = false;
+    }
+    public void Fall()
+    {
+        fall = true;
+    }
+    public void StopFall()
+    {
+        fall = false;
+    }
     #endregion
     #region MÉTODOS AUXILIARES FÍSICA
     public void RotateTowardsPlayer()
@@ -76,7 +95,20 @@ public class CrabFSM : MonoBehaviour, IDamageable
         Vector3 dir = player.transform.position - transform.position;
         return dir;
     }
-
+    public void Impulse(float kbforce)
+    {
+        transform.position += transform.up * kbforce * Time.deltaTime;
+    }
+    public void FallTowardsPlayer(float fallSpeed)
+    {
+        Vector3 target = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
+        transform.position = Vector3.MoveTowards(transform.position, target, fallSpeed * Time.deltaTime);
+        transform.position += Vector3.down * fallSpeed * Time.deltaTime;
+    }
+    public bool IsGrounded()
+    {
+        return Physics.Raycast(transform.position, Vector3.down, 0.1f);
+    }
     public void TakeDamage(int damage, float knockbackStrenght)
     {
         hp -= damage;
@@ -90,6 +122,7 @@ public class CrabFSM : MonoBehaviour, IDamageable
             Die();
         }
     }
+
     public void Die()
     {
         Destroy(gameObject);

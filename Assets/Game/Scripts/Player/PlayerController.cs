@@ -124,7 +124,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         animator.speed = GameManager.instance.actionTime;
-        CheckGround();
+        //CheckGround();
         SetDirection();
         DoActions();
         cc.Move(moveDirection * Time.fixedDeltaTime);

@@ -175,7 +175,7 @@ public class GameManager : MonoBehaviour
         UIItems.instance.gearEnd = false;
         isOnWater = false;
     }
-    public void ResetPositionPlayer() // Criei essa funçção para resetar a pos do player depois do evento de death animation
+    public void ResetPositionPlayer() // Criei essa função para resetar a pos do player depois do evento de death animation
     {
         PlayerController.instance.moveDirection = Vector3.zero;
         PlayerController.instance.cc.SimpleMove(Vector3.zero);

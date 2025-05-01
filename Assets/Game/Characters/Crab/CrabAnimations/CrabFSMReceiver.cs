@@ -22,4 +22,20 @@ public class CrabFSMReceiver : MonoBehaviour
     {
         crab.Combo();
     }
+    public void Jump()
+    {
+        crab.Jump();
+    }
+    public void StopJump()
+    {
+        crab.StopJump();
+    }
+    public void Fall()
+    {
+        crab.Fall();
+    }
+    public void StopFall()
+    {
+        crab.StopFall();
+    }
 }
