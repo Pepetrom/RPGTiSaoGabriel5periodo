@@ -22,6 +22,6 @@ public class CrabWalkFState : ICrabInterface
     public void OnUpdate()
     {
         controller.agent.SetDestination(controller.player.transform.position);
-        controller.RotateTowardsPlayer();
+        controller.RotateTowardsPlayer(6);
     }
 }

@@ -26,7 +26,7 @@ public class CrabAtt1 : ICrabInterface
     {
         if (!controller.antecipation)
         {
-            controller.RotateTowardsPlayer();
+            controller.RotateTowardsPlayer(10);
         }
         if (controller.combo)
         {

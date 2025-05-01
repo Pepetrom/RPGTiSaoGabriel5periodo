@@ -10,6 +10,10 @@ public class CrabFSMReceiver : MonoBehaviour
     {
         crab.Antecipation();
     }
+    public void Activate()
+    {
+        crab.Activate();
+    }
     public void Deactivate()
     {
         crab.Deactivate();
