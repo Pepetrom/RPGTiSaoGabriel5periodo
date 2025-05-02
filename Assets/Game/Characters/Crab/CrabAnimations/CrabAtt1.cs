@@ -12,6 +12,7 @@ public class CrabAtt1 : ICrabInterface
 
     public void OnEnter()
     {
+        controller.damage = 40;
         controller.SortNumber();
     }
 
@@ -20,6 +21,7 @@ public class CrabAtt1 : ICrabInterface
         controller.end = false;
         controller.antecipation = false;
         controller.combo = false;
+        controller.hashitted = false;
     }
 
     public void OnUpdate()
@@ -28,9 +30,22 @@ public class CrabAtt1 : ICrabInterface
         {
             controller.RotateTowardsPlayer(10);
         }
+        if (controller.activate)
+        {
+            controller.claw1.enabled = true;
+        }
+        else
+        {
+            controller.claw1.enabled = false;
+        }
         if (controller.combo)
         {
-            if(controller.TargetDir().magnitude <= controller.meleeRange + controller.meleeRange/2)
+            if (controller.TargetDir().magnitude <= controller.minRange)
+            {
+                controller.animator.SetBool("att1", false);
+                controller.SetState(new CrabAttController(controller));
+            }
+            else if(controller.TargetDir().magnitude <= controller.meleeRange + controller.meleeRange/2)
             {
                 if (controller.randomValue <= 100)
                 {

@@ -70,11 +70,11 @@ public class CameraScript : MonoBehaviour
         FindPlayer();
         if (GameManager.instance.isCombat)
         {
-            CombatCamera(targetZoom, targetVig);
+            CombatCamera(targetZoom, targetVig, zoomSpeed);
         }
         else
         {
-            CombatCamera(60, 0.2f);
+            CombatCamera(60, 0.2f, zoomSpeed);
             //Debug.Log("Tome-lhe");
         }
         RedVignette();
@@ -149,7 +149,7 @@ public class CameraScript : MonoBehaviour
         }
     }
 
-    public void CombatCamera(float target, float value)
+    public void CombatCamera(float target, float value, float zoomSpeed)
     {
         currentZoom = Mathf.Lerp(currentZoom, target, Time.deltaTime * zoomSpeed);
         cam.fieldOfView = currentZoom;

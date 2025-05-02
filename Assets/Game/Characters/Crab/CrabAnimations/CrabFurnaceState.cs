@@ -11,13 +11,15 @@ public class CrabFurnaceState : ICrabInterface
     }
     public void OnEnter()
     {
-
+        controller.damage = 20;
     }
 
     public void OnExit()
     {
         controller.end = false;
         controller.antecipation = false;
+        controller.canDoFireDamage = false;
+        controller.hashitted = false;
     }
 
     public void OnUpdate()
@@ -28,12 +30,14 @@ public class CrabFurnaceState : ICrabInterface
         }
         if (controller.end)
         {
+            controller.fireCircle.SetActive(false);
             controller.animator.SetBool("isFurnace", false);
             controller.SetState(new CrabIdleState(controller));
         }
         if (controller.activate)
         {
             controller.fire.SetActive(true);
+            controller.fireCircle.SetActive(true);
         }
         else
         {

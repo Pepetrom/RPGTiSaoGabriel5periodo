@@ -13,7 +13,11 @@ public class CrabAttController : ICrabInterface
     {
         controller.animator.SetBool("att1", false);
         controller.animator.SetBool("att2", false);
+        controller.animator.SetBool("att3", false);
         controller.animator.SetBool("att1att2", false);
+        controller.animator.SetBool("att2att3", false);
+        controller.animator.SetBool("attFurnace", false);
+        controller.end = false;
         controller.SortNumber();
     }
 
@@ -24,7 +28,12 @@ public class CrabAttController : ICrabInterface
 
     public void OnUpdate()
     {
-        if(controller.TargetDir().magnitude <= controller.meleeRange)
+        if(controller.TargetDir().magnitude <= controller.minRange)
+        {
+            controller.animator.SetBool("attFurnace", true);
+            controller.SetState(new CrabGroundFurnace(controller));
+        }
+        else if(controller.TargetDir().magnitude <= controller.meleeRange)
         {
             if(controller.randomValue < 100)
             {
@@ -39,6 +48,11 @@ public class CrabAttController : ICrabInterface
             {
                 // ataque 2
             }
+        }
+        else if (controller.TargetDir().magnitude >= controller.maxRange)
+        {
+            controller.animator.SetBool("isSpin", true);
+            controller.SetState(new CrabSpinState(controller));
         }
         else
         {

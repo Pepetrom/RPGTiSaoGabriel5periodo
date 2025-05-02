@@ -12,7 +12,7 @@ public class CrabFSM : MonoBehaviour, IDamageable
     public Animator animator;
     public NavMeshAgent agent;
     public GameObject player;
-    Rigidbody rb;
+    [HideInInspector]public Rigidbody rb;
 
     //logic
     public int randomValue;
@@ -20,15 +20,19 @@ public class CrabFSM : MonoBehaviour, IDamageable
     public Transform ground;
 
     [Header("CombatAtributes")]
-    public float meleeRange;
+    public float meleeRange, minRange, maxRange, kbForce;
     public int hp, damage;
     public float impulse, rotateSpeed;
-    public SphereCollider jumpCollider;
-    public GameObject fire;
+    public SphereCollider jumpCollider, claw1, claw2;
+    public GameObject fire, fireCircle;
+    public bool canDoFireDamage;
 
     [Header("Fuzzy")]
     public int minJump, maxJump, fuzzyJump;
     public float jumpCount;
+
+    [Header("Effects")]
+    public GameObject VFXjumpImpact, VFXflameThrower, VFXfireCircle;
     #endregion
     void Start()
     {
@@ -127,10 +131,9 @@ public class CrabFSM : MonoBehaviour, IDamageable
         Vector3 target = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
     }
-
-    public bool IsGrounded()
+    public void KB(float value)
     {
-        return Physics.Raycast(transform.position, Vector3.down, 0.1f);
+        rb.AddForce(transform.forward.normalized * (kbForce * value), ForceMode.Impulse);
     }
     public void TakeDamage(int damage, float knockbackStrenght)
     {

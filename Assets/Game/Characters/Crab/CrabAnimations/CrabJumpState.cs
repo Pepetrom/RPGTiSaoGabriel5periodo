@@ -12,6 +12,7 @@ public class CrabJumpState : ICrabInterface
     }
     public void OnEnter()
     {
+        controller.VFXjumpImpact.gameObject.SetActive(false);
         controller.jumpCount += 0.2f;
         controller.animator.SetBool("isJumping", true);
         controller.damage = 70;
@@ -36,6 +37,7 @@ public class CrabJumpState : ICrabInterface
         pos = controller.transform.position;    
         if (controller.jump)
         {
+            CameraScript.instance.CombatCamera(120, 0.6f,2);
             controller.agent.enabled = false;
             controller.Impulse(controller.impulse);
         }
@@ -47,6 +49,7 @@ public class CrabJumpState : ICrabInterface
         {
             if (controller.transform.position.y >= -2f)
             {
+                CameraScript.instance.CombatCamera(60, 0.6f, 2);
                 controller.Impulse(-controller.impulse);
                 controller.FallTowardsPlayer(200);
             }
@@ -56,6 +59,7 @@ public class CrabJumpState : ICrabInterface
                 pos.y = -7.5f;
                 controller.agent.enabled = true;
                 controller.transform.position = new Vector3(pos.x, pos.y, pos.z);
+                controller.VFXjumpImpact.gameObject.SetActive(true);
             }
         }
         if (controller.activate)

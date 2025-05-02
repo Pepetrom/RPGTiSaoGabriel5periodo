@@ -11,17 +11,24 @@ public class CrabWalkFState : ICrabInterface
     }
     public void OnEnter()
     {
+        controller.agent.speed = 6;
         controller.animator.SetBool("isWalking", true);
     }
 
     public void OnExit()
     {
-        controller.animator.SetBool("isWalking", false);
+
     }
 
     public void OnUpdate()
     {
         controller.agent.SetDestination(controller.player.transform.position);
         controller.RotateTowardsPlayer(6);
+
+        if(controller.TargetDir().magnitude <= controller.meleeRange)
+        {
+            controller.animator.SetBool("isWalking", false);
+            controller.SetState(new CrabIdleState(controller));
+        }
     }
 }

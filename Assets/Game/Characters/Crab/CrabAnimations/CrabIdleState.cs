@@ -24,37 +24,49 @@ public class CrabIdleState : ICrabInterface
     {
         if(controller.TargetDir().magnitude <= controller.meleeRange)
         {
-            Debug.Log("oi");
             controller.animator.SetBool("isEnableToAttack", true);
             controller.SetState(new CrabAttController(controller));
         }
-        else
+        else if(controller.TargetDir().magnitude >= controller.meleeRange && controller.TargetDir().magnitude <= controller.maxRange)
         {
-            if (controller.fuzzyJump <= controller.minJump)
+            if(controller.randomValue < 70)
             {
-                controller.animator.SetBool("isFurnace", true);
-                controller.SetState(new CrabFurnaceState(controller));
-            }
-            else if(controller.fuzzyJump >= controller.maxJump)
-            {
-                controller.animator.SetBool("isJumping", true);
-                controller.SetState(new CrabJumpState(controller));
-            }
-            else
-            {
-                a = Random.Range(0f, 1f);
-                fuzzificado = controller.FuzzyLogic(controller.fuzzyJump, controller.minJump, controller.maxJump);
-                if(a > fuzzificado - controller.jumpCount)
+                if (controller.fuzzyJump <= controller.minJump)
                 {
                     controller.animator.SetBool("isFurnace", true);
                     controller.SetState(new CrabFurnaceState(controller));
                 }
-                else
+                else if(controller.fuzzyJump >= controller.maxJump)
                 {
                     controller.animator.SetBool("isJumping", true);
                     controller.SetState(new CrabJumpState(controller));
                 }
+                else
+                {
+                    a = Random.Range(0f, 1f);
+                    fuzzificado = controller.FuzzyLogic(controller.fuzzyJump, controller.minJump, controller.maxJump);
+                    if(a > fuzzificado - controller.jumpCount)
+                    {
+                        controller.animator.SetBool("isFurnace", true);
+                        controller.SetState(new CrabFurnaceState(controller));
+                    }
+                    else
+                    {
+                        controller.animator.SetBool("isJumping", true);
+                        controller.SetState(new CrabJumpState(controller));
+                    }
+                }
             }
+            else
+            {
+                controller.animator.SetBool("isWalking", true);
+                controller.SetState(new CrabWalkFState(controller));
+            }
+        }
+        else
+        {
+            controller.animator.SetBool("isEnableToAttack", true);
+            controller.SetState(new CrabAttController(controller));
         }
     }
 }
