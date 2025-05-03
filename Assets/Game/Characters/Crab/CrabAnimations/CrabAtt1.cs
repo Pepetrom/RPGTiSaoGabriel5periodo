@@ -12,8 +12,9 @@ public class CrabAtt1 : ICrabInterface
 
     public void OnEnter()
     {
-        controller.damage = 40;
+        controller.damage = 35;
         controller.SortNumber();
+        controller.rb.isKinematic = true;
     }
 
     public void OnExit()
@@ -33,10 +34,15 @@ public class CrabAtt1 : ICrabInterface
         if (controller.activate)
         {
             controller.claw1.enabled = true;
+            controller.agent.enabled = false;
+            controller.rb.isKinematic = false;
+            controller.KB(1300);
         }
         else
         {
             controller.claw1.enabled = false;
+            controller.rb.isKinematic = true;
+            controller.agent.enabled = true;
         }
         if (controller.combo)
         {

@@ -12,6 +12,7 @@ public class CrabFurnaceState : ICrabInterface
     public void OnEnter()
     {
         controller.damage = 20;
+        controller.jumpCount -= 20;
     }
 
     public void OnExit()

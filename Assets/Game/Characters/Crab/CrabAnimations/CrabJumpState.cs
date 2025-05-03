@@ -13,7 +13,7 @@ public class CrabJumpState : ICrabInterface
     public void OnEnter()
     {
         controller.VFXjumpImpact.gameObject.SetActive(false);
-        controller.jumpCount += 0.2f;
+        controller.jumpCount += 20;
         controller.animator.SetBool("isJumping", true);
         controller.damage = 70;
     }
@@ -26,10 +26,6 @@ public class CrabJumpState : ICrabInterface
         controller.antecipation = false;
         controller.hashitted = false;
         controller.agent.enabled = true;
-        if (controller.jumpCount > 0.4f)
-        {
-            tradeFuzzy();
-        }
     }
 
     public void OnUpdate()
@@ -75,9 +71,5 @@ public class CrabJumpState : ICrabInterface
             controller.animator.SetBool("isJumping", false);
             controller.SetState(new CrabIdleState(controller));
         }
-    }
-    void tradeFuzzy()
-    {
-        controller.FuzzyGate(out controller.fuzzyJump, 50);
     }
 }

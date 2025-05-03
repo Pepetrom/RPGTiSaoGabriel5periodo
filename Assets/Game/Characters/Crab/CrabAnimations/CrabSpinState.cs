@@ -11,7 +11,10 @@ public class CrabSpinState : ICrabInterface
     }
     public void OnEnter()
     {
+        controller.SortNumber();
         controller.rb.isKinematic = true;
+        controller.spinCount ++;
+        controller.damage = 30;
     }
 
     public void OnExit()
@@ -33,7 +36,7 @@ public class CrabSpinState : ICrabInterface
         {
             controller.agent.enabled = false;
             controller.rb.isKinematic = false;
-            controller.KB(10);
+            controller.KB(700);
         }
         else
         {
@@ -50,8 +53,16 @@ public class CrabSpinState : ICrabInterface
         }
         if (controller.end)
         {
-            controller.animator.SetBool("isSpin", false);
-            controller.SetState(new CrabAttController(controller));
+            if(controller.spinCount < 5)
+            {
+                controller.animator.SetBool("isSpin", true);
+                controller.SetState(new CrabSpinState(controller));
+            }
+            else
+            {
+                controller.animator.SetBool("isSpin", false);
+                controller.SetState(new CrabAttController(controller));
+            }
         }
     }
 }

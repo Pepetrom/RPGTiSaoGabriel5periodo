@@ -26,19 +26,26 @@ public class CrabFSM : MonoBehaviour, IDamageable
     public SphereCollider jumpCollider, claw1, claw2;
     public GameObject fire, fireCircle;
     public bool canDoFireDamage;
+    public string bossName;
 
     [Header("Fuzzy")]
     public int minJump, maxJump, fuzzyJump;
-    public float jumpCount;
+    public int jumpCount = 0, spinCount = 0;
 
     [Header("Effects")]
     public GameObject VFXjumpImpact, VFXflameThrower, VFXfireCircle;
     #endregion
     void Start()
     {
+        UIItems.instance.ShowBOSSHUD(true);
+        UIItems.instance.ResetBossHP(hp, bossName);
+        if(player == null)
+        {
+            player = GameObject.FindWithTag("Player");
+        }
         rb = GetComponent<Rigidbody>();
         SetState(new CrabStartState(this));
-        FuzzyGate(out fuzzyJump, maxJump);
+        FuzzyGate(out fuzzyJump);
     }
     private void FixedUpdate()
     {
@@ -55,9 +62,9 @@ public class CrabFSM : MonoBehaviour, IDamageable
     {
         randomValue = Random.Range(0, 100);
     }
-    public void FuzzyGate(out int a, int max)
+    public void FuzzyGate(out int a)
     {
-        a = Random.Range(1, maxJump);
+        a = Random.Range(1, 101);
     }
     public float FuzzyLogic(int fuzzy, int min, int max)
     {
@@ -133,15 +140,15 @@ public class CrabFSM : MonoBehaviour, IDamageable
     }
     public void KB(float value)
     {
-        rb.AddForce(transform.forward.normalized * (kbForce * value), ForceMode.Impulse);
+        rb.AddForce(transform.forward.normalized * value, ForceMode.Impulse);
     }
     public void TakeDamage(int damage, float knockbackStrenght)
     {
-        hp -= damage;
+        UIItems.instance.bossCurrentHP -= damage;
         //playerHit = true;
         //hit.Play();
         GameManager.instance.SpawnNumber((int)damage, Color.yellow, transform);
-        if (hp <= 0)
+        if (UIItems.instance.bossCurrentHP <= 0)
         {
             //animator.SetBool("death", true);
             //animator.SetBool("stun", false);

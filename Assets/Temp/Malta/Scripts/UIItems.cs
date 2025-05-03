@@ -20,6 +20,12 @@ public class UIItems : MonoBehaviour
     [HideInInspector] public bool deathAnimationIsOver, gearEnd;
     public Animator gearAnimator;
     public GameObject medicine, essence;
+    [Header("Boss")]
+    public GameObject bossHUD;
+    public Slider hpBar, easeBar;
+    public Text bossName;
+    [HideInInspector]public int bossMaxHP, bossCurrentHP;
+    public float lerpSpeed;
     void Awake()
     {
         instance = this;
@@ -30,6 +36,10 @@ public class UIItems : MonoBehaviour
         respawnButton.gameObject.SetActive(false);
         pressF.SetActive(false);
         UpdateScoreQUI(GameManager.instance.score);
+    }
+    private void FixedUpdate()
+    {
+        UpdateBossHPBar();
     }
     public void UpdateChesseQUI(int value)
     {
@@ -101,5 +111,30 @@ public class UIItems : MonoBehaviour
     public void ShowEssence(bool state)
     {
         essence.SetActive(state);
+    }
+    public void ShowBOSSHUD(bool state)
+    {
+        bossHUD.SetActive(state);
+    }
+    public void ResetBossHP(int hp, string name)
+    {
+        bossMaxHP = hp;
+        hpBar.maxValue = bossMaxHP;
+        easeBar.maxValue = bossMaxHP;
+        bossCurrentHP = bossMaxHP;
+        hpBar.value = bossCurrentHP;
+        easeBar.value = bossCurrentHP;
+        bossName.text = name;
+    }
+    private void UpdateBossHPBar()
+    {
+        if (hpBar.value != bossCurrentHP)
+        {
+            hpBar.value = Mathf.Lerp(hpBar.value, bossCurrentHP, lerpSpeed);
+        }
+        if (easeBar.value != hpBar.value)
+        {
+            easeBar.value = Mathf.Lerp(easeBar.value, hpBar.value, lerpSpeed / 10);
+        }
     }
 }

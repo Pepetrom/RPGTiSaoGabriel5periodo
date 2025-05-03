@@ -27,6 +27,7 @@ public class CrabWalkFState : ICrabInterface
 
         if(controller.TargetDir().magnitude <= controller.meleeRange)
         {
+            controller.agent.speed = 0;
             controller.animator.SetBool("isWalking", false);
             controller.SetState(new CrabIdleState(controller));
         }

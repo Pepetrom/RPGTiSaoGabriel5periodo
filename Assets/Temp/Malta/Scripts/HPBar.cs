@@ -108,6 +108,7 @@ public class HPBar : MonoBehaviour
         }
         if (currentHP <= 0)
         {
+            UIItems.instance.ShowBOSSHUD(false);
             StopCoroutine(InvulnableTime());
             GameManager.instance.Respawn();
         }

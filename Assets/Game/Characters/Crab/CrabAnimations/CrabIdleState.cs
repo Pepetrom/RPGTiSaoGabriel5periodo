@@ -31,30 +31,15 @@ public class CrabIdleState : ICrabInterface
         {
             if(controller.randomValue < 70)
             {
-                if (controller.fuzzyJump <= controller.minJump)
-                {
-                    controller.animator.SetBool("isFurnace", true);
-                    controller.SetState(new CrabFurnaceState(controller));
-                }
-                else if(controller.fuzzyJump >= controller.maxJump)
+                if(controller.randomValue < (controller.fuzzyJump - controller.jumpCount))
                 {
                     controller.animator.SetBool("isJumping", true);
                     controller.SetState(new CrabJumpState(controller));
                 }
                 else
                 {
-                    a = Random.Range(0f, 1f);
-                    fuzzificado = controller.FuzzyLogic(controller.fuzzyJump, controller.minJump, controller.maxJump);
-                    if(a > fuzzificado - controller.jumpCount)
-                    {
-                        controller.animator.SetBool("isFurnace", true);
-                        controller.SetState(new CrabFurnaceState(controller));
-                    }
-                    else
-                    {
-                        controller.animator.SetBool("isJumping", true);
-                        controller.SetState(new CrabJumpState(controller));
-                    }
+                    controller.animator.SetBool("isFurnace", true);
+                    controller.SetState(new CrabFurnaceState(controller));
                 }
             }
             else

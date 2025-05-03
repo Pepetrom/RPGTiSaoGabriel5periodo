@@ -18,6 +18,7 @@ public class CrabAttController : ICrabInterface
         controller.animator.SetBool("att2att3", false);
         controller.animator.SetBool("attFurnace", false);
         controller.end = false;
+        controller.spinCount = 0;
         controller.SortNumber();
     }
 
