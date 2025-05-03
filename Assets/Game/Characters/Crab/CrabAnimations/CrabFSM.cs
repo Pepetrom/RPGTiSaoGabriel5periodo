@@ -23,14 +23,14 @@ public class CrabFSM : MonoBehaviour, IDamageable
     public float meleeRange, minRange, maxRange, kbForce;
     public int hp, damage;
     public float impulse, rotateSpeed;
-    public SphereCollider jumpCollider, claw1, claw2;
+    public SphereCollider jumpCollider, claw1, claw2, furnaceCollider;
     public GameObject fire, fireCircle;
-    public bool canDoFireDamage;
+    public bool canDoFireDamage, spinCombo = false;
     public string bossName;
 
     [Header("Fuzzy")]
-    public int minJump, maxJump, fuzzyJump;
-    public int jumpCount = 0, spinCount = 0;
+    public int minJump, maxJump, fuzzyJump, minDash, maxDash, fuzzyDash;
+    public int jumpCount = 0, spinCount = 0, comboValue;
 
     [Header("Effects")]
     public GameObject VFXjumpImpact, VFXflameThrower, VFXfireCircle;
@@ -46,6 +46,7 @@ public class CrabFSM : MonoBehaviour, IDamageable
         rb = GetComponent<Rigidbody>();
         SetState(new CrabStartState(this));
         FuzzyGate(out fuzzyJump);
+        FuzzyGate(out fuzzyDash);
     }
     private void FixedUpdate()
     {

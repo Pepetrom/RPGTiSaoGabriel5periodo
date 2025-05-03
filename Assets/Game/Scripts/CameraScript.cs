@@ -20,8 +20,8 @@ public class CameraScript : MonoBehaviour
 
     //Zoom de combate
     public float zoomSpeed;
-    public float targetZoom;
-    private float currentZoom = 60;
+    public float targetZoom, targetPosition;
+    private float currentZoom = 60, currentPosition, currentAngle;
 
     //Dissolver objetos do cenário
 

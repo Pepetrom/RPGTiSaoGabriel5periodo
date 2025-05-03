@@ -45,24 +45,42 @@ public class CrabSpinState : ICrabInterface
         }
         if (controller.activate)
         {
-            controller.jumpCollider.enabled = true;
+            controller.furnaceCollider.enabled = true;
         }
         else
         {
-            controller.jumpCollider.enabled = false;
+            controller.furnaceCollider.enabled = false;
         }
-        if (controller.end)
+        if (controller.combo)
         {
-            if(controller.spinCount < 5)
+            if(controller.spinCount >= 5)
             {
-                controller.animator.SetBool("isSpin", true);
-                controller.SetState(new CrabSpinState(controller));
-            }
-            else
-            {
+                controller.spinCount = 0;
+                controller.spinCombo = false;
+                controller.comboValue = 40;
                 controller.animator.SetBool("isSpin", false);
                 controller.SetState(new CrabAttController(controller));
             }
+            else
+            {
+                if(controller.randomValue < controller.comboValue)
+                {
+                    controller.spinCombo = true;
+                    controller.comboValue = 120;
+                    controller.animator.SetBool("isSpin", false);
+                    controller.SetState(new CrabAttController(controller));
+                }
+                else
+                {
+                    controller.animator.SetBool("isSpin", false);
+                    controller.SetState(new CrabAttController(controller));
+                }
+            }
+        }
+        if (controller.end)
+        {
+            controller.animator.SetBool("isJumping", true);
+            controller.SetState(new CrabJumpState(controller));
         }
     }
 }

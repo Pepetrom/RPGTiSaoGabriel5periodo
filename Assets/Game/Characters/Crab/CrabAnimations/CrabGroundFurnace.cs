@@ -5,6 +5,7 @@ using UnityEngine;
 public class CrabGroundFurnace : ICrabInterface
 {
     CrabFSM controller;
+    int count;
     public CrabGroundFurnace( CrabFSM controller)
     {
         this.controller = controller;   
@@ -14,6 +15,7 @@ public class CrabGroundFurnace : ICrabInterface
     {
         controller.jumpCount = 0;
         controller.damage = 40;
+        count++;
     }
 
     public void OnExit()
@@ -21,6 +23,12 @@ public class CrabGroundFurnace : ICrabInterface
         controller.antecipation = false;
         controller.end = false;
         controller.hashitted = false;
+        controller.minDash = 5;
+        if (count >= 2)
+        {
+            controller.minDash += 30;
+            count = 0;
+        }
     }
 
     public void OnUpdate()
@@ -31,11 +39,11 @@ public class CrabGroundFurnace : ICrabInterface
         }
         if (controller.activate)
         {
-            controller.jumpCollider.enabled = true;
+            controller.furnaceCollider.enabled = true;
         }
         else
         {
-            controller.jumpCollider.enabled = false;
+            controller.furnaceCollider.enabled = false;
         }
         if (controller.end)
         {
