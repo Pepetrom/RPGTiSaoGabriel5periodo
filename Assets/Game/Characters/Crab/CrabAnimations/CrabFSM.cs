@@ -21,7 +21,7 @@ public class CrabFSM : MonoBehaviour, IDamageable
 
     [Header("CombatAtributes")]
     public float meleeRange, minRange, maxRange, kbForce;
-    public int hp, damage;
+    public int hp, damage, posture, maxPosture;
     public float impulse, rotateSpeed;
     public SphereCollider jumpCollider, claw1, claw2, furnaceCollider, ownCollider;
     public GameObject fire, fireCircle;
@@ -35,11 +35,14 @@ public class CrabFSM : MonoBehaviour, IDamageable
     [Header("Effects")]
     public ParticleSystem VFXJumpImpact, VFXBigConcrete, VFXSmallConcreteFL, VFXSmallConcreteFR, VFXSmallConcreteBL, VFXSmallConcreteBR;
     public TrailRenderer[] trails;
+
+    private float interval = 2, time;
     #endregion
     void Start()
     {
         UIItems.instance.ShowBOSSHUD(true);
         UIItems.instance.ResetBossHP(hp, bossName);
+        posture = maxPosture;
         if(player == null)
         {
             player = GameObject.FindWithTag("Player");
@@ -52,6 +55,7 @@ public class CrabFSM : MonoBehaviour, IDamageable
     private void FixedUpdate()
     {
         this.state?.OnUpdate();
+        Posture();
     }
     public void SetState(ICrabInterface state)
     {
@@ -167,9 +171,34 @@ public class CrabFSM : MonoBehaviour, IDamageable
     {
         rb.AddForce(transform.forward.normalized * value, ForceMode.Impulse);
     }
+
+    public void Die()
+    {
+        Destroy(gameObject);
+    }
+    private void Posture()
+    {
+        if (posture < maxPosture)
+        {
+            time += Time.deltaTime;
+            if(time >= interval)
+            {
+                posture += 5;
+                time = 0;
+            }
+        }
+        else posture = maxPosture;
+        if (posture <= 0)
+        {
+            animator.SetBool("isStunned", true);
+            SetState(new CrabStun(this));
+        }
+    }
+    #endregion
     public void TakeDamage(int damage, float knockbackStrenght)
     {
         UIItems.instance.bossCurrentHP -= damage;
+        posture -= damage;
         //playerHit = true;
         //hit.Play();
         GameManager.instance.SpawnNumber((int)damage, Color.yellow, transform);
@@ -180,10 +209,4 @@ public class CrabFSM : MonoBehaviour, IDamageable
             Die();
         }
     }
-
-    public void Die()
-    {
-        Destroy(gameObject);
-    }
-    #endregion
 }

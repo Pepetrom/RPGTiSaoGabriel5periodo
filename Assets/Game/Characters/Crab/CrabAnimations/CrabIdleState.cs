@@ -30,10 +30,11 @@ public class CrabIdleState : ICrabInterface
         }
         else if(controller.TargetDir().magnitude >= controller.meleeRange && controller.TargetDir().magnitude <= controller.maxRange)
         {
-            if(controller.randomValue < 70)
+            if(controller.randomValue < 60)
             {
                 if(controller.randomValue < (controller.fuzzyJump - controller.jumpCount))
                 {
+                    Debug.Log(controller.fuzzyJump - controller.jumpCount);
                     controller.animator.SetBool("isJumping", true);
                     controller.SetState(new CrabJumpState(controller));
                 }
