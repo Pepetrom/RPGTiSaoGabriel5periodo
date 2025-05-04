@@ -12,10 +12,10 @@ public class CrabJumpState : ICrabInterface
     }
     public void OnEnter()
     {
-        controller.VFXjumpImpact.gameObject.SetActive(false);
         controller.jumpCount += 20;
         controller.animator.SetBool("isJumping", true);
         controller.damage = 70;
+        controller.ActivateTrails(true,true);
     }
 
     public void OnExit()
@@ -25,7 +25,9 @@ public class CrabJumpState : ICrabInterface
         controller.end = false;
         controller.antecipation = false;
         controller.hashitted = false;
+        controller.eventS = false;
         controller.agent.enabled = true;
+        controller.ActivateTrails(false, false);
     }
 
     public void OnUpdate()
@@ -33,9 +35,12 @@ public class CrabJumpState : ICrabInterface
         pos = controller.transform.position;    
         if (controller.jump)
         {
-            CameraScript.instance.CombatCamera(120, 0.6f,2);
             controller.agent.enabled = false;
             controller.Impulse(controller.impulse);
+        }
+        if (controller.eventS)
+        {
+            CameraScript.instance.CombatCamera(120, 0.6f, 1.2f);
         }
         if (!controller.antecipation)
         {
@@ -43,11 +48,13 @@ public class CrabJumpState : ICrabInterface
         }
         if (controller.fall)
         {
+            controller.eventS = false;
             if (controller.transform.position.y >= -2f)
             {
                 CameraScript.instance.CombatCamera(60, 0.6f, 2);
                 controller.Impulse(-controller.impulse);
                 controller.FallTowardsPlayer(200);
+                controller.ownCollider.enabled = false;
             }
             else
             {
@@ -55,7 +62,9 @@ public class CrabJumpState : ICrabInterface
                 pos.y = -7.5f;
                 controller.agent.enabled = true;
                 controller.transform.position = new Vector3(pos.x, pos.y, pos.z);
-                controller.VFXjumpImpact.gameObject.SetActive(true);
+                controller.VFXJumpImpact.Play();
+                controller.ownCollider.enabled = true;
+                CameraScript.instance.StartShake();
             }
         }
         if (controller.activate)

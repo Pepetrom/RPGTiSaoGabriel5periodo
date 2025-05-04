@@ -20,6 +20,7 @@ public class CrabDash : ICrabInterface
     {
         controller.jump = false;
         controller.end = false;
+        controller.eventS = false;
         controller.maxDash = 95;
         if (count >= 2)
         {
@@ -41,6 +42,11 @@ public class CrabDash : ICrabInterface
         {
             controller.agent.enabled = true;
             controller.rb.isKinematic = true;
+        }
+        if (controller.eventS)
+        {
+            controller.VFXSmallConcreteBL.Play();
+            controller.VFXSmallConcreteBR.Play();
         }
         if (controller.end)
         {

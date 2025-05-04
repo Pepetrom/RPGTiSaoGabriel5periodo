@@ -14,12 +14,15 @@ public class CrabAtt3 : ICrabInterface
         controller.animator.SetBool("att3", true);
         controller.rb.isKinematic = true;
         controller.damage = 40;
+        controller.ActivateTrails(true, false);
     }
     public void OnExit()
     {
         controller.end = false;
         controller.antecipation = false;
         controller.hashitted = false;
+        controller.eventS = false;
+        controller.ActivateTrails(false,false);
     }
 
     public void OnUpdate()
@@ -42,6 +45,16 @@ public class CrabAtt3 : ICrabInterface
             controller.claw2.enabled = false;
             controller.agent.enabled = true;
             controller.rb.isKinematic = true;
+        }
+        if (controller.eventS)
+        {
+            controller.VFXSmallConcreteFL.Play();
+            controller.VFXSmallConcreteFR.Play();
+        }
+        else
+        {
+            controller.VFXSmallConcreteFL.Stop();
+            controller.VFXSmallConcreteFR.Stop();
         }
         if (controller.end)
         {

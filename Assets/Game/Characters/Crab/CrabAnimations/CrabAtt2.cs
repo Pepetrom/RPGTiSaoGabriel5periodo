@@ -15,6 +15,7 @@ public class CrabAtt2 : ICrabInterface
         controller.animator.SetBool("att2", true);
         controller.rb.isKinematic = true;
         controller.damage = 30;
+        controller.ActivateTrails(true,false);
     }
 
     public void OnExit()
@@ -23,6 +24,7 @@ public class CrabAtt2 : ICrabInterface
         controller.antecipation = false;
         controller.combo = false;
         controller.hashitted = false;
+        controller.ActivateTrails(false, false);
     }
 
     public void OnUpdate()

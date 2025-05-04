@@ -15,6 +15,7 @@ public class CrabSpinState : ICrabInterface
         controller.rb.isKinematic = true;
         controller.spinCount ++;
         controller.damage = 30;
+        controller.ActivateTrails(true, false);
     }
 
     public void OnExit()
@@ -60,6 +61,8 @@ public class CrabSpinState : ICrabInterface
                 controller.comboValue = 40;
                 controller.animator.SetBool("isSpin", false);
                 controller.SetState(new CrabAttController(controller));
+                CameraScript.instance.CombatCamera(60, 0.6f, 2);
+                controller.ActivateTrails(false, false);
             }
             else
             {
@@ -68,6 +71,8 @@ public class CrabSpinState : ICrabInterface
                     controller.spinCombo = true;
                     controller.comboValue = 120;
                     controller.animator.SetBool("isSpin", false);
+                    CameraScript.instance.CombatCamera(90, 0.6f, 0.8f);
+                    CameraScript.instance.StartShake();
                     controller.SetState(new CrabAttController(controller));
                 }
                 else

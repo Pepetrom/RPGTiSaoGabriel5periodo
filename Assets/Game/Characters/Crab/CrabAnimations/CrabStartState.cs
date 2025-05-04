@@ -12,6 +12,7 @@ public class CrabStartState : ICrabInterface
     public void OnEnter()
     {
         GameManager.instance.AddEnemy(controller.gameObject);
+        controller.ActivateTrails(false, false);
     }
 
     public void OnExit()

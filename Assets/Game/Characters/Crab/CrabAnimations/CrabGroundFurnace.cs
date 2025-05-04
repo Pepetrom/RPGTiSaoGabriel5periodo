@@ -36,10 +36,14 @@ public class CrabGroundFurnace : ICrabInterface
         if (!controller.antecipation)
         {
             controller.RotateTowardsPlayer(3);
+            CameraScript.instance.CombatCamera(70, 0.6f, 0.5f);
         }
         if (controller.activate)
         {
             controller.furnaceCollider.enabled = true;
+            CameraScript.instance.CombatCamera(60, 0.6f, 2);
+            CameraScript.instance.StartShake();
+            controller.VFXBigConcrete.Play();
         }
         else
         {

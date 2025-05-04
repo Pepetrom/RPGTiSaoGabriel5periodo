@@ -29,20 +29,20 @@ public class CrabFurnaceState : ICrabInterface
         {
             controller.RotateTowardsPlayer(8);
         }
+        if (controller.activate)
+        {
+            controller.fire.SetActive(true);
+            controller.fireCircle.SetActive(true);           
+        }
+        else
+        {
+            controller.fire.SetActive(false);
+        }
         if (controller.end)
         {
             controller.fireCircle.SetActive(false);
             controller.animator.SetBool("isFurnace", false);
             controller.SetState(new CrabIdleState(controller));
-        }
-        if (controller.activate)
-        {
-            controller.fire.SetActive(true);
-            controller.fireCircle.SetActive(true);
-        }
-        else
-        {
-            controller.fire.SetActive(false);
         }
     }
 }

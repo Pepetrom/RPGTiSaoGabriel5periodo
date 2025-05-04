@@ -42,4 +42,12 @@ public class CrabFSMReceiver : MonoBehaviour
     {
         crab.StopFall();
     }
+    public void SpecificEvent()
+    {
+        crab.SpecificEvent();
+    }
+    public void DeactivateSpecificEvent()
+    {
+        crab.DeactivateSpecificEvent();
+    }
 }

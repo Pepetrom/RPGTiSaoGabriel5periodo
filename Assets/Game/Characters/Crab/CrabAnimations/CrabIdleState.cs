@@ -14,6 +14,7 @@ public class CrabIdleState : ICrabInterface
     public void OnEnter()
     {
         controller.SortNumber();
+        controller.ActivateTrails(false, false);    
     }
 
     public void OnExit()

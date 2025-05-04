@@ -16,14 +16,14 @@ public class CrabFSM : MonoBehaviour, IDamageable
 
     //logic
     public int randomValue;
-    [HideInInspector]public bool antecipation = false, end = false, combo = false, jump = false, fall = false, activate = false, hashitted = false;
+    [HideInInspector]public bool antecipation = false, end = false, combo = false, jump = false, fall = false, activate = false, hashitted = false, eventS = false;
     public Transform ground;
 
     [Header("CombatAtributes")]
     public float meleeRange, minRange, maxRange, kbForce;
     public int hp, damage;
     public float impulse, rotateSpeed;
-    public SphereCollider jumpCollider, claw1, claw2, furnaceCollider;
+    public SphereCollider jumpCollider, claw1, claw2, furnaceCollider, ownCollider;
     public GameObject fire, fireCircle;
     public bool canDoFireDamage, spinCombo = false;
     public string bossName;
@@ -33,7 +33,8 @@ public class CrabFSM : MonoBehaviour, IDamageable
     public int jumpCount = 0, spinCount = 0, comboValue;
 
     [Header("Effects")]
-    public GameObject VFXjumpImpact, VFXflameThrower, VFXfireCircle;
+    public ParticleSystem VFXJumpImpact, VFXBigConcrete, VFXSmallConcreteFL, VFXSmallConcreteFR, VFXSmallConcreteBL, VFXSmallConcreteBR;
+    public TrailRenderer[] trails;
     #endregion
     void Start()
     {
@@ -74,6 +75,21 @@ public class CrabFSM : MonoBehaviour, IDamageable
         float fuzzification = fuzzy / size;
         return fuzzification;
     }
+    public void ActivateTrails(bool state, bool isJumping)
+    {
+        for(int i = 0;i < trails.Length; i++)
+        {
+            trails[i].gameObject.SetActive(state);
+            if (isJumping)
+            {
+                trails[i].time = 1.4f;
+            }
+            else
+            {
+                trails[i].time = 0.3f;
+            }
+        }
+    }
     #region ACTIONEVENTS
     public void Antecipation()
     {
@@ -110,6 +126,14 @@ public class CrabFSM : MonoBehaviour, IDamageable
     public void StopFall()
     {
         fall = false;
+    }
+    public void SpecificEvent()
+    {
+        eventS = true;
+    }
+    public void DeactivateSpecificEvent()
+    {
+        eventS = false;
     }
     #endregion
 

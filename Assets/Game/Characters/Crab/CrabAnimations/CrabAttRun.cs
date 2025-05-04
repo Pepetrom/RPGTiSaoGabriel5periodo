@@ -30,6 +30,7 @@ public class CrabAttRun : ICrabInterface
         if (!controller.antecipation)
         {
             controller.agent.SetDestination(controller.player.transform.position);
+            CameraScript.instance.CombatCamera(90, 0.6f, 0.8f);
         }
         if (!controller.jump)
         {
@@ -47,6 +48,16 @@ public class CrabAttRun : ICrabInterface
             controller.claw2.enabled = false;
             controller.agent.enabled = true;
             controller.rb.isKinematic = true;
+        }
+        if (controller.eventS)
+        {
+            controller.VFXSmallConcreteFR.Play();
+            CameraScript.instance.CombatCamera(60, 0.6f, 2);
+            CameraScript.instance.StartShake();
+        }
+        else
+        {
+            controller.VFXSmallConcreteFR.Stop();
         }
         if (controller.end)
         {
