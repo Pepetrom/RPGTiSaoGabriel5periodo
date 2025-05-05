@@ -63,6 +63,7 @@ public class PlayerController : MonoBehaviour
     float targetLockedX, targetLockedY;
     float rightAmount;
     float forwardAmount;
+    Enemy enemy;
 
     public CharacterController cc;
     float gravity = -9;
@@ -266,6 +267,7 @@ public class PlayerController : MonoBehaviour
         if (target)
         {
             target = null;
+            closestEnemy.GetComponent<Enemy>().ShowSprite(false);
             return;
         }
         hits = Physics.OverlapSphere(model.transform.position, detectionAutoTargetRange);
@@ -282,6 +284,7 @@ public class PlayerController : MonoBehaviour
                 {
                     closestDistance = enemyDistance;
                     closestEnemy = hit.transform;
+                    closestEnemy.GetComponent<Enemy>().ShowSprite(true);
                 }
             }
         }

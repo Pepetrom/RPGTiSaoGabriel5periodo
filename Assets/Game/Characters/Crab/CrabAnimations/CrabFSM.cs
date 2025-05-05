@@ -12,12 +12,13 @@ public class CrabFSM : MonoBehaviour, IDamageable
     public Animator animator;
     public NavMeshAgent agent;
     public GameObject player;
+    public bool secondStage;
     [HideInInspector]public Rigidbody rb;
 
     //logic
     public int randomValue;
     [HideInInspector]public bool antecipation = false, end = false, combo = false, jump = false, fall = false, activate = false, hashitted = false, eventS = false;
-    public Transform ground;
+    public GameObject secondStageLocation;
 
     [Header("CombatAtributes")]
     public float meleeRange, minRange, maxRange, kbForce;
@@ -46,6 +47,10 @@ public class CrabFSM : MonoBehaviour, IDamageable
         if(player == null)
         {
             player = GameObject.FindWithTag("Player");
+        }
+        if(secondStageLocation == null)
+        {
+            secondStageLocation = GameObject.FindWithTag("CrabLocation");
         }
         rb = GetComponent<Rigidbody>();
         SetState(new CrabStartState(this));
@@ -162,9 +167,9 @@ public class CrabFSM : MonoBehaviour, IDamageable
     {
         transform.position += transform.up * kbforce * Time.deltaTime;
     }
-    public void FallTowardsPlayer(float speed)
+    public void FallTowardsSomething(float speed, Transform tg)
     {
-        Vector3 target = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
+        Vector3 target = new Vector3(tg.position.x, transform.position.y, tg.position.z);
         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
     }
     public void KB(float value)
@@ -202,6 +207,11 @@ public class CrabFSM : MonoBehaviour, IDamageable
         //playerHit = true;
         //hit.Play();
         GameManager.instance.SpawnNumber((int)damage, Color.yellow, transform);
+        /*if(UIItems.instance.bossCurrentHP <= hp / 2 && !secondStage)
+        {
+            animator.SetBool("secondStage", true);
+            SetState(new CrabSecondStage(this));
+        }*/
         if (UIItems.instance.bossCurrentHP <= 0)
         {
             //animator.SetBool("death", true);
