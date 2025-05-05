@@ -196,8 +196,9 @@ public class PlayerController : MonoBehaviour
         {
             UseEstus();
         }
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
+            GameManager.instance.ExitAllMenus();
             PlayerInteract.instance.UpdatePlayerInteract();
         }
     }

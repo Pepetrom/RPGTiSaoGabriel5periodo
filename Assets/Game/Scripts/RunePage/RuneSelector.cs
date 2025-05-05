@@ -1,19 +1,25 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static Unity.Collections.Unicode;
 
 public class RuneSelector : MonoBehaviour
 {
+    [SerializeField] GameObject runes, skills;
     [SerializeField] GameObject[] runesBanner;
     [SerializeField] GameObject[] buttons;
+    [SerializeField] Slider[] sliders;
     [SerializeField] bool[] runePurchased;
     [SerializeField] int runeValue;
     [SerializeField] Button[] buttonsButtons;
+    [SerializeField] int totalUpgrades;
     int runeRowSize;
     int liberados1, liberados2, liberados3;
     int upperlimit, lowerlimit, selected;
     int tier = 0;
+    public void OpenSkills()
+    {
+        runes.SetActive(!runes.activeSelf);
+        skills.SetActive(!skills.activeSelf);
+    }
     private void Start()
     {
         runeRowSize = runesBanner.Length / 3;
@@ -35,6 +41,9 @@ public class RuneSelector : MonoBehaviour
             buttons[4].SetActive(true);
             buttons[5].SetActive(true);
         }
+        sliders[0].value = PlayerController.instance.strength / totalUpgrades;
+        sliders[1].value = PlayerController.instance.agility / totalUpgrades;
+        sliders[2].value = PlayerController.instance.resistance / totalUpgrades;
     }
     public void PurchaseRune(int which)
     {

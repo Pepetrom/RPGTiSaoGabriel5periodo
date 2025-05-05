@@ -19,7 +19,6 @@ public class GameManager : MonoBehaviour
 
     //Runes 
     public float skillPoints;
-    public GameObject runePage;
     public GameObject bonfire;
     public bool tutorial;
     public int score;
@@ -107,7 +106,7 @@ public class GameManager : MonoBehaviour
         }
     }
     //TEMPORÁRIO
-    public void ExistAllMenus()
+    public void ExitAllMenus()
     {
         runesPanel.SetActive(false);
         Bonfire(false);
