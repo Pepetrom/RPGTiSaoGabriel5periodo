@@ -70,9 +70,9 @@ public class CrabSpinState : ICrabInterface
                 {
                     controller.spinCombo = true;
                     controller.comboValue = 120;
-                    controller.animator.SetBool("isSpin", false);
                     CameraScript.instance.CombatCamera(90, 0.6f, 0.8f);
                     CameraScript.instance.StartShake();
+                    controller.animator.SetBool("isSpin", false);
                     controller.SetState(new CrabAttController(controller));
                 }
                 else

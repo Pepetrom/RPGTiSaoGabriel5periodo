@@ -12,7 +12,7 @@ public class CrabSecondStage : ICrabInterface
     }
     public void OnEnter()
     {
-        controller.animator.SetBool("secondStage", true);
+        //controller.animator.SetBool("secondStage", true);
         controller.ActivateTrails(true, true);
         controller.secondStage = true;
     }
@@ -44,9 +44,8 @@ public class CrabSecondStage : ICrabInterface
         if (controller.fall)
         {
             controller.eventS = false;
-            if (controller.transform.position.y >= 11)
+            if (controller.transform.position.y >= 8)
             {
-                CameraScript.instance.CombatCamera(60, 0.6f, 2);
                 controller.Impulse(-controller.impulse);
                 controller.FallTowardsSomething(200,controller.secondStageLocation.transform);
                 controller.ownCollider.enabled = false;
@@ -54,7 +53,7 @@ public class CrabSecondStage : ICrabInterface
             else
             {
                 controller.fall = false;
-                pos.y = 11f;
+                pos.y = 8f;
                 controller.transform.position = new Vector3(pos.x, pos.y, pos.z);
                 controller.VFXJumpImpact.Play();
                 controller.ownCollider.enabled = true;
@@ -71,7 +70,8 @@ public class CrabSecondStage : ICrabInterface
         }
         if (controller.end)
         {
-            controller.animator.SetBool("bigFireAttack", true);
+            controller.animator.SetBool("secondStage", false);
+            controller.SetState(new CrabBigFire(controller));
         }
     }
 }

@@ -25,7 +25,7 @@ public class CrabFSM : MonoBehaviour, IDamageable
     public int hp, damage, posture, maxPosture;
     public float impulse, rotateSpeed;
     public SphereCollider jumpCollider, claw1, claw2, furnaceCollider, ownCollider;
-    public GameObject fire, fireCircle;
+    public GameObject fire, fireCircle, bigFire;
     public bool canDoFireDamage, spinCombo = false;
     public string bossName;
 
@@ -35,6 +35,7 @@ public class CrabFSM : MonoBehaviour, IDamageable
 
     [Header("Effects")]
     public ParticleSystem VFXJumpImpact, VFXBigConcrete, VFXSmallConcreteFL, VFXSmallConcreteFR, VFXSmallConcreteBL, VFXSmallConcreteBR;
+    public GameObject arenaFires; 
     public TrailRenderer[] trails;
 
     private float interval = 2, time;
@@ -56,6 +57,7 @@ public class CrabFSM : MonoBehaviour, IDamageable
         SetState(new CrabStartState(this));
         FuzzyGate(out fuzzyJump);
         FuzzyGate(out fuzzyDash);
+        //Instantiate(arenaFires);
     }
     private void FixedUpdate()
     {
@@ -207,11 +209,11 @@ public class CrabFSM : MonoBehaviour, IDamageable
         //playerHit = true;
         //hit.Play();
         GameManager.instance.SpawnNumber((int)damage, Color.yellow, transform);
-        /*if(UIItems.instance.bossCurrentHP <= hp / 2 && !secondStage)
+        if(UIItems.instance.bossCurrentHP <= hp / 2 && !secondStage)
         {
             animator.SetBool("secondStage", true);
             SetState(new CrabSecondStage(this));
-        }*/
+        }
         if (UIItems.instance.bossCurrentHP <= 0)
         {
             //animator.SetBool("death", true);
