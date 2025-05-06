@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +10,7 @@ public class UIItems : MonoBehaviour
     public Text runePageText;
     public Text cheeseQ;
     public Text score;
+    public TextMeshProUGUI scoreInStore;
     public GameObject[] skillButtons;
     public Canvas notes;
     public Image noteImage;
@@ -35,7 +35,7 @@ public class UIItems : MonoBehaviour
         DeathPanel.gameObject.SetActive(false);
         respawnButton.gameObject.SetActive(false);
         pressF.SetActive(false);
-        UpdateScoreQUI(GameManager.instance.score);
+        UpdateScoreQUI(GameManager.instance.skillPoints);
     }
     private void FixedUpdate()
     {
@@ -43,15 +43,12 @@ public class UIItems : MonoBehaviour
     }
     public void UpdateChesseQUI(int value)
     {
-        cheeseQ.text = value.ToString();
-    }
-    public void UpdateSkillPoints()
-    {
-        runePageText.text = GameManager.instance.skillPoints.ToString();
+        cheeseQ.text = $"{value}";
     }
     public void UpdateScoreQUI(float value)
     {
-        score.text = value.ToString();
+        score.text = $"{value}";
+        scoreInStore.text = $"{value}";
     }
     public void ShowNotes(Sprite note)
     {

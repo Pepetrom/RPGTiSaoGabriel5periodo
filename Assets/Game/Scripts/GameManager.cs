@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviour
     public float actionTime = 1;
     public bool isCombat = false;
     public GameObject runesPanel;
-    public bool[] unlockedRunes = new bool[4];
     //SpawnPoint/Checkpoint
     public Transform lastBonfireRestedAt;
 
@@ -21,7 +20,6 @@ public class GameManager : MonoBehaviour
     public float skillPoints;
     public GameObject bonfire;
     public bool tutorial;
-    public int score;
 
     public bool spawnEnemies = true;
 
@@ -41,8 +39,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         tutorial = false;
-        UIItems.instance.UpdateScoreQUI(0);
-        UIItems.instance.UpdateSkillPoints();
+        UIItems.instance.UpdateScoreQUI(skillPoints);
         if (!spawnEnemies) return;
         enemySpawner.AllEnemies();
         player = PlayerController.instance;
@@ -126,11 +123,6 @@ public class GameManager : MonoBehaviour
             PlayerController.instance.ResetAllActions();
         }
     }
-    public void AddSkillPoints()
-    {
-        skillPoints += 5000;
-        UIItems.instance.UpdateSkillPoints();
-    }
     public void Bonfire(bool open)
     {
         bonfire.SetActive(open);
@@ -186,7 +178,6 @@ public class GameManager : MonoBehaviour
     public void Score(int amount)
     {
         skillPoints += amount;
-        UIItems.instance.UpdateSkillPoints();
         UIItems.instance.UpdateScoreQUI(skillPoints);
     }
 }

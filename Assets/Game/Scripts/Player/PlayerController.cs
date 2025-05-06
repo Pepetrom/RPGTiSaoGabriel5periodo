@@ -2,7 +2,7 @@ using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
+public enum Atribute { strength, agility, constitution}
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
     Vector3 mousePosition, targetDirection;
     Vector3 cameraAlignValue;
     [Header("Atributes------------------")]
-    public int resistance = 0, agility = 0, strength = 0;
+    public int constitution = 0, agility = 0, strength = 0;
 
     //ABSURDLY COMPLICATED RENAN SHENANIGANS
     Vector3 playerRight;
@@ -198,6 +198,7 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F))
         {
+            GameManager.instance.ExitAllMenus();
             PlayerInteract.instance.UpdatePlayerInteract();
         }
     }
@@ -327,18 +328,18 @@ public class PlayerController : MonoBehaviour
     {
         Instantiate(effect, model.transform.position, model.transform.rotation);
     }
-    public void AddAtribute(string which)
+    public void AddAtribute(Atribute which)
     {
         switch (which)
         {
-            case "resistance":
-                resistance += 1;
-                HPBar.instance.UpdateMaxHp(resistance);
+            case Atribute.constitution:
+                constitution += 1;
+                HPBar.instance.UpdateMaxHp(constitution);
                 break;
-            case "strength":
+            case Atribute.strength:
                 strength += 1;
                 break;
-            case "agility":
+            case Atribute.agility:
                 agility += 1;
                 StaminaBar.instance.UpdateMaxStamina(agility);
                 break;

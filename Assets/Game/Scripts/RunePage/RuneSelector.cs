@@ -1,3 +1,7 @@
+using System;
+using TMPro;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
+using UnityEditor.Playables;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,12 +13,11 @@ public class RuneSelector : MonoBehaviour
     [SerializeField] Slider[] sliders;
     [SerializeField] bool[] runePurchased;
     [SerializeField] int runeValue;
-    [SerializeField] Button[] buttonsButtons;
-    [SerializeField] int totalUpgrades;
-    int runeRowSize;
+    [SerializeField] TextMeshProUGUI[] priceTexts;
+    float totalUpgrades = 3;
+    int atributesPerSkill;
     int liberados1, liberados2, liberados3;
     int upperlimit, lowerlimit, selected;
-    int tier = 0;
     public void OpenSkills()
     {
         runes.SetActive(!runes.activeSelf);
@@ -22,10 +25,30 @@ public class RuneSelector : MonoBehaviour
     }
     private void Start()
     {
-        runeRowSize = runesBanner.Length / 3;
+        atributesPerSkill = runePurchased.Length / 3;
+        foreach (var t in priceTexts)
+        {
+            t.text = $"{runeValue}";
+        }
     }
-    public void UpdateRuneSelector()
+    void UpdateRuneSelector()
     {
+        liberados1 = 0;
+        liberados2 = 0;
+        liberados3 = 0;
+        for (int i = 0; i < atributesPerSkill; i++)
+        {
+            if (runePurchased[i]) liberados1++;
+        }
+        for (int i = atributesPerSkill; i < atributesPerSkill * 2; i++)
+        {
+            if (runePurchased[i]) liberados2++;
+        }
+        for (int i = atributesPerSkill * 2; i < atributesPerSkill * 3; i++)
+        {
+            if (runePurchased[i]) liberados3++;
+        }
+
         if (liberados1 > 1)
         {
             buttons[0].SetActive(true);
@@ -41,37 +64,45 @@ public class RuneSelector : MonoBehaviour
             buttons[4].SetActive(true);
             buttons[5].SetActive(true);
         }
-        sliders[0].value = PlayerController.instance.strength / totalUpgrades;
-        sliders[1].value = PlayerController.instance.agility / totalUpgrades;
-        sliders[2].value = PlayerController.instance.resistance / totalUpgrades;
+        sliders[0].value = (float)PlayerController.instance.strength / totalUpgrades;
+        sliders[1].value = (float)PlayerController.instance.agility / totalUpgrades;
+        sliders[2].value = (float)PlayerController.instance.constitution / totalUpgrades;
     }
+    int whichMudavel = 0;
     public void PurchaseRune(int which)
     {
-        if (runePurchased[which]) return;
         if (GameManager.instance.skillPoints < runeValue) return;
-        GameManager.instance.skillPoints -= runeValue;
+        whichMudavel = 0;
+        switch (which)
+        {
+            case 1:
+                if (PlayerController.instance.strength >= totalUpgrades) return;
+                whichMudavel = (atributesPerSkill * PlayerController.instance.strength) + which;
+                PlayerController.instance.AddAtribute(Atribute.strength);
+                break;
+            case 2:
+                if (PlayerController.instance.agility >= totalUpgrades) return;
+                whichMudavel = (atributesPerSkill * PlayerController.instance.agility) + which;
+                PlayerController.instance.AddAtribute(Atribute.agility);
+                break;
+            case 3:
+                if (PlayerController.instance.constitution >= totalUpgrades) return;
+                whichMudavel = (atributesPerSkill * PlayerController.instance.constitution) + which;
+                PlayerController.instance.AddAtribute(Atribute.constitution);
+                break;
+        }
+        Debug.Log("tentei comprar a runa: " + whichMudavel);
+        if (whichMudavel > runePurchased.Length) return;
+        if (runePurchased[whichMudavel]) return;
+        GameManager.instance.Score(-runeValue);
+        runeValue += 50;
+        runePurchased[whichMudavel] = true;
+        foreach ( var t in priceTexts)
+        {
+            t.text = $"{runeValue}";
+        }
 
-        runePurchased[which] = true;
-        if(buttonsButtons[which]) buttonsButtons[which].interactable = false;
-
-        Debug.Log(runeRowSize);
         EquipRune();
-
-        liberados1 = 0;
-        liberados2 = 0;
-        liberados3 = 0;
-        for (int i = 0; i < runeRowSize; i++)
-        {
-            if(runePurchased[i]) liberados1++; 
-        }
-        for (int i = runeRowSize; i < runeRowSize*2; i++)
-        {
-            if (runePurchased[i]) liberados2++;
-        }
-        for (int i = runeRowSize * 2; i < runeRowSize * 3; i++)
-        {
-            if (runePurchased[i]) liberados3++;
-        }
         UpdateRuneSelector();
     }
     void EquipRune()
@@ -81,12 +112,12 @@ public class RuneSelector : MonoBehaviour
             rune.SetActive(false);
         }
         runesBanner[PlayerController.instance.equipedPrimaryRune].SetActive(true);
-        runesBanner[PlayerController.instance.equipedSecondaryRune + runeRowSize].SetActive(true);
-        runesBanner[PlayerController.instance.equipedTerciaryRune + (runeRowSize*2)].SetActive(true);
+        runesBanner[PlayerController.instance.equipedSecondaryRune + atributesPerSkill].SetActive(true);
+        runesBanner[PlayerController.instance.equipedTerciaryRune + (atributesPerSkill*2)].SetActive(true);
     }
     public void SelectPrimaryRune(int which)
     {
-        upperlimit = runeRowSize -1;
+        upperlimit = atributesPerSkill -1;
         lowerlimit = 0;
         selected = PlayerController.instance.equipedPrimaryRune + which;
         if (selected < lowerlimit) selected = upperlimit;
@@ -102,14 +133,14 @@ public class RuneSelector : MonoBehaviour
                 }
             }
         }
-        PlayerController.instance.equipedPrimaryRune = selected % runeRowSize;
+        PlayerController.instance.equipedPrimaryRune = selected % atributesPerSkill;
         EquipRune();
     }
     public void SelectSecondaryRune(int which)
     {
-        upperlimit = (runeRowSize * 2) - 1;
-        lowerlimit = runeRowSize ;
-        selected = PlayerController.instance.equipedSecondaryRune + runeRowSize + which;
+        upperlimit = (atributesPerSkill * 2) - 1;
+        lowerlimit = atributesPerSkill ;
+        selected = PlayerController.instance.equipedSecondaryRune + atributesPerSkill + which;
         if (selected < lowerlimit) selected = upperlimit;
         if (selected > upperlimit) selected = lowerlimit;
         if (!runePurchased[selected])
@@ -123,14 +154,14 @@ public class RuneSelector : MonoBehaviour
                 }
             }
         }
-        PlayerController.instance.equipedSecondaryRune = selected % runeRowSize;
+        PlayerController.instance.equipedSecondaryRune = selected % atributesPerSkill;
         EquipRune();
     }
     public void SelectTerciaryRune(int which)
     {
-        upperlimit = (runeRowSize * 3) - 1;
-        lowerlimit = runeRowSize*2;
-        selected = PlayerController.instance.equipedTerciaryRune + (runeRowSize * 2) + which;
+        upperlimit = (atributesPerSkill * 3) - 1;
+        lowerlimit = atributesPerSkill*2;
+        selected = PlayerController.instance.equipedTerciaryRune + (atributesPerSkill * 2) + which;
 
         if (selected < lowerlimit) selected = upperlimit;
         if (selected > upperlimit) selected = lowerlimit;
@@ -145,7 +176,7 @@ public class RuneSelector : MonoBehaviour
                 }
             }
         }
-        PlayerController.instance.equipedTerciaryRune = selected % runeRowSize;
+        PlayerController.instance.equipedTerciaryRune = selected % atributesPerSkill;
         EquipRune();
     }
 }

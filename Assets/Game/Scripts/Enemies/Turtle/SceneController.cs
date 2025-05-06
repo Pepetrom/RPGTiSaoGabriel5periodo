@@ -29,7 +29,6 @@ public class SceneController : MonoBehaviour
         TutorialPanel();
         OptionsPanel();
         BonfirePanel();
-        GameManager.instance.ExitAllMenus();
 
     }
     public void ChangeScene(string scene)

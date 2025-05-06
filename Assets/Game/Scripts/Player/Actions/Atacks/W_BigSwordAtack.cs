@@ -317,7 +317,7 @@ public class W_BigSwordAtack : IWeapon
     {
         return (int)
             ((player.damageMultiplier * baseMultiplier) *
-            (baseDamage + (baseMultiplier + (player.strength * strenghtModifier) + (player.agility * agilityModifier) + (player.resistance * resistanceMultiplier))
+            (baseDamage + (baseMultiplier + (player.strength * strenghtModifier) + (player.agility * agilityModifier) + (player.constitution * resistanceMultiplier))
             + player.damageAdd));
     }
 }
