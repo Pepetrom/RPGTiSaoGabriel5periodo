@@ -124,12 +124,17 @@ public class RuneSelector : MonoBehaviour
         if (selected > upperlimit) selected = lowerlimit;
         if (!runePurchased[selected])
         {
-           for( int i = selected; i <= upperlimit && i >= lowerlimit; i += which)
+            for (int i = selected; i <= upperlimit && i >= lowerlimit; i += which)
             {
+                Debug.Log($"the rune is trying to equip is {i} and {(runePurchased[i] ? "you have it" : "you dont have it")}");
                 if (runePurchased[i])
                 {
                     selected = i;
                     break;
+                }
+                else
+                {
+                    if (i == upperlimit) selected = lowerlimit;
                 }
             }
         }
@@ -147,10 +152,15 @@ public class RuneSelector : MonoBehaviour
         {
             for (int i = selected; i <= upperlimit && i >= lowerlimit; i += which)
             {
+                Debug.Log($"the rune is trying to equip is {i} and {(runePurchased[i] ? "you have it" : "you dont have it")}");
                 if (runePurchased[i])
                 {
                     selected = i;
                     break;
+                }
+                else
+                {
+                    if (i == upperlimit) selected = lowerlimit;
                 }
             }
         }
@@ -169,10 +179,15 @@ public class RuneSelector : MonoBehaviour
         {
             for (int i = selected; i <= upperlimit && i >= lowerlimit; i += which)
             {
+                Debug.Log($"the rune is trying to equip is {i} and {(runePurchased[i] ? "you have it" : "you dont have it")}");
                 if (runePurchased[i])
                 {
                     selected = i;
                     break;
+                }
+                else
+                {
+                    if (i == upperlimit) selected = lowerlimit;
                 }
             }
         }
