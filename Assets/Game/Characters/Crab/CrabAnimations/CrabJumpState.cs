@@ -63,7 +63,6 @@ public class CrabJumpState : ICrabInterface
                 controller.agent.enabled = true;
                 controller.transform.position = new Vector3(pos.x, pos.y, pos.z);
                 controller.VFXJumpImpact.Play();
-                controller.ownCollider.enabled = true;
                 CameraScript.instance.StartShake();
             }
         }
@@ -74,6 +73,7 @@ public class CrabJumpState : ICrabInterface
         else
         {
             controller.jumpCollider.enabled = false;
+            controller.ownCollider.enabled = true;
         }
         if (controller.end)
         {

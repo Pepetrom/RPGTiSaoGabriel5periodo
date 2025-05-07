@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     public int comboCounter = 1;
     public Transform target = null;
     public AtackCollider atackCollider;
-    [SerializeField] float detectionAutoTargetRange = 15;
+    [SerializeField] float detectionAutoTargetRange = 30;
     public TrailRenderer swordTrail;
     [Header("Defese Settings------------------")]
     public float invencibilityTime;
@@ -256,6 +256,8 @@ public class PlayerController : MonoBehaviour
             runningMultiplier = 2;
             animator.SetBool("Run", true);
             target = null;
+            if(closestEnemy != null)
+                closestEnemy.GetComponent<Enemy>().ShowSprite(false);
         }
         else
         {
