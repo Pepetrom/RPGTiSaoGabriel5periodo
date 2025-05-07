@@ -22,6 +22,7 @@ public class CrabStartState : ICrabInterface
 
     public void OnUpdate()
     {
+        CameraScript.instance.CombatCamera(150, 0.6f, 1.2f);
         if (controller.end)
         {
             controller.animator.SetBool("isJumping", true);

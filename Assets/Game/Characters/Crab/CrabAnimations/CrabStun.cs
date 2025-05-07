@@ -12,6 +12,12 @@ public class CrabStun : ICrabInterface
     public void OnEnter()
     {
         controller.posture = controller.maxPosture;
+        controller.animator.SetBool("att1", false);
+        controller.animator.SetBool("att2", false);
+        controller.animator.SetBool("att3", false);
+        controller.animator.SetBool("att1att2", false);
+        controller.animator.SetBool("att2att3", false);
+        controller.animator.SetBool("attFurnace", false);
     }
 
     public void OnExit()
