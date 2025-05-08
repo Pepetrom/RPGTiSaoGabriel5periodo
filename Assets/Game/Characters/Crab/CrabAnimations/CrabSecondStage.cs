@@ -14,7 +14,6 @@ public class CrabSecondStage : ICrabInterface
     {
         //controller.animator.SetBool("secondStage", true);
         controller.ActivateTrails(true, true);
-        controller.secondStage = true;
     }
 
     public void OnExit()

@@ -197,7 +197,7 @@ public class CrabFSM : MonoBehaviour, IDamageable
         else posture = maxPosture;
         if (posture <= 0)
         {
-            animator.SetBool("isStunned", true);
+            animator.Play("Crab_Stun");
             SetState(new CrabStun(this));
         }
     }
@@ -211,7 +211,9 @@ public class CrabFSM : MonoBehaviour, IDamageable
         GameManager.instance.SpawnNumber((int)damage, Color.yellow, transform);
         if(UIItems.instance.bossCurrentHP <= hp / 2 && !secondStage)
         {
-            animator.SetBool("secondStage", true);
+            secondStage = true;
+            posture = maxPosture + (maxPosture/4);
+            animator.Play("Crab_SecondStage");
             SetState(new CrabSecondStage(this));
         }
         if (UIItems.instance.bossCurrentHP <= 0)
