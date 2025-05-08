@@ -28,7 +28,6 @@ public class CrabBigFire : ICrabInterface
         {
             controller.fireCircle.SetActive(true);
             controller.bigFire.SetActive(true);
-            controller.arenaFires.SetActive(true);
         }
         else
         {
@@ -41,7 +40,6 @@ public class CrabBigFire : ICrabInterface
         }
         if (controller.end)
         {
-            controller.arenaFires.SetActive(false);
             controller.animator.SetBool("isJumping", true);
             controller.SetState(new CrabJumpState(controller));
         }

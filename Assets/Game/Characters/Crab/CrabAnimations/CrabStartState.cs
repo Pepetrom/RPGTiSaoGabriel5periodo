@@ -7,6 +7,7 @@ public class CrabStartState : ICrabInterface
     CrabFSM controller;
     public CrabStartState(CrabFSM controller)
     {
+        UIItems.instance.FadeInFadeOut(false);
         this.controller = controller;
     }
     public void OnEnter()

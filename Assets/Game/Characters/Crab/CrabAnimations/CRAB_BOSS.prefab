@@ -306,6 +306,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crab: {fileID: 4411233835612565584}
+--- !u!1 &1643876515492158807
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4840878756870782253}
+  m_Layer: 0
+  m_Name: CrackPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4840878756870782253
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1643876515492158807}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7094906, y: -0.24511585, z: -0.2938842, w: 0.59175456}
+  m_LocalPosition: {x: 0.05, y: 0.3, z: -1.48}
+  m_LocalScale: {x: 100, y: 99.99998, z: 99.99996}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9094808826202937341}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1938095466138790902
 GameObject:
   m_ObjectHideFlags: 0
@@ -653,6 +684,7 @@ Transform:
   - {fileID: 2872177494115024652}
   - {fileID: 3075151063040178822}
   - {fileID: 4618819827406903231}
+  - {fileID: 4840878756870782253}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -158.02, z: 0}
 --- !u!195 &4870842617820389905
@@ -735,10 +767,10 @@ MonoBehaviour:
   minRange: 5
   maxRange: 25
   kbForce: 70
-  hp: 30
+  hp: 500
   damage: 0
   posture: 0
-  maxPosture: 15
+  maxPosture: 100
   impulse: 70
   rotateSpeed: 0
   jumpCollider: {fileID: 2359544045449441453}
@@ -751,7 +783,7 @@ MonoBehaviour:
   bigFire: {fileID: 1938095466138790902}
   canDoFireDamage: 0
   spinCombo: 0
-  bossName: Antique Furnace
+  bossName: ANTIQUE FURNACE
   minJump: 30
   maxJump: 101
   fuzzyJump: 0
@@ -767,8 +799,10 @@ MonoBehaviour:
   VFXSmallConcreteFR: {fileID: 4702302548278463688}
   VFXSmallConcreteBL: {fileID: 7889777650108478620}
   VFXSmallConcreteBR: {fileID: 6074806311741407716}
-  arenaFires: {fileID: 2502541108385634399, guid: e2d0eee2930c707488d7e77918773b44,
+  crabCrack: {fileID: 5862807828180731761, guid: 190cf481c09092a44bcfca6e213db790,
     type: 3}
+  ownFire: {fileID: 5145689668256230917}
+  crackPosition: {fileID: 4840878756870782253}
   trails:
   - {fileID: 5221229690247195280}
   - {fileID: 3580569639752635498}
@@ -13224,6 +13258,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a817de05addd7b64faa73b34c74013ce, type: 3}
+--- !u!198 &5145689668256230917 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 19800000, guid: a817de05addd7b64faa73b34c74013ce,
+    type: 3}
+  m_PrefabInstance: {fileID: 5145689668274188741}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5145689668274580293 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: a817de05addd7b64faa73b34c74013ce,

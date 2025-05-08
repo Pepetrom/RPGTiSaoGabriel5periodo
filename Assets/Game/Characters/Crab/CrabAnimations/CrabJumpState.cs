@@ -62,6 +62,7 @@ public class CrabJumpState : ICrabInterface
                 pos.y = -7.5f;
                 controller.agent.enabled = true;
                 controller.transform.position = new Vector3(pos.x, pos.y, pos.z);
+                controller.Create(controller.crabCrack.gameObject, controller.crackPosition);
                 controller.VFXJumpImpact.Play();
                 CameraScript.instance.StartShake();
             }

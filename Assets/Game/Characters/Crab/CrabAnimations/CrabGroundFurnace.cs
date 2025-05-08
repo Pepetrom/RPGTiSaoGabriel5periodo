@@ -45,6 +45,10 @@ public class CrabGroundFurnace : ICrabInterface
             CameraScript.instance.StartShake();
             controller.VFXBigConcrete.Play();
         }
+        if (controller.eventS)
+        {
+            controller.Create(controller.crabCrack.gameObject, controller.crackPosition);
+        }
         else
         {
             controller.furnaceCollider.enabled = false;

@@ -26,6 +26,7 @@ public class UIItems : MonoBehaviour
     public Text bossName;
     [HideInInspector]public int bossMaxHP, bossCurrentHP;
     public float lerpSpeed;
+    public GameObject fadeInFadeOut;
     void Awake()
     {
         instance = this;
@@ -39,7 +40,7 @@ public class UIItems : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        UpdateBossHPBar();
+        UpdateBossHPBar(hpBar,easeBar,bossCurrentHP,lerpSpeed);
     }
     public void UpdateChesseQUI(int value)
     {
@@ -123,7 +124,7 @@ public class UIItems : MonoBehaviour
         easeBar.value = bossCurrentHP;
         bossName.text = name;
     }
-    private void UpdateBossHPBar()
+    public void UpdateBossHPBar(Slider hpBar, Slider easeBar, int bossCurrentHP, float lerpSpeed)
     {
         if (hpBar.value != bossCurrentHP)
         {
@@ -133,5 +134,12 @@ public class UIItems : MonoBehaviour
         {
             easeBar.value = Mathf.Lerp(easeBar.value, hpBar.value, lerpSpeed / 10);
         }
+    }
+    public void FadeInFadeOut(bool state)
+    {
+        fadeInFadeOut.SetActive(state);
+        if(!state)
+            return;
+        fadeInFadeOut.GetComponent<Animator>().Play("FadeInFadeOut");
     }
 }

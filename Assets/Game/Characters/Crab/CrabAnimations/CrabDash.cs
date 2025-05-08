@@ -14,6 +14,7 @@ public class CrabDash : ICrabInterface
     public void OnEnter()
     {
         controller.rb.isKinematic = true;
+        controller.ownCollider.enabled = false;
     }
 
     public void OnExit()
@@ -50,6 +51,7 @@ public class CrabDash : ICrabInterface
         }
         if (controller.end)
         {
+            controller.ownCollider.enabled = true;
             controller.animator.SetBool("isDashing", false);
             controller.SetState(new CrabAttController(controller));
         }

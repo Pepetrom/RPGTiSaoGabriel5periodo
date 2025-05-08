@@ -34,8 +34,8 @@ public class CrabFSM : MonoBehaviour, IDamageable
     public int jumpCount = 0, spinCount = 0, comboValue;
 
     [Header("Effects")]
-    public ParticleSystem VFXJumpImpact, VFXBigConcrete, VFXSmallConcreteFL, VFXSmallConcreteFR, VFXSmallConcreteBL, VFXSmallConcreteBR;
-    public GameObject arenaFires; 
+    public ParticleSystem VFXJumpImpact, VFXBigConcrete, VFXSmallConcreteFL, VFXSmallConcreteFR, VFXSmallConcreteBL, VFXSmallConcreteBR, crabCrack, ownFire;
+    public Transform crackPosition;
     public TrailRenderer[] trails;
 
     private float interval = 2, time;
@@ -43,7 +43,7 @@ public class CrabFSM : MonoBehaviour, IDamageable
     void Start()
     {
         UIItems.instance.ShowBOSSHUD(true);
-        UIItems.instance.ResetBossHP(hp, bossName);
+        UIItems.instance.ResetBossHP(hp,bossName);
         posture = maxPosture;
         if(player == null)
         {
@@ -57,7 +57,6 @@ public class CrabFSM : MonoBehaviour, IDamageable
         SetState(new CrabStartState(this));
         FuzzyGate(out fuzzyJump);
         FuzzyGate(out fuzzyDash);
-        //Instantiate(arenaFires);
     }
     private void FixedUpdate()
     {
@@ -178,11 +177,6 @@ public class CrabFSM : MonoBehaviour, IDamageable
     {
         rb.AddForce(transform.forward.normalized * value, ForceMode.Impulse);
     }
-
-    public void Die()
-    {
-        Destroy(gameObject);
-    }
     private void Posture()
     {
         if (posture < maxPosture)
@@ -201,6 +195,10 @@ public class CrabFSM : MonoBehaviour, IDamageable
             SetState(new CrabStun(this));
         }
     }
+    public void Create(GameObject prefab, Transform location)
+    {
+        Instantiate(prefab, location.position, location.rotation);
+    }
     #endregion
     public void TakeDamage(int damage, float knockbackStrenght)
     {
@@ -209,18 +207,20 @@ public class CrabFSM : MonoBehaviour, IDamageable
         //playerHit = true;
         //hit.Play();
         GameManager.instance.SpawnNumber((int)damage, Color.yellow, transform);
-        if(UIItems.instance.bossCurrentHP <= hp / 2 && !secondStage)
+        if(UIItems.instance.bossCurrentHP <= hp / 2 && !secondStage && UIItems.instance.bossCurrentHP >= 0)
         {
-            secondStage = true;
             posture = maxPosture + (maxPosture/4);
-            animator.Play("Crab_SecondStage");
+            animator.SetBool("secondStage", true);
             SetState(new CrabSecondStage(this));
         }
         if (UIItems.instance.bossCurrentHP <= 0)
         {
-            //animator.SetBool("death", true);
-            //animator.SetBool("stun", false);
-            Die();
+            animator.Play("Crab_Death");
+            SetState(new CrabDeath(this));
         }
+    }
+    public void Die(GameObject ob)
+    {
+        Destroy(ob);
     }
 }

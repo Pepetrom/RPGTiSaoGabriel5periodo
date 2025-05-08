@@ -14,7 +14,8 @@ public class CrabIdleState : ICrabInterface
     public void OnEnter()
     {
         controller.SortNumber();
-        controller.ActivateTrails(false, false);    
+        controller.ActivateTrails(false, false);
+        controller.animator.SetBool("cooling", false);
     }
 
     public void OnExit()
@@ -43,6 +44,11 @@ public class CrabIdleState : ICrabInterface
                     controller.animator.SetBool("isFurnace", true);
                     controller.SetState(new CrabFurnaceState(controller));
                 }
+            }
+            else if(controller.randomValue <= 60 && controller.randomValue >= 80)
+            {
+                controller.animator.SetBool("attRun", true);
+                controller.SetState(new CrabAttRun(controller));
             }
             else
             {
