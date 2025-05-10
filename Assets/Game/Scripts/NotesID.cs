@@ -9,6 +9,7 @@ public class NotesID : Interactable
     public override void Interact()
     {
         UIItems.instance.ActivatePressF();
+        FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.notes, transform.position);
         if (Input.GetKeyDown(KeyCode.F))
         {
             UIItems.instance.ShowNotes(note);

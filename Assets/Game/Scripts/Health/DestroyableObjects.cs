@@ -8,7 +8,7 @@ public class DestroyableObjects : MonoBehaviour
     [SerializeField] GameObject drop, destroyEffect;
     public void Die()
     {
-        GameManager.instance.audioMan.PlayAudioThere(transform, 0);
+        FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.boxCrash, transform.position);
         Instantiate(destroyEffect, transform.position, transform.rotation);
         if(hasDrop) Instantiate(drop, transform.position, transform.rotation);
         Destroy(this.gameObject);

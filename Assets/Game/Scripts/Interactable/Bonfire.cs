@@ -13,6 +13,7 @@ public class Bonfire : Interactable
     public Transform myPosition;
     public override void Interact()
     {
+        FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.bonfireInteract, transform.position);
         GameManager.instance.lastBonfireRestedAt = myPosition;
         UIItems.instance.AddLocation(myLocation);
         text.text = myName;

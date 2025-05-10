@@ -7,7 +7,10 @@ using FMOD.Studio;
 public class FMODAudioManager : MonoBehaviour
 {
     public static FMODAudioManager instance;
-    public EventReference paper;
+    public EventReference bonfireInteract;
+    public EventReference boxCrash;
+    public EventReference notes;
+    public EventReference lever;
     private void Awake()
     {
         instance = this;
@@ -19,7 +22,6 @@ public class FMODAudioManager : MonoBehaviour
     public void PlayFootsteps(string path)
     {
         EventInstance footsteps = RuntimeManager.CreateInstance(path);
-        Debug.Log("Ei");
         footsteps.start();
         footsteps.release();
     }

@@ -17,7 +17,7 @@ public class Lever : Interactable
             return;
         }
         valve.CanBeActivated(true);
-        PlayerController.instance.audioMan.PlayAudio(5);
+        FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.lever, transform.position);
         activated = true;
         animator.SetTrigger("Activate");
     }

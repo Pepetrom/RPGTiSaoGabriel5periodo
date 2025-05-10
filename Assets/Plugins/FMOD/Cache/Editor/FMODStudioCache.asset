@@ -15,11 +15,92 @@ MonoBehaviour:
   Path: FMOD/FMOD_WoL/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638823994276304853
+  lastModified: 638824351690881732
   FileSizes:
   - Name: Desktop
     Value: 1036
   Exists: 1
+--- !u!114 &-7569771406294215129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Ambiente/SomAmbientePrincipal
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Ambiente/SomAmbientePrincipal
+  Guid:
+    Data1: -690735536
+    Data2: 1216158385
+    Data3: -205209198
+    Data4: 2114803690
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 55484
+--- !u!114 &-2955239581764365183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: "event:/SFX/Ambiente/\xC1guaCorrente"
+  m_EditorClassIdentifier: 
+  Path: "event:/SFX/Ambiente/\xC1guaCorrente"
+  Guid:
+    Data1: -1169275321
+    Data2: 1212490807
+    Data3: -1215388496
+    Data4: -385857085
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 10200
+--- !u!114 &-2715732980056275973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: "event:/SFX/Ambiente/SomAmbienteSecund\xE1rio"
+  m_EditorClassIdentifier: 
+  Path: "event:/SFX/Ambiente/SomAmbienteSecund\xE1rio"
+  Guid:
+    Data1: -1623830409
+    Data2: 1232354682
+    Data3: -513826148
+    Data4: 1958536679
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 65484
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37,15 +118,24 @@ MonoBehaviour:
   - {fileID: -8479413176289016433}
   - {fileID: 8981852520927742451}
   EditorEvents:
-  - {fileID: 3670573763068836145}
+  - {fileID: -7569771406294215129}
+  - {fileID: -2715732980056275973}
+  - {fileID: 4098550120366250074}
+  - {fileID: -2955239581764365183}
+  - {fileID: 7529992815738690402}
+  - {fileID: 2502337704473895451}
+  - {fileID: 6644749333263135435}
+  - {fileID: 8456345858411569361}
+  - {fileID: 3815626103906022284}
+  - {fileID: 885774634009488682}
   EditorParameters: []
   MasterBanks:
   - {fileID: -8479413176289016433}
   StringsBanks:
   - {fileID: 8393391211552418243}
-  cacheTime: 638823994281485629
+  cacheTime: 638824351692418833
   cacheVersion: 131624
---- !u!114 &3670573763068836145
+--- !u!114 &885774634009488682
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -55,23 +145,158 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Ambiente/Goteira
+  m_Name: "event:/SFX/Interag\xEDveis/Alavanca"
   m_EditorClassIdentifier: 
-  Path: event:/SFX/Ambiente/Goteira
+  Path: "event:/SFX/Interag\xEDveis/Alavanca"
   Guid:
-    Data1: 330670632
-    Data2: 1157805560
-    Data3: 1588223114
-    Data4: -1977664718
+    Data1: -2106867020
+    Data2: 1215025276
+    Data3: 572903560
+    Data4: -2135042673
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &2502337704473895451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: "event:/SFX/Interag\xEDveis/Bonfire"
+  m_EditorClassIdentifier: 
+  Path: "event:/SFX/Interag\xEDveis/Bonfire"
+  Guid:
+    Data1: -263878956
+    Data2: 1083986672
+    Data3: 1612293023
+    Data4: 786968177
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &3815626103906022284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Ambiente/FogoNosBarris
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Ambiente/FogoNosBarris
+  Guid:
+    Data1: -1354338181
+    Data2: 1230275314
+    Data3: 446904733
+    Data4: 1685001795
   Banks:
   - {fileID: 8981852520927742451}
   IsStream: 1
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 20063
+  Length: 64056
+--- !u!114 &4098550120366250074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Hoff/Footsteps/Footsteps
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Hoff/Footsteps/Footsteps
+  Guid:
+    Data1: -670146744
+    Data2: 1262188307
+    Data3: 1962136
+    Data4: -1394608613
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 410
+--- !u!114 &6644749333263135435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Outros/CaixaQuebrando
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Outros/CaixaQuebrando
+  Guid:
+    Data1: -1788199288
+    Data2: 1335569056
+    Data3: 1430260662
+    Data4: 755888203
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &7529992815738690402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Ambiente/Cachoeiras
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Ambiente/Cachoeiras
+  Guid:
+    Data1: 1650905675
+    Data2: 1191963457
+    Data3: -1847242617
+    Data4: 1817317573
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 38000
 --- !u!114 &8393391211552418243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,11 +312,38 @@ MonoBehaviour:
   Path: FMOD/FMOD_WoL/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638823994276364861
+  lastModified: 638824351690891732
   FileSizes:
   - Name: Desktop
-    Value: 816
+    Value: 1282
   Exists: 1
+--- !u!114 &8456345858411569361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: "event:/SFX/Interag\xEDveis/Notas"
+  m_EditorClassIdentifier: 
+  Path: "event:/SFX/Interag\xEDveis/Notas"
+  Guid:
+    Data1: -210107625
+    Data2: 1117092780
+    Data3: -1787114358
+    Data4: 190462808
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &8981852520927742451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,8 +359,8 @@ MonoBehaviour:
   Path: FMOD/FMOD_WoL/Build/Desktop/VFX.bank
   Name: VFX
   StudioPath: bank:/VFX
-  lastModified: 638823994281485629
+  lastModified: 638824351692418833
   FileSizes:
   - Name: Desktop
-    Value: 282720
+    Value: 2922208
   Exists: 1
