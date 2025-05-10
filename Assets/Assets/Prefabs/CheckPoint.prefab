@@ -180,6 +180,7 @@ GameObject:
   - component: {fileID: 1602629105260141379}
   - component: {fileID: 6973138993615073184}
   - component: {fileID: 8058211973979543721}
+  - component: {fileID: 5308391678163920334}
   m_Layer: 0
   m_Name: CheckPoint
   m_TagString: Untagged
@@ -314,3 +315,34 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.11043608
   m_Center: {x: -0.0027093124, y: -0.000119380966, z: 0.020000001}
+--- !u!114 &5308391678163920334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6004556511996849082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1571047300
+      Data2: 1178264944
+      Data3: 1354719154
+      Data4: -244616865
+    Path: "event:/SFX/Ambiente/Mec\xE2nicos/BonfireLoop"
+  Event: 
+  EventPlayTrigger: 1
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 1
+  OverrideMinDistance: 12.5
+  OverrideMaxDistance: 30

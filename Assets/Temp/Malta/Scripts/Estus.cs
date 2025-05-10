@@ -22,6 +22,7 @@ public class Estus : MonoBehaviour
         flaskQuantity = Mathf.Clamp(flaskQuantity - 1, 0, maxFlaskQuantity);
         HPBar.instance.RecoverHPbyItem(healQuantity);
         UIItems.instance.UpdateChesseQUI(flaskQuantity);
+        FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.estus, PlayerController.instance.transform.position);
     }   
     public void AddEstus()
     {

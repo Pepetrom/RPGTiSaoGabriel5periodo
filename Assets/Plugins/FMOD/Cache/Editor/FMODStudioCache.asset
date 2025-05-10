@@ -1,32 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-9023723628873179455
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Ambiente/BonfireLoop
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Ambiente/BonfireLoop
-  Guid:
-    Data1: 1571047300
-    Data2: 1178264944
-    Data3: 1354719154
-    Data4: -244616865
-  Banks:
-  - {fileID: 8981852520927742451}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 29579
 --- !u!114 &-8479413176289016433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42,11 +15,38 @@ MonoBehaviour:
   Path: FMOD/FMOD_WoL/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638824718993878699
+  lastModified: 638824759809508379
   FileSizes:
   - Name: Desktop
     Value: 1036
   Exists: 1
+--- !u!114 &-7627294974733905799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: "event:/SFX/Ambiente/Mec\xE2nicos/M\xE1quinasV\xE1lvuladas"
+  m_EditorClassIdentifier: 
+  Path: "event:/SFX/Ambiente/Mec\xE2nicos/M\xE1quinasV\xE1lvuladas"
+  Guid:
+    Data1: -204128455
+    Data2: 1244542999
+    Data3: 1056099725
+    Data4: -2044243936
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 13766
 --- !u!114 &-7569771406294215129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,6 +74,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 55484
+--- !u!114 &-7035283905522675015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Hoff/Estus
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Hoff/Estus
+  Guid:
+    Data1: -407794018
+    Data2: 1079420891
+    Data3: -1743795284
+    Data4: 1349413939
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2901
 --- !u!114 &-2955239581764365183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,6 +155,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 65484
+--- !u!114 &-1457385583237156362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Hoff/Espada/EspadaHitPesado
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Hoff/Espada/EspadaHitPesado
+  Guid:
+    Data1: 1846469390
+    Data2: 1139836395
+    Data3: -424844632
+    Data4: 2133627015
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-1076174966555492672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: "event:/SFX/Ambiente/Mec\xE2nicos/BonfireLoop"
+  m_EditorClassIdentifier: 
+  Path: "event:/SFX/Ambiente/Mec\xE2nicos/BonfireLoop"
+  Guid:
+    Data1: 1571047300
+    Data2: 1178264944
+    Data3: 1354719154
+    Data4: -244616865
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 29579
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,14 +237,49 @@ MonoBehaviour:
   - {fileID: 3815626103906022284}
   - {fileID: 885774634009488682}
   - {fileID: 1950676963611030566}
-  - {fileID: -9023723628873179455}
+  - {fileID: -7627294974733905799}
+  - {fileID: 8650688111769730585}
+  - {fileID: -1076174966555492672}
+  - {fileID: -1457385583237156362}
+  - {fileID: 8116108026295829194}
+  - {fileID: 669633742359291694}
+  - {fileID: 6259720440514351709}
+  - {fileID: 7129643245853824176}
+  - {fileID: -7035283905522675015}
   EditorParameters: []
   MasterBanks:
   - {fileID: -8479413176289016433}
   StringsBanks:
   - {fileID: 8393391211552418243}
-  cacheTime: 638824719969102255
+  cacheTime: 638824760815002764
   cacheVersion: 131624
+--- !u!114 &669633742359291694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Hoff/Espada/EspadaLeve2
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Hoff/Espada/EspadaLeve2
+  Guid:
+    Data1: 162217540
+    Data2: 1192722060
+    Data3: 2007776397
+    Data4: -450832480
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &885774634009488682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,6 +415,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 410
+--- !u!114 &6259720440514351709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Hoff/Espada/EspadaHit
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Hoff/Espada/EspadaHit
+  Guid:
+    Data1: -400863639
+    Data2: 1155264064
+    Data3: -1408847184
+    Data4: 1233087844
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &6644749333263135435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,6 +460,33 @@ MonoBehaviour:
     Data2: 1335569056
     Data3: 1430260662
     Data4: 755888203
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &7129643245853824176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Hoff/Espada/EspadaLeve
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Hoff/Espada/EspadaLeve
+  Guid:
+    Data1: 1032504528
+    Data2: 1206053305
+    Data3: -153415009
+    Data4: -2141530076
   Banks:
   - {fileID: 8981852520927742451}
   IsStream: 0
@@ -353,6 +523,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 38000
+--- !u!114 &8116108026295829194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Hoff/Espada/EspadaPesada
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Hoff/Espada/EspadaPesada
+  Guid:
+    Data1: 118729233
+    Data2: 1200400848
+    Data3: 1685592993
+    Data4: 2104526821
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &8393391211552418243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -368,10 +565,10 @@ MonoBehaviour:
   Path: FMOD/FMOD_WoL/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638824718993892236
+  lastModified: 638824759809528381
   FileSizes:
   - Name: Desktop
-    Value: 1362
+    Value: 1772
   Exists: 1
 --- !u!114 &8456345858411569361
 MonoBehaviour:
@@ -400,6 +597,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &8650688111769730585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: "event:/SFX/Outros/\xC1guaEnchendo"
+  m_EditorClassIdentifier: 
+  Path: "event:/SFX/Outros/\xC1guaEnchendo"
+  Guid:
+    Data1: 255104625
+    Data2: 1336459728
+    Data3: -1119620429
+    Data4: -233261329
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 5500
 --- !u!114 &8981852520927742451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -415,8 +639,8 @@ MonoBehaviour:
   Path: FMOD/FMOD_WoL/Build/Desktop/VFX.bank
   Name: VFX
   StudioPath: bank:/VFX
-  lastModified: 638824719969102255
+  lastModified: 638824760815002764
   FileSizes:
   - Name: Desktop
-    Value: 3232224
+    Value: 3905376
   Exists: 1

@@ -188,14 +188,17 @@ public class W_BigSwordAtack : IWeapon
             switch (player.comboCounter)
             {
                 case 1:
+                    FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.sword[2], player.transform.position);
                     player.audioMan.PlayAudio(2);
                     player.actions[1].ActionStart();
                     break;
                 case 2:
+                    FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.sword[2], player.transform.position);
                     player.audioMan.PlayAudio(2);
                     player.actions[1].ActionStart();
                     break;
                 case 3:
+                    FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.sword[2], player.transform.position);
                     player.audioMan.PlayAudio(2);
                     player.actions[1].ActionStart();
                     break;
@@ -206,14 +209,15 @@ public class W_BigSwordAtack : IWeapon
             switch (player.comboCounter)
             {
                 case 1:
-                    player.audioMan.PlayAudio(0);
+                    FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.sword[0], player.transform.position);
                     player.actions[1].ActionStart();
                     break;
                 case 2:
-                    player.audioMan.PlayAudio(0);
+                    FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.sword[0], player.transform.position);
                     //player.actions[1].ActionStart();
                     break;
                 case 3:
+                    FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.sword[1], player.transform.position);
                     player.audioMan.PlayAudio(1);
                     player.actions[1].ActionStart();
                     break;
@@ -223,6 +227,7 @@ public class W_BigSwordAtack : IWeapon
     // acerto de ataque normal
     public void AtackHit(Collider other)
     {
+        FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.sword[3], player.transform.position);
         player.audioMan.PlayAudio(3);
         GameManager.instance.CallHitStop(0.2f);
         player.swordTrail.startColor = Color.green;
@@ -243,6 +248,7 @@ public class W_BigSwordAtack : IWeapon
     //acerto de ataque crítico
     public void AtackCriticalHit(Collider other)
     {
+        FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.sword[4], player.transform.position);
         player.audioMan.PlayAudio(4);
         GameManager.instance.CallHitStop(0.35f);
         player.swordTrail.startColor = Color.red;
