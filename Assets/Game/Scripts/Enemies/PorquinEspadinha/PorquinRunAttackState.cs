@@ -11,7 +11,8 @@ public class PorquinRunAttackState : IPorquinStateMachine
     }
     public void OnEnter()
     {
-        controller.damage = 40;
+        controller.rb.isKinematic = true;
+        controller.damage = 35;
         controller.run = true;
     }
 
@@ -26,10 +27,15 @@ public class PorquinRunAttackState : IPorquinStateMachine
         if (controller.active)
         {
             controller.sword.SetActive(true);
+            controller.agent.enabled = false;
+            controller.rb.isKinematic = false;
+            controller.KB(200);
         }
         else
         {
             controller.sword.SetActive(false);
+            controller.agent.enabled = true;
+            controller.rb.isKinematic = true;
         }
         if (!controller.run)
         {

@@ -12,7 +12,7 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
     public Animator animator;
     public NavMeshAgent agent;
     public GameObject player;
-    Rigidbody rb;
+    [HideInInspector]public Rigidbody rb;
     public Enemy enemy;
 
     [Header("Patrol")]
@@ -31,7 +31,6 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
     public float meleeRange;
     public float safeRange;
     public float runRange;
-    public float kbForce;
     public int attack2Counter = 0;
     public float attackSpeed;
     public float damage;
@@ -39,6 +38,7 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
     public GameObject sword;
     public int fullCombatCounter;
     public Collider selfCollider;
+    public float KBForce;
     // FUZZY
     [HideInInspector] public int fuzzyDash, fuzzySwing;
     public int minDash, maxDash, minSwing, maxSwing;
@@ -200,9 +200,9 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
     {
         rb.AddForce(PlayerController.instance.moveDirection.normalized * kbforce, ForceMode.Impulse);
     }
-    public void KB(float value)
+    public void KB(float kbforce)
     {
-        rb.AddForce(-transform.forward.normalized * (kbForce * value), ForceMode.Impulse);
+        rb.AddForce(transform.forward.normalized * kbforce, ForceMode.Impulse);
     }
     void UpdateHPBar()
     {
@@ -239,7 +239,6 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
 
     public void TakeDamage(int damage, float knockbackStrenght)
     {
-        Impulse(kbForce * knockbackStrenght);
         hp -= damage;
         playerHit = true;
         hit.Play();

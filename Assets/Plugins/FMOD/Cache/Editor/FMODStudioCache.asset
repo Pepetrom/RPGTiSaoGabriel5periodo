@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8687062340611501943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Inimigos/Porquinho/PorquinhoEspada
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Inimigos/Porquinho/PorquinhoEspada
+  Guid:
+    Data1: 716811853
+    Data2: 1155068809
+    Data3: 1979982999
+    Data4: 375128248
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 530
 --- !u!114 &-8479413176289016433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15,7 +42,7 @@ MonoBehaviour:
   Path: FMOD/FMOD_WoL/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638824759809508379
+  lastModified: 638824915651873423
   FileSizes:
   - Name: Desktop
     Value: 1036
@@ -101,6 +128,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2901
+--- !u!114 &-4042470378200737098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Inimigos/Porquinho/PorquinhoAtaqueGrunhido
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Inimigos/Porquinho/PorquinhoAtaqueGrunhido
+  Guid:
+    Data1: 1087488607
+    Data2: 1166867964
+    Data3: -1536812612
+    Data4: 607829434
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 810
+--- !u!114 &-3434961659011025339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Inimigos/Porquinho/PorquinhoSons
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Inimigos/Porquinho/PorquinhoSons
+  Guid:
+    Data1: -1111362883
+    Data2: 1288301742
+    Data3: -476691315
+    Data4: -941796286
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
 --- !u!114 &-2955239581764365183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,6 +236,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 65484
+--- !u!114 &-2652463212730160100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Hoff/Footsteps/Esquiva
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Hoff/Footsteps/Esquiva
+  Guid:
+    Data1: -1152592645
+    Data2: 1199223392
+    Data3: 881684099
+    Data4: 1692499975
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 426
 --- !u!114 &-1457385583237156362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,6 +317,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 29579
+--- !u!114 &-786919234706772459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Inimigos/Porquinho/PorquinhoPegadas
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Inimigos/Porquinho/PorquinhoPegadas
+  Guid:
+    Data1: 661260793
+    Data2: 1226029909
+    Data3: 54991539
+    Data4: -489200832
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 300
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,12 +381,18 @@ MonoBehaviour:
   - {fileID: 6259720440514351709}
   - {fileID: 7129643245853824176}
   - {fileID: -7035283905522675015}
+  - {fileID: -786919234706772459}
+  - {fileID: -4042470378200737098}
+  - {fileID: -8687062340611501943}
+  - {fileID: -2652463212730160100}
+  - {fileID: -3434961659011025339}
+  - {fileID: 8754836013773150638}
   EditorParameters: []
   MasterBanks:
   - {fileID: -8479413176289016433}
   StringsBanks:
   - {fileID: 8393391211552418243}
-  cacheTime: 638824760815002764
+  cacheTime: 638824920230526127
   cacheVersion: 131624
 --- !u!114 &669633742359291694
 MonoBehaviour:
@@ -565,10 +706,10 @@ MonoBehaviour:
   Path: FMOD/FMOD_WoL/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638824759809528381
+  lastModified: 638824915651883425
   FileSizes:
   - Name: Desktop
-    Value: 1772
+    Value: 2064
   Exists: 1
 --- !u!114 &8456345858411569361
 MonoBehaviour:
@@ -624,6 +765,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 5500
+--- !u!114 &8754836013773150638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Inimigos/Porquinho/PorquinhoMorte
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Inimigos/Porquinho/PorquinhoMorte
+  Guid:
+    Data1: 1199171817
+    Data2: 1115165757
+    Data3: -1188819576
+    Data4: -141237322
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1671
 --- !u!114 &8981852520927742451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -639,8 +807,8 @@ MonoBehaviour:
   Path: FMOD/FMOD_WoL/Build/Desktop/VFX.bank
   Name: VFX
   StudioPath: bank:/VFX
-  lastModified: 638824760815002764
+  lastModified: 638824920230526127
   FileSizes:
   - Name: Desktop
-    Value: 3905376
+    Value: 4053536
   Exists: 1

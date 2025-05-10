@@ -32,6 +32,7 @@ public class A_DashTowardMovement : IAction
         dashing = true;
         dashTimer = 0;
         player.dustParticle.Play();
+        FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.dash,player.transform.position);    
 
         direction = player.moveDirection;
         direction.y = 0;

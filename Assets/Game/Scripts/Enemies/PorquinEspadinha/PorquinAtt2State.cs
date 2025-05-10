@@ -12,7 +12,8 @@ public class PorquinAtt2State : IPorquinStateMachine
     }
     public void OnEnter()
     {
-        controller.damage = 30f;
+        controller.rb.isKinematic = true;
+        controller.damage = 20f;
         controller.SortNumber();
         controller.attack2Counter++;
         controller.agent.speed = 0f;
@@ -27,6 +28,7 @@ public class PorquinAtt2State : IPorquinStateMachine
         controller.impulse = false;
         controller.combo = false;
         controller.hashitted = false;
+        controller.active = false;
     }
 
     public void OnUpdate()
@@ -40,10 +42,15 @@ public class PorquinAtt2State : IPorquinStateMachine
         if(controller.active)
         {
             controller.sword.SetActive(true);
+            controller.agent.enabled = false;
+            controller.rb.isKinematic = false;
+            //controller.KB(50);
         }
         else
         {
             controller.sword.SetActive(false);
+            controller.agent.enabled = true;
+            controller.rb.isKinematic = true;
         }
         if (!controller.antecipation)
             controller.RotateTowardsPlayer();

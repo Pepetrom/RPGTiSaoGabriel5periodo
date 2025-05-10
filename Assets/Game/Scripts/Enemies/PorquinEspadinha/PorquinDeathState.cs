@@ -9,6 +9,7 @@ public class PorquinDeathState : IPorquinStateMachine
     bool finished;
     public PorquinDeathState(PorquinStateMachine controller)
     {
+        FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.porquinDeath, controller.transform.position);
         this.controller = controller;
         materials = new Material[controller.porquinRenderers.Length];
         for (int i = 0; i < controller.porquinRenderers.Length; i++)
@@ -19,7 +20,6 @@ public class PorquinDeathState : IPorquinStateMachine
     }
     public void OnEnter()
     {
-        controller.KB(4f);
         controller.GetComponent<Collider>().enabled = false;
         GameManager.instance.Score(100);
     }

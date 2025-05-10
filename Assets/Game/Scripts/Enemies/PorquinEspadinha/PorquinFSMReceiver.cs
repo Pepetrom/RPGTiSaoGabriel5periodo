@@ -33,5 +33,9 @@ public class PorquinFSMReceiver : MonoBehaviour
     {
         porquin.Run();
     }
+    public void PlaySoundAttached(string path)
+    {
+        FMODAudioManager.instance.PlaySoundAttached(path);
+    }
 }
 
