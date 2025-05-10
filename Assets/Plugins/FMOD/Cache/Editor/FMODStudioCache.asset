@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9023723628873179455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Ambiente/BonfireLoop
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Ambiente/BonfireLoop
+  Guid:
+    Data1: 1571047300
+    Data2: 1178264944
+    Data3: 1354719154
+    Data4: -244616865
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 29579
 --- !u!114 &-8479413176289016433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15,7 +42,7 @@ MonoBehaviour:
   Path: FMOD/FMOD_WoL/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638824351690881732
+  lastModified: 638824718993878699
   FileSizes:
   - Name: Desktop
     Value: 1036
@@ -128,12 +155,14 @@ MonoBehaviour:
   - {fileID: 8456345858411569361}
   - {fileID: 3815626103906022284}
   - {fileID: 885774634009488682}
+  - {fileID: 1950676963611030566}
+  - {fileID: -9023723628873179455}
   EditorParameters: []
   MasterBanks:
   - {fileID: -8479413176289016433}
   StringsBanks:
   - {fileID: 8393391211552418243}
-  cacheTime: 638824351692418833
+  cacheTime: 638824719969102255
   cacheVersion: 131624
 --- !u!114 &885774634009488682
 MonoBehaviour:
@@ -153,6 +182,33 @@ MonoBehaviour:
     Data2: 1215025276
     Data3: 572903560
     Data4: -2135042673
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &1950676963611030566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: "event:/SFX/Interag\xEDveis/V\xE1lvula"
+  m_EditorClassIdentifier: 
+  Path: "event:/SFX/Interag\xEDveis/V\xE1lvula"
+  Guid:
+    Data1: -1152863188
+    Data2: 1261520027
+    Data3: -799265369
+    Data4: -1860385167
   Banks:
   - {fileID: 8981852520927742451}
   IsStream: 0
@@ -312,10 +368,10 @@ MonoBehaviour:
   Path: FMOD/FMOD_WoL/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638824351690891732
+  lastModified: 638824718993892236
   FileSizes:
   - Name: Desktop
-    Value: 1282
+    Value: 1362
   Exists: 1
 --- !u!114 &8456345858411569361
 MonoBehaviour:
@@ -359,8 +415,8 @@ MonoBehaviour:
   Path: FMOD/FMOD_WoL/Build/Desktop/VFX.bank
   Name: VFX
   StudioPath: bank:/VFX
-  lastModified: 638824351692418833
+  lastModified: 638824719969102255
   FileSizes:
   - Name: Desktop
-    Value: 2922208
+    Value: 3232224
   Exists: 1

@@ -11,6 +11,7 @@ public class FMODAudioManager : MonoBehaviour
     public EventReference boxCrash;
     public EventReference notes;
     public EventReference lever;
+    public EventReference valve;
     private void Awake()
     {
         instance = this;

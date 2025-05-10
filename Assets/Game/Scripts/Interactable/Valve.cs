@@ -18,7 +18,7 @@ public class Valve : Interactable
     {
         if (activated) return;
         if (!canBeActivated) return;
-        PlayerController.instance.audioMan.PlayAudio(5);
+        FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.valve, transform.position);
         activated = true;
         animator.SetTrigger("Activate");
         objectThatMove.ChangeLocation(locationID);
