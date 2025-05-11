@@ -19,6 +19,7 @@ public class PorquinAtt2State : IPorquinStateMachine
         controller.agent.speed = 0f;
         controller.animator.SetBool("attack2", true);
         impulseApplied = false;
+        controller.active = false;
     }
 
     public void OnExit()
@@ -41,14 +42,15 @@ public class PorquinAtt2State : IPorquinStateMachine
         }
         if(controller.active)
         {
-            controller.sword.SetActive(true);
+            controller.sword.enabled = true;
             controller.agent.enabled = false;
             controller.rb.isKinematic = false;
-            //controller.KB(50);
+            controller.KB(50);
+            Debug.Log("Eu aqui no ataque 2");
         }
         else
         {
-            controller.sword.SetActive(false);
+            controller.sword.enabled = false;
             controller.agent.enabled = true;
             controller.rb.isKinematic = true;
         }

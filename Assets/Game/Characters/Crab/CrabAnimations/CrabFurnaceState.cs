@@ -41,8 +41,8 @@ public class CrabFurnaceState : ICrabInterface
         if (controller.end)
         {
             controller.fireCircle.SetActive(false);
-            controller.animator.SetBool("cooling", true);
-            controller.SetState(new CrabCoolDown(controller));
+            controller.animator.SetBool("isFurnace", false);
+            controller.SetState(new CrabIdleState(controller));
         }
     }
 }

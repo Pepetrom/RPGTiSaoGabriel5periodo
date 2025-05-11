@@ -17,6 +17,7 @@ public class PorquinAtt3State : IPorquinStateMachine
         controller.damage = 30f;
         controller.agent.speed = 0f;
         impulseApplied = false;
+        controller.active = false;
     }
 
     public void OnExit()
@@ -35,14 +36,14 @@ public class PorquinAtt3State : IPorquinStateMachine
         }
         if (controller.active)
         {
-            controller.sword.SetActive(true);
+            controller.sword.enabled = true;
             controller.agent.enabled = false;
             controller.rb.isKinematic = false;
-            //controller.KB(10);
+            controller.KB(10);
         }
         else
         {
-            controller.sword.SetActive(false);
+            controller.sword.enabled = false;
             controller.agent.enabled = true;
             controller.rb.isKinematic = true;
         }

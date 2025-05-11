@@ -33,6 +33,9 @@ public class PorquinCombatIdleState : IPorquinStateMachine
         controller.agent.angularSpeed = 0f;
         controller.agent.speed = 0f;
         controller.fullCombatCounter = 0;
+        controller.agent.enabled = true;
+        controller.rb.isKinematic = true;
+        controller.sword.enabled = false;
 
     }
     public void OnExit()

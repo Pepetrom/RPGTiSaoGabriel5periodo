@@ -35,7 +35,7 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
     public float attackSpeed;
     public float damage;
     public bool hashitted = false;
-    public GameObject sword;
+    public SphereCollider sword;
     public int fullCombatCounter;
     public Collider selfCollider;
     public float KBForce;
@@ -61,6 +61,7 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
     [HideInInspector] public bool active;
     [HideInInspector] public bool combed = false;
     [HideInInspector] public bool run = true;
+    [HideInInspector] public bool isDashing = false;
 
     public Renderer[] porquinRenderers;
 
@@ -96,7 +97,7 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
         hp = maxHP;
         hpBar.maxValue = maxHP;
         hpBar.value = hp;
-        sword.gameObject.SetActive(false);
+        sword.enabled = false;
         //fuzzy
         FuzzyGate(out fuzzyDash, out fuzzySwing);
     }

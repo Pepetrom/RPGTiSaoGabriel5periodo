@@ -19,6 +19,8 @@ public class CrabStun : ICrabInterface
         controller.animator.SetBool("att2att3", false);
         controller.animator.SetBool("attFurnace", false);
         controller.animator.SetBool("isJumping", false);
+        controller.agent.enabled = true;
+        controller.rb.isKinematic = true;
     }
 
     public void OnExit()

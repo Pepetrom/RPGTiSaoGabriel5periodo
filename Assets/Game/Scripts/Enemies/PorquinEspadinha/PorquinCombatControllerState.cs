@@ -11,6 +11,9 @@ public class PorquinCombatControllerState : IPorquinStateMachine
     }
     public void OnEnter()
     {
+        controller.agent.enabled = true;
+        controller.rb.isKinematic = true;
+        controller.sword.enabled = false;
 
     }
 

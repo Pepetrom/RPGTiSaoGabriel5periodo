@@ -12,6 +12,7 @@ public class PorquinStunState : IPorquinStateMachine
     }
     public void OnEnter()
     {
+        controller.sword.enabled = false;
         controller.playerHit = false;
         controller.animator.SetBool("stun", true);
         controller.SortNumber();
@@ -19,23 +20,27 @@ public class PorquinStunState : IPorquinStateMachine
 
     public void OnExit()
     {
-
+        controller.attIdle = false;
     }
 
     public void OnUpdate()
     {
         if (controller.attIdle)
         {
-            if(controller.sortedNumber >= 0.7)
+            if(controller.sortedNumber >= 0.6)
             {
+                controller.sword.enabled = false;
                 controller.animator.SetBool("stun", false);
                 controller.SetState(new PorquinCombatIdleState(controller));
             }
             else
             {
+                controller.sword.enabled = false;
                 controller.animator.SetBool("isDashing", true);
                 controller.SetState(new PorquinDashState(controller));
             }
+            //controller.animator.SetBool("stun", false);
+            //controller.SetState(new PorquinCombatIdleState(controller));
         }
 
     }

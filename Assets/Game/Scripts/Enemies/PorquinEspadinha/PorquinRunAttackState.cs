@@ -26,14 +26,14 @@ public class PorquinRunAttackState : IPorquinStateMachine
     {
         if (controller.active)
         {
-            controller.sword.SetActive(true);
+            controller.sword.enabled = true;
             controller.agent.enabled = false;
             controller.rb.isKinematic = false;
             controller.KB(200);
         }
         else
         {
-            controller.sword.SetActive(false);
+            controller.sword.enabled = false;
             controller.agent.enabled = true;
             controller.rb.isKinematic = true;
         }

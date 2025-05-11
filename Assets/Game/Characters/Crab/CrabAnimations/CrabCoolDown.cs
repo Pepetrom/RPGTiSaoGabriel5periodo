@@ -8,6 +8,7 @@ public class CrabCoolDown : ICrabInterface
     public CrabCoolDown(CrabFSM controller) {  this.controller = controller; }
     public void OnEnter()
     {
+        controller.animator.SetBool("isFurnace", false);
         controller.ownFire.Stop();
     }
 
@@ -22,7 +23,7 @@ public class CrabCoolDown : ICrabInterface
         if (controller.end)
         {
             controller.animator.SetBool("cooling", false);
-            controller.SetState(new CrabIdleState(controller));
+            controller.SetState(new CrabAttController(controller));
         }
     }
 }

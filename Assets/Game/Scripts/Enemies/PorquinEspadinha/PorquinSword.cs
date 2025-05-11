@@ -11,7 +11,7 @@ public class PorquinSword : MonoBehaviour
         {
             //porquin.audioMan.PlayAudio(3);
             HPBar.instance.TakeDamage(porquin.damage, porquin.transform);
-            porquin.sword.gameObject.SetActive(false);
+            porquin.sword.enabled = false;
             porquin.hashitted = true;
         }
     }
