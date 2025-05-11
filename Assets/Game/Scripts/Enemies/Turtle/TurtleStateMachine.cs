@@ -70,6 +70,9 @@ public class TurtleStateMachine : MonoBehaviour, IDamageable
     public Transform[] patrolPoints;
 
     public AudioManager audioMan;
+
+    //fuzzy 
+    public int fuzzyCannon;
     #endregion
     void Start()
     {
@@ -93,6 +96,7 @@ public class TurtleStateMachine : MonoBehaviour, IDamageable
             }
         }
         SetState(new TurtlePatrolState(this));
+        FuzzyGate(out fuzzyCannon);
     } 
 
     void FixedUpdate()
@@ -113,14 +117,24 @@ public class TurtleStateMachine : MonoBehaviour, IDamageable
     {
         sortedNumber = Random.value;
     }
+    public float FuzzyLogic(int fuzzy, int min, int max)
+    {
+        float v = fuzzy - min;
+        float size = max - min;
+        float fuzzification = fuzzy / size;
+        return fuzzification;
+    }
+    public void FuzzyGate(out int a)
+    {
+        a = Random.Range(1, 40);
+    }
+    #region ActionEvents
     public void AttackIdle()
     {
-        //Debug.Log("Voltei pro Idle");
         attIdle = true;
     }
     public void Combo()
     {
-        //Debug.Log("Combo");
         combo = true;
     }
     public void Antecipation()
@@ -143,6 +157,7 @@ public class TurtleStateMachine : MonoBehaviour, IDamageable
     {
         active = false;
     }
+    #endregion
     public void DestroyTurtle(GameObject enemy)
     {
         Destroy(enemy);

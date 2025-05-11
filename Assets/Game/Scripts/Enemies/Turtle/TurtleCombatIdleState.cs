@@ -5,7 +5,7 @@ using UnityEngine;
 public class TurtleCombatIdleState : ITurtleStateMachine
 {
     TurtleStateMachine controller;
-
+    float a, fuzzificado;
     public TurtleCombatIdleState(TurtleStateMachine controller)
     {
         this.controller = controller;
@@ -26,7 +26,7 @@ public class TurtleCombatIdleState : ITurtleStateMachine
         controller.rightHand.gameObject.SetActive(false);
         controller.combed = false;
         controller.SortNumber();
-        controller.rb.isKinematic = false;
+        controller.rb.isKinematic = true;
         controller.agent.angularSpeed = 0f;
     }
 
@@ -48,18 +48,34 @@ public class TurtleCombatIdleState : ITurtleStateMachine
             controller.SetState(new TurtleStunState(controller));
             controller.playerHit = false;
         }
-        if (controller.TargetDir().magnitude >= controller.minCannonRange && controller.TargetDir().magnitude <= controller.maxCannonRange)
-        {
-            controller.SetState(new TurtleCannonState(controller));
-        }
-        else if(controller.TargetDir().magnitude >= controller.meleeRange && controller.TargetDir().magnitude < controller.minCannonRange)
+        if(controller.TargetDir().magnitude >= controller.meleeRange && controller.TargetDir().magnitude < controller.minCannonRange)
         {
             controller.animator.SetBool("IsWalking", true);
             controller.SetState(new TurtleWalkState(controller));
         }
-        else if (controller.TargetDir().magnitude > controller.maxCannonRange)
+        else if (controller.TargetDir().magnitude >= controller.minCannonRange)
         {
-            controller.SetState(new TurtleRunState(controller));
+            if(controller.fuzzyCannon < controller.maxCannonRange)
+            {
+                controller.SetState(new TurtleCannonState(controller));
+            }
+            else if (controller.fuzzyCannon > controller.maxCannonRange + 10)
+            {
+                controller.SetState(new TurtleRunState(controller));
+            }
+            else
+            {
+                a = Random.Range(0.0f, 1.0f);
+                fuzzificado = controller.FuzzyLogic(controller.fuzzyCannon, 15, 35);
+                if(a > fuzzificado)
+                {
+                    controller.SetState(new TurtleCannonState(controller));
+                }
+                else
+                {
+                    controller.SetState(new TurtleRunState(controller));
+                }
+            }
         }
         else if(controller.TargetDir().magnitude > controller.patrolDistance)
         {
