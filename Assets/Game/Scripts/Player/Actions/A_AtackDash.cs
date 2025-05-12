@@ -19,7 +19,7 @@ public class A_AtackDash : IAction
         PlayerController.instance.dustParticle.Play();
         if(PlayerController.instance.target != null)
         {
-            direction = (PlayerController.instance.target.position - PlayerController.instance.model.transform.position);
+            direction = PlayerController.instance.target.position - PlayerController.instance.model.transform.position;
             direction.y = 0;
             direction = direction.normalized * dashForce * Time.fixedDeltaTime * PlayerController.instance.moveSpeed;
         }

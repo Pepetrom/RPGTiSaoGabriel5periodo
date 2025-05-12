@@ -23,7 +23,8 @@ public class W_BigSwordAtack : IWeapon
     }
     public void AtackStart(bool heavy)
     {
-        if (!player.canDoAtack || StaminaBar.instance.currentStam < player.stamPerHit)
+        if(!player.masterCanDo || StaminaBar.instance.currentStam < player.stamPerHit) return;
+        if (!player.canDoAtack )
         {
             if (heavy )
             {
@@ -166,7 +167,12 @@ public class W_BigSwordAtack : IWeapon
     public void AtackEnd()
     {
         canBeInterupted = false;
-        player.ResetAllActions();
+        player.isAttacking = false;
+        player.canMove = true;
+        player.canDoAtack = true;
+        player.animator.SetBool("Atacking", false);
+        player.swordTrail.emitting = false;
+        //player.ResetAllActions();
     }
     public void InteruptAtack()
     {
@@ -180,7 +186,7 @@ public class W_BigSwordAtack : IWeapon
     {
         storedCommand = which;
     }
-    //Chamado Pela Animação
+    //Chamado Pela Animaï¿½ï¿½o
     public void AtackStartAction()
     {
         if (isHeavyAtack)
@@ -245,7 +251,7 @@ public class W_BigSwordAtack : IWeapon
         }
         
     }
-    //acerto de ataque crítico
+    //acerto de ataque crï¿½tico
     public void AtackCriticalHit(Collider other)
     {
         FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.sword[4], player.transform.position);

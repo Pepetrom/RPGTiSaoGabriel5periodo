@@ -22,8 +22,8 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem dustParticle, bloodParticle, critical;
     [Header("Atack Settings------------------")]
     public int baseDamage;
-    public int stamPerHit; // Variável que indica a quantidade de estamina perdida por hit
-    public bool isAttacking = false; // Variável para saber se o jogador está atacando ou não
+    public int stamPerHit; // Variï¿½vel que indica a quantidade de estamina perdida por hit
+    public bool isAttacking = false; // Variï¿½vel para saber se o jogador estï¿½ atacando ou nï¿½o
     public int comboCounter = 1;
     public Transform target = null;
     public AtackCollider atackCollider;
@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour
     public bool[] canDoAction = new bool[4];
     public IAction[] actions = new IAction[4];
     [Header("Atacks------------------")]
+    public bool holdingToAtack = false;
+    float timerHoldingAtack = 0;
     public bool canDoAtack = true;
     public IWeapon[] atacks = new IWeapon[1];
     [Header("Runes------------------")]
@@ -124,6 +126,7 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
+        if (!masterCanDo) return;
         animator.speed = GameManager.instance.actionTime;
         //CheckGround();
         SetDirection();
@@ -177,16 +180,22 @@ public class PlayerController : MonoBehaviour
         {
             actions[0].ActionStart();
         }
-        //verificar se ficou melhor com GetKey ou GetKeyDown
         if (Input.GetKey(KeyCode.Mouse0))
         {
+            holdingToAtack = (timerHoldingAtack > 0.5f || timerHoldingAtack == 0)? true : false;
+            timerHoldingAtack += Time.deltaTime;
             //light Atack
             Atack(0, false);
         }
         if (Input.GetKey(KeyCode.Mouse1))
         {
+            timerHoldingAtack += Time.deltaTime;
+            holdingToAtack = (timerHoldingAtack > 0.5f || timerHoldingAtack == 0)? true : false;
             //heavy Atack
             Atack(0, true);
+        }
+        if(Input.GetKeyUp(KeyCode.Mouse0) || Input.GetKeyUp(KeyCode.Mouse1)){
+            timerHoldingAtack = 0;
         }
         if (Input.GetKeyDown(KeyCode.Mouse2))
         {
@@ -205,7 +214,14 @@ public class PlayerController : MonoBehaviour
     void UseEstus()
     {
         if (Estus.instance.flaskQuantity <= 0) return;
-        StopAllActions();
+        masterCanDo = false;
+        canMove = false;
+        comboCounter = 1;
+        isAttacking = false;
+        swordTrail.emitting = false;
+        animator.SetBool("Atacking", false);
+        animator.SetBool("Walk", false);
+        animator.SetBool("Run", false);
         animator.SetTrigger("Estus");
         Estus.instance.UseEstus();
     }
@@ -233,6 +249,8 @@ public class PlayerController : MonoBehaviour
     }
     void WalkInput()
     {
+        moveDirection = Vector3.zero;
+        if( !canMove ) return;
         moveDirection.y = 0;
         moveDirection.x = Input.GetAxis("Horizontal") * cameraAlignValue.x + (Input.GetAxis("Vertical") * cameraAlignValue.z);
         moveDirection.z = Input.GetAxis("Vertical") * cameraAlignValue.x - (Input.GetAxis("Horizontal") * cameraAlignValue.z);
@@ -320,7 +338,7 @@ public class PlayerController : MonoBehaviour
     {
         if (target != null) return Vector3.zero;
         ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundMask)) // agora está funcionando os raycasts
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundMask)) // agora estï¿½ funcionando os raycasts
         {
             mousePosition = hit.point;
         }
@@ -350,22 +368,25 @@ public class PlayerController : MonoBehaviour
     public void StopAllActions()
     {
         masterCanDo = false;
-        canDoAtack = false;
         canMove = false;
         comboCounter = 1;
+        isAttacking = false;
+        swordTrail.emitting = false;
 
         animator.SetBool("Atacking", false);
         animator.SetBool("Walk", false);
         animator.SetBool("Run", false);
-        /*foreach (var action in actions) {
-            action.ActionEnd();
-        }*/
+        animator.SetTrigger("ForceIddle");
+        //Stops KnockBack if any
         actions[2].ActionEnd();
-        isAttacking = false;
-        swordTrail.emitting = false;
+    }
+    public void ResetLesserActions(){
+        canDoAtack = true;
+        canMove = true;
     }
     public void ResetAllActions()
     {
+        moveDirection = Vector3.zero;
         masterCanDo = true;
         canDoAtack = true;
         canMove = true;

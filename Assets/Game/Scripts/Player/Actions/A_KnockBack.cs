@@ -22,6 +22,7 @@ public class A_KnockBack : IAction
         direction = PlayerController.instance.transform.position - PlayerController.instance.damageFont.transform.position ;
         direction.y = 0;
         direction = direction.normalized * knockBackForce * Time.fixedDeltaTime * 8;
+        
     }
     public void ActionUpdate()
     {
@@ -37,7 +38,8 @@ public class A_KnockBack : IAction
             return;
         }
         PlayerController.instance.canMove = false;
-        PlayerController.instance.moveDirection += direction;
+        PlayerController.instance.cc.Move(direction * Time.fixedDeltaTime);
+        //PlayerController.instance.moveDirection += direction;
         knockBackTime -= Time.fixedDeltaTime;
     }
     public void ActionEnd()

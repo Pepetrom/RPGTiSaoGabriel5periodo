@@ -31,6 +31,9 @@ public class ControllerForAnim : MonoBehaviour
     {
         PlayerController.instance.atacks[slot].AtackEnd();
     }
+    public void EstusEnd(){
+        PlayerController.instance.ResetAllActions();
+    }
     public void PlaySound(int soundId)
     {
         audioMan.PlayAudio(soundId);
