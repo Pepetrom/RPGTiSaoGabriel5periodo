@@ -5,7 +5,6 @@ using UnityEngine;
 public class TurtleAtt2State : ITurtleStateMachine
 {
     TurtleStateMachine controller;
-    private bool impulseApplied = false;
     public TurtleAtt2State(TurtleStateMachine controller)
     {
         this.controller = controller;
@@ -13,7 +12,6 @@ public class TurtleAtt2State : ITurtleStateMachine
     public void OnEnter()
     {
         controller.damage = 25;
-        controller.attackSpeed = 600f;
         controller.animator.SetBool("Attack2", true);
         controller.rb.isKinematic = false;
     }
@@ -35,45 +33,41 @@ public class TurtleAtt2State : ITurtleStateMachine
             controller.playerHit = false;
             return;
         }
+        if (!controller.antecipation)
+        {
+            controller.RotateTowardsPlayer(8);
+        }
         if (controller.active)
         {
             controller.leftHand.gameObject.SetActive(true);
+            controller.rb.isKinematic = false;
+            controller.agent.enabled = false;
+            controller.KB(150);
         }
         else
         {
             controller.leftHand.gameObject.SetActive(false);
+            controller.rb.isKinematic = true;
+            controller.agent.enabled = true;
         }
-        if (controller.impulse && !impulseApplied)
+        if (controller.combo)
         {
-            //controller.Impulse();
-            impulseApplied = true;
+            if (controller.TargetDir().magnitude <= controller.meleeRange + 6)
+            {
+                controller.combed = true;
+                controller.animator.SetBool("att2att3", true);
+                controller.SetState(new TurtleAtt3State(controller));
+            }
+            else
+            {
+                controller.animator.SetBool("Attack2", false);
+                controller.SetState(new TurtleCombatIdleState(controller));
+            }
         }
-        if (!controller.antecipation)
-        {
-            controller.RotateTowardsPlayer();
-        }
-        else if (controller.combo && controller.TargetDir().magnitude >= controller.meleeRange + 5)
+        if (controller.attIdle)
         {
             controller.animator.SetBool("Attack2", false);
             controller.SetState(new TurtleCombatIdleState(controller));
         }
-        if (!controller.combed)
-        {
-            if (controller.attIdle) 
-            {
-                controller.SetState(new TurtleCombatIdleState(controller));
-                controller.animator.SetBool("Attack2", false);
-            }
-        }
-        else
-        {
-            if (controller.combo)
-            {
-                //Debug.Log("Opa");
-                controller.animator.SetBool("att2att3", true);
-                controller.SetState(new TurtleAtt3State(controller));
-            }
-        }
-
     }
 }

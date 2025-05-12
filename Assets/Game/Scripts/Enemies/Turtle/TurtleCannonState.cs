@@ -16,6 +16,9 @@ public class TurtleCannonState : ITurtleStateMachine
     {
         //hasFired = false;
         controller.animator.SetBool("Cannon", true);
+        controller.animator.SetBool("IsWalking", false);
+        controller.agent.enabled = false;
+        controller.rb.isKinematic = false;
     }
 
     public void OnExit()
@@ -25,13 +28,15 @@ public class TurtleCannonState : ITurtleStateMachine
         controller.antecipation = false;
         controller.animator.SetBool("Cannonatt3", false);
         controller.cannonFire = false;
+        controller.agent.enabled = true;
+        controller.rb.isKinematic = true;
     }
 
     public void OnUpdate()
     {
         if (!controller.antecipation)
         {
-            controller.RotateTowardsPlayer();
+            controller.RotateTowardsPlayer(10);
         }
         if (!controller.antecipation && controller.TargetDir().magnitude < controller.minCannonRange)
         {

@@ -17,11 +17,25 @@ public class TurtleStunState : ITurtleStateMachine
 
     public void OnExit()
     {
+        controller.active = false;
+        controller.attIdle = false;
         controller.animator.SetBool("Stun", false);
     }
 
     public void OnUpdate()
     {
+        if (controller.active)
+        {
+            controller.agent.enabled = false;
+            controller.rb.isKinematic = false;
+            controller.KB(-300);
+            Debug.Log("sTUN");
+        }
+        else
+        {
+            controller.agent.enabled = true;
+            controller.rb.isKinematic = true;
+        }
         if (controller.attIdle)
         {
             controller.animator.SetBool("Stun", false);

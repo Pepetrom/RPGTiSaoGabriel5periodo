@@ -28,6 +28,7 @@ public class TurtleCombatIdleState : ITurtleStateMachine
         controller.SortNumber();
         controller.rb.isKinematic = true;
         controller.agent.angularSpeed = 0f;
+        controller.agent.speed = 0f;
     }
 
     public void OnExit()
@@ -59,14 +60,14 @@ public class TurtleCombatIdleState : ITurtleStateMachine
             {
                 controller.SetState(new TurtleCannonState(controller));
             }
-            else if (controller.fuzzyCannon > controller.maxCannonRange + 10)
+            else if (controller.fuzzyCannon > controller.maxCannonRange + 4)
             {
                 controller.SetState(new TurtleRunState(controller));
             }
             else
             {
                 a = Random.Range(0.0f, 1.0f);
-                fuzzificado = controller.FuzzyLogic(controller.fuzzyCannon, 15, 35);
+                fuzzificado = controller.FuzzyLogic(controller.fuzzyCannon, 15, 40);
                 if(a > fuzzificado)
                 {
                     controller.SetState(new TurtleCannonState(controller));
@@ -86,6 +87,7 @@ public class TurtleCombatIdleState : ITurtleStateMachine
             if (controller.attack2Counter >= 2)
             {
                 controller.attack2Counter = 0;
+                controller.animator.SetBool("Attack1", true);
                 controller.SetState(new TurtleAtt1State(controller));
             }
             else
@@ -108,6 +110,7 @@ public class TurtleCombatIdleState : ITurtleStateMachine
                     }
 
                     controller.lastAttack = "Attack2";
+                    controller.animator.SetBool("Attack2", true);
                     controller.SetState(new TurtleAtt2State(controller));
                 }
             }

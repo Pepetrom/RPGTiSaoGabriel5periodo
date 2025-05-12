@@ -11,29 +11,37 @@ public class TurtleWalkState : ITurtleStateMachine
     }
     public void OnEnter()
     {
-        controller.agent.speed = 5f;
+        controller.SortNumber();
+        controller.rb.isKinematic = true;
+        controller.agent.speed = 5;
     }
 
     public void OnExit()
     {
-        controller.animator.SetBool("IsWalking", false);
-        controller.agent.speed = 0f;
+
     }
 
     public void OnUpdate()
     {
         controller.agent.SetDestination(controller.player.transform.position);
-        controller.RotateTowardsPlayer();
+        controller.RotateTowardsPlayer(6);
+        if (controller.playerHit)
+        {
+            controller.SetState(new TurtleStunState(controller));
+            controller.playerHit = false;
+            return;
+        }
         if(controller.TargetDir().magnitude <= controller.meleeRange)
         {
-            controller.animator.SetBool("Attack1", true);
-            controller.agent.speed = 0f;
-            controller.SetState(new TurtleAtt1State(controller));
+            controller.agent.speed = 0;
+            controller.animator.SetBool("IsWalking", false);
+            controller.SetState(new TurtleCombatIdleState(controller));
         }
-        if (controller.TargetDir().magnitude >= controller.minCannonRange && controller.TargetDir().magnitude <= controller.maxCannonRange)
+        else
         {
-            controller.agent.speed = 0f;
-            controller.SetState(new TurtleCannonState(controller));
+            controller.agent.speed = 0;
+            controller.animator.SetBool("IsWalking", false);
+            controller.SetState(new TurtleCombatIdleState(controller));
         }
     }
 }

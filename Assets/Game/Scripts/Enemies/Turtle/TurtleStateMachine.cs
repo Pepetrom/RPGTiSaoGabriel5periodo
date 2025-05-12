@@ -56,7 +56,6 @@ public class TurtleStateMachine : MonoBehaviour, IDamageable
     [Header("AttacksControllers")]
     public string lastAttack = "";
     public int attack2Counter = 0;
-    public float attackSpeed;
     public TurtleHands rightHand, leftHand;
     public float damage;
     public bool hashitted = false;
@@ -97,6 +96,7 @@ public class TurtleStateMachine : MonoBehaviour, IDamageable
         }
         SetState(new TurtlePatrolState(this));
         FuzzyGate(out fuzzyCannon);
+        Debug.Log(fuzzyCannon);
     } 
 
     void FixedUpdate()
@@ -169,14 +169,14 @@ public class TurtleStateMachine : MonoBehaviour, IDamageable
     #endregion
 
     #region Métodos auxiliares de física
-    public void RotateTowardsPlayer()
+    public void RotateTowardsPlayer(float rotateSpeed)
     {
         Vector3 dir = (player.transform.position - transform.position).normalized;
         Quaternion lookRot = Quaternion.LookRotation(new Vector3(dir.x, 0, dir.z));
         float angle = Vector3.Angle(transform.forward, dir);
         if (angle > 1f)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookRot, Time.deltaTime * 10);
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRot, Time.deltaTime * rotateSpeed);
         }
     }
     public Vector3 TargetDir()
@@ -193,26 +193,18 @@ public class TurtleStateMachine : MonoBehaviour, IDamageable
     {
         Instantiate(cannonBallPrefab, cannonPosition.position,cannonPosition.rotation);
         cannonExplosion.Play();
-        CannonKB(2);
+        KB(-300);
         CameraScript.instance.StartShake();
         cannonDust.Play();
-        //Debug.Log("Atirou");
     }
     public void Impulse(float kbforce)
     {
         rb.AddForce(PlayerController.instance.moveDirection.normalized * kbforce, ForceMode.Impulse);
     }
-    public void CannonKB(float value)
+    public void KB(float kbforce)
     {
-        rb.AddForce(-transform.forward.normalized * (kbforce * value),ForceMode.Impulse);
+        rb.AddForce(transform.forward.normalized * kbforce, ForceMode.Impulse);
     }
-    /*public void Patrolling(Vector3 center)
-    {
-        Vector3 pos = Random.insideUnitCircle.normalized * Random.Range(0.9f, 1f) * patrollingRadius;
-        pos.z = pos.y;
-        pos.y = 0;
-        patrolPosition = center + pos;
-    }*/
     public void Patrolling()
     {
         if (Vector3.Distance(agent.transform.position, patrolPoints[currentPatrolIndex].position) <= 3f)
@@ -224,17 +216,6 @@ public class TurtleStateMachine : MonoBehaviour, IDamageable
     public void Patrol()
     {
         agent.SetDestination(patrolPoints[currentPatrolIndex].position);
-    }
-
-    public void RotateTowards()
-    {
-        Vector3 direction = patrolPoints[currentPatrolIndex].position - transform.position;
-        direction.y = 0;
-        if (direction != Vector3.zero)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10);
-        }
     }
     #endregion
 

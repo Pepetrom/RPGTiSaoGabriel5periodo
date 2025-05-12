@@ -20,18 +20,30 @@ public class TurtleDeathState : ITurtleStateMachine
     }
     public void OnEnter()
     {
-        controller.CannonKB(1.5f);
         controller.GetComponent<Collider>().enabled = false;
         GameManager.instance.Score(100);
     }
 
     public void OnExit()
     {
-
+        controller.attIdle = false;
+        controller.active = false;
     }
 
     public void OnUpdate()
     {
+        if (controller.active)
+        {
+            controller.agent.enabled = false;
+            controller.rb.isKinematic = false;
+            controller.KB(-400);
+        }
+        else
+        {
+            controller.agent.enabled = true;
+            controller.rb.isKinematic = true;
+        }
+
         if (controller.attIdle)
         {
             controller.StartCoroutine(DissolveOverTime(2f));
