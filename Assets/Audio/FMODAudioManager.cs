@@ -19,10 +19,15 @@ public class FMODAudioManager : MonoBehaviour
     public EventReference[] sword;
     public EventReference estus;
     public EventReference dash;
+    public EventReference hoffDeath;
 
     [Header("Porquinho")]
     public EventReference porquinDeath;
     public EventReference porquin;
+
+    [Header("Caranguejo")]
+    public EventReference takingDamage;
+    public EventReference crabDeath;
 
     private void Awake()
     {

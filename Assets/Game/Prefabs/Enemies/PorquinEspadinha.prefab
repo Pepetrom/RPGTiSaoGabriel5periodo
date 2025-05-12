@@ -10414,6 +10414,7 @@ GameObject:
   - component: {fileID: 8106382448154139010}
   - component: {fileID: 5487982121968141386}
   - component: {fileID: 2155192240457417823}
+  - component: {fileID: 5650414046966566811}
   m_Layer: 13
   m_Name: PorquinEspadinha
   m_TagString: Enemy
@@ -10590,6 +10591,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockSprite: {fileID: 1552519739363057736}
+--- !u!114 &5650414046966566811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2731425484836999421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1111362883
+      Data2: 1288301742
+      Data3: -476691315
+      Data4: -941796286
+    Path: event:/SFX/Inimigos/Porquinho/PorquinhoSons
+  Event: 
+  EventPlayTrigger: 1
+  EventStopTrigger: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 1
+  OverrideMinDistance: 3
+  OverrideMaxDistance: 30
 --- !u!1 &2735360231820921030
 GameObject:
   m_ObjectHideFlags: 0

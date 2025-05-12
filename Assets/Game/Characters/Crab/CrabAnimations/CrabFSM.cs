@@ -204,6 +204,7 @@ public class CrabFSM : MonoBehaviour, IDamageable
     {
         UIItems.instance.bossCurrentHP -= damage;
         posture -= damage;
+        FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.takingDamage, transform.position);  
         //playerHit = true;
         //hit.Play();
         GameManager.instance.SpawnNumber((int)damage, Color.yellow, transform);

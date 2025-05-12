@@ -108,6 +108,7 @@ public class HPBar : MonoBehaviour
         }
         if (currentHP <= 0)
         {
+            FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.hoffDeath, PlayerController.instance.transform.position);
             UIItems.instance.ShowBOSSHUD(false);
             StopCoroutine(InvulnableTime());
             GameManager.instance.Respawn();

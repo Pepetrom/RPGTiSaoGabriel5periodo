@@ -657,6 +657,7 @@ GameObject:
   - component: {fileID: 4411233835612565584}
   - component: {fileID: 9149525191331794626}
   - component: {fileID: -5184049523564015379}
+  - component: {fileID: 4495597086366166264}
   m_Layer: 0
   m_Name: CRAB_BOSS
   m_TagString: Enemy
@@ -842,6 +843,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockSprite: {fileID: 322094396052713008}
+--- !u!114 &4495597086366166264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5601612524664430839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -232817924
+      Data2: 1126195681
+      Data3: 1660603804
+      Data4: -1965207716
+    Path: event:/SFX/Inimigos/Caranguejo/CaranguejoSons
+  Event: 
+  EventPlayTrigger: 1
+  EventStopTrigger: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 1
+  OverrideMinDistance: 8
+  OverrideMaxDistance: 35
 --- !u!1 &5743355667614101292
 GameObject:
   m_ObjectHideFlags: 0

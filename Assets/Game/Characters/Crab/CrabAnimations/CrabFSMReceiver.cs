@@ -50,4 +50,8 @@ public class CrabFSMReceiver : MonoBehaviour
     {
         crab.DeactivateSpecificEvent();
     }
+    public void PlaySoundAttached(string path)
+    {
+        FMODAudioManager.instance.PlaySoundAttached(path);
+    }
 }

@@ -42,11 +42,65 @@ MonoBehaviour:
   Path: FMOD/FMOD_WoL/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638824915651873423
+  lastModified: 638826055834127788
   FileSizes:
   - Name: Desktop
     Value: 1036
   Exists: 1
+--- !u!114 &-8005307017319637661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Inimigos/Caranguejo/QuedaDoStun
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Inimigos/Caranguejo/QuedaDoStun
+  Guid:
+    Data1: 2092321557
+    Data2: 1085099812
+    Data3: -1699906652
+    Data4: 1331914924
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 950
+--- !u!114 &-8000450824688052430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: "event:/SFX/Inimigos/Caranguejo/Explos\xE3oPequena"
+  m_EditorClassIdentifier: 
+  Path: "event:/SFX/Inimigos/Caranguejo/Explos\xE3oPequena"
+  Guid:
+    Data1: 297402673
+    Data2: 1277157042
+    Data3: 679601080
+    Data4: 524208938
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 860
 --- !u!114 &-7627294974733905799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,6 +155,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 65697
+--- !u!114 &-7223920134743448026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Inimigos/Caranguejo/Morte
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Inimigos/Caranguejo/Morte
+  Guid:
+    Data1: -2003374838
+    Data2: 1235991600
+    Data3: 835542689
+    Data4: -946253931
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 900
 --- !u!114 &-7035283905522675015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,6 +209,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2901
+--- !u!114 &-5126145128539565546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Inimigos/Caranguejo/Slash
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Inimigos/Caranguejo/Slash
+  Guid:
+    Data1: -1157894230
+    Data2: 1142978238
+    Data3: -1132744056
+    Data4: 279314822
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 511
+--- !u!114 &-4231239751559883024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Hoff/HoffMorte
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Hoff/HoffMorte
+  Guid:
+    Data1: -101712400
+    Data2: 1123793376
+    Data3: -29045832
+    Data4: -1092447219
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 600
 --- !u!114 &-4042470378200737098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,6 +290,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 810
+--- !u!114 &-3764088723767012012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Inimigos/Caranguejo/Pegadas
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Inimigos/Caranguejo/Pegadas
+  Guid:
+    Data1: -1030623941
+    Data2: 1175605243
+    Data3: 937033395
+    Data4: -651486948
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 450
 --- !u!114 &-3434961659011025339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,7 +339,7 @@ MonoBehaviour:
   - {fileID: 8981852520927742451}
   IsStream: 0
   Is3D: 1
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
@@ -290,6 +452,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-1423493767091400719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Inimigos/Caranguejo/CaranguejoSons
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Inimigos/Caranguejo/CaranguejoSons
+  Guid:
+    Data1: -232817924
+    Data2: 1126195681
+    Data3: 1660603804
+    Data4: -1965207716
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 15200
 --- !u!114 &-1076174966555492672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,6 +506,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 29579
+--- !u!114 &-946713624393215533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Inimigos/Caranguejo/Pulo
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Inimigos/Caranguejo/Pulo
+  Guid:
+    Data1: 1110828561
+    Data2: 1092200350
+    Data3: -1665516146
+    Data4: 397059920
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 702
 --- !u!114 &-786919234706772459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -387,12 +603,23 @@ MonoBehaviour:
   - {fileID: -2652463212730160100}
   - {fileID: -3434961659011025339}
   - {fileID: 8754836013773150638}
+  - {fileID: 2276499387778129814}
+  - {fileID: -946713624393215533}
+  - {fileID: -3764088723767012012}
+  - {fileID: 4792707478198663365}
+  - {fileID: -5126145128539565546}
+  - {fileID: 891528605376736408}
+  - {fileID: -8005307017319637661}
+  - {fileID: -8000450824688052430}
+  - {fileID: -1423493767091400719}
+  - {fileID: -7223920134743448026}
+  - {fileID: -4231239751559883024}
   EditorParameters: []
   MasterBanks:
   - {fileID: -8479413176289016433}
   StringsBanks:
   - {fileID: 8393391211552418243}
-  cacheTime: 638825756242375806
+  cacheTime: 638826055836673237
   cacheVersion: 131624
 --- !u!114 &669633742359291694
 MonoBehaviour:
@@ -448,6 +675,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &891528605376736408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Inimigos/Caranguejo/Recuperando
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Inimigos/Caranguejo/Recuperando
+  Guid:
+    Data1: -1358449352
+    Data2: 1302397157
+    Data3: 472483752
+    Data4: -93469734
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3552
 --- !u!114 &1950676963611030566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -475,6 +729,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &2276499387778129814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Inimigos/Caranguejo/Hit
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Inimigos/Caranguejo/Hit
+  Guid:
+    Data1: -412085555
+    Data2: 1331236129
+    Data3: -15544412
+    Data4: 636077106
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 900
 --- !u!114 &2502337704473895451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -556,6 +837,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 410
+--- !u!114 &4792707478198663365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: "event:/SFX/Inimigos/Caranguejo/PorradaNoCh\xE3o"
+  m_EditorClassIdentifier: 
+  Path: "event:/SFX/Inimigos/Caranguejo/PorradaNoCh\xE3o"
+  Guid:
+    Data1: -47361172
+    Data2: 1198079717
+    Data3: 1711462541
+    Data4: 401044952
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1850
 --- !u!114 &6259720440514351709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -706,10 +1014,10 @@ MonoBehaviour:
   Path: FMOD/FMOD_WoL/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638824915651883425
+  lastModified: 638826055834147797
   FileSizes:
   - Name: Desktop
-    Value: 2064
+    Value: 2548
   Exists: 1
 --- !u!114 &8456345858411569361
 MonoBehaviour:
@@ -807,8 +1115,8 @@ MonoBehaviour:
   Path: FMOD/FMOD_WoL/Build/Desktop/VFX.bank
   Name: VFX
   StudioPath: bank:/VFX
-  lastModified: 638825756242375806
+  lastModified: 638826055836673237
   FileSizes:
   - Name: Desktop
-    Value: 4141056
+    Value: 4960576
   Exists: 1
