@@ -1,10 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SocialPlatforms;
-using UnityEngine.UI;
-using static UnityEngine.Rendering.DebugUI;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,7 +8,6 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public float actionTime = 1;
     public bool isCombat = false;
-    public GameObject runesPanel;
     //SpawnPoint/Checkpoint
     public Transform lastBonfireRestedAt;
 
@@ -28,7 +23,6 @@ public class GameManager : MonoBehaviour
     //public bool canFade = false;
 
     public AudioManager audioMan;
-    PlayerController player;
     public bool isOnWater;
 
     private void Awake()
@@ -42,7 +36,14 @@ public class GameManager : MonoBehaviour
         UIItems.instance.UpdateScoreQUI(skillPoints);
         if (!spawnEnemies) return;
         enemySpawner.AllEnemies();
-        player = PlayerController.instance;
+    }
+    public void Pause()
+    {
+        Time.timeScale = 0;
+    }
+    public void UnPause()
+    {
+        Time.timeScale = 1;
     }
     public void SpawnNumber(int damageNumber, Color color, Transform targetLocation)
     {
@@ -102,40 +103,18 @@ public class GameManager : MonoBehaviour
             CheckEnemiesOnList();
         }
     }
-    //TEMPORÁRIO
-    public void ExitAllMenus()
-    {
-        runesPanel.SetActive(false);
-        Bonfire(false);
-    }
-    public void RunesPanel()
-    {
-        if (!runesPanel.activeSelf)
-        {
-            PlayerController.instance.StopAllActions();
-            runesPanel.SetActive(true);
-            UpdateActionTime(0);
-        }
-        else
-        {
-            runesPanel.SetActive(false);
-            UpdateActionTime(1);
-            PlayerController.instance.ResetAllActions();
-        }
-    }
     public void Bonfire(bool open)
     {
         bonfire.SetActive(open);
         if (open)
         {
-            PlayerController.instance.ResetAllActions();
             PlayerController.instance.StopAllActions();
-            //UpdateActionTime(0);
+            Pause();
         }
         else
         {
-            //UpdateActionTime(1);
             PlayerController.instance.ResetAllActions();
+            UnPause();
         }
     }
     public void Travel(Transform location)
@@ -166,7 +145,7 @@ public class GameManager : MonoBehaviour
         UIItems.instance.gearEnd = false;
         isOnWater = false;
     }
-    public void ResetPositionPlayer() // Criei essa função para resetar a pos do player depois do evento de death animation
+    public void ResetPositionPlayer() 
     {
         PlayerController.instance.moveDirection = Vector3.zero;
         PlayerController.instance.cc.SimpleMove(Vector3.zero);

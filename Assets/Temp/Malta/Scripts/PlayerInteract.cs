@@ -5,12 +5,6 @@ using UnityEngine.UI;
 
 public class PlayerInteract : MonoBehaviour
 {
-    private bool isNearBonfire = false;
-    private bool isNearItem = false;
-    private bool isNearNote = false;
-    private bool isNearLever = false;
-    private bool isNearValve = false;
-    private GameObject coll;
     private Interactable collEnter, collExit;
     public GameObject pressF;
 
@@ -52,7 +46,6 @@ public class PlayerInteract : MonoBehaviour
     }
     public void UpdatePlayerInteract()
     {
-
         CheckDistance();
         if (collEnter && collEnter.IsInRange())
         {

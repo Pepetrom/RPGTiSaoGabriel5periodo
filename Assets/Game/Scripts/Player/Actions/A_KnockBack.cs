@@ -5,7 +5,7 @@ public class A_KnockBack : IAction
     public int slot;
     float knockBackForce;
     float knockBackTime;
-    bool knockBacking;
+    bool knockBacking = false;
     Vector3 direction;
     public void SetSlot(int slot)
     {
@@ -35,6 +35,7 @@ public class A_KnockBack : IAction
         if (knockBackTime <= 0)
         {
             ActionEnd();
+            PlayerController.instance.ResetAllActions();
             return;
         }
         PlayerController.instance.canMove = false;
@@ -45,7 +46,6 @@ public class A_KnockBack : IAction
     public void ActionEnd()
     {
         knockBacking = false;
-        PlayerController.instance.ResetAllActions();
     }
 
 }

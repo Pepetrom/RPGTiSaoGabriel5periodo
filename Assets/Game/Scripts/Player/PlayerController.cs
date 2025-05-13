@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     public GameObject model;
     public bool masterCanDo { get; private set; }
+    public bool canGiveInput = true;
     [Header("Move Settings------------------")]
     public float moveSpeed;
     public float runningMultiplier = 1;
@@ -38,7 +39,7 @@ public class PlayerController : MonoBehaviour
     public IAction[] actions = new IAction[4];
     [Header("Atacks------------------")]
     public bool holdingToAtack = false;
-    float timerHoldingAtack = 0;
+    public float timerHoldingAtack = 0;
     public bool canDoAtack = true;
     public IWeapon[] atacks = new IWeapon[1];
     [Header("Runes------------------")]
@@ -175,6 +176,7 @@ public class PlayerController : MonoBehaviour
     }
     void Controls()
     {
+        if (!canGiveInput) return;
         WalkInput();
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -182,17 +184,15 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Mouse0))
         {
-            holdingToAtack = (timerHoldingAtack > 0.5f || timerHoldingAtack == 0)? true : false;
-            timerHoldingAtack += Time.deltaTime;
             //light Atack
             Atack(0, false);
+            timerHoldingAtack += Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.Mouse1))
         {
-            timerHoldingAtack += Time.deltaTime;
-            holdingToAtack = (timerHoldingAtack > 0.5f || timerHoldingAtack == 0)? true : false;
             //heavy Atack
             Atack(0, true);
+            timerHoldingAtack += Time.deltaTime;
         }
         if(Input.GetKeyUp(KeyCode.Mouse0) || Input.GetKeyUp(KeyCode.Mouse1)){
             timerHoldingAtack = 0;
@@ -207,7 +207,6 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F))
         {
-            GameManager.instance.ExitAllMenus();
             PlayerInteract.instance.UpdatePlayerInteract();
         }
     }
@@ -227,6 +226,7 @@ public class PlayerController : MonoBehaviour
     }
     void Atack(int slot, bool heavy)
     {
+        holdingToAtack = (timerHoldingAtack > 1 || timerHoldingAtack == 0) ? true : false;
         atacks[slot].AtackStart(heavy);
     }
     void CheckGround()
@@ -369,9 +369,11 @@ public class PlayerController : MonoBehaviour
     {
         masterCanDo = false;
         canMove = false;
+        canGiveInput = false;
         comboCounter = 1;
         isAttacking = false;
         swordTrail.emitting = false;
+        atackCollider.gameObject.SetActive(false);
 
         animator.SetBool("Atacking", false);
         animator.SetBool("Walk", false);
@@ -386,10 +388,12 @@ public class PlayerController : MonoBehaviour
     }
     public void ResetAllActions()
     {
+        Debug.Log("vou assassinar alguém");
         moveDirection = Vector3.zero;
         masterCanDo = true;
         canDoAtack = true;
         canMove = true;
+        canGiveInput = true;
 
         animator.SetBool("Atacking", false);
         animator.SetBool("Walk", false);
@@ -397,6 +401,7 @@ public class PlayerController : MonoBehaviour
 
         isAttacking = false;
         swordTrail.emitting = false;
+        atackCollider.gameObject.SetActive(false);
     }
 }
 

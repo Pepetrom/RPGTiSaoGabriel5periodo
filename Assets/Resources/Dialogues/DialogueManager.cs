@@ -44,7 +44,8 @@ public class DialogueManager : MonoBehaviour
                 dialogueStatus = false;
                 inDialogue = false;
                 text.text = "";
-                PlayerController.instance.ResetAllActions();
+                //Essa linha atrapalha o jogo pausar
+                //PlayerController.instance.ResetAllActions();
                 return false;
             }
             foreach (JsonData key in line.Keys)

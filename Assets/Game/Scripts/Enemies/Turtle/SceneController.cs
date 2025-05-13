@@ -7,6 +7,7 @@ public class SceneController : MonoBehaviour
 {
     public static SceneController sceneController;
     public GameObject tutorial, pageA, pageB, options, bonfire, pause, changeLog;
+    public GameObject runePanel;
     private void Awake()
     {
         sceneController = this;
@@ -14,22 +15,34 @@ public class SceneController : MonoBehaviour
     private void Start()
     {
     }
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !bonfire.activeSelf && !options.activeSelf && !pause.activeSelf)
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Pause();
+            if (pause.activeSelf) return;
+            OptionsPanel();
+            BonfirePanel();
+            RunesPanel();
+        }
+        TutorialPanel();
+    }
+    void Pause()
+    {
+        if (pause.activeSelf)
+        {
+            Debug.Log("Foi isso");
+            pause.SetActive(false);
+            PlayerController.instance.ResetAllActions();
+            GameManager.instance.UnPause();
+        }
+        else if (!bonfire.activeSelf && !options.activeSelf && !pause.activeSelf && !runePanel.activeSelf)
         {
             pause.SetActive(true);
             PlayerController.instance.StopAllActions();
+            GameManager.instance.Pause();
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && pause.activeSelf)
-        {
-            pause.SetActive(false);
-            PlayerController.instance.ResetAllActions();
-        }
-        TutorialPanel();
-        OptionsPanel();
-        BonfirePanel();
-
     }
     public void ChangeScene(string scene)
     {
@@ -59,6 +72,7 @@ public class SceneController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 tutorial.SetActive(false);
+                GameManager.instance.UnPause();
             }
         }
     }
@@ -70,21 +84,33 @@ public class SceneController : MonoBehaviour
     {
         if (options.activeSelf)
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                options.SetActive(false);
-            }
+            options.SetActive(false);
+            PlayerController.instance.ResetAllActions();
+            GameManager.instance.UnPause();
         }
     }
     void BonfirePanel()
     {
         if (bonfire.activeSelf)
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                bonfire.SetActive(false);
-                PlayerController.instance.ResetAllActions();
-            }
+            bonfire.SetActive(false);
+            PlayerController.instance.ResetAllActions();
+            GameManager.instance.UnPause();
+        }
+    }
+    public void OpenRunePanel()
+    {
+        GameManager.instance.Pause();
+        PlayerController.instance.StopAllActions();
+        runePanel.SetActive(true);
+    }
+    public void RunesPanel()
+    {
+        if (runePanel.activeSelf)
+        {
+            runePanel.SetActive(false);
+            PlayerController.instance.ResetAllActions();
+            GameManager.instance.UnPause();
         }
     }
 }

@@ -26,6 +26,7 @@ public class W_BigSwordAtack : IWeapon
         if(!player.masterCanDo || StaminaBar.instance.currentStam < player.stamPerHit) return;
         if (!player.canDoAtack )
         {
+            if (!player.holdingToAtack) return;
             if (heavy )
             {
                 StoreCommand(1);
