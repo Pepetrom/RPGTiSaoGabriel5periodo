@@ -34,7 +34,8 @@ public class CrabFSM : MonoBehaviour, IDamageable
     public int jumpCount = 0, spinCount = 0, comboValue;
 
     [Header("Effects")]
-    public ParticleSystem VFXJumpImpact, VFXBigConcrete, VFXSmallConcreteFL, VFXSmallConcreteFR, VFXSmallConcreteBL, VFXSmallConcreteBR, crabCrack, ownFire;
+    public ParticleSystem VFXJumpImpact, VFXBigConcrete, VFXSmallConcreteFL, VFXSmallConcreteFR, VFXSmallConcreteBL, VFXSmallConcreteBR, crabCrack;
+    public GameObject ownFire;
     public Transform crackPosition;
     public TrailRenderer[] trails;
 
@@ -58,7 +59,7 @@ public class CrabFSM : MonoBehaviour, IDamageable
         FuzzyGate(out fuzzyJump);
         FuzzyGate(out fuzzyDash);
     }
-    private void FixedUpdate()
+    private void Update()
     {
         this.state?.OnUpdate();
         Posture();

@@ -38,7 +38,7 @@ public class CrabAtt1 : ICrabInterface
             controller.claw1.enabled = true;
             controller.agent.enabled = false;
             controller.rb.isKinematic = false;
-            controller.KB(1300);
+            controller.KB(900);
         }
         else
         {

@@ -39,6 +39,10 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
     public int fullCombatCounter;
     public Collider selfCollider;
     public float KBForce;
+
+    [Header("VFX")]
+    public GameObject blood; 
+
     // FUZZY
     [HideInInspector] public int fuzzyDash, fuzzySwing;
     public int minDash, maxDash, minSwing, maxSwing;
@@ -132,12 +136,10 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
     }
     public void AttackIdle()
     {
-        //Debug.Log("Voltei pro Idle");
         attIdle = true;
     }
     public void Combo()
     {
-        //Debug.Log("Combo");
         combo = true;
     }
     public void ImpulseEvent()

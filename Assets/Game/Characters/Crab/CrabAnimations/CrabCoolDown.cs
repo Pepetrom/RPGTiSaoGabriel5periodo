@@ -9,12 +9,12 @@ public class CrabCoolDown : ICrabInterface
     public void OnEnter()
     {
         controller.animator.SetBool("isFurnace", false);
-        controller.ownFire.Stop();
+        controller.ownFire.SetActive(false);
     }
 
     public void OnExit()
     {
-        controller.ownFire.Play();
+        controller.ownFire.SetActive(true);
         controller.end = false;
     }
 

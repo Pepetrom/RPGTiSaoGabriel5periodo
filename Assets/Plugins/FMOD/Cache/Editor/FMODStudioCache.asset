@@ -42,7 +42,7 @@ MonoBehaviour:
   Path: FMOD/FMOD_WoL/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638826575768743610
+  lastModified: 638828227294513758
   FileSizes:
   - Name: Desktop
     Value: 1036
@@ -100,7 +100,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 860
+  Length: 2300
 --- !u!114 &-7627294974733905799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,7 +181,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 900
+  Length: 2300
 --- !u!114 &-7035283905522675015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -425,6 +425,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 426
+--- !u!114 &-1553174999721734154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: "event:/SFX/Inimigos/Caranguejo/AtaqueFog\xE3o"
+  m_EditorClassIdentifier: 
+  Path: "event:/SFX/Inimigos/Caranguejo/AtaqueFog\xE3o"
+  Guid:
+    Data1: -1583644887
+    Data2: 1113748680
+    Data3: 488976015
+    Data4: 1503852830
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 24500
 --- !u!114 &-1457385583237156362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -614,12 +641,15 @@ MonoBehaviour:
   - {fileID: -1423493767091400719}
   - {fileID: -7223920134743448026}
   - {fileID: -4231239751559883024}
+  - {fileID: 4659005153662354197}
+  - {fileID: -1553174999721734154}
+  - {fileID: 6976132832823029919}
   EditorParameters: []
   MasterBanks:
   - {fileID: -8479413176289016433}
   StringsBanks:
   - {fileID: 8393391211552418243}
-  cacheTime: 638826575768872881
+  cacheTime: 638828230700234444
   cacheVersion: 131624
 --- !u!114 &669633742359291694
 MonoBehaviour:
@@ -837,6 +867,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 410
+--- !u!114 &4659005153662354197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: "event:/SFX/Inimigos/Caranguejo/PorradinhaNoCh\xE3o"
+  m_EditorClassIdentifier: 
+  Path: "event:/SFX/Inimigos/Caranguejo/PorradinhaNoCh\xE3o"
+  Guid:
+    Data1: -18094675
+    Data2: 1140536781
+    Data3: 445604508
+    Data4: -45853198
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 830
 --- !u!114 &4792707478198663365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -863,7 +920,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 1850
+  Length: 1400
 --- !u!114 &6259720440514351709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -918,6 +975,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &6976132832823029919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Inimigos/Caranguejo/Spin
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Inimigos/Caranguejo/Spin
+  Guid:
+    Data1: 497095028
+    Data2: 1264441500
+    Data3: -222154314
+    Data4: -1598496006
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1000
 --- !u!114 &7129643245853824176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1014,10 +1098,10 @@ MonoBehaviour:
   Path: FMOD/FMOD_WoL/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638826575768743610
+  lastModified: 638828227294523764
   FileSizes:
   - Name: Desktop
-    Value: 2548
+    Value: 2692
   Exists: 1
 --- !u!114 &8456345858411569361
 MonoBehaviour:
@@ -1115,8 +1199,8 @@ MonoBehaviour:
   Path: FMOD/FMOD_WoL/Build/Desktop/VFX.bank
   Name: VFX
   StudioPath: bank:/VFX
-  lastModified: 638826575768872881
+  lastModified: 638828230700234444
   FileSizes:
   - Name: Desktop
-    Value: 4960576
+    Value: 6095744
   Exists: 1

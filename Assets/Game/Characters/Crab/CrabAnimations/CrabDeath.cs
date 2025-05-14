@@ -12,7 +12,7 @@ public class CrabDeath : ICrabInterface
         FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.crabDeath,controller.transform.position);
         UIItems.instance.ShowBOSSHUD(false);
         controller.ownCollider.enabled = false;
-        controller.ownFire.Stop();
+        controller.ownFire.SetActive(false);
     }
 
     public void OnExit()
