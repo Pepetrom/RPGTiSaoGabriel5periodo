@@ -241,13 +241,13 @@ public class W_BigSwordAtack : IWeapon
         switch (player.comboCounter)
         {
             case 1:
-                other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.3f, 5f, 7.5f, 2.5f), 1);
+                other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.3f, 2f, 10f, 4f), 1);
                 break;
             case 2:
-                other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.4f, 5f, 7.5f, 2.5f), 1);
+                other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.4f, 2f, 10f, 4f), 1);
                 break;
             case 3:
-                other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.5f, 5f, 7.5f, 2.5f), 1);
+                other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.5f, 2f, 10f, 4.5f), 1);
                 break;
         }
         
@@ -263,15 +263,15 @@ public class W_BigSwordAtack : IWeapon
         switch (player.comboCounter)
         {
             case 1:
-                other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.5f, 6.5f, 7.5f, 2.5f), 1);
+                other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.5f, 4f, 7.5f, 2.5f), 1);
                 player.runes[player.equipedPrimaryRune].AtackCriticalEffect1();
                 break;
             case 2:
-                other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.6f, 7.5f, 7.5f, 2.5f), 1);
+                other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.6f, 4f, 7.5f, 2.5f), 1);
                 player.runes[player.equipedPrimaryRune].AtackCriticalEffect2();
                 break;
             case 3:
-                other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.7f, 8.5f, 7.5f, 3.5f), 1);
+                other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.7f, 4f, 7.5f, 3.5f), 1);
                 player.runes[player.equipedPrimaryRune].AtackCriticalEffect3();
                 break;
         }
@@ -300,13 +300,13 @@ public class W_BigSwordAtack : IWeapon
             switch (player.comboCounter)
             {
                 case 1:
-                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.4f, 7.5f, 7.5f, 2.5f), 1);
+                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.4f, 3f, 7.5f, 6f), 1);
                     break;
                 case 2:
-                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.4f, 7.5f, 7.5f, 2.5f), 1);
+                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.4f, 3f, 7.5f, 6f), 1);
                     break;
                 case 3:
-                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.4f, 7.5f, 7.5f, 2.5f), 1);
+                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.4f, 3f, 7.5f, 6f), 1);
                     break;
             }
         }
@@ -315,13 +315,13 @@ public class W_BigSwordAtack : IWeapon
             switch (player.comboCounter)
             {
                 case 1:
-                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.5f, 3f, 5f, 5f), 1);
+                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.5f, 3f, 5f, 6f), 1);
                     break;
                 case 2:
-                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.6f, 4f, 5f, 6f), 1);
+                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.6f, 3f, 5f, 6f), 1);
                     break;
                 case 3:
-                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.7f, 5f, 5f, 7f), 1);
+                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.7f, 3f, 5f, 6f), 1);
                     break;
             }
         }

@@ -24,7 +24,7 @@ public class RedRune : MonoBehaviour,IRune
     }
     public void AtackCriticalEffect2()
     {
-        PlayerController.instance.damageMultiplier = 1 + (0.15f * (PlayerController.instance.strength + 1)); ;
+        PlayerController.instance.damageMultiplier = 1 + (0.15f * (PlayerController.instance.strength + 1));
     }
     public void AtackCriticalEffect3()
     {
