@@ -127,11 +127,11 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
+        DoActions();
         if (!masterCanDo) return;
         animator.speed = GameManager.instance.actionTime;
         //CheckGround();
         SetDirection();
-        DoActions();
         cc.Move(moveDirection * Time.fixedDeltaTime);
         PlayerInteract.instance.FixedUpdatePlayerInteract();
     }
@@ -379,8 +379,6 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("Walk", false);
         animator.SetBool("Run", false);
         animator.SetTrigger("ForceIddle");
-        //Stops KnockBack if any
-        actions[2].ActionEnd();
     }
     public void ResetLesserActions(){
         canDoAtack = true;
@@ -388,7 +386,6 @@ public class PlayerController : MonoBehaviour
     }
     public void ResetAllActions()
     {
-        Debug.Log("vou assassinar alguém");
         moveDirection = Vector3.zero;
         masterCanDo = true;
         canDoAtack = true;

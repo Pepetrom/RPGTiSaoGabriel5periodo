@@ -78,6 +78,7 @@ public class UIItems : MonoBehaviour
     }
     public void PlayerIsDead()
     {
+        PlayerController.instance.StopAllActions();
         DeathPanel.gameObject.SetActive(true);
     }
     public void GearEnd()

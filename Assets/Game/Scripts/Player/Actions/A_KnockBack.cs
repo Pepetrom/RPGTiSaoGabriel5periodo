@@ -22,29 +22,23 @@ public class A_KnockBack : IAction
         direction = PlayerController.instance.transform.position - PlayerController.instance.damageFont.transform.position ;
         direction.y = 0;
         direction = direction.normalized * knockBackForce * Time.fixedDeltaTime * 8;
-        
     }
     public void ActionUpdate()
     {
         if (!knockBacking) return;
         Debug.Log("sou eu dio!");
-        if(knockBackTime <= knockBackTime * 0.75f)
-        {
-            knockBacking = false;
-        }
+        PlayerController.instance.cc.Move(direction * Time.fixedDeltaTime);
+        knockBackTime -= Time.fixedDeltaTime;
         if (knockBackTime <= 0)
         {
-            ActionEnd();
             PlayerController.instance.ResetAllActions();
+            ActionEnd();
             return;
         }
-        PlayerController.instance.canMove = false;
-        PlayerController.instance.cc.Move(direction * Time.fixedDeltaTime);
-        //PlayerController.instance.moveDirection += direction;
-        knockBackTime -= Time.fixedDeltaTime;
     }
     public void ActionEnd()
     {
+        Debug.Log("Em teoria acabou");
         knockBacking = false;
     }
 

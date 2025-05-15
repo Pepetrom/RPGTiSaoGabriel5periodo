@@ -126,8 +126,7 @@ public class GameManager : MonoBehaviour
     public void Respawn()
     {
         UIItems.instance.PlayerIsDead();
-        if (UIItems.instance.gearEnd)
-            UIItems.instance.GearLoopAnimation(true);
+        if (UIItems.instance.gearEnd) UIItems.instance.GearLoopAnimation(true);
         if (UIItems.instance.deathAnimationIsOver)
         {
             Debug.Log(UIItems.instance.deathAnimationIsOver);
@@ -148,11 +147,10 @@ public class GameManager : MonoBehaviour
     public void ResetPositionPlayer() 
     {
         PlayerController.instance.moveDirection = Vector3.zero;
-        PlayerController.instance.cc.SimpleMove(Vector3.zero);
         PlayerController.instance.cc.enabled = false;
         PlayerController.instance.transform.position = lastBonfireRestedAt.position;
         PlayerController.instance.cc.enabled = true;
-        PlayerController.instance.cc.SimpleMove(Vector3.zero);
+        PlayerController.instance.moveDirection = Vector3.zero;
     }
     public void Score(int amount)
     {
