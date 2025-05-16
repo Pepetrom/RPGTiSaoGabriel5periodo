@@ -365,6 +365,14 @@ public class PlayerController : MonoBehaviour
                 break;
         }
     }
+    public void Die()
+    {
+        animator.SetTrigger("Death");
+    }
+    public void ForceIddle()
+    {
+        animator.SetTrigger("ForceIddle");
+    }
     public void StopAllActions()
     {
         masterCanDo = false;

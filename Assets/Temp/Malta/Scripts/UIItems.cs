@@ -98,6 +98,7 @@ public class UIItems : MonoBehaviour
     {
         GameManager.instance.Rest();
         GameManager.instance.ResetPositionPlayer();
+        PlayerController.instance.ForceIddle();
     }
     public void GearLoopAnimation(bool state)
     {
