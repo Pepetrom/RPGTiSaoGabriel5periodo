@@ -22,7 +22,7 @@ public class CrabBigFire : ICrabInterface
     {
         if (controller.bigWall)
         {
-            controller.StartFireWall();
+            controller.FireWall();
         }
         if (controller.jump)
         {

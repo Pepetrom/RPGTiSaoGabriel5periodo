@@ -218,63 +218,31 @@ public class CrabFSM : MonoBehaviour, IDamageable
     {
         Instantiate(prefab, location.position, location.rotation);
     }
-    public void StartFireWall()
+    public void FireWall()
     {
-        firePoints.Clear();
-        if (firewallRoutine == null)
-        {
-            firewallRoutine = StartCoroutine(FireWallRoutine());
-        }
-    }
-    private IEnumerator FireWallRoutine()
-    {
-        while (true)
-        {
-            Vector3 origin = initialPoint.position;
-            Vector3 direction = initialPoint.forward;
+        Vector3 origin = initialPoint.position;
+        Vector3 direction = initialPoint.forward;
 
-            Debug.DrawRay(origin, direction * 100, Color.red);
+        Debug.DrawRay(origin, direction * 100, Color.red);
 
-            if (Physics.Raycast(origin, direction, out RaycastHit hit, 100, ground))
-            {
+        if (Physics.Raycast(origin, direction, out RaycastHit hit, 100, ground))
+        {
+            if (firePoints.Count <= 6)
                 firePoints.Add(hit.point);
-                Debug.Log("Ponto registrado: " + hit.point);
-            }
-            yield return new WaitForSeconds(interval);
         }
     }
     public void StopFireWall()
     {
-        if (firewallRoutine != null)
-        {
-            Debug.Log("Muralha criada com " + firePoints.Count + " pontos.");
-            Debug.Log("Parei");
-            InstantiateWalls();
-            StopCoroutine(firewallRoutine);
-            firewallRoutine = null;
-        }
+        InstantiateWalls();
+        firePoints.Clear();
     }
     private void InstantiateWalls()
     {
         foreach (Vector3 point in firePoints)
         {
-            Instantiate(wallPrefab, point, Quaternion.identity);
+            Instantiate(wallPrefab, point, new Quaternion(initialPoint.transform.rotation.x, 0,initialPoint.transform.rotation.z, 0));
         }
     }
-    public void FireWall()
-    {
-        initialPoint.position = transform.position;
-        Debug.DrawRay(initialPoint.position, initialPoint.transform.forward * 100, Color.red);
-        if(Physics.Raycast(initialPoint.position,initialPoint.transform.forward, out RaycastHit hit, 100, ground))
-        {
-            Debug.Log("Acertou" +  hit.collider.name);
-        }
-    }
-    public void CreateFireWall()
-    {
-
-    }
-
     #endregion
     public void TakeDamage(int damage, float knockbackStrenght)
     {

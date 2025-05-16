@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Decay : MonoBehaviour
 {
+    [SerializeField] float time = 3;
     private void Start()
     {
-        Invoke("DecayFun",3);
+        Invoke("DecayFun",time);
     }
     void DecayFun()
     {
