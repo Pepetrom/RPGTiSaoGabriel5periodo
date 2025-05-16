@@ -15,7 +15,8 @@ public class CrabBigFire : ICrabInterface
 
     public void OnExit()
     {
-        controller.end = false;        
+        controller.end = false;
+        controller.bigWall = false;
     }
 
     public void OnUpdate()

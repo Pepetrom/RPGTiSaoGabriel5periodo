@@ -5,26 +5,29 @@ using UnityEngine;
 public class CrabWallCollider : MonoBehaviour
 {
     public CrabFSM crab;
+    Collider c;
+    MeshRenderer r;
+    public ParticleSystem antecipation;
+    private void Start()
+    {
+        c = GetComponent<Collider>();
+        r = GetComponent<MeshRenderer>();
+        c.enabled = false;
+        r.enabled = false;
+        antecipation.Play();
+        Invoke("ActivateMyCollider", 1f);
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            crab.canDoFireDamage = true;
+            HPBar.instance.TakeDamage(30, transform);
+            c.enabled = false;
         }
     }
-    private void OnTriggerExit(Collider other)
+    void ActivateMyCollider()
     {
-        if (other.CompareTag("Player"))
-        {
-            crab.canDoFireDamage = false;
-        }
-    }
-    private void Update()
-    {
-        if (crab.canDoFireDamage)
-        {
-            HPBar.instance.TakeDamage(crab.damage, transform);
-            crab.hashitted = true;
-        }
+        c.enabled = true;
+        r.enabled = true;
     }
 }

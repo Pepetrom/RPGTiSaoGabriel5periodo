@@ -46,7 +46,6 @@ public class CrabFSM : MonoBehaviour, IDamageable
     public LayerMask ground;
     Vector3 a,b;
     [SerializeField]private List<Vector3> firePoints = new List<Vector3>();
-    private Coroutine firewallRoutine;
 
 
     private float interval = 0.0f, time;
