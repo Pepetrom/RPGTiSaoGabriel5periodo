@@ -20,6 +20,10 @@ public class CrabBigFire : ICrabInterface
 
     public void OnUpdate()
     {
+        if (controller.bigWall)
+        {
+            controller.StartFireWall();
+        }
         if (controller.jump)
         {
             controller.RotateTowardsPlayer(5);

@@ -50,6 +50,18 @@ public class CrabFSMReceiver : MonoBehaviour
     {
         crab.DeactivateSpecificEvent();
     }
+    public void ActivateBigWall()
+    {
+        crab.ActivateBigWall();
+    }
+    public void DeactivateBigWall()
+    {
+        crab.DeactivateBigWall();
+    }
+    public void StopFireWall()
+    {
+        crab.StopFireWall();
+    }
     public void PlaySoundAttached(string path)
     {
         FMODAudioManager.instance.PlaySoundAttached(path);

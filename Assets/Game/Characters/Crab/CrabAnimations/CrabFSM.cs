@@ -17,7 +17,7 @@ public class CrabFSM : MonoBehaviour, IDamageable
 
     //logic
     public int randomValue;
-    [HideInInspector]public bool antecipation = false, end = false, combo = false, jump = false, fall = false, activate = false, hashitted = false, eventS = false;
+    [HideInInspector]public bool antecipation = false, end = false, combo = false, jump = false, fall = false, activate = false, hashitted = false, eventS = false, bigWall = false;
     public GameObject secondStageLocation;
 
     [Header("CombatAtributes")]
@@ -39,7 +39,17 @@ public class CrabFSM : MonoBehaviour, IDamageable
     public Transform crackPosition;
     public TrailRenderer[] trails;
 
-    private float interval = 2, time;
+    [Header("AttackBigFire")]
+    public Transform initialPoint, finalPoint;
+    public LineRenderer line;
+    public GameObject wallPrefab;
+    public LayerMask ground;
+    Vector3 a,b;
+    [SerializeField]private List<Vector3> firePoints = new List<Vector3>();
+    private Coroutine firewallRoutine;
+
+
+    private float interval = 0.0f, time;
     #endregion
     void Start()
     {
@@ -146,6 +156,14 @@ public class CrabFSM : MonoBehaviour, IDamageable
     {
         eventS = false;
     }
+    public void ActivateBigWall()
+    {
+        bigWall = true;
+    }
+    public void DeactivateBigWall()
+    {
+        bigWall = false;
+    }
     #endregion
 
     #endregion
@@ -200,6 +218,63 @@ public class CrabFSM : MonoBehaviour, IDamageable
     {
         Instantiate(prefab, location.position, location.rotation);
     }
+    public void StartFireWall()
+    {
+        firePoints.Clear();
+        if (firewallRoutine == null)
+        {
+            firewallRoutine = StartCoroutine(FireWallRoutine());
+        }
+    }
+    private IEnumerator FireWallRoutine()
+    {
+        while (true)
+        {
+            Vector3 origin = initialPoint.position;
+            Vector3 direction = initialPoint.forward;
+
+            Debug.DrawRay(origin, direction * 100, Color.red);
+
+            if (Physics.Raycast(origin, direction, out RaycastHit hit, 100, ground))
+            {
+                firePoints.Add(hit.point);
+                Debug.Log("Ponto registrado: " + hit.point);
+            }
+            yield return new WaitForSeconds(interval);
+        }
+    }
+    public void StopFireWall()
+    {
+        if (firewallRoutine != null)
+        {
+            Debug.Log("Muralha criada com " + firePoints.Count + " pontos.");
+            Debug.Log("Parei");
+            InstantiateWalls();
+            StopCoroutine(firewallRoutine);
+            firewallRoutine = null;
+        }
+    }
+    private void InstantiateWalls()
+    {
+        foreach (Vector3 point in firePoints)
+        {
+            Instantiate(wallPrefab, point, Quaternion.identity);
+        }
+    }
+    public void FireWall()
+    {
+        initialPoint.position = transform.position;
+        Debug.DrawRay(initialPoint.position, initialPoint.transform.forward * 100, Color.red);
+        if(Physics.Raycast(initialPoint.position,initialPoint.transform.forward, out RaycastHit hit, 100, ground))
+        {
+            Debug.Log("Acertou" +  hit.collider.name);
+        }
+    }
+    public void CreateFireWall()
+    {
+
+    }
+
     #endregion
     public void TakeDamage(int damage, float knockbackStrenght)
     {
