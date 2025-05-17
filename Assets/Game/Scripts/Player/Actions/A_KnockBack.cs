@@ -31,14 +31,14 @@ public class A_KnockBack : IAction
         knockBackTime -= Time.fixedDeltaTime;
         if (knockBackTime <= 0)
         {
-            PlayerController.instance.ResetAllActions();
+            //PlayerController.instance.ResetAllActions();
             ActionEnd();
             return;
         }
     }
     public void ActionEnd()
     {
-        Debug.Log("Em teoria acabou");
+        PlayerController.instance.ResetAllActions();
         knockBacking = false;
     }
 
