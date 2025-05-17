@@ -79,7 +79,7 @@ public class A_DashTowardMovement : IAction
     {
         dashing = false;
         dashTimer = 0;
-        //player.ResetAllActions();
+        player.ResetAllActions();
     }
 
 }
