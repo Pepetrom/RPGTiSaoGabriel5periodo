@@ -226,7 +226,7 @@ public class CrabFSM : MonoBehaviour, IDamageable
 
         if (Physics.Raycast(origin, direction, out RaycastHit hit, 100, ground))
         {
-            if (firePoints.Count <= 6)
+            if (firePoints.Count < 1)
                 firePoints.Add(hit.point);
         }
     }

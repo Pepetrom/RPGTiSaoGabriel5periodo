@@ -6,14 +6,11 @@ public class CrabWallCollider : MonoBehaviour
 {
     public CrabFSM crab;
     Collider c;
-    MeshRenderer r;
     public ParticleSystem antecipation;
     private void Start()
     {
         c = GetComponent<Collider>();
-        r = GetComponent<MeshRenderer>();
         c.enabled = false;
-        r.enabled = false;
         antecipation.Play();
         Invoke("ActivateMyCollider", 1f);
     }
@@ -28,6 +25,5 @@ public class CrabWallCollider : MonoBehaviour
     void ActivateMyCollider()
     {
         c.enabled = true;
-        r.enabled = true;
     }
 }
