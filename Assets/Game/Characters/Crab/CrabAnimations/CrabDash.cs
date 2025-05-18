@@ -37,7 +37,7 @@ public class CrabDash : ICrabInterface
         {
             controller.agent.enabled = false;
             controller.rb.isKinematic = false;
-            controller.KB(-1600);
+            controller.KB(-200);
         }
         else
         {

@@ -37,7 +37,7 @@ public class CrabSpinState : ICrabInterface
         {
             controller.agent.enabled = false;
             controller.rb.isKinematic = false;
-            controller.KB(400);
+            controller.KB(100);
         }
         else
         {

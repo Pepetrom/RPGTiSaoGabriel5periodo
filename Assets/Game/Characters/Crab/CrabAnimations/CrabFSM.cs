@@ -193,8 +193,9 @@ public class CrabFSM : MonoBehaviour, IDamageable
     }
     public void KB(float value)
     {
-        rb.AddForce(transform.forward.normalized * value, ForceMode.Impulse);
+        rb.velocity = transform.forward.normalized * value;
     }
+
     private void Posture()
     {
         if (posture < maxPosture)
