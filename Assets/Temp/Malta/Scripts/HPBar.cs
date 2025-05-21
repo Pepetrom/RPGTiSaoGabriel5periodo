@@ -89,6 +89,7 @@ public class HPBar : MonoBehaviour
     }
     public void TakeDamage(float damage, Transform damageFont)
     {
+        if (currentHP <= 0) return;
         if (PlayerController.instance.canTakeDamage && currentHP > 0)
         {
             if (easebar.value != hpbar.value)

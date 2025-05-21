@@ -84,6 +84,8 @@ public class PlayerController : MonoBehaviour
     //Raycast
     Ray ray;
     RaycastHit hit;
+    //SoulDrop
+    public GameObject soulPickable;
     //------------------------------------------------------------------------------------------------------------------------------------
     private void Awake()
     {
@@ -367,7 +369,11 @@ public class PlayerController : MonoBehaviour
     }
     public void Die()
     {
+        Debug.Log("MOrreu");
         animator.SetTrigger("Death");
+       Pickable temp = Instantiate(soulPickable, transform.position, transform.rotation).GetComponent<Pickable>();
+        temp.value =(int)(GameManager.instance.skillPoints / 2);
+        GameManager.instance.Score(-temp.value);
     }
     public void ForceIddle()
     {

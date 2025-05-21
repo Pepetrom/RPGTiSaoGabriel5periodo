@@ -9,7 +9,7 @@ public class Pickable : Interactable
     {
         PlayerInteract.instance.ObjectAutoDestruction(this);
         PlayerController.instance.audioMan.PlayAudio(5);
-        GameManager.instance.Score(50);
+        GameManager.instance.Score(value);
         isInRange = false;
         Destroy(this.gameObject);
     }
