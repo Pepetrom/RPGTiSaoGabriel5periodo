@@ -13,12 +13,12 @@ public class CrabDeath : ICrabInterface
         UIItems.instance.ShowBOSSHUD(false);
         controller.ownCollider.enabled = false;
         controller.ownFire.SetActive(false);
+        GameManager.instance.Score(3000);
     }
 
     public void OnExit()
     {
         controller.end = false;
-        GameManager.instance.Score(3000);
     }
 
     public void OnUpdate()

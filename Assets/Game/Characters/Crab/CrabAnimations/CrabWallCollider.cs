@@ -1,17 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class CrabWallCollider : MonoBehaviour
 {
     public CrabFSM crab;
     Collider c;
-    public ParticleSystem antecipation;
+    public GameObject antecipation, wallFire;
+    public SkinnedMeshRenderer mesh;
     private void Start()
     {
+        wallFire.GetComponent<VisualEffect>().Stop();
         c = GetComponent<Collider>();
         c.enabled = false;
-        antecipation.Play();
+        mesh.enabled = false;
+        antecipation.GetComponent<VisualEffect>().Play();
         Invoke("ActivateMyCollider", 1f);
     }
     private void OnTriggerEnter(Collider other)
@@ -24,6 +28,8 @@ public class CrabWallCollider : MonoBehaviour
     }
     void ActivateMyCollider()
     {
+        wallFire.GetComponent<VisualEffect>().Play();
         c.enabled = true;
+        mesh.enabled = true;
     }
 }

@@ -9,7 +9,7 @@ public class CrabBigFire : ICrabInterface
     public void OnEnter()
     {
         controller.animator.SetBool("isJumping", false);
-        controller.damage = 20;
+        controller.damage = 30;
         controller.transform.position = new Vector3(controller.secondStageLocation.transform.position.x, controller.secondStageLocation.transform.position.y, controller.secondStageLocation.transform.position.z);
     }
 

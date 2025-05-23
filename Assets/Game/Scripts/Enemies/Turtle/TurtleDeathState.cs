@@ -21,7 +21,7 @@ public class TurtleDeathState : ITurtleStateMachine
     public void OnEnter()
     {
         controller.GetComponent<Collider>().enabled = false;
-        GameManager.instance.Score(100);
+        GameManager.instance.Score(200);
     }
 
     public void OnExit()

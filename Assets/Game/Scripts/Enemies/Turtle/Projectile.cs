@@ -5,6 +5,10 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public ProjectilesSO p;
+    private void Start()
+    {
+        Invoke("Destroy", 3);
+    }
     private void Update()
     {
         transform.Translate(Vector3.forward * p.speed * Time.deltaTime);
@@ -15,6 +19,15 @@ public class Projectile : MonoBehaviour
         {
             Debug.Log("Colidiu");
             HPBar.instance.TakeDamage(p.damage, this.transform);
+            Destroy();
         }
+        if(other.CompareTag("Ground") || other.CompareTag("Scenario"))
+        {
+            Destroy();
+        }
+    }
+    private void Destroy()
+    {
+        Destroy(gameObject);
     }
 }
