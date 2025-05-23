@@ -14,6 +14,7 @@ public class CrabStartState : ICrabInterface
     {
         GameManager.instance.AddEnemy(controller.gameObject);
         controller.ActivateTrails(false, false);
+        controller.ownCollider.enabled = false;
     }
 
     public void OnExit()

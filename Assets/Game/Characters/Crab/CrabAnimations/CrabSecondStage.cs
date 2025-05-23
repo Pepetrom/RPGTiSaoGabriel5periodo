@@ -56,7 +56,6 @@ public class CrabSecondStage : ICrabInterface
                 pos.y = 8f;
                 controller.transform.position = new Vector3(pos.x, pos.y, pos.z);
                 controller.VFXJumpImpact.Play();
-                controller.ownCollider.enabled = true;
                 CameraScript.instance.StartShake();
             }
         }

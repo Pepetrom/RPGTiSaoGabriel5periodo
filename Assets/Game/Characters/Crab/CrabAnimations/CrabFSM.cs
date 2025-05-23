@@ -110,6 +110,10 @@ public class CrabFSM : MonoBehaviour, IDamageable
             }
         }
     }
+    public void OwnColliderActivate()
+    {
+        ownCollider.enabled = true;
+    }
     #region ACTIONEVENTS
     public void Antecipation()
     {
@@ -240,9 +244,11 @@ public class CrabFSM : MonoBehaviour, IDamageable
     {
         foreach (Vector3 point in firePoints)
         {
-            Instantiate(wallPrefab, point, new Quaternion(initialPoint.transform.rotation.x, 0,initialPoint.transform.rotation.z, 0));
+            Quaternion rotation = Quaternion.Euler(0, initialPoint.transform.eulerAngles.y, 0);
+            Instantiate(wallPrefab, new Vector3 (point.x,point.y + 7,point.z), rotation);
         }
     }
+
     #endregion
     public void TakeDamage(int damage, float knockbackStrenght)
     {

@@ -823,7 +823,7 @@ Transform:
   m_GameObject: {fileID: 5601612524664430839}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.9816605, z: -0, w: 0.19063771}
-  m_LocalPosition: {x: -535, y: -6.64, z: -292.7}
+  m_LocalPosition: {x: -535.67, y: -6.64, z: -292.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -962,7 +962,7 @@ MonoBehaviour:
   initialPoint: {fileID: 52202515619353098}
   finalPoint: {fileID: 0}
   line: {fileID: 0}
-  wallPrefab: {fileID: 5611999355896592644, guid: 730ae6c209c0e5f48a0c194531db00f8,
+  wallPrefab: {fileID: 3424416525755112872, guid: faa70a0f52659af43851263821c47862,
     type: 3}
   ground:
     serializedVersion: 2
@@ -985,10 +985,10 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 3.85
-  m_Center: {x: 0, y: 3.49, z: -1.06}
+  m_Radius: 2.3878822
+  m_Center: {x: -0.000000021015904, y: 4.9521184, z: -1.06}
 --- !u!114 &-5184049523564015379
 MonoBehaviour:
   m_ObjectHideFlags: 0
