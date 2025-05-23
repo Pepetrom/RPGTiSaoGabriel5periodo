@@ -132,7 +132,7 @@ public class PlayerController : MonoBehaviour
         DoActions();
         if (!masterCanDo) return;
         animator.speed = GameManager.instance.actionTime;
-        //CheckGround();
+        CheckGround();
         SetDirection();
         cc.Move(moveDirection * Time.fixedDeltaTime);
         PlayerInteract.instance.FixedUpdatePlayerInteract();

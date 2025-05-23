@@ -6,6 +6,7 @@ public class ObjectThatMove : MonoBehaviour
 {
     public Vector3[] place;
     Vector3 targetPosition;
+    public float speed = 12;
     private void Awake()
     {
         targetPosition = transform.position;
@@ -19,8 +20,8 @@ public class ObjectThatMove : MonoBehaviour
     {
         if (targetPosition != transform.position)
         {
-            transform.position = Vector3.Lerp(transform.position, targetPosition, Time.fixedDeltaTime);
-            if (Vector3.Distance(transform.position, targetPosition) < 1) transform.position = targetPosition;
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.fixedDeltaTime);
         }
+
     }
 }
