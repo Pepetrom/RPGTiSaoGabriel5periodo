@@ -11,7 +11,8 @@ public class RuneSelector : MonoBehaviour
     [SerializeField] GameObject[] buttons;
     [SerializeField] Slider[] sliders;
     [SerializeField] bool[] runePurchased;
-    [SerializeField] int runeValue;
+    [SerializeField] int[] runeValue;
+    [SerializeField] int[] runeValuePerLevel;
     [SerializeField] TextMeshProUGUI[] priceTexts;
     float totalUpgrades = 3;
     int atributesPerSkill;
@@ -25,9 +26,32 @@ public class RuneSelector : MonoBehaviour
     private void Start()
     {
         atributesPerSkill = runePurchased.Length / 3;
-        foreach (var t in priceTexts)
+        for(int i = 0; i < priceTexts.Length; i++)
         {
-            t.text = $"{runeValue}";
+            runeValue[i] = runeValuePerLevel[0];
+            priceTexts[i].text = $"{runeValue[i]}";
+        }
+    }
+    void UpdatePrice()
+    {
+        runeValue[0] = runeValuePerLevel[PlayerController.instance.strength];
+        runeValue[1] = runeValuePerLevel[PlayerController.instance.agility];
+        runeValue[2] = runeValuePerLevel[PlayerController.instance.constitution];
+        for (int i = 0; i < priceTexts.Length; i++)
+        {
+            priceTexts[i].text = $"{runeValue[i]}";
+        }
+        if (PlayerController.instance.strength >= totalUpgrades)
+        {
+            priceTexts[0].text = "MAX";
+        }
+        if (PlayerController.instance.agility >= totalUpgrades)
+        {
+            priceTexts[1].text = "MAX";
+        }
+        if (PlayerController.instance.constitution >= totalUpgrades)
+        {
+            priceTexts[2].text = "MAX";
         }
     }
     void UpdateRuneSelector()
@@ -70,7 +94,7 @@ public class RuneSelector : MonoBehaviour
     int whichMudavel = 0;
     public void PurchaseRune(int which)
     {
-        if (GameManager.instance.skillPoints < runeValue) return;
+        if (GameManager.instance.skillPoints < runeValue[which - 1]) return;
         whichMudavel = 0;
         switch (which)
         {
@@ -93,14 +117,9 @@ public class RuneSelector : MonoBehaviour
         Debug.Log("tentei comprar a runa: " + whichMudavel);
         if (whichMudavel > runePurchased.Length) return;
         if (runePurchased[whichMudavel]) return;
-        GameManager.instance.Score(-runeValue);
-        runeValue += 50;
+        GameManager.instance.Score(-runeValue[which - 1]);
         runePurchased[whichMudavel] = true;
-        foreach ( var t in priceTexts)
-        {
-            t.text = $"{runeValue}";
-        }
-
+        UpdatePrice();
         EquipRune();
         UpdateRuneSelector();
     }
