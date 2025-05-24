@@ -2,80 +2,171 @@
     "entries": [
         {
             "version": "1.0.0",
-            "title": "teste",
+            "title": "Core Systems and Player Mechanics",
             "authors": [],
-            "content": "por favor funciona",
-            "date": "2025-05-23 22:16:09"
+            "content": "- Player movement\n- Player combat mechanics\n- Fully developed and navigable environment\n- Three functional enemies",
+            "date": "2024-08-10"
         },
         {
             "version": "1.0.1",
-            "title": "teste",
+            "title": "Visual Enhancements and UI Foundations",
             "authors": [],
-            "content": "por favor funciona",
-            "date": "2025-05-23 22:16:11"
+            "content": "- Essential modeling and animations\n- Functional HUD and menus\n- Runes and their specificities\n- Animations for all characters",
+            "date": "2024-08-24"
         },
         {
             "version": "1.0.2",
-            "title": "teste",
+            "title": "Audio, VFX, and Finalizing UI",
             "authors": [],
-            "content": "por favor funciona",
-            "date": "2025-05-23 22:16:11"
+            "content": "- Audio\n- Complete animations for enemies\n- Shader and VFX\n- Finalized HUD and menus",
+            "date": "2024-09-07"
         },
         {
             "version": "1.0.3",
-            "title": "teste",
+            "title": "Rigging, Team Structure, and Enemy Programming",
             "authors": [],
-            "content": "por favor funciona",
-            "date": "2025-05-23 22:16:12"
+            "content": "- Partial rigging for Muller and Hoff, and turtle\n- Defined animation teams for player and turtle\n- HUD design\n- Generic enemy programming",
+            "date": "2024-09-21"
         },
         {
             "version": "1.0.4",
-            "title": "teste",
+            "title": "Combat and Item Systems",
             "authors": [],
-            "content": "por favor funciona",
-            "date": "2025-05-23 22:16:12"
+            "content": "- Health bar programming and design\n- Improved turtle movement\n- Programming and design of healable item\n- Combat started",
+            "date": "2024-10-05"
         },
         {
             "version": "1.0.5",
-            "title": "teste",
+            "title": "Combat Animations and State Implementation",
             "authors": [],
-            "content": "por favor funciona",
-            "date": "2025-05-23 22:16:13"
+            "content": "- Turtle combat animations\n- Player cycle animations\n- Implementation of turtle combat states\n- Implementation of player's basic attacks",
+            "date": "2024-10-19"
         },
         {
             "version": "1.0.6",
-            "title": "teste",
+            "title": "Character Systems and Core Features",
             "authors": [],
-            "content": "por favor funciona",
-            "date": "2025-05-23 22:16:13"
+            "content": "- Turtle implemented\n- Player implemented\n- Status: Health (HP) and Stamina implemented\n- Basic menu screen",
+            "date": "2024-11-02"
         },
         {
             "version": "1.0.7",
-            "title": "teste",
+            "title": "Core Combat Loop and Bug Fixes",
             "authors": [],
-            "content": "por favor funciona",
-            "date": "2025-05-23 22:16:14"
+            "content": "- Basic combat functional\n- Main loop implemented\n- Polished player animations\n- Bug fixes",
+            "date": "2024-11-16"
         },
         {
             "version": "1.0.8",
-            "title": "teste",
+            "title": "Combat Improvements and Game Feel",
             "authors": [],
-            "content": "por favor funciona",
-            "date": "2025-05-23 22:16:14"
+            "content": "- Improved player combat\n- Game juices (Hit stop, camera shake)\n- Rune system\n- Enemy refinement and balancing",
+            "date": "2024-11-30"
         },
         {
             "version": "1.0.9",
-            "title": "teste",
+            "title": "Enemy AI Enhancements and Navigation",
             "authors": [],
-            "content": "por favor funciona",
-            "date": "2025-05-23 22:16:15"
+            "content": "- Turtle enemy patrol implemented\n- NavMesh configuration\n- Alternation between patrol and combat\n- Improved player movement",
+            "date": "2024-12-14"
         },
         {
-            "version": "1.0.10",
-            "title": "teste",
+            "version": "1.1.0",
+            "title": "Camera and Environment Development",
             "authors": [],
-            "content": "por favor funciona",
-            "date": "2025-05-23 22:16:15"
+            "content": "- Camera angle defined\n- First blocked area implemented\n- Final animations for main character (Hoff)\n- Proxy model of piglet with small blade",
+            "date": "2024-12-28"
+        },
+        {
+            "version": "1.1.1",
+            "title": "Shaders, Status Systems, and Visual Effects",
+            "authors": [],
+            "content": "- Rune panel refinement\n- Basic status system\n- Improved NavMesh\n- Object dissolve shader\n- Turtle death shader\n- Blood screen",
+            "date": "2025-01-11"
+        },
+        {
+            "version": "1.1.2",
+            "title": "Combat Systems and Blocking Enhancements",
+            "authors": [],
+            "content": "- Combat identification system\n- Post-process\n- Improved mechanics\n- Improved blocking\n- Rig and proxy model of shield piglet",
+            "date": "2025-01-25"
+        },
+        {
+            "version": "1.1.3",
+            "title": "Character Sculpting and Rune Improvements",
+            "authors": [],
+            "content": "- Main character (Hoff) sculpted\n- Enhanced dissolve shader\n- New rune panel implemented\n- Checkpoint\n- Piglet animations created",
+            "date": "2025-02-08"
+        },
+        {
+            "version": "1.1.4",
+            "title": "New Enemy and Checkpoint System",
+            "authors": [],
+            "content": "- Started implementation of new enemy\n- NavMesh enhancement\n- Bug fixes\n- Checkpoint interface\n- Respawn system for player and enemies",
+            "date": "2025-02-22"
+        },
+        {
+            "version": "1.1.5",
+            "title": "Bonfire and Defeat Systems",
+            "authors": [],
+            "content": "- Rest transition at bonfire\n- Piglet enemy implemented\n- Defeat system\n- Interface system\n- Lighting and post-process",
+            "date": "2025-03-08"
+        },
+        {
+            "version": "1.1.6",
+            "title": "Level Design and VFX Implementation",
+            "authors": [],
+            "content": "- VFX implemented\n- Finalized and implemented level blockout, triggers, and game juices\n- Sound effects and music added\n- Enemy and NavMesh improvements",
+            "date": "2025-03-22"
+        },
+        {
+            "version": "1.1.7",
+            "title": "Balancing and Animation Corrections",
+            "authors": [],
+            "content": "- Runes and enemy balancing\n- Menu system refinement\n- Fixed and implemented main character animations\n- Shield piglet animation",
+            "date": "2025-04-05"
+        },
+        {
+            "version": "1.1.8",
+            "title": "UI Finalization and Tuko Integration",
+            "authors": [],
+            "content": "- Finalized HUD and UI elements\n- Tuko's weight painting and texturing finished\n- Tuko implemented in engine\n- Final GDD created",
+            "date": "2025-04-19"
+        },
+        {
+            "version": "1.1.9",
+            "title": "Dialogue and Puzzle Systems",
+            "authors": [],
+            "content": "- Rune system remapped\n- Piglet animations: sidewalk, run, run attack\n- Dialogue system\n- Main map puzzle completed\n- Fixed player attack stop bug",
+            "date": "2025-05-03"
+        },
+        {
+            "version": "1.2.0",
+            "title": "Environment Composition and Quest Design",
+            "authors": [],
+            "content": "- Pipe placement in other Unity areas\n- Player ladder animations\n- Environment composition\n- Secondary boss model finalized\n- Quests defined",
+            "date": "2025-05-17"
+        },
+        {
+            "version": "1.2.1",
+            "title": "Boss Integration and Dialogue Finalization",
+            "authors": [],
+            "content": "- Terrain assets for camp finalized\n- Checkpoint travel system\n- Secondary boss (crab) animations\n- Secondary boss in Unity with placeholder environment\n- All dialogues written",
+            "date": "2025-05-20"
+        },
+        {
+            "version": "1.2.2",
+            "title": "Quest Implementation and Localization",
+            "authors": [],
+            "content": "- Piglet fully implemented\n- Quests implemented\n- Placeholder for medicine (quest 1) and essence (quest 2)\n- Bonfire asset pack finalized\n- Game translated to English",
+            "date": "2025-05-22"
+        },
+        {
+            "version": "1.2.3",
+            "title": "Balancing and Gameplay Systems",
+            "authors": [],
+            "content": "- Bug fixes\n- QUEST 1: Deliver medicine to the Tortoise — it drops from piglets after talking to him and NPC David\n- QUEST 2: Obtain the essence from Anneliese's husband — go down to the turtle area and enter the secondary boss arena to find the essence\n- Player drops souls upon death\n- Runes with unit price and price scaling",
+            "date": "2025-05-23"
         }
     ]
 }

@@ -27,9 +27,9 @@ public class ChangeLog : MonoBehaviour
             {
                 authors = authors + ", " + author;
             }
-            loggerText.text = $"<color=#F9FF00>{e.version}</color> " + $"<color=#F9FF00>{e.title}</color>: " + e.content + $"<color=#00C6B5>{authors}</color>: ";
+            loggerText.text = $"<color=#F9FF00>{e.version}</color> ({e.date}) <color=#F9FF00>{e.title}</color>:\n {e.content} <color=#00C6B5>{authors}</color>: ";
         }
-        contentSize.sizeDelta = new Vector2(contentSize.sizeDelta.x, changelogData.entries.Count * 100) ;
+        contentSize.sizeDelta = new Vector2(contentSize.sizeDelta.x, changelogData.entries.Count * 150) ;
         if(changelogData.entries.Count > 0) version.text = "V " + changelogData.entries[changelogData.entries.Count-1].version + " ChangeLog(click)";
     }
 }
