@@ -91,7 +91,6 @@ public class HPBar : MonoBehaviour
     public void TakeDamage(float damage, Transform damageFont)
     {
         if (PlayerController.instance.imortal) return;
-        if (currentHP <= 0) return;
         if (PlayerController.instance.canTakeDamage && currentHP > 0)
         {
             if (easebar.value != hpbar.value)
@@ -108,10 +107,10 @@ public class HPBar : MonoBehaviour
                 PlayerController.instance.actions[2].ActionStart();
                 CameraScript.instance.TakeHit(CameraScript.instance.targetVigColor);
             }
-        }
-        if (currentHP <= 0)
-        {
-            Die();
+            else
+            {
+                Die();
+            }
         }
     }
     public void Die()
