@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7449847408717555742}
-  - component: {fileID: 5392666536411806834}
+  - component: {fileID: 4952690291990892053}
+  - component: {fileID: 7520132942168026714}
   m_Layer: 0
   m_Name: ____CHANGELOG_____
   m_TagString: Untagged
@@ -32,7 +33,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5392666536411806834
+--- !u!114 &4952690291990892053
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,30 +45,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76a244a73b8e0bd478e8957b718aeee1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: ChangeTest3
-  authors:
-  - ' Teste2'
-  - ' Teste2Eumsm'
-  content: "Este commit do ChangeLog na verdade \xE9 um teste, ignore. Testado novamente!!"
+  testeTexto: {fileID: 0}
+  title: 
+  authors: []
+  content: 
+  filePath: 
   changelogData:
-    entries:
-    - version: 1.0.0
-      title: ChangeTest
-      authors:
-      - Teste
-      content: "Este commit do ChangeLog na verdade \xE9 um teste, ignore"
-      date: 2025-04-27 11:18:12
-    - version: 1.0.1
-      title: ChangeTest2
-      authors:
-      - ' Teste2'
-      content: "Este commit do ChangeLog na verdade \xE9 um teste, ignore"
-      date: 2025-04-27 11:19:34
-    - version: 1.0.2
-      title: ChangeTest3
-      authors:
-      - ' Teste2'
-      - ' Teste2Eumsm'
-      content: "Este commit do ChangeLog na verdade \xE9 um teste, ignore. Testado
-        novamente!!"
-      date: 2025-04-27 11:37:27
+    entries: []
+--- !u!114 &7520132942168026714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8601538852190378100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42f8d690c65cb334cb334a97b55ec9b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changelog: {fileID: 4952690291990892053}
+  changelogData:
+    entries: []
+  textScroller: {fileID: 0}
+  logger: {fileID: 3374014482657854543, guid: f9e94a783cfad0f4e8623e7a2e915bde, type: 3}
+  version: {fileID: 0}
