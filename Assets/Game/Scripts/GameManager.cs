@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
         UpdateActionTime(1);
+        UnPause(); 
     }
     private void Start()
     {

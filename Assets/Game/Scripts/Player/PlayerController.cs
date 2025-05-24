@@ -86,6 +86,8 @@ public class PlayerController : MonoBehaviour
     RaycastHit hit;
     //SoulDrop
     public GameObject soulPickable;
+    //Bools of cheat
+    public bool imortal;
     //------------------------------------------------------------------------------------------------------------------------------------
     private void Awake()
     {
@@ -94,6 +96,7 @@ public class PlayerController : MonoBehaviour
     }
     void Start()
     {
+        GameManager.instance.UnPause();
         masterCanDo = true;
         cameraAlignValue = mainCamera.transform.forward;
         cameraAlignValue.y = 0;
@@ -210,6 +213,10 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             PlayerInteract.instance.UpdatePlayerInteract();
+        }
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            SceneController.sceneController.OpenCheatMenu(!SceneController.sceneController.cheatMenu.activeSelf);
         }
     }
     void UseEstus()

@@ -67,6 +67,7 @@ public class HPBar : MonoBehaviour
     }
     public void FallDamage(float damage)
     {
+        if (PlayerController.instance.imortal) return;
         if (PlayerController.instance.canTakeDamage && currentHP > 0)
         {
             if (easebar.value != hpbar.value)
@@ -89,6 +90,7 @@ public class HPBar : MonoBehaviour
     }
     public void TakeDamage(float damage, Transform damageFont)
     {
+        if (PlayerController.instance.imortal) return;
         if (currentHP <= 0) return;
         if (PlayerController.instance.canTakeDamage && currentHP > 0)
         {
@@ -112,7 +114,7 @@ public class HPBar : MonoBehaviour
             Die();
         }
     }
-    void Die()
+    public void Die()
     {
         PlayerController.instance.Die();
         FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.hoffDeath, PlayerController.instance.transform.position);

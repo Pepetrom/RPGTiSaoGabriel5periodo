@@ -80,6 +80,7 @@ public class UIItems : MonoBehaviour
     {
         PlayerController.instance.StopAllActions();
         DeathPanel.gameObject.SetActive(true);
+        Invoke("GarantiaRespawnButton", 3);
     }
     public void GearEnd()
     {
@@ -93,6 +94,10 @@ public class UIItems : MonoBehaviour
     public void RespawnButton()
     {
         respawnButton.gameObject.SetActive(true);
+    }
+    void GarantiaRespawnButton()
+    {
+        if (DeathPanel.activeSelf) RespawnButton();
     }
     public void Respawn()
     {

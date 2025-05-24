@@ -7,7 +7,7 @@ public class SceneController : MonoBehaviour
 {
     public static SceneController sceneController;
     public GameObject tutorial, pageA, pageB, options, bonfire, pause, changeLog;
-    public GameObject runePanel;
+    public GameObject runePanel, cheatMenu;
     private void Awake()
     {
         sceneController = this;
@@ -27,6 +27,20 @@ public class SceneController : MonoBehaviour
             RunesPanel();
         }
         TutorialPanel();
+    }
+    public void OpenCheatMenu(bool open)
+    {
+        cheatMenu.SetActive(open);
+    }
+    public void Imortal()
+    {
+        PlayerController.instance.imortal = !PlayerController.instance.imortal;
+    }
+    public void KillPlayer()
+    {
+        PlayerController.instance.imortal = false;
+        PlayerController.instance.canTakeDamage = true;
+        HPBar.instance.Die();
     }
     void Pause()
     {
