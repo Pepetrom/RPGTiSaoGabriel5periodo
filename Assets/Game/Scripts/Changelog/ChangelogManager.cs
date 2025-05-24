@@ -17,7 +17,7 @@ public class ChangelogManager : MonoBehaviour
 
     private void Awake()
     {
-        filePath = Path.Combine(Application.persistentDataPath, "changelog.json");
+        filePath = Path.Combine(Application.streamingAssetsPath, "changelog.json");
         LoadChangelog();
     }
 
