@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
@@ -27,7 +28,7 @@ public class ChangeLog : MonoBehaviour
             {
                 authors = authors + ", " + author;
             }
-            loggerText.text = $"<color=#F9FF00>{e.version}</color> ({e.date}) <color=#F9FF00>{e.title}</color>:\n {e.content} <color=#00C6B5>{authors}</color>: ";
+            loggerText.text = $"<color=#F9FF00>{e.version}</color> ({e.date}) <color=#F9FF00>{e.title}</color>:\n {e.content}" + (authors.Length > 0 ? $"\n <color=#00C6B5>{authors}</color>" : "");
         }
         contentSize.sizeDelta = new Vector2(contentSize.sizeDelta.x, changelogData.entries.Count * 150) ;
         if(changelogData.entries.Count > 0) version.text = "V " + changelogData.entries[changelogData.entries.Count-1].version + " ChangeLog(click)";
