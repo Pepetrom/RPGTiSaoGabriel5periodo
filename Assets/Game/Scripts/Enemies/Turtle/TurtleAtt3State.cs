@@ -31,7 +31,7 @@ public class TurtleAtt3State : ITurtleStateMachine
             controller.rightHand.gameObject.SetActive(true);
             controller.rb.isKinematic = false;
             controller.agent.enabled = false;
-            controller.KB(200);
+            controller.KB(60);
         }
         else
         {

@@ -36,7 +36,7 @@ public class TurtleDeathState : ITurtleStateMachine
         {
             controller.agent.enabled = false;
             controller.rb.isKinematic = false;
-            controller.KB(-400);
+            controller.KB(40);
         }
         else
         {

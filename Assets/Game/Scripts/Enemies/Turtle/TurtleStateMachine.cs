@@ -99,7 +99,7 @@ public class TurtleStateMachine : MonoBehaviour, IDamageable
         Debug.Log(fuzzyCannon);
     } 
 
-    void FixedUpdate()
+    void Update()
     {
         state?.OnUpdate();
         //Tem que colocar esse comando abaixo no script de cada personagem
@@ -193,7 +193,7 @@ public class TurtleStateMachine : MonoBehaviour, IDamageable
     {
         Instantiate(cannonBallPrefab, cannonPosition.position,cannonPosition.rotation);
         cannonExplosion.Play();
-        KB(-300);
+        KB(-100);
         CameraScript.instance.StartShake();
         cannonDust.Play();
     }
@@ -203,7 +203,7 @@ public class TurtleStateMachine : MonoBehaviour, IDamageable
     }
     public void KB(float kbforce)
     {
-        rb.AddForce(transform.forward.normalized * kbforce, ForceMode.Impulse);
+        rb.velocity = transform.forward.normalized * kbforce;
     }
     public void Patrolling()
     {
@@ -226,7 +226,6 @@ public class TurtleStateMachine : MonoBehaviour, IDamageable
     }
     public void TakeDamage(int damage, float knockbackStrenght)
     {
-        Impulse(kbforce * knockbackStrenght);
         hp -= damage;
         playerHit = true;
         hit.Play();

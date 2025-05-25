@@ -37,11 +37,5 @@ public class TurtleWalkState : ITurtleStateMachine
             controller.animator.SetBool("IsWalking", false);
             controller.SetState(new TurtleCombatIdleState(controller));
         }
-        else
-        {
-            controller.agent.speed = 0;
-            controller.animator.SetBool("IsWalking", false);
-            controller.SetState(new TurtleCombatIdleState(controller));
-        }
     }
 }

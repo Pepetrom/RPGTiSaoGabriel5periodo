@@ -27,8 +27,6 @@ public class EnemyHealth : MonoBehaviour
     }
     public void TakeDamage(int damage, float knockbackStrenght)
     {
-        //Por favor, implementar o estado de levando dano do inimigo e o knockback
-        turtle?.Impulse(turtle.kbforce * knockbackStrenght);
         lifeActual -= damage;
         playerHit = true;
         hit.Play();
