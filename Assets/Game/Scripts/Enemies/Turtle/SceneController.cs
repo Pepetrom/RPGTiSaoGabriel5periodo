@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneController : MonoBehaviour
 {
     public static SceneController sceneController;
-    public GameObject tutorial, pageA, pageB, options, bonfire, pause, changeLog;
+    public GameObject tutorial, pageA, pageB, options, bonfire, pause, changeLog, videoPanel, geral;
     public GameObject runePanel, cheatMenu;
     private void Awake()
     {
@@ -21,10 +21,12 @@ public class SceneController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Pause();
+            geral.SetActive(true);
             if (pause.activeSelf) return;
             OptionsPanel();
             BonfirePanel();
             RunesPanel();
+            VideoPanel();
         }
         TutorialPanel();
     }
@@ -123,6 +125,15 @@ public class SceneController : MonoBehaviour
         if (runePanel.activeSelf)
         {
             runePanel.SetActive(false);
+            PlayerController.instance.ResetAllActions();
+            GameManager.instance.UnPause();
+        }
+    }
+    public void VideoPanel()
+    {
+        if (videoPanel.activeSelf)
+        {
+            videoPanel.SetActive(false);
             PlayerController.instance.ResetAllActions();
             GameManager.instance.UnPause();
         }

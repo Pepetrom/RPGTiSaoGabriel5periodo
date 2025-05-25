@@ -16,6 +16,7 @@ public class CrabAtt1 : ICrabInterface
         controller.SortNumber();
         controller.rb.isKinematic = true;
         controller.ActivateTrails(true,false);
+        controller.ownCollider.enabled = false;
     }
 
     public void OnExit()

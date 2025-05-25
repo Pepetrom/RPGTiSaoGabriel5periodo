@@ -13,6 +13,7 @@ public class CrabDeath : ICrabInterface
         UIItems.instance.ShowBOSSHUD(false);
         controller.ownCollider.enabled = false;
         controller.ownFire.SetActive(false);
+        controller.stairBlock.SetActive(false);
         GameManager.instance.Score(3000);
     }
 

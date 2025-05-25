@@ -156,6 +156,15 @@ public class CameraScript : MonoBehaviour
         currentVig = Mathf.Lerp(currentVig, value, Time.deltaTime * zoomSpeed);
         combatVignette.intensity.value = currentVig;
     }
+    /*public void CombatCamera(float target, float value, float zoomSpeed)
+    {
+        Vector3 localPos = cam.transform.localPosition;
+        localPos.z = Mathf.Lerp(localPos.z, target, Time.deltaTime * zoomSpeed);
+        cam.transform.localPosition = localPos;
+
+        currentVig = Mathf.Lerp(currentVig, value, Time.deltaTime * zoomSpeed);
+        combatVignette.intensity.value = currentVig;
+    }*/
     public void RedVignette()
     {
         if (isHit)

@@ -20,7 +20,7 @@ public class A_KnockBack : IAction
         knockBackForce = PlayerController.instance.baseDashForce;
         PlayerController.instance.bloodParticle.Play();
         direction = PlayerController.instance.transform.position - PlayerController.instance.damageFont.transform.position ;
-        direction.y = 0;
+        //direction.y = 0;
         direction = direction.normalized * knockBackForce * Time.fixedDeltaTime * 8;
     }
     public void ActionUpdate()

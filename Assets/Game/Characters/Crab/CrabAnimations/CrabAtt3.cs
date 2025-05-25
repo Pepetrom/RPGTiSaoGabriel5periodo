@@ -15,6 +15,7 @@ public class CrabAtt3 : ICrabInterface
         controller.rb.isKinematic = true;
         controller.damage = 40;
         controller.ActivateTrails(true, false);
+        controller.ownCollider.enabled = false;
     }
     public void OnExit()
     {

@@ -20,8 +20,9 @@ public class Projectile : MonoBehaviour
             Debug.Log("Colidiu");
             HPBar.instance.TakeDamage(p.damage, this.transform);
             Destroy();
+            return;
         }
-        if(other.CompareTag("Ground") || other.CompareTag("Scenario"))
+        if(other.CompareTag("Scenario"))
         {
             Destroy();
         }

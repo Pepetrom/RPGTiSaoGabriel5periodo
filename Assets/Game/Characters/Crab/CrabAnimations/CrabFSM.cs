@@ -25,7 +25,7 @@ public class CrabFSM : MonoBehaviour, IDamageable
     public int hp, damage, posture, maxPosture;
     public float impulse, rotateSpeed;
     public SphereCollider jumpCollider, claw1, claw2, furnaceCollider, ownCollider;
-    public GameObject fire, fireCircle, bigFire;
+    public GameObject fire, fireCircle, bigFire, stairBlock;
     public bool canDoFireDamage, spinCombo = false;
     public string bossName;
 
@@ -63,6 +63,8 @@ public class CrabFSM : MonoBehaviour, IDamageable
         {
             secondStageLocation = GameObject.FindWithTag("CrabLocation");
         }
+        if (stairBlock == null)
+            stairBlock = GameObject.Find("StairBlock");
         rb = GetComponent<Rigidbody>();
         SetState(new CrabStartState(this));
         FuzzyGate(out fuzzyJump);
