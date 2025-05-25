@@ -376,6 +376,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8372166377814985023}
+  - component: {fileID: 5111638899724308763}
   m_Layer: 12
   m_Name: Barril_Light
   m_TagString: Untagged
@@ -404,6 +405,27 @@ Transform:
   - {fileID: 6995079604966158827}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5111638899724308763
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5833566255453559301}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.0038204, y: 4.271973, z: 2.832326}
+  m_Center: {x: 0.030774117, y: 1.0082715, z: 0.022986889}
 --- !u!1 &6822251879139353915
 GameObject:
   m_ObjectHideFlags: 0

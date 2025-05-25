@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5334870523751569143}
   - component: {fileID: 4032764933531765240}
   - component: {fileID: 1787771354786146116}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Plane.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,10 +27,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4678805715156209895}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 47.20736, y: 0.08106313, z: 0.000000013830141}
   m_LocalScale: {x: 50, y: 50, z: 50}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -103,5 +103,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.13528606, y: 0.045484997, z: 0.0033000004}
+  m_Size: {x: 0.16, y: 0.07, z: 0.0033000004}
   m_Center: {x: -0.0032243133, y: 0.022065058, z: -0.0000000011641532}
