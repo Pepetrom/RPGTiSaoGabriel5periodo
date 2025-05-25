@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5847986548517611812}
   - component: {fileID: 1654105196158513541}
   - component: {fileID: 7951502005567034007}
-  - component: {fileID: 2687541784322084220}
   m_Layer: 12
   m_Name: Barril_Low
   m_TagString: Destroyable
@@ -106,19 +105,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.9934328, y: 4.1703587, z: 3.0013268}
   m_Center: {x: -0.005854726, y: 1.9904245, z: -0.00000047683716}
---- !u!114 &2687541784322084220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1825190186204808759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c15601d4b769c724093c0e9c86be4465, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hasDrop: 0
-  drop: {fileID: 0}
-  destroyEffect: {fileID: 5783484673379052555, guid: 0613523a1fa5700429486afb9bd6c223,
-    type: 3}

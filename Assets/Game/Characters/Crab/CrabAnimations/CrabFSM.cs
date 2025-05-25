@@ -263,6 +263,7 @@ public class CrabFSM : MonoBehaviour, IDamageable
         if(UIItems.instance.bossCurrentHP <= hp / 2 && !secondStage && UIItems.instance.bossCurrentHP >= 0)
         {
             posture = maxPosture + (maxPosture/4);
+            ownCollider.enabled = false;
             animator.SetBool("secondStage", true);
             SetState(new CrabSecondStage(this));
         }

@@ -15,6 +15,7 @@ public class QuestManager : MonoBehaviour
     public void Poem()
     {
         UIItems.instance.ShowNotes(poem);
+        GameManager.instance.Score(400);
     }
     public void DropMedicine()
     {

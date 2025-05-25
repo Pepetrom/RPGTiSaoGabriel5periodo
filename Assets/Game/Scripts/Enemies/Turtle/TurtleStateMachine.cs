@@ -193,7 +193,6 @@ public class TurtleStateMachine : MonoBehaviour, IDamageable
     {
         Instantiate(cannonBallPrefab, cannonPosition.position,cannonPosition.rotation);
         cannonExplosion.Play();
-        KB(-100);
         CameraScript.instance.StartShake();
         cannonDust.Play();
     }
