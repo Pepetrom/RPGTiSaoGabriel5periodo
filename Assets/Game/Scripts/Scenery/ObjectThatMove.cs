@@ -22,6 +22,5 @@ public class ObjectThatMove : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.fixedDeltaTime);
         }
-
     }
 }
