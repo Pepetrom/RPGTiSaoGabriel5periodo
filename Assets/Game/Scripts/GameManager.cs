@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         tutorial = false;
+        skillPoints = SaveLoad.instance.saveData.player.skillPoints;
         UIItems.instance.UpdateScoreQUI(skillPoints);
         if (!spawnEnemies) return;
         enemySpawner.AllEnemies();
@@ -157,5 +158,7 @@ public class GameManager : MonoBehaviour
     {
         skillPoints += amount;
         UIItems.instance.UpdateScoreQUI(skillPoints);
+        SaveLoad.instance.saveData.player.skillPoints = skillPoints;
+        SaveLoad.instance.Save();
     }
 }

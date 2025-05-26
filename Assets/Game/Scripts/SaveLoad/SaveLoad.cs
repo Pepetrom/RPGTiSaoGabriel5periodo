@@ -16,6 +16,7 @@ public class SaveLoad : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(this);
             path = Path.Combine(Application.persistentDataPath, "save.json");
+            //ResetSave();
             Load();
         }
         else
@@ -25,7 +26,9 @@ public class SaveLoad : MonoBehaviour
     }
     public void ResetSave()
     {
-        string json = "";
+        saveData = new SaveData();
+        saveData.player = new PlayerData("Roberto");
+        string json = JsonUtility.ToJson(saveData);
         File.WriteAllText(path, json);
         Debug.LogWarning("Progresso apagado.");
     }
@@ -57,7 +60,7 @@ public class SaveLoad : MonoBehaviour
     void DebugSave()
     {
         Debug.Log($"Este save e de {saveData.player.name}");
-        Debug.Log($"A config de luz é: {saveData.player.brightness}");
+        Debug.Log(saveData);
     }
 }
 #region OtherClassesToSave
@@ -69,10 +72,14 @@ public class SaveData
 [System.Serializable]
 public class PlayerData
 {
-    public string name;
+    public string name = "Roff Temp";
+    public int strenght = 0, agility = 0, constitution = 0;
     public int primaryRune = 0, secondaryRune = 0, TerciaryRune = 0;
-    public float brightness;
-    public int davidDialogueIndex, annelieseDialogueIndex;
+    public float brightness = 0;
+    public int davidDialogueIndex = 0, annelieseDialogueIndex = 0;
+    public float skillPoints = 0;
+    public int[] runeValue = new int[0];
+    public bool[] runePurchased = new bool[0];
     public PlayerData(string name)
     {
         this.name = name;

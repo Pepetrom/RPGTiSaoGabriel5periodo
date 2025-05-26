@@ -25,12 +25,24 @@ public class RuneSelector : MonoBehaviour
     }
     private void Start()
     {
+        PlayerController.instance.equipedPrimaryRune = SaveLoad.instance.saveData.player.primaryRune;
+        PlayerController.instance.equipedSecondaryRune = SaveLoad.instance.saveData.player.secondaryRune;
+        PlayerController.instance.equipedTerciaryRune = SaveLoad.instance.saveData.player.TerciaryRune;
+        PlayerController.instance.strength =SaveLoad.instance.saveData.player.strenght;
+        PlayerController.instance.agility = SaveLoad.instance.saveData.player.agility; 
+        PlayerController.instance.constitution = SaveLoad.instance.saveData.player.constitution;
+        if (SaveLoad.instance.saveData.player.runePurchased.Length > 0) runePurchased = SaveLoad.instance.saveData.player.runePurchased ;
+        if (SaveLoad.instance.saveData.player.runeValue.Length > 0) runeValue = SaveLoad.instance.saveData.player.runeValue;
+      
         atributesPerSkill = runePurchased.Length / 3;
         for(int i = 0; i < priceTexts.Length; i++)
         {
-            runeValue[i] = runeValuePerLevel[0];
+            if(runeValue[i] == 0) runeValue[i] = runeValuePerLevel[0];
             priceTexts[i].text = $"{runeValue[i]}";
         }
+        UpdateRuneSelector();
+        UpdatePrice();
+        EquipRune();
     }
     void UpdatePrice()
     {
@@ -53,6 +65,7 @@ public class RuneSelector : MonoBehaviour
         {
             priceTexts[2].text = "MAX";
         }
+
     }
     void UpdateRuneSelector()
     {
@@ -119,9 +132,9 @@ public class RuneSelector : MonoBehaviour
         if (runePurchased[whichMudavel]) return;
         GameManager.instance.Score(-runeValue[which - 1]);
         runePurchased[whichMudavel] = true;
+        UpdateRuneSelector();
         UpdatePrice();
         EquipRune();
-        UpdateRuneSelector();
     }
     void EquipRune()
     {
@@ -132,6 +145,17 @@ public class RuneSelector : MonoBehaviour
         runesBanner[PlayerController.instance.equipedPrimaryRune].SetActive(true);
         runesBanner[PlayerController.instance.equipedSecondaryRune + atributesPerSkill].SetActive(true);
         runesBanner[PlayerController.instance.equipedTerciaryRune + (atributesPerSkill*2)].SetActive(true);
+        SaveLoad.instance.saveData.player.primaryRune = PlayerController.instance.equipedPrimaryRune;
+        SaveLoad.instance.saveData.player.secondaryRune = PlayerController.instance.equipedSecondaryRune;
+        SaveLoad.instance.saveData.player.TerciaryRune = PlayerController.instance.equipedTerciaryRune;
+
+        SaveLoad.instance.saveData.player.runePurchased = runePurchased;
+        SaveLoad.instance.saveData.player.runeValue = runeValue;
+
+        SaveLoad.instance.saveData.player.strenght = PlayerController.instance.strength;
+        SaveLoad.instance.saveData.player.agility = PlayerController.instance.agility;
+        SaveLoad.instance.saveData.player.constitution = PlayerController.instance.constitution;
+        SaveLoad.instance.Save();
     }
     public void SelectPrimaryRune(int which)
     {
