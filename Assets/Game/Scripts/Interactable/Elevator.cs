@@ -6,12 +6,14 @@ public class Elevator : Interactable
 {
     public ObjectThatMove objectThatMove;
     public int locationID = 0;
+    bool lastActivated = false;
     public override void Interact()
     {
         Activate();
     }
     void Activate()
     {
-        objectThatMove.ChangeLocation(locationID);
+        objectThatMove.ChangeLocation(lastActivated ? 0 : 1);
+        lastActivated = !lastActivated;
     }
 }

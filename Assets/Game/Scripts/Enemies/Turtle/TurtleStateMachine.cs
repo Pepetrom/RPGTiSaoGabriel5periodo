@@ -96,7 +96,7 @@ public class TurtleStateMachine : MonoBehaviour, IDamageable
         }
         SetState(new TurtlePatrolState(this));
         FuzzyGate(out fuzzyCannon);
-        Debug.Log(fuzzyCannon);
+        //Debug.Log(fuzzyCannon);
     } 
 
     void Update()
