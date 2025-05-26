@@ -17,12 +17,17 @@ public class DialogueManager : MonoBehaviour
     {
         instance = this;
     }
+    private void Start()
+    {
+        UIItems.instance.dialoguePanel.SetActive(false);
+    }
     public bool LoadDialogue(string path)
     {
         if (!inDialogue)
         {
             i = 0;
             dialogueEnded = false;
+            UIItems.instance.dialoguePanel.SetActive(true);
             var jsonTextFile = Resources.Load<TextAsset>(path);
             if (jsonTextFile == null) Debug.LogError("Arquivo JSON não encontrado!");
             else Debug.Log("JSON carregado com sucesso!");
@@ -44,14 +49,25 @@ public class DialogueManager : MonoBehaviour
                 dialogueStatus = false;
                 inDialogue = false;
                 text.text = "";
+                UIItems.instance.dialoguePanel.SetActive(false);
                 PlayerController.instance.ResetAllActions();
                 return false;
             }
             foreach (JsonData key in line.Keys)
                 speaker = key.ToString();
-            text.text = speaker + ": " + line[0].ToString();
+            StopAllCoroutines();
+            StartCoroutine(WriteText(line[0].ToString()));
             i++;
         }
         return true;
+    }
+    IEnumerator WriteText(string fullTex)
+    {
+        text.text = "";
+        foreach(char c in fullTex)
+        {
+            text.text += c;
+            yield return new WaitForSeconds(0.02f);
+        }
     }
 }

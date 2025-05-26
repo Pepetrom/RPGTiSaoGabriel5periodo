@@ -8,6 +8,7 @@ public class JabutiDialogue : MonoBehaviour
     public string[] dialoguePaths;
     bool canTalk = false;
     [SerializeField] int dialogueIndex = 0;
+    public Text NPCname;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -30,6 +31,7 @@ public class JabutiDialogue : MonoBehaviour
         {
             if (canTalk)
             {
+                NPCname.text = "TORTOISE";
                 if (!QuestManager.instance.medicine)
                 {
                     PlayerController.instance.StopAllActions();

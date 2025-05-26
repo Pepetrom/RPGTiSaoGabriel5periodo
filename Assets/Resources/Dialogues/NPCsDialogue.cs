@@ -7,6 +7,7 @@ public class NPCsDialogue : MonoBehaviour
 {
     public string[] dialoguePaths;
     bool canTalk = false;
+    public Text NPCname;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -29,6 +30,7 @@ public class NPCsDialogue : MonoBehaviour
         {
             if (canTalk)
             {
+                NPCname.text = "DAVID";
                 switch (QuestManager.instance.davidDialogueIndex)
                 {
                     case 0:
@@ -61,7 +63,6 @@ public class NPCsDialogue : MonoBehaviour
                         DialogueManager.instance.LoadDialogue(dialoguePaths[4]);
                         DialogueManager.instance.printLine(DialogueManager.instance.text);
                         break;
-
                 }
             }
         }

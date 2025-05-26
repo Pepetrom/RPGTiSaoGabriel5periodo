@@ -27,6 +27,7 @@ public class UIItems : MonoBehaviour
     [HideInInspector]public int bossMaxHP, bossCurrentHP;
     public float lerpSpeed;
     public GameObject fadeInFadeOut;
+    public GameObject dialoguePanel;
     void Awake()
     {
         instance = this;
