@@ -39,6 +39,8 @@ public class JabutiDialogue : MonoBehaviour
                     DialogueManager.instance.printLine(DialogueManager.instance.text);
                     if (DialogueManager.instance.dialogueEnded)
                         QuestManager.instance.davidDialogueIndex = 3;
+                    SaveLoad.instance.saveData.player.davidDialogueIndex = 3;
+                    SaveLoad.instance.Save();
                 }
                 else
                 {
@@ -49,6 +51,8 @@ public class JabutiDialogue : MonoBehaviour
                     QuestManager.instance.Poem();
                     if (DialogueManager.instance.dialogueEnded)
                         QuestManager.instance.davidDialogueIndex = 4;
+                    SaveLoad.instance.saveData.player.davidDialogueIndex = 4;
+                    SaveLoad.instance.Save();
                 }
             }
         }

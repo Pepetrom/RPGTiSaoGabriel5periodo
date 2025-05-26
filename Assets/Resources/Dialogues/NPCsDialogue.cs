@@ -39,6 +39,8 @@ public class NPCsDialogue : MonoBehaviour
                         DialogueManager.instance.printLine(DialogueManager.instance.text);
                         if (DialogueManager.instance.dialogueEnded)
                             QuestManager.instance.davidDialogueIndex = 1;
+                        SaveLoad.instance.saveData.player.davidDialogueIndex = 1;
+                        SaveLoad.instance.Save();
                         break;
                     case 1:
                         PlayerController.instance.StopAllActions();
@@ -46,6 +48,8 @@ public class NPCsDialogue : MonoBehaviour
                         DialogueManager.instance.printLine(DialogueManager.instance.text);
                         if (DialogueManager.instance.dialogueEnded)
                             QuestManager.instance.davidDialogueIndex = 2;
+                        SaveLoad.instance.saveData.player.davidDialogueIndex = 2;
+                        SaveLoad.instance.Save();
                         break;
                     case 2:
                         PlayerController.instance.StopAllActions();

@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using System.Collections.Generic;
+using static UnityEngine.Rendering.DebugUI;
 
 public class SetGraphic : MonoBehaviour
 {
@@ -116,19 +117,25 @@ public class SetGraphic : MonoBehaviour
     {
         if (postProcessVolume != null && postProcessVolume.profile.TryGet(out colorAdjustments))
         {
-            postExposureSlider.minValue = -5f;
-            postExposureSlider.maxValue = 5f;
+            postExposureSlider.minValue = -2f;
+            postExposureSlider.maxValue = 2f;
             postExposureSlider.value = colorAdjustments.postExposure.value;
 
             postExposureSlider.onValueChanged.AddListener(SetPostExposure);
         }
     }
 
+    public void loadExposure()
+    {
+        colorAdjustments.postExposure.Override(SaveLoad.instance.saveData.player.brightness);
+    }
     private void SetPostExposure(float value)
     {
         if (colorAdjustments != null)
         {
             colorAdjustments.postExposure.Override(value);
+            SaveLoad.instance.saveData.player.brightness = value;
+            SaveLoad.instance.Save();
         }
     }
     #endregion

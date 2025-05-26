@@ -57,6 +57,7 @@ public class SaveLoad : MonoBehaviour
     void DebugSave()
     {
         Debug.Log($"Este save e de {saveData.player.name}");
+        Debug.Log($"A config de luz é: {saveData.player.brightness}");
     }
 }
 #region OtherClassesToSave
@@ -70,19 +71,11 @@ public class PlayerData
 {
     public string name;
     public int primaryRune = 0, secondaryRune = 0, TerciaryRune = 0;
+    public float brightness;
+    public int davidDialogueIndex, annelieseDialogueIndex;
     public PlayerData(string name)
     {
         this.name = name;
     }
-}
-
-[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/ItemScriptable", order = 1)]
-public class ItemScriptable : ScriptableObject
-{
-    public int index;
-    public string itemName;
-    public string itemDescription;
-    public Sprite icon;
-    public GameObject obj;
 }
 #endregion

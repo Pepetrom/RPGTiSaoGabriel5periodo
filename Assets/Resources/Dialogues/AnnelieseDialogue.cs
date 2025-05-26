@@ -40,13 +40,17 @@ public class AnnelieseDialogue : MonoBehaviour
                         DialogueManager.instance.printLine(DialogueManager.instance.text);
                         if (DialogueManager.instance.dialogueEnded)
                             QuestManager.instance.annelieseDialogueIndex = 1;
+                        SaveLoad.instance.saveData.player.annelieseDialogueIndex = 1;
+                        SaveLoad.instance.Save();
                         break;
                     case 1:
                         PlayerController.instance.StopAllActions();
                         DialogueManager.instance.LoadDialogue(dialoguePaths[1]);
                         DialogueManager.instance.printLine(DialogueManager.instance.text);
-                        if(QuestManager.instance.essence)
+                        if (QuestManager.instance.essence)
                             QuestManager.instance.annelieseDialogueIndex = 2;
+                        SaveLoad.instance.saveData.player.annelieseDialogueIndex = 2;
+                        SaveLoad.instance.Save();
                         break;
                     case 2:
                         PlayerController.instance.StopAllActions();
@@ -56,6 +60,7 @@ public class AnnelieseDialogue : MonoBehaviour
                         break;
                 }
             }
+
         }
     }
 }

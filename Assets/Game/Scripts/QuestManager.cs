@@ -12,6 +12,11 @@ public class QuestManager : MonoBehaviour
     {
         instance = this;
     }
+    private void Start()
+    {
+        davidDialogueIndex = SaveLoad.instance.saveData.player.davidDialogueIndex;
+        annelieseDialogueIndex = SaveLoad.instance.saveData.player.annelieseDialogueIndex;
+    }
     public void Poem()
     {
         UIItems.instance.ShowNotes(poem);
