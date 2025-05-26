@@ -7,7 +7,7 @@ public class SceneController : MonoBehaviour
 {
     public static SceneController sceneController;
     public GameObject tutorial, pageA, pageB, options, bonfire, pause, changeLog, videoPanel, geral;
-    public GameObject runePanel, cheatMenu;
+    public GameObject runePanel, cheatMenu, commands;
     private void Awake()
     {
         sceneController = this;
@@ -33,6 +33,10 @@ public class SceneController : MonoBehaviour
     public void OpenCheatMenu(bool open)
     {
         cheatMenu.SetActive(open);
+    }
+    public void OpenCommands(bool open)
+    {
+        commands.SetActive(open);
     }
     public void Imortal()
     {

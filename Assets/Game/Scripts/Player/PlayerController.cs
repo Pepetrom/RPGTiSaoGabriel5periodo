@@ -218,6 +218,10 @@ public class PlayerController : MonoBehaviour
         {
             SceneController.sceneController.OpenCheatMenu(!SceneController.sceneController.cheatMenu.activeSelf);
         }
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            SceneController.sceneController.OpenCommands(!SceneController.sceneController.commands.activeSelf);
+        }
     }
     void UseEstus()
     {
