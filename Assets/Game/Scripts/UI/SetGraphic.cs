@@ -5,6 +5,7 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using System.Collections.Generic;
 using static UnityEngine.Rendering.DebugUI;
+using System;
 
 public class SetGraphic : MonoBehaviour
 {
@@ -32,6 +33,8 @@ public class SetGraphic : MonoBehaviour
         SetupScreenModeDropdown();
         SetupResolutionDropdown();
         SetupPostProcessSlider();
+        loadQuality();
+        loadExposure();
     }
 
     #region Quality
@@ -48,6 +51,12 @@ public class SetGraphic : MonoBehaviour
     public void SetQualityLevelDropdown(int index)
     {
         QualitySettings.SetQualityLevel(index, false);
+        SaveLoad.instance.saveData.player.quality = index;
+        SaveLoad.instance.Save();
+    }
+    public void loadQuality()
+    {
+        QualitySettings.SetQualityLevel(SaveLoad.instance.saveData.player.quality, false);
     }
     #endregion
 
@@ -124,9 +133,10 @@ public class SetGraphic : MonoBehaviour
             postExposureSlider.onValueChanged.AddListener(SetPostExposure);
         }
     }
-
+    //Essa função n tá mudando o bagulho
     public void loadExposure()
     {
+        postExposureSlider.value = SaveLoad.instance.saveData.player.brightness;
         colorAdjustments.postExposure.Override(SaveLoad.instance.saveData.player.brightness);
     }
     private void SetPostExposure(float value)

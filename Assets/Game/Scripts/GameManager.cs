@@ -134,7 +134,7 @@ public class GameManager : MonoBehaviour
             Debug.Log(UIItems.instance.deathAnimationIsOver);
             UIItems.instance.RespawnButton();
         }
-
+        PlayerController.instance.ForceIddle();
     }
     public void Rest()
     {

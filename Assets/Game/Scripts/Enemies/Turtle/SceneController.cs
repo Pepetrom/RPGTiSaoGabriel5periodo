@@ -14,6 +14,7 @@ public class SceneController : MonoBehaviour
     }
     private void Start()
     {
+        commands.SetActive(SaveLoad.instance.saveData.player.commandsOpen);
     }
 
     private void Update()
@@ -33,6 +34,7 @@ public class SceneController : MonoBehaviour
     public void OpenCheatMenu(bool open)
     {
         cheatMenu.SetActive(open);
+        SaveLoad.instance.saveData.player.commandsOpen = commands.activeSelf;
     }
     public void OpenCommands(bool open)
     {

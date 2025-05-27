@@ -9,7 +9,8 @@ public class Valve : Interactable
     public Animator animator;
     public ObjectThatMove objectThatMove;
     public int locationID = 0;
-    public GameObject canBeActivatedIndication;
+    public GameObject greenLight, redLight;
+    public string reminderText = "";
     public override void Interact()
     {
         Activate();
@@ -23,10 +24,12 @@ public class Valve : Interactable
         activated = true;
         if(animator)animator.SetTrigger("Activate");
         objectThatMove.ChangeLocation(locationID);
+        if(reminderText.Length > 0) LittleReminder.instance.littleReminder(reminderText);
     }
     public void CanBeActivated(bool can)
     {
         canBeActivated = can;
-        canBeActivatedIndication.SetActive(can);
+        if (redLight) redLight.SetActive(!can);
+        if (greenLight) greenLight.SetActive(can);
     }
 }

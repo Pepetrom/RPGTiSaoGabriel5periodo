@@ -15,7 +15,8 @@ public class SaveLoad : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(this);
-            path = Path.Combine(Application.persistentDataPath, "save.json");
+            //colocar esse nome só pq tem arquivo diferente da última build
+            path = Path.Combine(Application.persistentDataPath, "TerceiraBuildsave.json");
             //ResetSave();
             Load();
         }
@@ -44,6 +45,7 @@ public class SaveLoad : MonoBehaviour
         {
             string json = File.ReadAllText(path);
             saveData = JsonUtility.FromJson<SaveData>(json);
+            MakeSureTheSaveFileIsUpToDateAsInContent();
             Debug.Log(json);
             Debug.LogWarning("Arquivo de save encontrado.");
         }
@@ -56,6 +58,10 @@ public class SaveLoad : MonoBehaviour
             Save();
         }
         DebugSave();
+    }
+    void MakeSureTheSaveFileIsUpToDateAsInContent()
+    {
+
     }
     void DebugSave()
     {
@@ -76,10 +82,12 @@ public class PlayerData
     public int strenght = 0, agility = 0, constitution = 0;
     public int primaryRune = 0, secondaryRune = 0, TerciaryRune = 0;
     public float brightness = 0;
+    public int quality = 0;
     public int davidDialogueIndex = 0, annelieseDialogueIndex = 0;
     public float skillPoints = 0;
     public int[] runeValue = new int[0];
     public bool[] runePurchased = new bool[0];
+    public bool commandsOpen = true;
     public PlayerData(string name)
     {
         this.name = name;

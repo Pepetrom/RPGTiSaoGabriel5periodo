@@ -300,13 +300,13 @@ public class W_BigSwordAtack : IWeapon
             switch (player.comboCounter)
             {
                 case 1:
-                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.4f, 3f, 7.5f, 6f), 1);
+                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage + 20, 0.4f, 3f, 7.5f, 6f), 1);
                     break;
                 case 2:
-                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.4f, 3f, 7.5f, 6f), 1);
+                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage + 20, 0.4f, 3f, 7.5f, 6f), 1);
                     break;
                 case 3:
-                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.4f, 3f, 7.5f, 6f), 1);
+                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage + 20, 0.4f, 3f, 7.5f, 6f), 1);
                     break;
             }
         }
@@ -315,13 +315,13 @@ public class W_BigSwordAtack : IWeapon
             switch (player.comboCounter)
             {
                 case 1:
-                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.5f, 3f, 5f, 6f), 1);
+                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage + 20, 0.5f, 3f, 5f, 6f), 1);
                     break;
                 case 2:
-                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.6f, 3f, 5f, 6f), 1);
+                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage + 20, 0.6f, 3f, 5f, 6f), 1);
                     break;
                 case 3:
-                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage, 0.7f, 3f, 5f, 6f), 1);
+                    other.GetComponent<IDamageable>().TakeDamage(damageCalc(player.baseDamage + 20, 0.7f, 3f, 5f, 6f), 1);
                     break;
             }
         }
