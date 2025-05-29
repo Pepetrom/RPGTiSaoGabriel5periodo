@@ -30,6 +30,7 @@ public class PorquinAtt3State : IPorquinStateMachine
     {
         if (controller.playerHit)
         {
+            controller.sword.enabled = false;
             controller.SetState(new PorquinStunState(controller));
             controller.playerHit = false;
             return;
@@ -39,7 +40,7 @@ public class PorquinAtt3State : IPorquinStateMachine
             controller.sword.enabled = true;
             controller.agent.enabled = false;
             controller.rb.isKinematic = false;
-            controller.KB(10);
+            controller.KB(20);
         }
         else
         {

@@ -11,6 +11,7 @@ public class Pickable : Interactable
         PlayerController.instance.audioMan.PlayAudio(5);
         GameManager.instance.Score(value);
         isInRange = false;
+        FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.item, transform.position);
         Destroy(this.gameObject);
     }
 }

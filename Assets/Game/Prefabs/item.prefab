@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5984496202130459899}
   - component: {fileID: 911880040127500023}
   - component: {fileID: 2075041570434445832}
+  - component: {fileID: 8773620305008932813}
   m_Layer: 16
   m_Name: item
   m_TagString: Interactable
@@ -69,6 +70,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInRange: 0
   value: 50
+--- !u!114 &8773620305008932813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5205442143113565901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 403770824
+      Data2: 1213433540
+      Data3: -1206285407
+      Data4: -1604414861
+    Path: "event:/SFX/Interag\xEDveis/Item"
+  Event: 
+  EventPlayTrigger: 1
+  EventStopTrigger: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 1
+  OverrideMinDistance: 4
+  OverrideMaxDistance: 10
 --- !u!1001 &762129090859885647
 PrefabInstance:
   m_ObjectHideFlags: 0

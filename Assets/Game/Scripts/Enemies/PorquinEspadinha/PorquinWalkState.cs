@@ -15,6 +15,7 @@ public class PorquinWalkState : IPorquinStateMachine
     {
         controller.SortNumber();
         controller.agent.speed = 5f;
+        controller.SortNumber();
     }
 
     public void OnExit()
@@ -43,34 +44,40 @@ public class PorquinWalkState : IPorquinStateMachine
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                if(controller.fuzzyDash < controller.minDash)
+                if(controller.sortedNumber < 0.7)
                 {
-                    controller.animator.SetBool("isWalking", false);
-                    controller.SetState(new PorquinCombatIdleState(controller));
-                }
-                else if(controller.fuzzyDash > controller.maxDash)
-                {
-                    controller.animator.SetBool("isDashing", true);
-                    controller.SetState(new PorquinDashState(controller));
-                }
-                else 
-                {
-                    a = Random.Range(0f, 1f);
-                    Debug.Log(a);
-                    fuzzificado = controller.FuzzyLogic(controller.fuzzyDash,controller.minDash, controller.maxDash);
-                    if(a > fuzzificado)
+                    if(controller.fuzzyDash < controller.minDash)
                     {
                         controller.animator.SetBool("isWalking", false);
                         controller.SetState(new PorquinCombatIdleState(controller));
                     }
-                    else
+                    else if(controller.fuzzyDash > controller.maxDash)
                     {
                         controller.animator.SetBool("isDashing", true);
                         controller.SetState(new PorquinDashState(controller));
                     }
-
+                    else 
+                    {
+                        a = Random.Range(0f, 1f);
+                        Debug.Log(a);
+                        fuzzificado = controller.FuzzyLogic(controller.fuzzyDash,controller.minDash, controller.maxDash);
+                        if(a > fuzzificado)
+                        {
+                            controller.animator.SetBool("isWalking", false);
+                            controller.SetState(new PorquinCombatIdleState(controller));
+                        }
+                        else
+                        {
+                            controller.animator.SetBool("isDashing", true);
+                            controller.SetState(new PorquinDashState(controller));
+                        }
+                    }
                 }
-            }      
+                else
+                {
+                    controller.SetState(new PorquinCombatControllerState(controller));
+                }
+            }
             if (Input.GetKeyDown(KeyCode.Mouse1))
             {
                 controller.animator.SetBool("isDashing", true);

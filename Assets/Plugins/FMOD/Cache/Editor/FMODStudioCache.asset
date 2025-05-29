@@ -42,7 +42,7 @@ MonoBehaviour:
   Path: FMOD/FMOD_WoL/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638826867098380445
+  lastModified: 638840727956073737
   FileSizes:
   - Name: Desktop
     Value: 1036
@@ -100,7 +100,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 2300
+  Length: 1159
 --- !u!114 &-7627294974733905799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,6 +209,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2901
+--- !u!114 &-6895060068420022868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Inimigos/Caranguejo/Dash
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Inimigos/Caranguejo/Dash
+  Guid:
+    Data1: 1988095001
+    Data2: 1195775912
+    Data3: 193718952
+    Data4: 360893188
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1000
+--- !u!114 &-5895214489178286953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Inimigos/Porquinho/Sangue
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Inimigos/Porquinho/Sangue
+  Guid:
+    Data1: -1107788969
+    Data2: 1150330529
+    Data3: -204028777
+    Data4: 543656266
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 624
 --- !u!114 &-5126145128539565546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -425,6 +479,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 426
+--- !u!114 &-1748476065701048538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: "event:/SFX/Interag\xEDveis/ItemDesativando"
+  m_EditorClassIdentifier: 
+  Path: "event:/SFX/Interag\xEDveis/ItemDesativando"
+  Guid:
+    Data1: 421518846
+    Data2: 1232188501
+    Data3: 490649984
+    Data4: -1733482970
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3500
 --- !u!114 &-1553174999721734154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -587,6 +668,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 300
+--- !u!114 &-546230582651623160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/NPCs/Tortoise
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/NPCs/Tortoise
+  Guid:
+    Data1: -1268965208
+    Data2: 1189843425
+    Data3: 538946202
+    Data4: -853893456
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 7500
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -644,12 +752,18 @@ MonoBehaviour:
   - {fileID: 4659005153662354197}
   - {fileID: -1553174999721734154}
   - {fileID: 6976132832823029919}
+  - {fileID: -6895060068420022868}
+  - {fileID: -5895214489178286953}
+  - {fileID: 1360460580171848856}
+  - {fileID: 1275475997922002869}
+  - {fileID: -546230582651623160}
+  - {fileID: -1748476065701048538}
   EditorParameters: []
   MasterBanks:
   - {fileID: -8479413176289016433}
   StringsBanks:
   - {fileID: 8393391211552418243}
-  cacheTime: 638828657434833559
+  cacheTime: 638840727957334100
   cacheVersion: 131624
 --- !u!114 &669633742359291694
 MonoBehaviour:
@@ -732,6 +846,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 3552
+--- !u!114 &1275475997922002869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: "event:/SFX/Interag\xEDveis/Item"
+  m_EditorClassIdentifier: 
+  Path: "event:/SFX/Interag\xEDveis/Item"
+  Guid:
+    Data1: 403770824
+    Data2: 1213433540
+    Data3: -1206285407
+    Data4: -1604414861
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 5500
+--- !u!114 &1360460580171848856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Inimigos/Caranguejo/AtaqueFoguinho
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Inimigos/Caranguejo/AtaqueFoguinho
+  Guid:
+    Data1: -481750359
+    Data2: 1224739227
+    Data3: -675337072
+    Data4: 75537274
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 6500
 --- !u!114 &1950676963611030566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1098,10 +1266,10 @@ MonoBehaviour:
   Path: FMOD/FMOD_WoL/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638828657432313833
+  lastModified: 638840727956093742
   FileSizes:
   - Name: Desktop
-    Value: 2692
+    Value: 2956
   Exists: 1
 --- !u!114 &8456345858411569361
 MonoBehaviour:
@@ -1199,8 +1367,8 @@ MonoBehaviour:
   Path: FMOD/FMOD_WoL/Build/Desktop/VFX.bank
   Name: VFX
   StudioPath: bank:/VFX
-  lastModified: 638828657434833559
+  lastModified: 638840727957334100
   FileSizes:
   - Name: Desktop
-    Value: 6095744
+    Value: 6696288
   Exists: 1

@@ -67486,6 +67486,13 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
+  - time: 0
+    functionName: PlaySoundAttached
+    data: event:/SFX/Inimigos/Caranguejo/Dash
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.3
     functionName: Jump
     data: 
@@ -67503,6 +67510,13 @@ AnimationClip:
   - time: 0.4
     functionName: SpecificEvent
     data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.4
+    functionName: PlaySoundAttached
+    data: "event:/SFX/Inimigos/Caranguejo/PorradinhaNoCh\xE3o"
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

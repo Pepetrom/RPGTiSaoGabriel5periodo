@@ -43,7 +43,7 @@ public class PorquinAtt1State : IPorquinStateMachine
             controller.sword.enabled = true;
             controller.agent.enabled = false;
             controller.rb.isKinematic = false;
-            controller.KB(100);
+            controller.KB(30);
         }
         else
         {

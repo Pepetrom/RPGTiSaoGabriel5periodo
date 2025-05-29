@@ -45,8 +45,7 @@ public class PorquinAtt2State : IPorquinStateMachine
             controller.sword.enabled = true;
             controller.agent.enabled = false;
             controller.rb.isKinematic = false;
-            controller.KB(50);
-            Debug.Log("Eu aqui no ataque 2");
+            controller.KB(10);
         }
         else
         {

@@ -105,7 +105,7 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
         //fuzzy
         FuzzyGate(out fuzzyDash, out fuzzySwing);
     }
-    private void FixedUpdate()
+    private void Update()
     {
         animator.speed = GameManager.instance.actionTime;
         state?.OnUpdate();
@@ -199,13 +199,9 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
             currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
         }
     }
-    public void Impulse(float kbforce)
+    public void KB(float value)
     {
-        rb.AddForce(PlayerController.instance.moveDirection.normalized * kbforce, ForceMode.Impulse);
-    }
-    public void KB(float kbforce)
-    {
-        rb.AddForce(transform.forward.normalized * kbforce, ForceMode.Impulse);
+        rb.velocity = transform.forward.normalized * value;
     }
     void UpdateHPBar()
     {
@@ -245,6 +241,7 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
         hp -= damage;
         playerHit = true;
         hit.Play();
+        FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.porquinBlood,transform.position);
         GameManager.instance.SpawnNumber((int)damage, Color.yellow, transform);
         if (hp <= 0)
         {

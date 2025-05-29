@@ -13,6 +13,7 @@ public class Elevator : Interactable
     }
     void Activate()
     {
+        FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.lever, transform.position);
         objectThatMove.ChangeLocation(lastActivated ? 0 : 1);
         lastActivated = !lastActivated;
     }

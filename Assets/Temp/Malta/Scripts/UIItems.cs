@@ -9,7 +9,7 @@ public class UIItems : MonoBehaviour
     public static UIItems instance;
     public Text runePageText;
     public Text cheeseQ;
-    public Text score;
+    public Text score, scoreEarned;
     public TextMeshProUGUI scoreInStore;
     public GameObject[] skillButtons;
     public Canvas notes;
@@ -51,6 +51,18 @@ public class UIItems : MonoBehaviour
     {
         score.text = $"{value}";
         scoreInStore.text = $"{value}";
+    }
+    public void ScoreEarned(int value, bool state)
+    {
+        if (state)
+            scoreEarned.enabled = false;
+        else
+        {
+            scoreEarned.enabled = true;
+            scoreEarned.text = $"+ {value}";
+        }
+
+
     }
     public void ShowNotes(Sprite note)
     {

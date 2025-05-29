@@ -29,7 +29,7 @@ public class PorquinRunAttackState : IPorquinStateMachine
             controller.sword.enabled = true;
             controller.agent.enabled = false;
             controller.rb.isKinematic = false;
-            controller.KB(200);
+            controller.KB(60);
         }
         else
         {
@@ -52,6 +52,7 @@ public class PorquinRunAttackState : IPorquinStateMachine
         }
         if (controller.attIdle)
         {
+            controller.animator.SetBool("stun", false);
             controller.SetState(new PorquinCombatIdleState(controller));
         }
     }

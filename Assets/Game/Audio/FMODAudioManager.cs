@@ -14,6 +14,7 @@ public class FMODAudioManager : MonoBehaviour
     public EventReference lever;
     public EventReference valve;
     public EventReference fillingWater;
+    public EventReference item;
 
     [Header("player")]
     public EventReference[] sword;
@@ -24,6 +25,7 @@ public class FMODAudioManager : MonoBehaviour
     [Header("Porquinho")]
     public EventReference porquinDeath;
     public EventReference porquin;
+    public EventReference porquinBlood;
 
     [Header("Caranguejo")]
     public EventReference takingDamage;
