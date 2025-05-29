@@ -9,7 +9,7 @@ public class KroIdle : IKrokodil
     public void OnEnter()
     {
         controller.ownCollider.enabled = false;
-        controller.agent.speed = 5f;
+        controller.SortNumber();
     }
 
     public void OnExit()
@@ -19,12 +19,29 @@ public class KroIdle : IKrokodil
 
     public void OnUpdate()
     {
-        if(controller.TargetDir().magnitude > 10)
+        if (controller.TargetDir().magnitude < controller.meleeRange)
         {
-            controller.animator.SetBool("isWalking",true);
-
+            controller.animator.SetBool("isAttack", true);
+            controller.SetState(new KroAttController(controller));
         }
-        controller.agent.SetDestination(controller.player.transform.position);
-        controller.RotateTowardsPlayer(6);
+        else if (controller.TargetDir().magnitude > controller.meleeRange && controller.TargetDir().magnitude < controller.maxRange)
+        {
+            if (controller.randomValue > 70)
+            {
+                controller.animator.SetBool("isWalking", true);
+                controller.SetState(new KroWalk(controller));
+            }
+            else
+            {
+                // fuzzy de um ataque específico
+                controller.animator.SetBool("isAttack", true);
+                controller.SetState(new KroAttController(controller));
+            }
+        }
+        else
+        {
+            controller.animator.SetBool("isAttack", true);
+            controller.SetState(new KroAttController(controller));
+        }
     }
 }

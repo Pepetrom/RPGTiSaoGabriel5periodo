@@ -12,6 +12,8 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
     [HideInInspector] public bool antecipation = false, end = false, combo = false, jump = false, fall = false, activate = false, hashitted = false, eventS = false, bigWall = false;
     [Header("COMBAT")]
     public Collider ownCollider;
+    public int randomValue;
+    public float meleeRange, maxRange;
     void Start()
     {
         if(player == null)
@@ -31,6 +33,10 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
         this.state?.OnEnter();
     }
     #region MÉTODOS DE LÓGICA
+    public void SortNumber()
+    {
+        randomValue = Random.Range(0, 100);
+    }
     #region ACTION EVENTS
     public void Action()
     {
@@ -49,7 +55,7 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
 
     public void Antecipation()
     {
-        throw new System.NotImplementedException();
+        antecipation = true;
     }
 
     public void Combo()
