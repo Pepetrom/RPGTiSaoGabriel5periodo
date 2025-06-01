@@ -23,12 +23,17 @@ public class KroWalk : IKrokodil
         controller.RotateTowardsPlayer(6);
         if(controller.TargetDir().magnitude < controller.meleeRange + 5)
         {
-            /*controller.agent.speed = 0f;
-            controller.animator.SetBool("isWalking", false);
-            controller.SetState(new KroIdle(controller));*/
             controller.agent.speed = 0f;
-            controller.animator.SetBool("kick", true);
-            controller.SetState(new KroKick(controller));
+            if (controller.randomValue < 0.7f)
+            { 
+                controller.animator.SetBool("kick", true);
+                controller.SetState(new KroKick(controller));
+            }
+            else
+            {
+                controller.animator.SetBool("heavy", true);
+                controller.SetState(new KroHeavyAtt(controller));
+            }
         }
     }
 }

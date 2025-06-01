@@ -20,8 +20,8 @@ public class KroKick : IKrokodil
 
     public void OnUpdate()
     {
-        /*if (!controller.antecipation)
-            controller.RotateTowardsPlayer(10);*/
+        if (!controller.antecipation)
+            controller.RotateTowardsPlayer(10);
         if (controller.end)
         {
             controller.animator.SetBool("kick", false);

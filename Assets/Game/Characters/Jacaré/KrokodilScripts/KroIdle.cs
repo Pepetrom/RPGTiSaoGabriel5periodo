@@ -26,6 +26,7 @@ public class KroIdle : IKrokodil
         }
         else if (controller.TargetDir().magnitude > controller.meleeRange && controller.TargetDir().magnitude < controller.maxRange)
         {
+            Debug.Log("Faz alguma coisa");
             if (controller.randomValue > 70)
             {
                 controller.animator.SetBool("isWalking", true);
