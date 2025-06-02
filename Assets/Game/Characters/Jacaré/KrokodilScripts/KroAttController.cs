@@ -5,7 +5,6 @@ using UnityEngine;
 public class KroAttController : IKrokodil
 {
     KrokodilFSM controller;
-    float melee;
     public KroAttController(KrokodilFSM controller) { this.controller = controller; }
 
     public void OnEnter()
@@ -20,18 +19,25 @@ public class KroAttController : IKrokodil
 
     public void OnUpdate()
     {
-        melee = controller.meleeRange + 4;
-        if(controller.TargetDir().magnitude < melee)
+        if(controller.TargetDir().magnitude < controller.meleeRange + 4)
         {
-            if(controller.randomValue > 0.4)
-            {
-                controller.animator.SetBool("att2", true);
-                controller.SetState(new KroAtt2(controller));
-            }
-            else
+            if(controller.att2Count > 2)
             {
                 controller.animator.SetBool("att1", true);
                 controller.SetState(new KroAtt1(controller));
+            }
+            else
+            {
+                if(controller.randomValue > 40)
+                {
+                    controller.animator.SetBool("att2", true);
+                    controller.SetState(new KroAtt2(controller));
+                }
+                else
+                {
+                    controller.animator.SetBool("att1", true);
+                    controller.SetState(new KroAtt1(controller));
+                }
             }
         }
         else

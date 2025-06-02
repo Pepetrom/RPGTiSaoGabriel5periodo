@@ -12,8 +12,9 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
     [HideInInspector] public bool antecipation = false, end = false, combo = false, jump = false, fall = false, activate = false, hashitted = false, eventS = false, bigWall = false;
     [Header("COMBAT")]
     public Collider ownCollider;
-    public int randomValue;
+    public int randomValue, att2Count;
     public float meleeRange, maxRange;
+    public bool isSecondStage;
     void Start()
     {
         if(player == null)
@@ -57,10 +58,14 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
     {
         antecipation = true;
     }
+    public void AntecipationFalse()
+    {
+        antecipation = false;
+    }
 
     public void Combo()
     {
-        throw new System.NotImplementedException();
+        combo = true;
     }
 
     public void Deactivate()
@@ -76,6 +81,7 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
     public void End()
     {
         end = true;
+        Debug.Log("Ei, sou true sim");
     }
 
     public void SpecificEvent()

@@ -14,26 +14,18 @@ public class KroWalk : IKrokodil
 
     public void OnExit()
     {
-       
+
     }
 
     public void OnUpdate()
     {
         controller.agent.SetDestination(controller.player.transform.position);
         controller.RotateTowardsPlayer(6);
-        if(controller.TargetDir().magnitude < controller.meleeRange + 5)
+        if(controller.TargetDir().magnitude <= controller.meleeRange)
         {
             controller.agent.speed = 0f;
-            if (controller.randomValue < 0.7f)
-            { 
-                controller.animator.SetBool("kick", true);
-                controller.SetState(new KroKick(controller));
-            }
-            else
-            {
-                controller.animator.SetBool("heavy", true);
-                controller.SetState(new KroHeavyAtt(controller));
-            }
+            controller.animator.SetBool("isWalking", false);
+            controller.SetState(new KroMoveAtt(controller));
         }
     }
 }

@@ -20,12 +20,13 @@ public class KroKick : IKrokodil
 
     public void OnUpdate()
     {
+        Debug.Log("Update do estado de chute");
         if (!controller.antecipation)
             controller.RotateTowardsPlayer(10);
         if (controller.end)
         {
             controller.animator.SetBool("kick", false);
-            controller.SetState(new KroAttController(controller));
+            controller.SetState(new KroIdle(controller));
         }
     }
 }
