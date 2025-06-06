@@ -21,14 +21,17 @@ public class LoadingScene : MonoBehaviour
     }
     IEnumerator LoadSceneAsync(string name)
     {
+        //chama o carregamento
         AsyncOperation o = SceneManager.LoadSceneAsync(name);
         loadingScene.SetActive(true);
         while (!o.isDone)
         {
-            float loadProgress = Mathf.Clamp01(o.progress/0.2f);
-            loadingFill.value = loadProgress;
+            //mostra o load na tela
+            loadingFill.value = Mathf.Clamp01(o.progress / 0.2f);
             yield return null;
         }
+
+
         //ShowButton();
     }
     void TutorialPanel()

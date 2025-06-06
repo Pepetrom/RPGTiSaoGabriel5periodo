@@ -3,13 +3,22 @@ using UnityEngine;
 
 public class LoadSword : MonoBehaviour
 {
-    public Material swordRenderer;
+    public static LoadSword instance;
+    public Renderer swordRenderer;
     public string pathMaterials = "MateriaisSword";
     public string[] pathIndividualMaterials = new string[4];
     public Material[] swordMaterials = new Material[4];
+    private void Awake()
+    {
+        instance = this;
+    }
     private void Start()
     {
         LoadTheSword();
+    }
+    public void ChangeSword(int which)
+    {
+        swordRenderer.material = swordMaterials[which];
     }
     public void LoadTheSword()
     {
@@ -27,11 +36,6 @@ public class LoadSword : MonoBehaviour
             }
             swordMaterials[i] = resourceRequest.asset as Material;
         }
-        /*while (!resourceRequest.isDone)
-        {
-            Debug.Log("Processo carregamento " + resourceRequest.progress + $" do item {i}");
-            yield return null;
-        }*/
         yield return true;
     }
 }

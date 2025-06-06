@@ -40,6 +40,7 @@ public class SceneController : MonoBehaviour
     {
         commands.SetActive(open);
     }
+    #region cheats
     public void Imortal()
     {
         PlayerController.instance.imortal = !PlayerController.instance.imortal;
@@ -50,6 +51,11 @@ public class SceneController : MonoBehaviour
         PlayerController.instance.canTakeDamage = true;
         HPBar.instance.Die();
     }
+    public void AddMoney()
+    {
+        GameManager.instance.Score(99999);
+    }
+    #endregion
     void Pause()
     {
         if (pause.activeSelf)

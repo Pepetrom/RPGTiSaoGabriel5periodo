@@ -32,8 +32,9 @@ public class SetGraphic : MonoBehaviour
         SetupQualityDropdown();
         SetupScreenModeDropdown();
         SetupResolutionDropdown();
-        SetupPostProcessSlider();
         loadQuality();
+        if (!postExposureSlider || !postProcessVolume) return;
+        SetupPostProcessSlider();
         loadExposure();
     }
 
