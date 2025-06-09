@@ -22,12 +22,12 @@ public class KroMoveAtt : IKrokodil
     {
         if (controller.randomValue < 60)
         {
-            controller.animator.SetBool("kick", true);
+            controller.animator.SetTrigger("kick");
             controller.SetState(new KroKick(controller));
         }
         else
         {
-            controller.animator.SetBool("heavy", true);
+            controller.animator.SetTrigger("heavy");
             controller.SetState(new KroHeavyAtt(controller));
         }
     }

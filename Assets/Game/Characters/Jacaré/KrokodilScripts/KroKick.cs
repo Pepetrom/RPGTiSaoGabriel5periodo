@@ -9,7 +9,7 @@ public class KroKick : IKrokodil
 
     public void OnEnter()
     {
-
+        controller.damage = 30;
     }
 
     public void OnExit()
@@ -20,12 +20,14 @@ public class KroKick : IKrokodil
 
     public void OnUpdate()
     {
-        Debug.Log("Update do estado de chute");
         if (!controller.antecipation)
             controller.RotateTowardsPlayer(10);
+        if (controller.activate)
+            controller.footCollider.enabled = true;
+        else
+            controller.footCollider.enabled = false;
         if (controller.end)
         {
-            controller.animator.SetBool("kick", false);
             controller.SetState(new KroIdle(controller));
         }
     }

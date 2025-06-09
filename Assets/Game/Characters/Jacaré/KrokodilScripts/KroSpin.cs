@@ -9,7 +9,7 @@ public class KroSpin : IKrokodil
 
     public void OnEnter()
     {
-
+        controller.damage = 35;
     }
 
     public void OnExit()
@@ -22,9 +22,20 @@ public class KroSpin : IKrokodil
     {
         if (!controller.antecipation)
             controller.RotateTowardsPlayer(8);
+        if (controller.activate)
+        {
+            controller.damage = 40;
+            controller.twoHandedCollider.enabled = true;
+        }
+        else
+            controller.twoHandedCollider.enabled = false; 
+        if(controller.action)
+            controller.clawCollider.enabled = true;
+        else
+            controller.clawCollider.enabled = false;
+
         if (controller.end)
         {
-            controller.animator.SetBool("spin", false);
             controller.SetState(new KroAttController(controller));
         }
     }

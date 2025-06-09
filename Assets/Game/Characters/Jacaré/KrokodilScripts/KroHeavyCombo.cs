@@ -25,7 +25,7 @@ public class KroHeavyCombo : IKrokodil
             controller.RotateTowardsPlayer(10);
         if (controller.end)
         {
-            controller.animator.SetBool("att2comb2", false);
+            controller.animator.SetBool("spin", false);
             controller.SetState(new KroAttController(controller));
         }
     }

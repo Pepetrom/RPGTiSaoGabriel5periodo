@@ -9,10 +9,11 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
     public Animator animator;
     public NavMeshAgent agent;
     public GameObject player;
-    [HideInInspector] public bool antecipation = false, end = false, combo = false, jump = false, fall = false, activate = false, hashitted = false, eventS = false, bigWall = false;
+    [HideInInspector] public bool antecipation = false, end = false, combo = false, action = false, activate = false, hashitted = false, eventS = false, bigWall = false;
     [Header("COMBAT")]
-    public Collider ownCollider;
-    public int randomValue, att2Count;
+    public string bossName;
+    public Collider ownCollider, clawCollider, gunCollider, footCollider, twoHandedCollider;
+    public int randomValue, att2Count, hp, basicAtt = 40, damage;
     public float meleeRange, maxRange;
     public bool isSecondStage;
     void Start()
@@ -22,6 +23,9 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         SetState(new KroStartState(this));
+        UIItems.instance.ShowBOSSHUD(true);
+        UIItems.instance.ResetBossHP(hp, bossName);
+        clawCollider.enabled = false; gunCollider.enabled = false; footCollider.enabled = false; twoHandedCollider.enabled = false;
     }
     void Update()
     {
@@ -41,7 +45,7 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
     #region ACTION EVENTS
     public void Action()
     {
-        throw new System.NotImplementedException();
+        action = true;
     }
 
     public void Action2()
@@ -51,7 +55,8 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
 
     public void Activate()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Evento");
+        activate = true;
     }
 
     public void Antecipation()
@@ -70,7 +75,7 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
 
     public void Deactivate()
     {
-        throw new System.NotImplementedException();
+        activate = false;
     }
 
     public void DeactivateSpecificEvent()
@@ -91,7 +96,7 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
 
     public void StopAction()
     {
-        throw new System.NotImplementedException();
+        action = false;
     }
 
     public void StopAction2()
@@ -119,6 +124,23 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
     #endregion
     public void TakeDamage(int damage, float knockbackStrenght)
     {
-        throw new System.NotImplementedException();
+        UIItems.instance.bossCurrentHP -= damage;
+        /*//posture -= damage;
+        //FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.takingDamage, transform.position);
+        //playerHit = true;
+        //hit.Play();
+        GameManager.instance.SpawnNumber((int)damage, Color.yellow, transform);
+        if (UIItems.instance.bossCurrentHP <= hp / 2 && !secondStage && UIItems.instance.bossCurrentHP >= 0)
+        {
+            posture = maxPosture + (maxPosture / 4);
+            ownCollider.enabled = false;
+            animator.SetBool("secondStage", true);
+            SetState(new CrabSecondStage(this));
+        }
+        if (UIItems.instance.bossCurrentHP <= 0)
+        {
+            animator.Play("Crab_Death");
+            SetState(new CrabDeath(this));
+        }*/
     }
 }

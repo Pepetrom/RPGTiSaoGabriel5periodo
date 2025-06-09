@@ -9,6 +9,8 @@ public class KroAttController : IKrokodil
 
     public void OnEnter()
     {
+        controller.animator.SetBool("att2", false);
+        controller.animator.SetBool("att2comb2", false);
         controller.SortNumber();
     }
 
@@ -21,23 +23,15 @@ public class KroAttController : IKrokodil
     {
         if(controller.TargetDir().magnitude < controller.meleeRange + 4)
         {
-            if(controller.att2Count > 2)
+            if (controller.randomValue > controller.basicAtt)
             {
-                controller.animator.SetBool("att1", true);
-                controller.SetState(new KroAtt1(controller));
+                controller.animator.SetBool("att2", true);
+                controller.SetState(new KroAtt2(controller));
             }
             else
             {
-                if(controller.randomValue > 40)
-                {
-                    controller.animator.SetBool("att2", true);
-                    controller.SetState(new KroAtt2(controller));
-                }
-                else
-                {
-                    controller.animator.SetBool("att1", true);
-                    controller.SetState(new KroAtt1(controller));
-                }
+                controller.animator.SetBool("att1", true);
+                controller.SetState(new KroAtt1(controller));
             }
         }
         else
