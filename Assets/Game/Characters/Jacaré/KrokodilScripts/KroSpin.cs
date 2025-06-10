@@ -30,6 +30,7 @@ public class KroSpin : IKrokodil
         if (controller.activate)
         {
             controller.damage = 40;
+            Debug.Log("O QUE ESTÁ ACONTECENDO, PELO AMOR DE DEUS NUMENO");
             controller.twoHandedCollider.enabled = true;
         }
         else

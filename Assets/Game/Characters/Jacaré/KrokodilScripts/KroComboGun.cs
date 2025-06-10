@@ -18,6 +18,7 @@ public class KroComboGun : IKrokodil
         controller.end = false;
         controller.combo = false;
         controller.activate = false;
+        controller.action = false;
         controller.hashitted = false;
     }
 
@@ -31,9 +32,15 @@ public class KroComboGun : IKrokodil
             controller.clawCollider.enabled = true;
         }
         else
-        {
             controller.clawCollider.enabled = false;
+        if (controller.action)
+        {
+            controller.hashitted = false;
+            controller.gunCollider.enabled = true;
         }
+        else
+            controller.gunCollider.enabled = false;
+
         if(controller.TargetDir().magnitude < controller.meleeRange + 5)
         {
             if (controller.combo)

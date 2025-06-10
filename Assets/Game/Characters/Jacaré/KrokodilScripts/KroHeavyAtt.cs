@@ -23,6 +23,11 @@ public class KroHeavyAtt : IKrokodil
     {
         if (!controller.antecipation)
             controller.RotateTowardsPlayer(10);
+        if (controller.activate)
+            controller.twoHandedCollider.enabled = true;
+        else
+            controller.twoHandedCollider.enabled = false;
+
         if (!controller.isSecondStage)
         {
             if (controller.combo)

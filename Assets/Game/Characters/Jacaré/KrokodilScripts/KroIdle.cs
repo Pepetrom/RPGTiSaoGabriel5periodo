@@ -8,7 +8,6 @@ public class KroIdle : IKrokodil
     public KroIdle(KrokodilFSM controller) { this.controller = controller; }
     public void OnEnter()
     {
-        Debug.Log("iDLE");
         controller.end = false;
         controller.ownCollider.enabled = false;
         controller.SortNumber();

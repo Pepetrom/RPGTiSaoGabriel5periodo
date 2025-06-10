@@ -9,12 +9,12 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
     public Animator animator;
     public NavMeshAgent agent;
     public GameObject player;
-    public bool antecipation = false, end = false, combo = false, action = false, activate = false, hashitted = false, eventS = false, bigWall = false;
+    [HideInInspector]public bool antecipation = false, end = false, combo = false, action = false, activate = false, hashitted = false, eventS = false, bigWall = false;
     [Header("COMBAT")]
     public string bossName;
     public Collider ownCollider, clawCollider, gunCollider, footCollider, twoHandedCollider;
     public int randomValue, att2Count, hp, basicAtt = 40, damage;
-    public float meleeRange, maxRange;
+    public float meleeRange, maxRange, swingRange;
     public bool isSecondStage;
     void Start()
     {
@@ -120,6 +120,19 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
     {
         Vector3 dir = player.transform.position - transform.position;
         return dir;
+    }
+    public Vector3 Swing()
+    {
+        Vector3 randomDirection = Random.insideUnitSphere * swingRange;
+        randomDirection += transform.position;
+
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(randomDirection, out hit, swingRange, NavMesh.AllAreas))
+        {
+            return hit.position;
+        }
+
+        return transform.position;
     }
     #endregion
     public void TakeDamage(int damage, float knockbackStrenght)
