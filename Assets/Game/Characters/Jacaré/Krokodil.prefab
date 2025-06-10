@@ -1007,7 +1007,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.1
+  m_Radius: 0.05
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3299104657752228712
 MonoBehaviour:
@@ -4244,7 +4244,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.1
+  m_Radius: 0.05
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8428432314270093951
 MonoBehaviour:
@@ -4462,7 +4462,6 @@ GameObject:
   - component: {fileID: 6283218341907902419}
   - component: {fileID: 1156339994628257321}
   - component: {fileID: -5444433158161854475}
-  - component: {fileID: -2444970235185469432}
   m_Layer: 0
   m_Name: Krokodil
   m_TagString: Enemy
@@ -4512,11 +4511,11 @@ MonoBehaviour:
   eventS: 0
   bigWall: 0
   bossName: KROKODIL-PANZER I
-  ownCollider: {fileID: 1156339994628257321}
   clawCollider: {fileID: 307195346919635983}
   gunCollider: {fileID: 1688655894083117870}
   footCollider: {fileID: 4771684158112004386}
   twoHandedCollider: {fileID: 5620036820515587397}
+  ownCollider: {fileID: 1156339994628257321}
   randomValue: 0
   att2Count: 0
   hp: 800
@@ -4606,33 +4605,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockSprite: {fileID: 3928234865642642638}
---- !u!54 &-2444970235185469432
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6644653557568747427}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &6722898584305084029
 GameObject:
   m_ObjectHideFlags: 0

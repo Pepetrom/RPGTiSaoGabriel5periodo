@@ -12,7 +12,8 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
     [HideInInspector]public bool antecipation = false, end = false, combo = false, action = false, activate = false, hashitted = false, eventS = false, bigWall = false;
     [Header("COMBAT")]
     public string bossName;
-    public Collider ownCollider, clawCollider, gunCollider, footCollider, twoHandedCollider;
+    public Collider clawCollider, gunCollider, footCollider, twoHandedCollider;
+    public CapsuleCollider ownCollider;
     public int randomValue, att2Count, hp, basicAtt = 40, swingRate = 50, damage;
     public float meleeRange, maxRange, swingRange;
     public bool isSecondStage;
@@ -157,11 +158,11 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
     public void TakeDamage(int damage, float knockbackStrenght)
     {
         UIItems.instance.bossCurrentHP -= damage;
+        GameManager.instance.SpawnNumber((int)damage, Color.yellow, transform);
         /*//posture -= damage;
         //FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.takingDamage, transform.position);
         //playerHit = true;
         //hit.Play();
-        GameManager.instance.SpawnNumber((int)damage, Color.yellow, transform);
         if (UIItems.instance.bossCurrentHP <= hp / 2 && !secondStage && UIItems.instance.bossCurrentHP >= 0)
         {
             posture = maxPosture + (maxPosture / 4);

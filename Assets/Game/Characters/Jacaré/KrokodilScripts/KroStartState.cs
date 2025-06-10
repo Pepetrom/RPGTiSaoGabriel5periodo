@@ -8,12 +8,12 @@ public class KroStartState : IKrokodil
     public KroStartState(KrokodilFSM controller) {  this.controller = controller; }
     public void OnEnter()
     {
-        controller.ownCollider.enabled = false;
+
     }
 
     public void OnExit()
     {
-        controller.ownCollider.enabled = true;
+
     }
 
     public void OnUpdate()
@@ -22,7 +22,6 @@ public class KroStartState : IKrokodil
         if (controller.end)
         {
             CameraScript.instance.CombatCamera(60, 0.6f, 1.2f);
-            controller.ownCollider.enabled = true;
             controller.animator.SetBool("isStart", false);
             controller.SetState(new KroIdle(controller));
         }

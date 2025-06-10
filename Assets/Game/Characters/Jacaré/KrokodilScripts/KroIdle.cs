@@ -9,7 +9,6 @@ public class KroIdle : IKrokodil
     public void OnEnter()
     {
         controller.end = false;
-        controller.ownCollider.enabled = false;
         controller.SortNumber();
     }
 
