@@ -9,12 +9,11 @@ public class KroStartState : IKrokodil
     public void OnEnter()
     {
         controller.ownCollider.enabled = false;
-        Debug.Log("To no start");
     }
 
     public void OnExit()
     {
-
+        controller.ownCollider.enabled = true;
     }
 
     public void OnUpdate()

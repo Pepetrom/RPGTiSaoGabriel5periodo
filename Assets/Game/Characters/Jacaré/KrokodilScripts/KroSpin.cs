@@ -10,7 +10,7 @@ public class KroSpin : IKrokodil
     public void OnEnter()
     {
         controller.damage = 35;
-        controller.clawCollider.GetComponent<SphereCollider>().radius = 0.9f;
+        //controller.clawCollider.GetComponent<SphereCollider>().radius = 0.09f;
     }
 
     public void OnExit()
@@ -20,7 +20,7 @@ public class KroSpin : IKrokodil
         controller.activate = false;
         controller.action = false;
         controller.hashitted = false;
-        controller.clawCollider.GetComponent<SphereCollider>().radius = 0.5f;
+        //controller.clawCollider.GetComponent<SphereCollider>().radius = 0.05f;
     }
 
     public void OnUpdate()
@@ -30,7 +30,6 @@ public class KroSpin : IKrokodil
         if (controller.activate)
         {
             controller.damage = 40;
-            Debug.Log("O QUE ESTÁ ACONTECENDO, PELO AMOR DE DEUS NUMENO");
             controller.twoHandedCollider.enabled = true;
         }
         else

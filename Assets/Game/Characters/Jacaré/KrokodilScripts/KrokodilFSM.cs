@@ -13,9 +13,13 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
     [Header("COMBAT")]
     public string bossName;
     public Collider ownCollider, clawCollider, gunCollider, footCollider, twoHandedCollider;
-    public int randomValue, att2Count, hp, basicAtt = 40, damage;
+    public int randomValue, att2Count, hp, basicAtt = 40, swingRate = 50, damage;
     public float meleeRange, maxRange, swingRange;
     public bool isSecondStage;
+
+    //swing
+    Vector3 velocity, lVelocity;
+    float moveY, moveX;
     void Start()
     {
         if(player == null)
@@ -133,6 +137,21 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
         }
 
         return transform.position;
+    }
+    public bool HasReachedDestination()
+    {
+        return !agent.pathPending &&
+               agent.remainingDistance <= agent.stoppingDistance &&
+               (!agent.hasPath || agent.velocity.sqrMagnitude == 0f);
+    }
+    public void SwingMove()
+    {
+        velocity = agent.velocity;
+        lVelocity = transform.InverseTransformDirection(velocity);
+        moveX = lVelocity.x;
+        moveY = lVelocity.y;
+        animator.SetFloat("MoveX", lVelocity.x, 0.1f, Time.deltaTime);
+        animator.SetFloat("MoveY", lVelocity.z, 0.1f, Time.deltaTime);
     }
     #endregion
     public void TakeDamage(int damage, float knockbackStrenght)

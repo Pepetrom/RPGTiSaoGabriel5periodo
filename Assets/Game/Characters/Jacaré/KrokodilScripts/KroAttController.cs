@@ -11,6 +11,7 @@ public class KroAttController : IKrokodil
     {
         controller.animator.SetBool("att2", false);
         controller.animator.SetBool("att2comb2", false);
+        controller.animator.SetBool("swing", false);
         controller.SortNumber();
     }
 

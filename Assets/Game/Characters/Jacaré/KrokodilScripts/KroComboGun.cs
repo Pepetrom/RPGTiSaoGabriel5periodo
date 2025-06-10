@@ -28,14 +28,13 @@ public class KroComboGun : IKrokodil
             controller.RotateTowardsPlayer(10);
         if (controller.activate)
         {
-            controller.damage = 30;
+            Debug.Log("Eu aqui");
             controller.clawCollider.enabled = true;
         }
         else
             controller.clawCollider.enabled = false;
         if (controller.action)
         {
-            controller.hashitted = false;
             controller.gunCollider.enabled = true;
         }
         else

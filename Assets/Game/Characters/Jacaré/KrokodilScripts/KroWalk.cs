@@ -9,7 +9,9 @@ public class KroWalk : IKrokodil
 
     public void OnEnter()
     {
+        controller.animator.SetBool("swing", false);
         controller.agent.speed = 10f;
+        controller.swingRate -= 30;
     }
 
     public void OnExit()

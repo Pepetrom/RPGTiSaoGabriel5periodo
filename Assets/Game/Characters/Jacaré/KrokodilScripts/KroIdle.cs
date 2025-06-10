@@ -27,8 +27,16 @@ public class KroIdle : IKrokodil
         }
         else
         {
-            controller.animator.SetBool("isWalking", true);
-            controller.SetState(new KroWalk(controller));
+            if(controller.randomValue > controller.swingRate)
+            {
+                controller.animator.SetBool("swing", true);
+                controller.SetState(new KroSwing(controller));
+            }
+            else
+            {
+                controller.animator.SetBool("isWalking", true);
+                controller.SetState(new KroWalk(controller));
+            }
         }
     }
 }
