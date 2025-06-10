@@ -9,7 +9,7 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
     public Animator animator;
     public NavMeshAgent agent;
     public GameObject player;
-    [HideInInspector] public bool antecipation = false, end = false, combo = false, action = false, activate = false, hashitted = false, eventS = false, bigWall = false;
+    public bool antecipation = false, end = false, combo = false, action = false, activate = false, hashitted = false, eventS = false, bigWall = false;
     [Header("COMBAT")]
     public string bossName;
     public Collider ownCollider, clawCollider, gunCollider, footCollider, twoHandedCollider;

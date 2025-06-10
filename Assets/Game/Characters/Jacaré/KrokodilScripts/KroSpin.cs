@@ -10,12 +10,17 @@ public class KroSpin : IKrokodil
     public void OnEnter()
     {
         controller.damage = 35;
+        controller.clawCollider.GetComponent<SphereCollider>().radius = 0.9f;
     }
 
     public void OnExit()
     {
         controller.antecipation = false;
         controller.end = false;
+        controller.activate = false;
+        controller.action = false;
+        controller.hashitted = false;
+        controller.clawCollider.GetComponent<SphereCollider>().radius = 0.5f;
     }
 
     public void OnUpdate()
@@ -28,9 +33,12 @@ public class KroSpin : IKrokodil
             controller.twoHandedCollider.enabled = true;
         }
         else
-            controller.twoHandedCollider.enabled = false; 
-        if(controller.action)
+            controller.twoHandedCollider.enabled = false;
+        if (controller.action)
+        {
+            controller.hashitted = true;
             controller.clawCollider.enabled = true;
+        }
         else
             controller.clawCollider.enabled = false;
 
