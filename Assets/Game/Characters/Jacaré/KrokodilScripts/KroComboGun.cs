@@ -10,6 +10,7 @@ public class KroComboGun : IKrokodil
     public void OnEnter()
     {
         controller.damage = 30;
+        controller.action2 = false;
     }
 
     public void OnExit()
@@ -19,6 +20,7 @@ public class KroComboGun : IKrokodil
         controller.combo = false;
         controller.activate = false;
         controller.action = false;
+        controller.action2 = false;
         controller.hashitted = false;
         Debug.Log("sai");
     }
@@ -39,6 +41,11 @@ public class KroComboGun : IKrokodil
         }
         else
             controller.gunCollider.enabled = false;
+        if (controller.action2)
+        {
+            controller.damage = 10;
+            controller.Shoot();
+        }
 
         if(controller.TargetDir().magnitude < controller.meleeRange + 5)
         {

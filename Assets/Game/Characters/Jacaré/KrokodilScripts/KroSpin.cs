@@ -21,6 +21,7 @@ public class KroSpin : IKrokodil
         controller.end = false;
         controller.activate = false;
         controller.action = false;
+        controller.action2 = false;
         controller.hashitted = false;
         controller.clawCollider.GetComponent<SphereCollider>().radius = 0.05f;
         controller.twoHandedCollider.GetComponent<SphereCollider>().radius = 0.09f;
@@ -38,7 +39,6 @@ public class KroSpin : IKrokodil
         }
         if (controller.activate)
         {
-            controller.damage = 40;
             controller.twoHandedCollider.enabled = true;
             Debug.Log("Ativei o giro");
         }

@@ -22,7 +22,21 @@ public class KroAttController : IKrokodil
 
     public void OnUpdate()
     {
-        if(controller.TargetDir().magnitude < controller.meleeRange + 4)
+        if(controller.TargetDir().magnitude < controller.meleeRange)
+        {
+            if (controller.randomValue < 50)
+            {
+                controller.animator.SetTrigger("jump");
+                controller.SetState(new KroJump(controller));
+            }
+            else
+            {
+                // ao invés do ataque, colocar o dash para trás
+                controller.animator.SetBool("att2", true);
+                controller.SetState(new KroAtt2(controller));
+            }
+        }
+        else if(controller.TargetDir().magnitude < controller.meleeRange + 5)
         {
             if (controller.randomValue > controller.basicAtt)
             {
@@ -37,16 +51,9 @@ public class KroAttController : IKrokodil
         }
         else
         {
-            if(controller.randomValue < 30)
-            {
-                controller.animator.SetTrigger("jump");
-                controller.SetState(new KroJump(controller));
-            }
-            else
-            {
-                controller.animator.SetBool("isAttack", false);
-                controller.SetState(new KroIdle(controller));
-            }
+            // colocar o dash para frente
+            controller.animator.SetBool("isAttack", false);
+            controller.SetState(new KroIdle(controller));
         }
     }
 }

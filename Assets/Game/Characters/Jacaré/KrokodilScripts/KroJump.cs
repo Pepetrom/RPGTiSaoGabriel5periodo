@@ -11,12 +11,14 @@ public class KroJump : IKrokodil
     public void OnEnter()
     {
         pos = controller.transform.position;
+        controller.damage = 10;
     }
 
     public void OnExit()
     {
         controller.action = false;
         controller.action2 = false;
+        controller.action3 = false; 
         controller.antecipation = false;
         controller.eventS = false;
         controller.end = false;
@@ -35,7 +37,7 @@ public class KroJump : IKrokodil
         }
         if (controller.antecipation)
         {
-            controller.RotateTowardsPlayer(5);
+            controller.RotateTowardsPlayer(12);
             controller.CombatCamera(120, 0.6f, 4f);
         }
         if (controller.eventS)
@@ -48,6 +50,10 @@ public class KroJump : IKrokodil
                 controller.agent.enabled = true;
                 controller.eventS = false;
             }
+        }
+        if (controller.action3)
+        {
+            controller.Shoot();
         }
         if (controller.end)
         {

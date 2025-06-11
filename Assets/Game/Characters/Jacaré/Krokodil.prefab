@@ -2474,6 +2474,37 @@ Transform:
   - {fileID: 8772022570161036508}
   m_Father: {fileID: 4436421904209650082}
   m_LocalEulerAnglesHint: {x: 0.3822182, y: -69.523796, z: -170.31294}
+--- !u!1 &3609963193769446533
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1637195861081730357}
+  m_Layer: 0
+  m_Name: GunFireSpot
+  m_TagString: Untagged
+  m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1637195861081730357
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3609963193769446533}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: 0.0008692932, y: 0.04394139, z: -0.00061618147}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8381818301128514884}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 90}
 --- !u!1 &3647680468882109903
 GameObject:
   m_ObjectHideFlags: 0
@@ -3051,6 +3082,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 139776938710594341}
+  - {fileID: 1637195861081730357}
   m_Father: {fileID: 6662697614908788390}
   m_LocalEulerAnglesHint: {x: 26.098246, y: 104.88793, z: 44.85057}
 --- !u!1 &4291178362799115403
@@ -4507,6 +4539,7 @@ MonoBehaviour:
   combo: 0
   action: 0
   action2: 0
+  action3: 0
   activate: 0
   hashitted: 0
   eventS: 0
@@ -4524,11 +4557,17 @@ MonoBehaviour:
   swingRate: 50
   moveAtt: 40
   damage: 0
+  posture: 0
+  maxPosture: 10
   meleeRange: 12
   maxRange: 30
   swingRange: 20
   jumpForce: 100
+  fireRate: 0.05
   isSecondStage: 0
+  gunFireSpot: {fileID: 1637195861081730357}
+  bulletPrefab: {fileID: 8576731493386660667, guid: 41a0056b3e707f144bccad046b6707d2,
+    type: 3}
 --- !u!195 &327336501116574259
 NavMeshAgent:
   m_ObjectHideFlags: 0

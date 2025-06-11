@@ -9,18 +9,20 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
     public Animator animator;
     public NavMeshAgent agent;
     public GameObject player;
-    [HideInInspector]public bool antecipation = false, end = false, combo = false, action = false, action2 = false, activate = false, hashitted = false, eventS = false, bigWall = false;
+    [HideInInspector]public bool antecipation = false, end = false, combo = false, action = false, action2 = false, action3 = false, activate = false, hashitted = false, eventS = false, bigWall = false;
     [Header("COMBAT")]
     public string bossName;
     public Collider clawCollider, gunCollider, footCollider, twoHandedCollider;
     public CapsuleCollider ownCollider;
-    public int randomValue, att2Count, hp, basicAtt = 40, swingRate = 50,moveAtt = 40, damage;
-    public float meleeRange, maxRange, swingRange,jumpForce;
+    public int randomValue, att2Count, hp, basicAtt = 40, swingRate = 50,moveAtt = 40, damage, posture, maxPosture;
+    public float meleeRange, maxRange, swingRange,jumpForce, fireRate;
     public bool isSecondStage;
+    public Transform gunFireSpot;
+    public GameObject bulletPrefab;
 
     //swing
     Vector3 velocity, lVelocity;
-    float moveY, moveX;
+    float moveY, moveX, time, interval = 0;
     void Start()
     {
         if(player == null)
@@ -31,10 +33,12 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
         UIItems.instance.ShowBOSSHUD(true);
         UIItems.instance.ResetBossHP(hp, bossName);
         clawCollider.enabled = false; gunCollider.enabled = false; footCollider.enabled = false; twoHandedCollider.enabled = false;
+        posture = maxPosture;
     }
     void Update()
     {
         this.state?.OnUpdate();
+        Posture();
     }
     public void SetState(IKrokodil state)
     {
@@ -108,6 +112,14 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
     {
         action2 = false;
     }
+    public void Action3()
+    {
+        action3 = true;
+    }
+    public void StopAction3()
+    {
+        action3 = false;
+    }
     #endregion
     #endregion
     #region MÉTODOS DE FÍSICA
@@ -158,12 +170,40 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
     {
         transform.position += transform.up * jumpForce * Time.deltaTime;
     }
+    public void Shoot()
+    {
+        time += Time.deltaTime;
+        if(time >= fireRate)
+        {
+            Instantiate(bulletPrefab, gunFireSpot.position, gunFireSpot.rotation);
+            time = 0;
+        }
+    }
+    private void Posture()
+    {
+        if (posture < maxPosture)
+        {
+            time += Time.deltaTime;
+            if (time >= interval)
+            {
+                posture += 5;
+                time = 0;
+            }
+        }
+        else posture = maxPosture;
+        if (posture <= 0)
+        {
+            animator.Play("Stun");
+            SetState(new KroStun(this));
+        }
+    }
     #endregion
     public void TakeDamage(int damage, float knockbackStrenght)
     {
         UIItems.instance.bossCurrentHP -= damage;
         GameManager.instance.SpawnNumber((int)damage, Color.yellow, transform);
-        /*//posture -= damage;
+        posture -= damage;
+        /*
         //FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.takingDamage, transform.position);
         //playerHit = true;
         //hit.Play();
