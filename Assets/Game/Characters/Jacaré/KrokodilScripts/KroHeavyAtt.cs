@@ -19,6 +19,7 @@ public class KroHeavyAtt : IKrokodil
         controller.antecipation = false;
         controller.end = false;
         controller.combo = false;
+        controller.activate = false;
     }
 
     public void OnUpdate()
@@ -65,7 +66,7 @@ public class KroHeavyAtt : IKrokodil
         }
         if (controller.end)
         {
-            controller.SetState(new KroIdle(controller));
+            controller.SetState(new KroAttController(controller));
         }
     }
 }

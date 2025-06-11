@@ -19,6 +19,8 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
     public bool isSecondStage;
     public Transform gunFireSpot;
     public GameObject bulletPrefab;
+    [Header("VFX")]
+    public GameObject stun;
 
     //swing
     Vector3 velocity, lVelocity;

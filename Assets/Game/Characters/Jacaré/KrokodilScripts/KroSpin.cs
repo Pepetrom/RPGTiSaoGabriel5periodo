@@ -35,7 +35,7 @@ public class KroSpin : IKrokodil
         }
         if (!controller.action2)
         {
-            CameraScript.instance.CombatCamera(90, 0.6f, 0.6f);
+            CameraScript.instance.CombatCamera(70, 0.6f, 0.6f);
         }
         if (controller.activate)
         {

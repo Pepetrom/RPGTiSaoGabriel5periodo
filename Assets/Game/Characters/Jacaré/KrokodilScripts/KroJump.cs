@@ -33,7 +33,7 @@ public class KroJump : IKrokodil
         }
         if (controller.action2)
         {
-            controller.CombatCamera(120, 0.6f, 4f);
+            controller.CombatCamera(120, 0.6f, 2f);
         }
         if (controller.antecipation)
         {
