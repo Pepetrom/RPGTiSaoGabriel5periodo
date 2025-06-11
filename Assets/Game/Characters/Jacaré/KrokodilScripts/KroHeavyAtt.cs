@@ -9,7 +9,9 @@ public class KroHeavyAtt : IKrokodil
 
     public void OnEnter()
     {
+        controller.damage = 40;
         controller.SortNumber();
+        controller.moveAtt -= 20;
     }
 
     public void OnExit()
@@ -22,9 +24,15 @@ public class KroHeavyAtt : IKrokodil
     public void OnUpdate()
     {
         if (!controller.antecipation)
+        {
             controller.RotateTowardsPlayer(10);
+            CameraScript.instance.CombatCamera(90, 0.6f, 0.8f);
+        }
         if (controller.activate)
+        {
             controller.twoHandedCollider.enabled = true;
+            CameraScript.instance.CombatCamera(60, 0.6f, 1.8f);
+        }
         else
             controller.twoHandedCollider.enabled = false;
 

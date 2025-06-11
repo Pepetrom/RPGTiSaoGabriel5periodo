@@ -101,7 +101,7 @@ public class HPBar : MonoBehaviour
             currentHP = Mathf.Clamp(currentHP, 0, maxHP);
             if(currentHP > 0)
             {
-                StartCoroutine(InvulnableTime());
+                //StartCoroutine(InvulnableTime());
                 GameManager.instance.SpawnNumber((int)damage, Color.red, PlayerController.instance.transform);
                 PlayerController.instance.damageFont = damageFont;
                 PlayerController.instance.actions[2].ActionStart();

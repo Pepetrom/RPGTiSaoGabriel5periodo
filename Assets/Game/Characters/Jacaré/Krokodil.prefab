@@ -4506,6 +4506,7 @@ MonoBehaviour:
   end: 0
   combo: 0
   action: 0
+  action2: 0
   activate: 0
   hashitted: 0
   eventS: 0
@@ -4521,10 +4522,12 @@ MonoBehaviour:
   hp: 800
   basicAtt: 40
   swingRate: 50
+  moveAtt: 40
   damage: 0
   meleeRange: 12
   maxRange: 30
   swingRange: 20
+  jumpForce: 100
   isSecondStage: 0
 --- !u!195 &327336501116574259
 NavMeshAgent:

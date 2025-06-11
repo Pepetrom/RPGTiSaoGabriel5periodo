@@ -20,6 +20,7 @@ public class KroComboGun : IKrokodil
         controller.activate = false;
         controller.action = false;
         controller.hashitted = false;
+        Debug.Log("sai");
     }
 
     public void OnUpdate()
@@ -28,7 +29,6 @@ public class KroComboGun : IKrokodil
             controller.RotateTowardsPlayer(10);
         if (controller.activate)
         {
-            Debug.Log("Eu aqui");
             controller.clawCollider.enabled = true;
         }
         else

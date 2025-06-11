@@ -20,7 +20,7 @@ public class KroMoveAtt : IKrokodil
 
     public void OnUpdate()
     {
-        if (controller.randomValue < 60)
+        if (controller.randomValue > controller.moveAtt)
         {
             controller.animator.SetTrigger("kick");
             controller.SetState(new KroKick(controller));

@@ -10,6 +10,7 @@ public class KroKick : IKrokodil
     public void OnEnter()
     {
         controller.damage = 30;
+        controller.moveAtt += 20;
     }
 
     public void OnExit()

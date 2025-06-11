@@ -37,8 +37,16 @@ public class KroAttController : IKrokodil
         }
         else
         {
-            controller.animator.SetBool("isAttack", false);
-            controller.SetState(new KroIdle(controller));
+            if(controller.randomValue < 30)
+            {
+                controller.animator.SetTrigger("jump");
+                controller.SetState(new KroJump(controller));
+            }
+            else
+            {
+                controller.animator.SetBool("isAttack", false);
+                controller.SetState(new KroIdle(controller));
+            }
         }
     }
 }

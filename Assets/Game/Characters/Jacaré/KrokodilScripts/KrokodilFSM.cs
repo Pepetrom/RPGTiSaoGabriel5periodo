@@ -9,13 +9,13 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
     public Animator animator;
     public NavMeshAgent agent;
     public GameObject player;
-    [HideInInspector]public bool antecipation = false, end = false, combo = false, action = false, activate = false, hashitted = false, eventS = false, bigWall = false;
+    [HideInInspector]public bool antecipation = false, end = false, combo = false, action = false, action2 = false, activate = false, hashitted = false, eventS = false, bigWall = false;
     [Header("COMBAT")]
     public string bossName;
     public Collider clawCollider, gunCollider, footCollider, twoHandedCollider;
     public CapsuleCollider ownCollider;
-    public int randomValue, att2Count, hp, basicAtt = 40, swingRate = 50, damage;
-    public float meleeRange, maxRange, swingRange;
+    public int randomValue, att2Count, hp, basicAtt = 40, swingRate = 50,moveAtt = 40, damage;
+    public float meleeRange, maxRange, swingRange,jumpForce;
     public bool isSecondStage;
 
     //swing
@@ -55,7 +55,7 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
 
     public void Action2()
     {
-        throw new System.NotImplementedException();
+        action2 = true;
     }
 
     public void Activate()
@@ -85,7 +85,7 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
 
     public void DeactivateSpecificEvent()
     {
-        throw new System.NotImplementedException();
+        eventS = false;
     }
 
     public void End()
@@ -96,7 +96,7 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
 
     public void SpecificEvent()
     {
-        throw new System.NotImplementedException();
+        eventS = true;
     }
 
     public void StopAction()
@@ -106,7 +106,7 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
 
     public void StopAction2()
     {
-        throw new System.NotImplementedException();
+        action2 = false;
     }
     #endregion
     #endregion
@@ -154,6 +154,10 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
         animator.SetFloat("MoveX", lVelocity.x, 0.1f, Time.deltaTime);
         animator.SetFloat("MoveY", lVelocity.z, 0.1f, Time.deltaTime);
     }
+    public void Impulse(float jumpForce)
+    {
+        transform.position += transform.up * jumpForce * Time.deltaTime;
+    }
     #endregion
     public void TakeDamage(int damage, float knockbackStrenght)
     {
@@ -175,5 +179,13 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
             animator.Play("Crab_Death");
             SetState(new CrabDeath(this));
         }*/
+    }
+    public void CameraShakeKro()
+    {
+        CameraScript.instance.StartShake();
+    }
+    public void CombatCamera(float fovTarget, float value, float zoomSpeed)
+    {
+        CameraScript.instance.CombatCamera(fovTarget,value,zoomSpeed);
     }
 }
