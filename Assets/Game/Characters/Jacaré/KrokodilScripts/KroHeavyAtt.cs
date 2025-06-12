@@ -39,12 +39,16 @@ public class KroHeavyAtt : IKrokodil
 
         if (!controller.isSecondStage)
         {
-            if (controller.combo)
+            if (controller.end)
             {
-                if (controller.randomValue > 40)
+                if (controller.randomValue < 40)
                 {
                     controller.animator.SetTrigger("spin");
                     controller.SetState(new KroSpin(controller));
+                }
+                else
+                {
+                    controller.SetState(new KroIdle(controller));
                 }
             }
         }
@@ -63,10 +67,6 @@ public class KroHeavyAtt : IKrokodil
                     controller.SetState(new KroHeavyCombo(controller));
                 }
             }
-        }
-        if (controller.end)
-        {
-            controller.SetState(new KroAttController(controller));
         }
     }
 }

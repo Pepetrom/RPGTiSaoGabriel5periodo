@@ -27,7 +27,7 @@ public class KroMoveAtt : IKrokodil
         }
         else
         {
-            controller.animator.SetTrigger("heavy");
+            controller.animator.SetBool("heavy",true);
             controller.SetState(new KroHeavyAtt(controller));
         }
     }

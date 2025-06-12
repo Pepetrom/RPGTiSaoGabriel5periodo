@@ -9,6 +9,7 @@ public class KroStun : IKrokodil
 
     public void OnEnter()
     {
+        controller.animator.SetBool("isAttack", false);
         controller.stun.GetComponent<ParticleSystem>().Play();
         controller.posture = controller.maxPosture;
     }
@@ -22,7 +23,7 @@ public class KroStun : IKrokodil
     {
         if (controller.end)
         {
-            controller.SetState(new KroAttController(controller));
+            controller.SetState(new KroIdle(controller));
         }
     }
 }

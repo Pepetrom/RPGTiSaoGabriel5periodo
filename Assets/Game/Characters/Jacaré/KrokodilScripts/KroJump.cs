@@ -10,8 +10,10 @@ public class KroJump : IKrokodil
 
     public void OnEnter()
     {
+        controller.animator.SetTrigger("jump");
         pos = controller.transform.position;
         controller.damage = 10;
+        controller.action2 = false;
     }
 
     public void OnExit()
@@ -33,7 +35,7 @@ public class KroJump : IKrokodil
         }
         if (controller.action2)
         {
-            controller.CombatCamera(120, 0.6f, 2f);
+            controller.CombatCamera(120, 0.6f, 1.4f);
         }
         if (controller.antecipation)
         {
@@ -42,10 +44,11 @@ public class KroJump : IKrokodil
         }
         if (controller.eventS)
         {
-            controller.CombatCamera(60, 0.6f, 4f);
+            controller.CombatCamera(60, 0.6f, 2f);
             controller.Impulse(-controller.jumpForce);
             if(controller.transform.position.y <= pos.y)
             {
+                controller.CombatCamera(60, 0.6f, 1f);
                 controller.transform.position = new Vector3(pos.x,pos.y, pos.z);
                 controller.agent.enabled = true;
                 controller.eventS = false;

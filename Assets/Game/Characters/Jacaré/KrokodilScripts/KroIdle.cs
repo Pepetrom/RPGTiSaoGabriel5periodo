@@ -8,6 +8,7 @@ public class KroIdle : IKrokodil
     public KroIdle(KrokodilFSM controller) { this.controller = controller; }
     public void OnEnter()
     {
+        controller.animator.SetBool("heavy", false);
         controller.end = false;
         controller.SortNumber();
     }

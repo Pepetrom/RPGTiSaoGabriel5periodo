@@ -10,9 +10,11 @@ public class KroAttController : IKrokodil
     public void OnEnter()
     {
         controller.animator.SetBool("att2", false);
-        controller.animator.SetBool("att2comb2", false);
         controller.animator.SetBool("swing", false);
+        controller.animator.SetBool("att2comb2", false);
+        controller.animator.SetBool("heavy", false);
         controller.SortNumber();
+        Debug.Log("Entrei no attController");
     }
 
     public void OnExit()
@@ -26,7 +28,6 @@ public class KroAttController : IKrokodil
         {
             if (controller.randomValue < 50)
             {
-                controller.animator.SetTrigger("jump");
                 controller.SetState(new KroJump(controller));
             }
             else
@@ -36,7 +37,12 @@ public class KroAttController : IKrokodil
                 controller.SetState(new KroAtt2(controller));
             }
         }
-        else if(controller.TargetDir().magnitude < controller.meleeRange + 5)
+        else
+        {
+            controller.animator.SetBool("isAttack", false);
+            controller.SetState(new KroIdle(controller));
+        }
+        /*if (controller.TargetDir().magnitude < controller.meleeRange + 4)
         {
             if (controller.randomValue > controller.basicAtt)
             {
@@ -48,12 +54,13 @@ public class KroAttController : IKrokodil
                 controller.animator.SetBool("att1", true);
                 controller.SetState(new KroAtt1(controller));
             }
+            return;
         }
         else
         {
             // colocar o dash para frente
             controller.animator.SetBool("isAttack", false);
             controller.SetState(new KroIdle(controller));
-        }
+        }*/
     }
 }
