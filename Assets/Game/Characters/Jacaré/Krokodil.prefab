@@ -4553,22 +4553,28 @@ MonoBehaviour:
   ownCollider: {fileID: 1156339994628257321}
   randomValue: 0
   att2Count: 0
-  hp: 800
+  hp: 100
   basicAtt: 40
   swingRate: 50
   moveAtt: 40
   damage: 0
   posture: 0
-  maxPosture: 20
+  maxPosture: 120
+  jumpRate: 60
   meleeRange: 12
   maxRange: 30
   swingRange: 20
   jumpForce: 100
   fireRate: 0.05
   isSecondStage: 0
+  canDoSecondStage: 0
   gunFireSpot: {fileID: 1637195861081730357}
   bulletPrefab: {fileID: 8576731493386660667, guid: 41a0056b3e707f144bccad046b6707d2,
     type: 3}
+  armor: {fileID: 540932301689556749}
+  bulletPrefabSecondStage: {fileID: 8576731493386660667, guid: 7a9338db0b9e8ea4db80c739e4219f2d,
+    type: 3}
+  secondStageMaterial: {fileID: 2100000, guid: 42c22591657a57b44b0975aa2e4216c4, type: 2}
   stun: {fileID: 7615755019889925019}
 --- !u!195 &327336501116574259
 NavMeshAgent:

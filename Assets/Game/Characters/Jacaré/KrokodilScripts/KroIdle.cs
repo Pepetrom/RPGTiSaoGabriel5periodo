@@ -20,6 +20,15 @@ public class KroIdle : IKrokodil
 
     public void OnUpdate()
     {
+        if (controller.canDoSecondStage)
+        {
+            controller.maxPosture += controller.maxPosture / 4;
+            controller.posture = controller.maxPosture;
+            controller.animator.SetTrigger("secondStage");
+            controller.SetState(new KroSecondStage(controller));
+            controller.canDoSecondStage = false;
+            return;
+        }
         if (controller.TargetDir().magnitude <= controller.meleeRange)
         {
             controller.animator.SetBool("isAttack", true);

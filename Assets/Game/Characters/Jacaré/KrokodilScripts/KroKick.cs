@@ -9,6 +9,7 @@ public class KroKick : IKrokodil
 
     public void OnEnter()
     {
+        controller.animator.SetBool("att2", false);
         controller.damage = 30;
         controller.moveAtt += 20;
     }

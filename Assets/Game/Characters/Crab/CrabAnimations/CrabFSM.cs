@@ -48,7 +48,7 @@ public class CrabFSM : MonoBehaviour, IDamageable
     [SerializeField]private List<Vector3> firePoints = new List<Vector3>();
 
 
-    private float interval = 0.0f, time;
+    private float interval = 0.6f, time;
     #endregion
     void Start()
     {

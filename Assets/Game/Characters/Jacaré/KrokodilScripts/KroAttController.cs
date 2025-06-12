@@ -24,17 +24,33 @@ public class KroAttController : IKrokodil
 
     public void OnUpdate()
     {
-        if(controller.TargetDir().magnitude < controller.meleeRange)
+        if (controller.canDoSecondStage)
         {
-            if (controller.randomValue < 50)
+            controller.maxPosture += controller.maxPosture / 4;
+            controller.posture = controller.maxPosture;
+            controller.animator.SetTrigger("secondStage");
+            controller.SetState(new KroSecondStage(controller));
+            controller.canDoSecondStage = false;
+            return;
+        }
+        if (controller.TargetDir().magnitude < controller.meleeRange + 4)
+        {
+            if (controller.randomValue > controller.jumpRate)
             {
                 controller.SetState(new KroJump(controller));
             }
             else
             {
-                // ao invés do ataque, colocar o dash para trás
-                controller.animator.SetBool("att2", true);
-                controller.SetState(new KroAtt2(controller));
+                if (controller.randomValue > controller.basicAtt)
+                {
+                    controller.animator.SetBool("att2", true);
+                    controller.SetState(new KroAtt2(controller));
+                }
+                else
+                {
+                    controller.animator.SetBool("att1", true);
+                    controller.SetState(new KroAtt1(controller));
+                }
             }
         }
         else
@@ -42,25 +58,5 @@ public class KroAttController : IKrokodil
             controller.animator.SetBool("isAttack", false);
             controller.SetState(new KroIdle(controller));
         }
-        /*if (controller.TargetDir().magnitude < controller.meleeRange + 4)
-        {
-            if (controller.randomValue > controller.basicAtt)
-            {
-                controller.animator.SetBool("att2", true);
-                controller.SetState(new KroAtt2(controller));
-            }
-            else
-            {
-                controller.animator.SetBool("att1", true);
-                controller.SetState(new KroAtt1(controller));
-            }
-            return;
-        }
-        else
-        {
-            // colocar o dash para frente
-            controller.animator.SetBool("isAttack", false);
-            controller.SetState(new KroIdle(controller));
-        }*/
     }
 }

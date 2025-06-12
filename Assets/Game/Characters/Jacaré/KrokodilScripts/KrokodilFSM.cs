@@ -14,17 +14,18 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
     public string bossName;
     public Collider clawCollider, gunCollider, footCollider, twoHandedCollider;
     public CapsuleCollider ownCollider;
-    public int randomValue, att2Count, hp, basicAtt = 40, swingRate = 50,moveAtt = 40, damage, posture, maxPosture;
+    public int randomValue, att2Count, hp, basicAtt = 40, swingRate = 50,moveAtt = 40, damage, posture, maxPosture, jumpRate = 60;
     public float meleeRange, maxRange, swingRange,jumpForce, fireRate;
-    public bool isSecondStage;
+    public bool isSecondStage = false, canDoSecondStage = false;
     public Transform gunFireSpot;
-    public GameObject bulletPrefab;
+    public GameObject bulletPrefab, armor, bulletPrefabSecondStage;
+    public Material secondStageMaterial;
     [Header("VFX")]
     public GameObject stun;
 
     //swing
     Vector3 velocity, lVelocity;
-    float moveY, moveX, time, interval = 0;
+    float moveY, moveX, time, interval = 0.6f;
     void Start()
     {
         if(player == null)
@@ -177,7 +178,10 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
         time += Time.deltaTime;
         if(time >= fireRate)
         {
-            Instantiate(bulletPrefab, gunFireSpot.position, gunFireSpot.rotation);
+            if (isSecondStage)
+                Instantiate(bulletPrefabSecondStage, gunFireSpot.position, gunFireSpot.rotation);
+            else
+                Instantiate(bulletPrefab, gunFireSpot.position, gunFireSpot.rotation);
             time = 0;
         }
     }
@@ -205,6 +209,10 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
         UIItems.instance.bossCurrentHP -= damage;
         GameManager.instance.SpawnNumber((int)damage, Color.yellow, transform);
         posture -= damage;
+        if(UIItems.instance.bossCurrentHP < hp / 2 && !isSecondStage)
+        {
+            canDoSecondStage = true;
+        }
         /*
         //FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.takingDamage, transform.position);
         //playerHit = true;
@@ -229,5 +237,11 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
     public void CombatCamera(float fovTarget, float value, float zoomSpeed)
     {
         CameraScript.instance.CombatCamera(fovTarget,value,zoomSpeed);
+    }
+    public void ChangeSkin()
+    {
+        Material[] mats = armor.GetComponent<SkinnedMeshRenderer>().materials;
+        mats[0] = secondStageMaterial;
+        armor.GetComponent<SkinnedMeshRenderer>().materials = mats;
     }
 }

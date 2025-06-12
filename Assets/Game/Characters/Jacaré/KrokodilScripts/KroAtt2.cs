@@ -11,6 +11,7 @@ public class KroAtt2 : IKrokodil
     {
         controller.SortNumber();
         controller.basicAtt += 15;
+        controller.jumpRate -= 5;
         controller.damage = 30;
     }
 
@@ -34,10 +35,15 @@ public class KroAtt2 : IKrokodil
 
         if (controller.combo)
         {
-            if(controller.randomValue < 100)
+            if(controller.randomValue < 50)
             {
                 controller.animator.SetBool("att2comb2", true);
                 controller.SetState(new KroComboGun(controller));
+            }
+            else
+            {
+                controller.animator.SetBool("att2", false);
+                controller.SetState(new KroAttController(controller));
             }
         }
         if (controller.end)
