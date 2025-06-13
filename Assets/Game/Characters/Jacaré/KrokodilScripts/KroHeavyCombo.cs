@@ -9,7 +9,7 @@ public class KroHeavyCombo : IKrokodil
 
     public void OnEnter()
     {
-
+        controller.damage = 35;
     }
 
     public void OnExit()
@@ -22,10 +22,24 @@ public class KroHeavyCombo : IKrokodil
     public void OnUpdate()
     {
         if (!controller.antecipation)
-            controller.RotateTowardsPlayer(10);
+            controller.RotateTowardsPlayer(12);
+        if (controller.activate)
+        {
+            controller.damage = 35;
+            controller.twoHandedCollider.enabled = true;
+        }
+        else
+            controller.twoHandedCollider.enabled = false;
+        if (controller.action)
+        {
+            controller.damage = 20;
+            controller.twoHandedCollider.enabled = true;
+        }
+        else
+            controller.twoHandedCollider.enabled = false;
+
         if (controller.end)
         {
-            controller.animator.SetBool("spin", false);
             controller.SetState(new KroAttController(controller));
         }
     }

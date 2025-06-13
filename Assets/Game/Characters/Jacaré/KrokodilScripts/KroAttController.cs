@@ -14,7 +14,6 @@ public class KroAttController : IKrokodil
         controller.animator.SetBool("att2comb2", false);
         controller.animator.SetBool("heavy", false);
         controller.SortNumber();
-        Debug.Log("Entrei no attController");
     }
 
     public void OnExit()

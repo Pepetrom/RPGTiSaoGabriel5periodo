@@ -11,6 +11,7 @@ public class KroSecondStage : IKrokodil
     {
         controller.isSecondStage = true;
         controller.end = false;
+        controller.animator.SetBool("isAttack", false);
     }
 
     public void OnExit()

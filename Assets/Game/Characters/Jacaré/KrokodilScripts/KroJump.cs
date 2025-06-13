@@ -14,7 +14,7 @@ public class KroJump : IKrokodil
         pos = controller.transform.position;
         controller.damage = 10;
         controller.action2 = false;
-        controller.jumpRate += 20;
+        controller.jumpRate += 30;
     }
 
     public void OnExit()
@@ -58,6 +58,7 @@ public class KroJump : IKrokodil
         if (controller.action3)
         {
             controller.Shoot();
+            controller.CameraShakeKro();
         }
         if (controller.end)
         {

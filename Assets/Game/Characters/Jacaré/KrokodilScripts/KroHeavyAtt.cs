@@ -56,16 +56,20 @@ public class KroHeavyAtt : IKrokodil
         {
             if (controller.combo)
             {
-                if (controller.randomValue < 200)
+                if (controller.randomValue < 40)
                 {
                     controller.animator.SetTrigger("spin");
                     controller.SetState(new KroSpin(controller));
                 }
-                else
+                else if(controller.randomValue < 70)
                 {
-                    controller.animator.SetBool("heavyCombo", true);
+                    controller.animator.SetTrigger("heavyCombo");
                     controller.SetState(new KroHeavyCombo(controller));
                 }
+            }
+            if (controller.end)
+            {
+                controller.SetState(new KroIdle(controller));
             }
         }
     }

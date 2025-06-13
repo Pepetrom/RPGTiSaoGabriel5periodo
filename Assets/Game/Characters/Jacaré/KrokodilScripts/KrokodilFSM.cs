@@ -14,18 +14,19 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
     public string bossName;
     public Collider clawCollider, gunCollider, footCollider, twoHandedCollider;
     public CapsuleCollider ownCollider;
-    public int randomValue, att2Count, hp, basicAtt = 40, swingRate = 50,moveAtt = 40, damage, posture, maxPosture, jumpRate = 60;
-    public float meleeRange, maxRange, swingRange,jumpForce, fireRate;
+    public int randomValue, att2Count, hp, basicAtt = 40, swingRate = 100,moveAtt = 40, damage, posture, maxPosture, jumpRate = 60;
+    public float meleeRange, maxRange, swingRange,jumpForce, fireRate, interval;
     public bool isSecondStage = false, canDoSecondStage = false;
     public Transform gunFireSpot;
     public GameObject bulletPrefab, armor, bulletPrefabSecondStage;
     public Material secondStageMaterial;
     [Header("VFX")]
     public GameObject stun;
+    public ParticleSystem bigImpactVFX, clawVFX, crackVFX, gunVFX;
 
     //swing
     Vector3 velocity, lVelocity;
-    float moveY, moveX, time, interval = 0.6f;
+    float moveY, moveX, time;
     void Start()
     {
         if(player == null)
@@ -243,5 +244,9 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
         Material[] mats = armor.GetComponent<SkinnedMeshRenderer>().materials;
         mats[0] = secondStageMaterial;
         armor.GetComponent<SkinnedMeshRenderer>().materials = mats;
+    }
+    public void PlayVFX(ParticleSystem vfx)
+    {
+        vfx.Play();
     }
 }

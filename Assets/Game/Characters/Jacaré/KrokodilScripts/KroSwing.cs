@@ -38,6 +38,7 @@ public class KroSwing : IKrokodil
                 if (controller.randomValue > controller.swingRate)
                 {
                     swingPos = controller.Swing();
+                    controller.swingRate += 30;
                 }
                 else
                 {

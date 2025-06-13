@@ -17,11 +17,12 @@ public class FireCollider : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             crab.canDoFireDamage = false;
+            crab.hashitted = false;
         }
     }
     private void Update()
     {
-        if (crab.canDoFireDamage)
+        if (crab.canDoFireDamage && !crab.hashitted)
         {
             HPBar.instance.TakeDamage(crab.damage, crab.transform);
             crab.hashitted = true;
