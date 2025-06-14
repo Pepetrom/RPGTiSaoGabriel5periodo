@@ -11,7 +11,7 @@ public class KroSwing : IKrokodil
     public void OnEnter()
     {
         controller.SortNumber();
-        controller.agent.speed = 3f;
+        controller.agent.speed = 2.3f;
         swingPos = controller.Swing();
         controller.swingRate += 30;
     }

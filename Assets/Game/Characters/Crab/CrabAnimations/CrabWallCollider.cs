@@ -8,13 +8,11 @@ public class CrabWallCollider : MonoBehaviour
     public CrabFSM crab;
     Collider c;
     public GameObject antecipation, wallFire;
-    public SkinnedMeshRenderer mesh;
     private void Start()
     {
         wallFire.GetComponent<VisualEffect>().Stop();
         c = GetComponent<Collider>();
         c.enabled = false;
-        mesh.enabled = false;
         antecipation.GetComponent<VisualEffect>().Play();
         Invoke("ActivateMyCollider", 1f);
     }
@@ -30,6 +28,5 @@ public class CrabWallCollider : MonoBehaviour
     {
         wallFire.GetComponent<VisualEffect>().Play();
         c.enabled = true;
-        mesh.enabled = true;
     }
 }

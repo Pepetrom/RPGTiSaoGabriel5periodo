@@ -12,7 +12,7 @@ public class KroSpin : IKrokodil
         controller.damage = 35;
         controller.activate = false;
         controller.clawCollider.GetComponent<SphereCollider>().radius = 0.09f;
-        controller.twoHandedCollider.GetComponent<SphereCollider>().radius = 0.18f;
+        controller.twoHandedCollider.GetComponent<SphereCollider>().radius = 0.12f;
     }
 
     public void OnExit()
@@ -40,7 +40,6 @@ public class KroSpin : IKrokodil
         if (controller.activate)
         {
             controller.twoHandedCollider.enabled = true;
-            Debug.Log("Ativei o giro");
         }
         else
             controller.twoHandedCollider.enabled = false;
@@ -49,13 +48,13 @@ public class KroSpin : IKrokodil
             CameraScript.instance.CombatCamera(60, 0.6f, 1.8f);
             controller.hashitted = true;
             controller.clawCollider.enabled = true;
-            Debug.Log("Ativei a garra");
         }
         else
             controller.clawCollider.enabled = false;
 
         if (controller.end)
         {
+            controller.animator.SetBool("isAttack", true);
             controller.SetState(new KroAttController(controller));
         }
     }

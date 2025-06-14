@@ -10,6 +10,7 @@ public class KroComboGun : IKrokodil
     public void OnEnter()
     {
         controller.damage = 30;
+        controller.damage2 = 20;
         controller.action2 = false;
         controller.SortNumber();
     }
@@ -23,7 +24,6 @@ public class KroComboGun : IKrokodil
         controller.action = false;
         controller.action2 = false;
         controller.hashitted = false;
-        Debug.Log("sai");
     }
 
     public void OnUpdate()
@@ -39,9 +39,13 @@ public class KroComboGun : IKrokodil
         if (controller.action)
         {
             controller.gunCollider.enabled = true;
+            controller.bodyCollider.enabled = true;
         }
         else
+        {
             controller.gunCollider.enabled = false;
+            controller.bodyCollider.enabled = false;
+        }
         if (controller.action2)
         {
             controller.damage = 10;

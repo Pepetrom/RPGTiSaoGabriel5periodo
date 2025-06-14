@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.VFX;
 
 public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
 {
@@ -12,9 +13,9 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
     [HideInInspector]public bool antecipation = false, end = false, combo = false, action = false, action2 = false, action3 = false, activate = false, hashitted = false, eventS = false, bigWall = false;
     [Header("COMBAT")]
     public string bossName;
-    public Collider clawCollider, gunCollider, footCollider, twoHandedCollider;
+    public Collider clawCollider, gunCollider, footCollider, twoHandedCollider, bodyCollider;
     public CapsuleCollider ownCollider;
-    public int randomValue, att2Count, hp, basicAtt = 40, swingRate = 100,moveAtt = 40, damage, posture, maxPosture, jumpRate = 60;
+    public int randomValue, att2Count, hp, basicAtt = 40, swingRate = 100,moveAtt = 40, damage, posture, maxPosture, jumpRate = 60, damage2;
     public float meleeRange, maxRange, swingRange,jumpForce, fireRate, interval;
     public bool isSecondStage = false, canDoSecondStage = false;
     public Transform gunFireSpot;
@@ -23,6 +24,7 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
     [Header("VFX")]
     public GameObject stun;
     public ParticleSystem bigImpactVFX, clawVFX, crackVFX, gunVFX;
+    public VisualEffect hitVFX;
 
     //swing
     Vector3 velocity, lVelocity;
@@ -179,6 +181,7 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
         time += Time.deltaTime;
         if(time >= fireRate)
         {
+            FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.machineGun,transform.position); 
             if (isSecondStage)
                 Instantiate(bulletPrefabSecondStage, gunFireSpot.position, gunFireSpot.rotation);
             else
@@ -214,10 +217,10 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
         {
             canDoSecondStage = true;
         }
+        FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.takingDamage, transform.position);
+        PlayHitEffect();
         /*
-        //FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.takingDamage, transform.position);
         //playerHit = true;
-        //hit.Play();
         if (UIItems.instance.bossCurrentHP <= hp / 2 && !secondStage && UIItems.instance.bossCurrentHP >= 0)
         {
             posture = maxPosture + (maxPosture / 4);
@@ -248,5 +251,21 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
     public void PlayVFX(ParticleSystem vfx)
     {
         vfx.Play();
+    }
+    public void PlaySoundAttached(string path)
+    {
+        FMODAudioManager.instance.PlaySoundAttached(path);
+    }
+    public void PlayHitEffect()
+    {
+        Vector3 directionToPlayer = PlayerController.instance.transform.position - transform.position;
+        Vector3 vfxDir = directionToPlayer.normalized;
+        Quaternion vfxRotation = Quaternion.LookRotation(vfxDir);
+        hitVFX.transform.rotation = vfxRotation;
+        hitVFX.Play();
+    }
+    void SecondStageAnimTimes()
+    {
+        
     }
 }

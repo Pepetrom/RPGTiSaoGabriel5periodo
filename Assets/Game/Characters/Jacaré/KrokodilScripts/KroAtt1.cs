@@ -10,7 +10,7 @@ public class KroAtt1 : IKrokodil
 
     public void OnEnter()
     {
-        controller.basicAtt -= 15;
+        controller.basicAtt -= 20;
         controller.jumpRate -= 5;
         controller.damage = 35;
     }

@@ -30,6 +30,8 @@ public class FMODAudioManager : MonoBehaviour
     [Header("Caranguejo")]
     public EventReference takingDamage;
     public EventReference crabDeath;
+    [Header("Jacaré")]
+    public EventReference machineGun;
 
     private void Awake()
     {

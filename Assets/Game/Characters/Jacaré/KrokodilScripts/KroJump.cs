@@ -14,7 +14,7 @@ public class KroJump : IKrokodil
         pos = controller.transform.position;
         controller.damage = 10;
         controller.action2 = false;
-        controller.jumpRate += 30;
+        controller.jumpRate += 40;
     }
 
     public void OnExit()

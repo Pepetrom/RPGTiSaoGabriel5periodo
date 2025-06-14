@@ -9,6 +9,9 @@ public class KroIdle : IKrokodil
     public void OnEnter()
     {
         controller.animator.SetBool("heavy", false);
+        controller.animator.SetBool("att1", false);
+        controller.animator.SetBool("att2", false);
+        controller.animator.SetBool("isAttack", false);
         controller.end = false;
         controller.SortNumber();
     }
