@@ -33,6 +33,13 @@ public class FMODAudioManager : MonoBehaviour
     [Header("Jacaré")]
     public EventReference machineGun;
 
+    [Header("UI")]
+    public EventReference pressedButton;
+    public EventReference hoverButton;
+    public EventReference buyRune;
+    public EventReference noMoney;
+
+
     private void Awake()
     {
         instance = this;

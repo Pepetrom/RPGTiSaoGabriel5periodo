@@ -377,6 +377,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8372166377814985023}
   - component: {fileID: 5111638899724308763}
+  - component: {fileID: 6064761377991994850}
   m_Layer: 12
   m_Name: Barril_Light
   m_TagString: Untagged
@@ -426,6 +427,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.0038204, y: 4.271973, z: 2.832326}
   m_Center: {x: 0.030774117, y: 1.0082715, z: 0.022986889}
+--- !u!114 &6064761377991994850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5833566255453559301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1354338181
+      Data2: 1230275314
+      Data3: 446904733
+      Data4: 1685001795
+    Path: event:/SFX/Ambiente/FogoNosBarris
+  Event: 
+  EventPlayTrigger: 1
+  EventStopTrigger: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 1
+  OverrideMinDistance: 7
+  OverrideMaxDistance: 12
 --- !u!1 &6822251879139353915
 GameObject:
   m_ObjectHideFlags: 0

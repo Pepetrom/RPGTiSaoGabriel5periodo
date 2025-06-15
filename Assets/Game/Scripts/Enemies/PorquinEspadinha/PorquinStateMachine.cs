@@ -1,3 +1,4 @@
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
@@ -5,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using UnityEngine.VFX;
 
 public class PorquinStateMachine : MonoBehaviour, IDamageable
 {
@@ -12,6 +14,7 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
     public Animator animator;
     public NavMeshAgent agent;
     public GameObject player;
+    public GameObject hpCanvas;
     [HideInInspector]public Rigidbody rb;
     public Enemy enemy;
 
@@ -41,12 +44,13 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
     public float KBForce;
 
     [Header("VFX")]
-    public GameObject blood; 
+    public VisualEffect hitVFX; 
 
     // FUZZY
     [HideInInspector] public int fuzzyDash, fuzzySwing;
     public int minDash, maxDash, minSwing, maxSwing;
     public float swingRange;
+    public Transform hitPos;
 
     [Header("Status")]
     public int maxHP;
@@ -74,6 +78,8 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
     public AudioManager audioMan;
     Vector3 velocity, lVelocity;
     float moveY, moveX;
+
+    [HideInInspector] public StudioEventEmitter studioEventEmitter;
     private void Start()
     {
         attack2Counter = 0;
@@ -104,6 +110,7 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
         sword.enabled = false;
         //fuzzy
         FuzzyGate(out fuzzyDash, out fuzzySwing);
+        studioEventEmitter = gameObject.GetComponent<StudioEventEmitter>();
     }
     private void Update()
     {
@@ -171,9 +178,10 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
     {
         SetState(new PorquinDeathState(this));
     }
-    public void DestroyPorquin(GameObject porquin)
+    public void DestroyPorquin(StudioEventEmitter porquin, GameObject hpCanvas)
     {
         Destroy(porquin);
+        Destroy(hpCanvas);
     }
     #endregion
     #region Métodos auxiliares de física
@@ -240,7 +248,7 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
     {
         hp -= damage;
         playerHit = true;
-        hit.Play();
+        PlayHitEffect();
         FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.porquinBlood,transform.position);
         GameManager.instance.SpawnNumber((int)damage, Color.yellow, transform);
         if (hp <= 0)
@@ -249,6 +257,16 @@ public class PorquinStateMachine : MonoBehaviour, IDamageable
             animator.SetBool("stun", false);
             Die();
         }
+    }
+    void PlayHitEffect()
+    {
+        Vector3 directionToPlayer = PlayerController.instance.transform.position - transform.position;
+        Vector3 vfxDir = directionToPlayer.normalized;
+        Quaternion vfxRotation = Quaternion.LookRotation(vfxDir);
+        VisualEffect hitVFXinstance = Instantiate(hitVFX, hitPos.position, Quaternion.identity);
+        hitVFXinstance.transform.rotation = vfxRotation;
+        hitVFXinstance.Play();
+        hitVFXinstance.transform.SetParent(null);
     }
     #endregion
 }

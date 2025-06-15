@@ -17,7 +17,7 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
     public CapsuleCollider ownCollider;
     public int randomValue, att2Count, hp, basicAtt = 40, swingRate = 100,moveAtt = 40, damage, posture, maxPosture, jumpRate = 60, damage2;
     public float meleeRange, maxRange, swingRange,jumpForce, fireRate, interval;
-    public bool isSecondStage = false, canDoSecondStage = false;
+    public bool isSecondStage = false, canDoSecondStage = false, canRecoverPosture = true;
     public Transform gunFireSpot;
     public GameObject bulletPrefab, armor, bulletPrefabSecondStage;
     public Material secondStageMaterial;
@@ -194,7 +194,7 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
         if (posture < maxPosture)
         {
             time += Time.deltaTime;
-            if (time >= interval)
+            if (time >= interval && canRecoverPosture)
             {
                 posture += 5;
                 time = 0;
@@ -219,20 +219,6 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
         }
         FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.takingDamage, transform.position);
         PlayHitEffect();
-        /*
-        //playerHit = true;
-        if (UIItems.instance.bossCurrentHP <= hp / 2 && !secondStage && UIItems.instance.bossCurrentHP >= 0)
-        {
-            posture = maxPosture + (maxPosture / 4);
-            ownCollider.enabled = false;
-            animator.SetBool("secondStage", true);
-            SetState(new CrabSecondStage(this));
-        }
-        if (UIItems.instance.bossCurrentHP <= 0)
-        {
-            animator.Play("Crab_Death");
-            SetState(new CrabDeath(this));
-        }*/
     }
     public void CameraShakeKro()
     {

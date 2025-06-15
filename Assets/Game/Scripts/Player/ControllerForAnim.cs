@@ -38,4 +38,8 @@ public class ControllerForAnim : MonoBehaviour
     {
         audioMan.PlayAudio(soundId);
     }
+    public void Respawn()
+    {
+        GameManager.instance.Respawn();
+    }
 }

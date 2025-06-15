@@ -127,6 +127,10 @@ public class GameManager : MonoBehaviour
     }
     public void Respawn()
     {
+        Invoke("RespawnDelay", 3f);
+    }
+    void RespawnDelay()
+    {
         UIItems.instance.PlayerIsDead();
         if (UIItems.instance.gearEnd) UIItems.instance.GearLoopAnimation(true);
         if (UIItems.instance.deathAnimationIsOver)
@@ -134,7 +138,6 @@ public class GameManager : MonoBehaviour
             Debug.Log(UIItems.instance.deathAnimationIsOver);
             UIItems.instance.RespawnButton();
         }
-        PlayerController.instance.ForceIddle();
     }
     public void Rest()
     {

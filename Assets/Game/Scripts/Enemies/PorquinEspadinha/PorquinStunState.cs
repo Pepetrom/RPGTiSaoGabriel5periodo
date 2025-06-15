@@ -32,7 +32,6 @@ public class PorquinStunState : IPorquinStateMachine
         {
             controller.agent.enabled = false;
             controller.rb.isKinematic = false;
-            controller.KB(-20);
         }
         else
         {
@@ -50,7 +49,7 @@ public class PorquinStunState : IPorquinStateMachine
             }
             else
             {
-                if(controller.sortedNumber < 0.4)
+                if(controller.sortedNumber < 0.2)
                 {
                     controller.sword.enabled = false;
                     controller.animator.SetBool("isDashing", true);

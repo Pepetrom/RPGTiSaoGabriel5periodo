@@ -382,9 +382,11 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("MOrreu");
         animator.SetTrigger("Death");
-       Pickable temp = Instantiate(soulPickable, transform.position, transform.rotation).GetComponent<Pickable>();
+        Pickable temp = Instantiate(soulPickable, transform.position, transform.rotation).GetComponent<Pickable>();
         temp.value =(int)(GameManager.instance.skillPoints / 2);
         GameManager.instance.Score(-temp.value);
+        StopAllActionsDeath();
+        GameManager.instance.Respawn();
     }
     public void ForceIddle()
     {
@@ -404,6 +406,20 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("Walk", false);
         animator.SetBool("Run", false);
         animator.SetTrigger("ForceIddle");
+    }
+    public void StopAllActionsDeath()
+    {
+        masterCanDo = false;
+        canMove = false;
+        canGiveInput = false;
+        comboCounter = 1;
+        isAttacking = false;
+        swordTrail.emitting = false;
+        atackCollider.gameObject.SetActive(false);
+
+        animator.SetBool("Atacking", false);
+        animator.SetBool("Walk", false);
+        animator.SetBool("Run", false);
     }
     public void ResetLesserActions(){
         canDoAtack = true;

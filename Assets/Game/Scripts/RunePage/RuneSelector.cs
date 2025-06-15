@@ -107,7 +107,11 @@ public class RuneSelector : MonoBehaviour
     int whichMudavel = 0;
     public void PurchaseRune(int which)
     {
-        if (GameManager.instance.skillPoints < runeValue[which - 1]) return;
+        if (GameManager.instance.skillPoints < runeValue[which - 1])
+        {
+            FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.noMoney, PlayerController.instance.transform.position);
+            return;
+        }
         whichMudavel = 0;
         switch (which)
         {
@@ -115,16 +119,19 @@ public class RuneSelector : MonoBehaviour
                 if (PlayerController.instance.strength >= totalUpgrades) return;
                 whichMudavel = (atributesPerSkill * PlayerController.instance.strength) + which;
                 PlayerController.instance.AddAtribute(Atribute.strength);
+                FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.buyRune, PlayerController.instance.transform.position);
                 break;
             case 2:
                 if (PlayerController.instance.agility >= totalUpgrades) return;
                 whichMudavel = (atributesPerSkill * PlayerController.instance.agility) + which;
                 PlayerController.instance.AddAtribute(Atribute.agility);
+                FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.buyRune, PlayerController.instance.transform.position);
                 break;
             case 3:
                 if (PlayerController.instance.constitution >= totalUpgrades) return;
                 whichMudavel = (atributesPerSkill * PlayerController.instance.constitution) + which;
                 PlayerController.instance.AddAtribute(Atribute.constitution);
+                FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.buyRune, PlayerController.instance.transform.position);
                 break;
         }
         Debug.Log("tentei comprar a runa: " + whichMudavel);

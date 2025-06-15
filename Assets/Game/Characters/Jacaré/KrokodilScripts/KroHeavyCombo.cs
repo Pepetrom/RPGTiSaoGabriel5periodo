@@ -10,6 +10,7 @@ public class KroHeavyCombo : IKrokodil
     public void OnEnter()
     {
         controller.damage = 35;
+        controller.canRecoverPosture = false;
     }
 
     public void OnExit()
@@ -17,6 +18,9 @@ public class KroHeavyCombo : IKrokodil
         controller.antecipation = false;
         controller.end = false;
         controller.combo = false;
+        controller.activate = false;
+        controller.action = false;
+        controller.canRecoverPosture = true;
     }
 
     public void OnUpdate()

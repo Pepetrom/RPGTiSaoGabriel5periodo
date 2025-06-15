@@ -91,7 +91,6 @@ public class UIItems : MonoBehaviour
     }
     public void PlayerIsDead()
     {
-        PlayerController.instance.StopAllActions();
         DeathPanel.gameObject.SetActive(true);
         Invoke("GarantiaRespawnButton", 3);
     }
@@ -117,6 +116,7 @@ public class UIItems : MonoBehaviour
         GameManager.instance.Rest();
         GameManager.instance.ResetPositionPlayer();
         PlayerController.instance.ForceIddle();
+        PlayerController.instance.ResetAllActions();
     }
     public void GearLoopAnimation(bool state)
     {

@@ -22,6 +22,7 @@ public class PorquinDeathState : IPorquinStateMachine
     {
         controller.GetComponent<Collider>().enabled = false;
         GameManager.instance.Score(100);
+        controller.DestroyPorquin(controller.studioEventEmitter, controller.hpCanvas);
     }
 
     public void OnExit()
@@ -36,11 +37,6 @@ public class PorquinDeathState : IPorquinStateMachine
             if (QuestManager.instance.canDropMedicine)
             {
                 QuestManager.instance.DropMedicine();
-                controller.DestroyPorquin(controller.gameObject);
-            }
-            else
-            {
-                controller.DestroyPorquin(controller.gameObject);
             }
            
         }

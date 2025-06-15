@@ -8,12 +8,15 @@ public class Water : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-           GameManager.instance.isOnWater = true;
+            PlayerController.instance.Die();
         }
     }
-    private void Update()
+    /*private void Update()
     {
         if(GameManager.instance.isOnWater)
-            GameManager.instance.Respawn();
-    }
+        {
+            //GameManager.instance.Respawn();
+            PlayerController.instance.Die();
+        }
+    }*/
 }

@@ -9,6 +9,7 @@ public class KroComboGun : IKrokodil
 
     public void OnEnter()
     {
+        controller.canRecoverPosture = false;
         controller.damage = 30;
         controller.damage2 = 20;
         controller.action2 = false;
@@ -24,6 +25,7 @@ public class KroComboGun : IKrokodil
         controller.action = false;
         controller.action2 = false;
         controller.hashitted = false;
+        controller.canRecoverPosture = true;
     }
 
     public void OnUpdate()

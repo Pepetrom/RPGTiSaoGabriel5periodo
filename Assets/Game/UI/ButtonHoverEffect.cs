@@ -18,7 +18,8 @@ public class ButtonHoverEffect : MonoBehaviour, IPointerEnterHandler, IPointerEx
     public Color pressedTextColor = Color.white; // Cor do texto ao pressionar
     public Color selectedTextColor = Color.white; // Cor do texto quando selecionado
 
-    private bool isSelected = false; 
+    private bool isSelected = false;
+    public bool isRune = false;
     void Start()
     {
         buttonImage.color = normalButtonColor;
@@ -29,6 +30,7 @@ public class ButtonHoverEffect : MonoBehaviour, IPointerEnterHandler, IPointerEx
     {
         buttonImage.color = hoverButtonColor;
         buttonText.color = hoverTextColor;
+        FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.hoverButton, PlayerController.instance.transform.position);
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -41,6 +43,8 @@ public class ButtonHoverEffect : MonoBehaviour, IPointerEnterHandler, IPointerEx
     {
         buttonImage.color = normalButtonColor;
         buttonText.color = normalTextColor;
+        if (!isRune)
+            FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.pressedButton, PlayerController.instance.transform.position);
     }
 
     public void OnPointerUp(PointerEventData eventData)

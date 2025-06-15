@@ -85,7 +85,7 @@ public class HPBar : MonoBehaviour
         if (currentHP <= 0)
         {
             StopCoroutine(InvulnableTime());
-            GameManager.instance.Respawn();
+            Die(); 
         }
     }
     public void TakeDamage(float damage, Transform damageFont)
@@ -119,7 +119,6 @@ public class HPBar : MonoBehaviour
         FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.hoffDeath, PlayerController.instance.transform.position);
         UIItems.instance.ShowBOSSHUD(false);
         StopCoroutine(InvulnableTime());
-        GameManager.instance.Respawn();
     }
     public IEnumerator InvulnableTime()
     {
