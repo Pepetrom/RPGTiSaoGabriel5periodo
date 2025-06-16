@@ -12,34 +12,21 @@ public class TurtleStunState : ITurtleStateMachine
     }
     public void OnEnter()
     {
-        controller.animator.SetBool("Stun", true);
-        controller.playerHit = true;
+        controller.animator.SetTrigger("stun");
+        controller.ownCollider.enabled = false;
     }
 
     public void OnExit()
     {
-        controller.active = false;
-        controller.attIdle = false;
+        controller.end = false;
         controller.playerHit = false;
-        controller.animator.SetBool("Stun", false);
+        controller.ownCollider.enabled = true;
     }
 
     public void OnUpdate()
     {
-        if (controller.active)
+        if (controller.end)
         {
-            controller.agent.enabled = false;
-            controller.rb.isKinematic = false;
-            controller.KB(-70);
-        }
-        else
-        {
-            controller.agent.enabled = true;
-            controller.rb.isKinematic = true;
-        }
-        if (controller.attIdle)
-        {
-            controller.animator.SetBool("Stun", false);
             controller.SetState(new TurtleCombatIdleState(controller));
         }
         

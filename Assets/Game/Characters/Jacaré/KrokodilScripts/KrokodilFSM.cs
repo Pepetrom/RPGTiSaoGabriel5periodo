@@ -13,12 +13,12 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
     [HideInInspector]public bool antecipation = false, end = false, combo = false, action = false, action2 = false, action3 = false, activate = false, hashitted = false, eventS = false, bigWall = false;
     [Header("COMBAT")]
     public string bossName;
-    public Collider clawCollider, gunCollider, footCollider, twoHandedCollider, bodyCollider;
+    public Collider clawCollider, gunCollider, footCollider, twoHandedCollider;
     public CapsuleCollider ownCollider;
     public int randomValue, att2Count, hp, basicAtt = 40, swingRate = 100,moveAtt = 40, damage, posture, maxPosture, jumpRate = 60, damage2;
     public float meleeRange, maxRange, swingRange,jumpForce, fireRate, interval;
     public bool isSecondStage = false, canDoSecondStage = false, canRecoverPosture = true;
-    public Transform gunFireSpot;
+    public Transform gunFireSpot, hitPos;
     public GameObject bulletPrefab, armor, bulletPrefabSecondStage;
     public Material secondStageMaterial;
     [Header("VFX")]
@@ -247,8 +247,10 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
         Vector3 directionToPlayer = PlayerController.instance.transform.position - transform.position;
         Vector3 vfxDir = directionToPlayer.normalized;
         Quaternion vfxRotation = Quaternion.LookRotation(vfxDir);
-        hitVFX.transform.rotation = vfxRotation;
-        hitVFX.Play();
+        VisualEffect hitVFXinstance = Instantiate(hitVFX, hitPos.position, Quaternion.identity);
+        hitVFXinstance.transform.rotation = vfxRotation;
+        hitVFXinstance.Play();
+        hitVFXinstance.transform.SetParent(null);
     }
     void SecondStageAnimTimes()
     {

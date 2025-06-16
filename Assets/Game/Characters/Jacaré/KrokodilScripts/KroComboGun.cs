@@ -41,12 +41,10 @@ public class KroComboGun : IKrokodil
         if (controller.action)
         {
             controller.gunCollider.enabled = true;
-            controller.bodyCollider.enabled = true;
         }
         else
         {
             controller.gunCollider.enabled = false;
-            controller.bodyCollider.enabled = false;
         }
         if (controller.action2)
         {

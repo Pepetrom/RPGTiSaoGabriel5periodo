@@ -12,16 +12,17 @@ public class TurtleAtt2State : ITurtleStateMachine
     public void OnEnter()
     {
         controller.damage = 25;
-        controller.animator.SetBool("Attack2", true);
+        controller.attRate -= 0.25f;
         controller.rb.isKinematic = false;
     }
 
     public void OnExit()
     {
-        controller.impulse = false;
-        controller.attIdle = false;
-        controller.combo = false;
+        controller.playerHit = false;
         controller.antecipation = false;
+        controller.active = false;
+        controller.end = false;
+        controller.combo = false;
         controller.hashitted = false;
     }
 
@@ -30,7 +31,6 @@ public class TurtleAtt2State : ITurtleStateMachine
         if (controller.playerHit)
         {
             controller.SetState(new TurtleStunState(controller));
-            controller.playerHit = false;
             return;
         }
         if (!controller.antecipation)
@@ -39,14 +39,14 @@ public class TurtleAtt2State : ITurtleStateMachine
         }
         if (controller.active)
         {
-            controller.leftHand.gameObject.SetActive(true);
+            controller.leftHand.enabled = true;
             controller.rb.isKinematic = false;
             controller.agent.enabled = false;
             controller.KB(30);
         }
         else
         {
-            controller.leftHand.gameObject.SetActive(false);
+            controller.leftHand.enabled = false;
             controller.rb.isKinematic = true;
             controller.agent.enabled = true;
         }
@@ -55,18 +55,18 @@ public class TurtleAtt2State : ITurtleStateMachine
             if (controller.TargetDir().magnitude <= controller.meleeRange + 6)
             {
                 controller.combed = true;
-                controller.animator.SetBool("att2att3", true);
+                controller.animator.SetTrigger("att3");
                 controller.SetState(new TurtleAtt3State(controller));
             }
             else
             {
-                controller.animator.SetBool("Attack2", false);
+                controller.animator.SetBool("att2", false);
                 controller.SetState(new TurtleCombatIdleState(controller));
             }
         }
-        if (controller.attIdle)
+        if (controller.end)
         {
-            controller.animator.SetBool("Attack2", false);
+            controller.animator.SetBool("att2", false);
             controller.SetState(new TurtleCombatIdleState(controller));
         }
     }

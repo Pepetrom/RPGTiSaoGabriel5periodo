@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
     public float invencibilityTime;
     public bool canTakeDamage = true;
     public Transform damageFont;
+    public Collider ownCollider;
     [Header("Actions------------------")]
     public bool[] canDoAction = new bool[4];
     public IAction[] actions = new IAction[4];
@@ -103,6 +104,7 @@ public class PlayerController : MonoBehaviour
         cameraAlignValue = cameraAlignValue.normalized;
         swordTrail.emitting = false;
         InitialActions();
+        ownCollider = GetComponent<CapsuleCollider>();
     }
     void InitialActions()
     {
@@ -386,6 +388,7 @@ public class PlayerController : MonoBehaviour
         temp.value =(int)(GameManager.instance.skillPoints / 2);
         GameManager.instance.Score(-temp.value);
         StopAllActionsDeath();
+        ownCollider.enabled = false;
         GameManager.instance.Respawn();
     }
     public void ForceIddle()

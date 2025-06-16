@@ -5,7 +5,6 @@ using UnityEngine;
 public class TurtleCannonState : ITurtleStateMachine
 {
     TurtleStateMachine controller;
-    //private bool hasFired = false;
 
     public TurtleCannonState(TurtleStateMachine controller)
     {
@@ -14,20 +13,15 @@ public class TurtleCannonState : ITurtleStateMachine
 
     public void OnEnter()
     {
-        //hasFired = false;
-        controller.animator.SetBool("Cannon", true);
-        controller.animator.SetBool("IsWalking", false);
+        controller.animator.SetTrigger("cannon");
         controller.agent.enabled = false;
         controller.rb.isKinematic = false;
     }
 
     public void OnExit()
     {
-        controller.attIdle = false;
-        controller.combo = false;
+        controller.end = false;
         controller.antecipation = false;
-        controller.animator.SetBool("Cannonatt3", false);
-        controller.cannonFire = false;
         controller.agent.enabled = true;
         controller.rb.isKinematic = true;
     }
@@ -38,15 +32,9 @@ public class TurtleCannonState : ITurtleStateMachine
         {
             controller.RotateTowardsPlayer(10);
         }
-        if (!controller.antecipation && controller.TargetDir().magnitude < controller.minCannonRange)
-        {
-            controller.animator.SetBool("Cannonatt3", true);
-            controller.SetState(new TurtleAtt3State(controller));
-        }
-        if (controller.attIdle)
+        if (controller.end)
         {
             controller.SetState(new TurtleCombatIdleState(controller));
-            controller.animator.SetBool("Cannon", false);
         }
     }
 }

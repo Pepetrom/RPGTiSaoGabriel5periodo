@@ -17,7 +17,6 @@ public class KroHeavyCombo : IKrokodil
     {
         controller.antecipation = false;
         controller.end = false;
-        controller.combo = false;
         controller.activate = false;
         controller.action = false;
         controller.canRecoverPosture = true;
@@ -44,7 +43,7 @@ public class KroHeavyCombo : IKrokodil
 
         if (controller.end)
         {
-            controller.SetState(new KroAttController(controller));
+            controller.SetState(new KroIdle(controller));
         }
     }
 }

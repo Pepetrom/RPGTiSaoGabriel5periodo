@@ -11,42 +11,41 @@ public class TurtleAtt3State : ITurtleStateMachine
     }
     public void OnEnter()
     {
-        controller.damage = 45;
-        controller.animator.SetBool("Attack3", true);
+        controller.damage = 35;
         controller.rb.isKinematic = false;
     }
 
     public void OnExit()
     {
-        controller.impulse = false;
-        controller.attIdle = false;
+        controller.active = false;
+        controller.end = false;
         controller.antecipation = false;
         controller.hashitted = false;
     }
 
     public void OnUpdate()
     {
-        if (controller.active)
-        {
-            controller.rightHand.gameObject.SetActive(true);
-            controller.rb.isKinematic = false;
-            controller.agent.enabled = false;
-            controller.KB(60);
-        }
-        else
-        {
-            controller.rightHand.gameObject.SetActive(false);
-            controller.rb.isKinematic = true;
-            controller.agent.enabled = true;
-        }
         if (!controller.antecipation)
         {
             controller.RotateTowardsPlayer(8);
         }
-        if (controller.attIdle)
+        if (controller.active)
+        {
+            controller.rightHand.enabled = true;
+            controller.rb.isKinematic = false;
+            controller.agent.enabled = false;
+            controller.KB(40);
+        }
+        else
+        {
+            controller.rightHand.enabled = false;
+            controller.leftHand.enabled = false;
+            controller.rb.isKinematic = true;
+            controller.agent.enabled = true;
+        }
+        if (controller.end)
         {
             controller.SetState(new TurtleCombatIdleState(controller));
-            controller.animator.SetBool("Attack3", false);
         }
     }
 }

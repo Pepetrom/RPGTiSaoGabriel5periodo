@@ -13,26 +13,18 @@ public class TurtleCombatIdleState : ITurtleStateMachine
 
     public void OnEnter()
     {
-        #region bools
-        controller.animator.SetBool("Attack1", false);
-        controller.animator.SetBool("Attack2", false);
-        controller.animator.SetBool("att1att2", false);
-        controller.animator.SetBool("att2att3", false);
-        controller.animator.SetBool("Attack3", false);
-        controller.animator.SetBool("Cannonatt3", false);
-        controller.animator.SetBool("Cannon",false);
-        #endregion
-        controller.leftHand.gameObject.SetActive(false);
-        controller.rightHand.gameObject.SetActive(false);
-        controller.combed = false;
+        controller.animator.SetBool("isRunning", false);
+        controller.animator.SetBool("att1", false);
+        controller.animator.SetBool("att2", false);
+        controller.animator.SetBool("isAttack", false);
         controller.SortNumber();
-        controller.rb.isKinematic = true;
-        controller.agent.angularSpeed = 0f;
-        controller.agent.speed = 0f;
+        controller.rightHand.enabled = false;
+        controller.leftHand.enabled = false;
     }
 
     public void OnExit()
     {
+
     }
 
     public void OnUpdate()
@@ -40,7 +32,6 @@ public class TurtleCombatIdleState : ITurtleStateMachine
         if (!controller.isInCombat)
         {
             controller.isInCombat = true;
-            controller.animator.SetBool("patrolling", true);
             controller.SetState(new TurtlePatrolState(controller));
             return;
         }
@@ -49,69 +40,39 @@ public class TurtleCombatIdleState : ITurtleStateMachine
             controller.SetState(new TurtleStunState(controller));
             controller.playerHit = false;
         }
-        if(controller.TargetDir().magnitude >= controller.meleeRange && controller.TargetDir().magnitude < controller.minCannonRange)
+        if(controller.TargetDir().magnitude <= controller.meleeRange)
         {
-            controller.animator.SetBool("IsWalking", true);
+            controller.animator.SetBool("isAttack", true);
+            controller.SetState(new TurtleAttController(controller));
+        }
+        else if(controller.TargetDir().magnitude < controller.minCannonRange)
+        {
+            controller.animator.SetBool("isWalking", true);
             controller.SetState(new TurtleWalkState(controller));
         }
         else if (controller.TargetDir().magnitude >= controller.minCannonRange)
         {
-            if(controller.fuzzyCannon < controller.maxCannonRange)
+            if (controller.fuzzyCannon < controller.maxCannonRange)
             {
                 controller.SetState(new TurtleCannonState(controller));
             }
             else if (controller.fuzzyCannon > controller.maxCannonRange + 4)
             {
+                controller.animator.SetBool("isRunning", true);
                 controller.SetState(new TurtleRunState(controller));
             }
             else
             {
                 a = Random.Range(0.0f, 1.0f);
-                fuzzificado = controller.FuzzyLogic(controller.fuzzyCannon, 15, 40);
-                if(a > fuzzificado)
+                fuzzificado = controller.FuzzyLogic(controller.fuzzyCannon, 16, 36);
+                if (a > fuzzificado)
                 {
                     controller.SetState(new TurtleCannonState(controller));
                 }
                 else
                 {
+                    controller.animator.SetBool("isRunning", true);
                     controller.SetState(new TurtleRunState(controller));
-                }
-            }
-        }
-        else if(controller.TargetDir().magnitude > controller.patrolDistance)
-        {
-            controller.SetState(new TurtlePatrolState(controller));
-        }
-        else
-        {
-            if (controller.attack2Counter >= 2)
-            {
-                controller.attack2Counter = 0;
-                controller.animator.SetBool("Attack1", true);
-                controller.SetState(new TurtleAtt1State(controller));
-            }
-            else
-            {
-                if (controller.sortedNumber <= 0.4f)
-                {
-                    controller.lastAttack = "Attack1";
-                    controller.attack2Counter = 0; 
-                    controller.SetState(new TurtleAtt1State(controller));
-                }
-                else if (controller.sortedNumber > 0.4f)
-                {
-                    if (controller.lastAttack == "Attack2")
-                    {
-                        controller.attack2Counter++;
-                    }
-                    else
-                    {
-                        controller.attack2Counter = 1;
-                    }
-
-                    controller.lastAttack = "Attack2";
-                    controller.animator.SetBool("Attack2", true);
-                    controller.SetState(new TurtleAtt2State(controller));
                 }
             }
         }

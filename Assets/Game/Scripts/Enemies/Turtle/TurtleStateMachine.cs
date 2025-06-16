@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using UnityEngine.VFX;
 
 public class TurtleStateMachine : MonoBehaviour, IDamageable
 {
@@ -15,6 +16,8 @@ public class TurtleStateMachine : MonoBehaviour, IDamageable
     public NavMeshAgent agent;
     public GameObject player;
     public Enemy enemy;
+    public Collider ownCollider;
+    public GameObject hpCanvas;
 
     [Header("Cannon")]
     public float maxCannonRange;
@@ -44,7 +47,7 @@ public class TurtleStateMachine : MonoBehaviour, IDamageable
     public ParticleSystem hit;
 
     //bools de ataques
-    [HideInInspector] public bool attIdle;
+    [HideInInspector] public bool end;
     [HideInInspector] public bool combo;
     [HideInInspector] public bool antecipation;
     [HideInInspector] public bool impulse;
@@ -54,9 +57,8 @@ public class TurtleStateMachine : MonoBehaviour, IDamageable
     [HideInInspector] public Rigidbody rb;
 
     [Header("AttacksControllers")]
-    public string lastAttack = "";
-    public int attack2Counter = 0;
-    public TurtleHands rightHand, leftHand;
+    public float attRate;
+    public Collider rightHand, leftHand;
     public float damage;
     public bool hashitted = false;
     public bool isInCombat = false;
@@ -72,6 +74,10 @@ public class TurtleStateMachine : MonoBehaviour, IDamageable
 
     //fuzzy 
     public int fuzzyCannon;
+
+    //vfx
+    public VisualEffect hitVFX, bloodVFX;
+    public Transform hitPos;
     #endregion
     void Start()
     {
@@ -94,6 +100,8 @@ public class TurtleStateMachine : MonoBehaviour, IDamageable
                 patrolPoints[i] = patrolPoint.transform;
             }
         }
+        leftHand.enabled = false;
+        rightHand.enabled = false;
         SetState(new TurtlePatrolState(this));
         FuzzyGate(out fuzzyCannon);
         //Debug.Log(fuzzyCannon);
@@ -131,7 +139,7 @@ public class TurtleStateMachine : MonoBehaviour, IDamageable
     #region ActionEvents
     public void AttackIdle()
     {
-        attIdle = true;
+        end = true;
     }
     public void Combo()
     {
@@ -158,13 +166,9 @@ public class TurtleStateMachine : MonoBehaviour, IDamageable
         active = false;
     }
     #endregion
-    public void DestroyTurtle(GameObject enemy)
+    public void DestroyTurtle(GameObject hpCanvas)
     {
-        Destroy(enemy);
-    }
-    public void Die()
-    {
-        SetState(new TurtleDeathState(this));
+        Destroy(hpCanvas);
     }
     #endregion
 
@@ -227,13 +231,27 @@ public class TurtleStateMachine : MonoBehaviour, IDamageable
     {
         hp -= damage;
         playerHit = true;
-        hit.Play();
+        PlayHitEffect();
         GameManager.instance.SpawnNumber((int)damage, Color.yellow, transform);
         if(hp <= 0)
         {
-            animator.SetBool("Dead", true);
-            Die();
+            animator.Play("Death");
+            SetState(new TurtleDeathState(this));
         }
+    }
+    void PlayHitEffect()
+    {
+        Vector3 directionToPlayer = PlayerController.instance.transform.position - transform.position;
+        Vector3 vfxDir = directionToPlayer.normalized;
+        Quaternion vfxRotation = Quaternion.LookRotation(vfxDir);
+        VisualEffect hitVFXinstance = Instantiate(hitVFX, hitPos.position, Quaternion.identity);
+        VisualEffect bloodVFXinstance = Instantiate(bloodVFX, hitPos.position, Quaternion.identity);
+        hitVFXinstance.transform.rotation = vfxRotation;
+        bloodVFXinstance.transform.rotation = vfxRotation;
+        hitVFXinstance.Play();
+        bloodVFXinstance.Play();
+        hitVFXinstance.transform.SetParent(null);
+        bloodVFXinstance.transform.SetParent(null);
     }
     #endregion
 }

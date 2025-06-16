@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public int lifeTotal;
+    /*public int lifeTotal;
     int lifeActual;
     public Slider hpbar;
     public float lerpSpeed;
@@ -41,5 +41,5 @@ public class EnemyHealth : MonoBehaviour
     public void UpdateHPBar()
     {
         hpbar.value = Mathf.Lerp(hpbar.value, lifeActual, lerpSpeed);
-    }
+    }*/
 }

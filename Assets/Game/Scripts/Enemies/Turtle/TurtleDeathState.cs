@@ -5,18 +5,15 @@ using UnityEngine;
 public class TurtleDeathState : ITurtleStateMachine
 {
     TurtleStateMachine controller;
-    private Material[] turtleMaterials;
-    bool finished;
     public TurtleDeathState(TurtleStateMachine controller)
     {
         this.controller = controller;
-        this.controller = controller;
-        turtleMaterials = new Material[controller.turtleRenderers.Length];
-        for (int i = 0; i < controller.turtleRenderers.Length; i++)
-        {
-            turtleMaterials[i] = controller.turtleRenderers[i].material;
-        }
         GameManager.instance.RemoveEnemy(controller.gameObject);
+        Vector3 dirToPlayer = PlayerController.instance.transform.position - controller.transform.position;
+        Vector3 newDir = dirToPlayer.normalized;
+        Quaternion bodyRotation = Quaternion.LookRotation(newDir);
+        controller.transform.rotation = bodyRotation;
+        controller.DestroyTurtle(controller.hpCanvas);
     }
     public void OnEnter()
     {
@@ -26,7 +23,7 @@ public class TurtleDeathState : ITurtleStateMachine
 
     public void OnExit()
     {
-        controller.attIdle = false;
+        controller.end = false;
         controller.active = false;
     }
 
@@ -36,32 +33,12 @@ public class TurtleDeathState : ITurtleStateMachine
         {
             controller.agent.enabled = false;
             controller.rb.isKinematic = false;
-            controller.KB(40);
+            controller.KB(-20);
         }
         else
         {
             controller.agent.enabled = true;
             controller.rb.isKinematic = true;
         }
-
-        if (controller.attIdle)
-        {
-            controller.StartCoroutine(DissolveOverTime(2f));
-        }
-    }
-    private IEnumerator DissolveOverTime(float duration)
-    {
-        float elapsedTime = 0f;
-        while (elapsedTime < duration)
-        {
-            elapsedTime += Time.deltaTime;
-            float dissolveValue = Mathf.Lerp(0, 1, elapsedTime / duration); // Alterar os valores conforme necessário
-            for (int i = 0; i < turtleMaterials.Length; i++)
-            {
-                turtleMaterials[i].SetFloat("_Dissolve", dissolveValue); // Assume que a propriedade dissolve no shader é chamada _Dissolve
-            }
-            yield return null;
-        }
-        controller.DestroyTurtle(controller.gameObject);
     }
 }

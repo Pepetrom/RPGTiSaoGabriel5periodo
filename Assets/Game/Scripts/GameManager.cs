@@ -132,6 +132,7 @@ public class GameManager : MonoBehaviour
     void RespawnDelay()
     {
         UIItems.instance.PlayerIsDead();
+        PlayerController.instance.ownCollider.enabled = true;
         if (UIItems.instance.gearEnd) UIItems.instance.GearLoopAnimation(true);
         if (UIItems.instance.deathAnimationIsOver)
         {

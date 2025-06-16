@@ -11,14 +11,12 @@ public class TurtleWalkState : ITurtleStateMachine
     }
     public void OnEnter()
     {
-        controller.SortNumber();
-        controller.rb.isKinematic = true;
         controller.agent.speed = 5;
     }
 
     public void OnExit()
     {
-
+        controller.agent.speed = 0;
     }
 
     public void OnUpdate()
@@ -33,8 +31,12 @@ public class TurtleWalkState : ITurtleStateMachine
         }
         if(controller.TargetDir().magnitude <= controller.meleeRange)
         {
-            controller.agent.speed = 0;
-            controller.animator.SetBool("IsWalking", false);
+            controller.animator.SetBool("isWalking", false);
+            controller.SetState(new TurtleCombatIdleState(controller));
+        }
+        else if(controller.TargetDir().magnitude > controller.minCannonRange)
+        {
+            controller.animator.SetBool("isWalking", false);
             controller.SetState(new TurtleCombatIdleState(controller));
         }
     }

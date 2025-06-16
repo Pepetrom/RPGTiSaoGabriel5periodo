@@ -9,12 +9,8 @@ public class TurtleHands : MonoBehaviour
     {
         if (other.CompareTag("Player") && !turtle.hashitted)
         {
-            //turtle.audioMan.PlayAudio(7);
             HPBar.instance.TakeDamage(turtle.damage,turtle.transform);
-            turtle.rightHand.gameObject.SetActive(false);
-            turtle.leftHand.gameObject.SetActive(false);
             turtle.hashitted = true;
-            //Debug.Log("Colidiu");
         }
     }
 }
