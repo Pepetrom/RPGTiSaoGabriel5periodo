@@ -30,7 +30,7 @@ public class ButtonHoverEffect : MonoBehaviour, IPointerEnterHandler, IPointerEx
     {
         buttonImage.color = hoverButtonColor;
         buttonText.color = hoverTextColor;
-        FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.hoverButton, PlayerController.instance.transform.position);
+        if(FMODAudioManager.instance) FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.hoverButton, PlayerController.instance.transform.position);
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -43,7 +43,7 @@ public class ButtonHoverEffect : MonoBehaviour, IPointerEnterHandler, IPointerEx
     {
         buttonImage.color = normalButtonColor;
         buttonText.color = normalTextColor;
-        if (!isRune)
+        if (!isRune && FMODAudioManager.instance)
             FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.pressedButton, PlayerController.instance.transform.position);
     }
 

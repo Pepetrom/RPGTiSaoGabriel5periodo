@@ -8,6 +8,7 @@ public class SaveLoad : MonoBehaviour
     public static SaveLoad instance;
     public string path;
     public SaveData saveData;
+    public GameObject continueButton;
 
     private void Awake()
     {
@@ -48,6 +49,7 @@ public class SaveLoad : MonoBehaviour
             MakeSureTheSaveFileIsUpToDateAsInContent();
             Debug.Log(json);
             Debug.LogWarning("Arquivo de save encontrado.");
+            if(continueButton != null) continueButton.SetActive(true);
         }
         else
         {
