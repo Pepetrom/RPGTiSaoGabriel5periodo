@@ -7,6 +7,7 @@ public class CutsceneManager : MonoBehaviour
     public static CutsceneManager instance;
     public GameObject hoff, player, canvas;
     public Camera[] cameras;
+    public Animator croc;
     private void Awake()
     {
         instance = this;
@@ -43,7 +44,14 @@ public class CutsceneManager : MonoBehaviour
                 cameras[2].gameObject.SetActive(false);
                 cameras[3].gameObject.SetActive(true);
                 break;
+            case 3:
+                cameras[3].gameObject.SetActive(false);
+                cameras[4].gameObject.SetActive(true);
+                break;
         }
     }
-
+    public void StartCrocAnim()
+    {
+        croc.SetTrigger("croc");
+    }
 }

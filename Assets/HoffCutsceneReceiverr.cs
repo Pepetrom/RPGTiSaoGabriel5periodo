@@ -8,4 +8,8 @@ public class HoffCutsceneReceiverr : MonoBehaviour
     {
         CutsceneManager.instance.ChangeCamera(index);
     }
+    public void StartCrocAnim()
+    {
+        CutsceneManager.instance.StartCrocAnim();
+    }
 }
