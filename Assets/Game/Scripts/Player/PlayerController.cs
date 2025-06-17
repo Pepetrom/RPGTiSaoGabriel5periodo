@@ -87,6 +87,7 @@ public class PlayerController : MonoBehaviour
     RaycastHit hit;
     //SoulDrop
     public GameObject soulPickable;
+    public bool playerIsDead = false;
     //Bools of cheat
     public bool imortal;
     //------------------------------------------------------------------------------------------------------------------------------------
@@ -382,9 +383,10 @@ public class PlayerController : MonoBehaviour
     }
     public void Die()
     {
+        playerIsDead = true;
         Debug.Log("MOrreu");
         animator.SetTrigger("Death");
-        Pickable temp = Instantiate(soulPickable, transform.position, transform.rotation).GetComponent<Pickable>();
+        PickablePlayerSoul temp = Instantiate(soulPickable, transform.position, transform.rotation).GetComponent<PickablePlayerSoul>();
         temp.value =(int)(GameManager.instance.skillPoints / 2);
         GameManager.instance.Score(-temp.value);
         StopAllActionsDeath();
