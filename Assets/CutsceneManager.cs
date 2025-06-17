@@ -7,7 +7,7 @@ public class CutsceneManager : MonoBehaviour
     public static CutsceneManager instance;
     public GameObject hoff, player, canvas;
     public Camera[] cameras;
-    public Animator croc;
+    public Animator croc, porquin;
     private void Awake()
     {
         instance = this;
@@ -53,5 +53,9 @@ public class CutsceneManager : MonoBehaviour
     public void StartCrocAnim()
     {
         croc.SetTrigger("croc");
+    }
+    public void StartPorquin()
+    {
+        porquin.SetTrigger("porquin");
     }
 }

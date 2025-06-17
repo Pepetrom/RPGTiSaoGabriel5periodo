@@ -12,4 +12,8 @@ public class HoffCutsceneReceiverr : MonoBehaviour
     {
         CutsceneManager.instance.StartCrocAnim();
     }
+    public void StartPorquin()
+    {
+        CutsceneManager.instance.StartPorquin();
+    }
 }
