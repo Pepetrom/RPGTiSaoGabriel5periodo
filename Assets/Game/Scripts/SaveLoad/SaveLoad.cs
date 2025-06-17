@@ -26,6 +26,17 @@ public class SaveLoad : MonoBehaviour
             Destroy(this);
         }
     }
+    public void ShowContinuar(GameObject continueButton)
+    {
+        if (File.Exists(path))
+        {
+            if (continueButton != null) continueButton.SetActive(true);
+        }
+        else
+        {
+            if (continueButton != null) continueButton.SetActive(false);
+        }
+    }
     public void ResetSave()
     {
         saveData = new SaveData();
@@ -33,6 +44,7 @@ public class SaveLoad : MonoBehaviour
         string json = JsonUtility.ToJson(saveData);
         File.WriteAllText(path, json);
         Debug.LogWarning("Progresso apagado.");
+        Load();
     }
     public void Save()
     {
@@ -49,7 +61,6 @@ public class SaveLoad : MonoBehaviour
             MakeSureTheSaveFileIsUpToDateAsInContent();
             Debug.Log(json);
             Debug.LogWarning("Arquivo de save encontrado.");
-            if(continueButton != null) continueButton.SetActive(true);
         }
         else
         {

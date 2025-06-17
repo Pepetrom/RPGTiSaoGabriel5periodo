@@ -8,6 +8,7 @@ public class SceneController : MonoBehaviour
     public static SceneController sceneController;
     public GameObject tutorial, pageA, pageB, options, bonfire, pause, changeLog, videoPanel, geral;
     public GameObject runePanel, cheatMenu, commands;
+    public GameObject botaoContinuar;
     private void Awake()
     {
         sceneController = this;
@@ -15,6 +16,7 @@ public class SceneController : MonoBehaviour
     private void Start()
     {
         commands.SetActive(SaveLoad.instance.saveData.player.commandsOpen);
+        SaveLoad.instance.ShowContinuar(botaoContinuar);
     }
 
     private void Update()

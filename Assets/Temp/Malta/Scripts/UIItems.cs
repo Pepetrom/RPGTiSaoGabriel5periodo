@@ -52,6 +52,10 @@ public class UIItems : MonoBehaviour
         score.text = $"{value}";
         scoreInStore.text = $"{value}";
     }
+    public void UpdateScoreQUIStore(float value)
+    {
+        scoreInStore.text = $"{value}";
+    }
     public void ScoreEarned(int value, bool state)
     {
         if (state)

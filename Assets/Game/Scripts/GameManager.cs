@@ -162,9 +162,10 @@ public class GameManager : MonoBehaviour
     {
         skillPoints += amount;
         UIItems.instance.ScoreEarned(amount,false);
-        Invoke("ShowScoreOnUIwithDelay",2.5f);
         SaveLoad.instance.saveData.player.skillPoints = skillPoints;
+        UIItems.instance.UpdateScoreQUIStore(skillPoints);
         SaveLoad.instance.Save();
+        Invoke("ShowScoreOnUIwithDelay",2.5f);
     }
     void ShowScoreOnUIwithDelay()
     {

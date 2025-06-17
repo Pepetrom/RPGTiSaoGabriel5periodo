@@ -13,7 +13,7 @@ public class RuneSelector : MonoBehaviour
     [SerializeField] bool[] runePurchased;
     [SerializeField] int[] runeValue;
     [SerializeField] int[] runeValuePerLevel;
-    [SerializeField] TextMeshProUGUI[] priceTexts;
+    [SerializeField] TextMeshProUGUI[] priceTexts, yourMoney;
     float totalUpgrades = 3;
     int atributesPerSkill;
     int liberados1, liberados2, liberados3;
