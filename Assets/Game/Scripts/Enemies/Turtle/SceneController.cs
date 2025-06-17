@@ -6,9 +6,10 @@ using UnityEngine.SceneManagement;
 public class SceneController : MonoBehaviour
 {
     public static SceneController sceneController;
-    public GameObject tutorial, pageA, pageB, options, bonfire, pause, changeLog, videoPanel, geral;
+    public GameObject tutorial, pageA, pageB, options, bonfire, pause, changeLog, videoPanel, audioPanel, geral, travelPanel;
     public GameObject runePanel, cheatMenu, commands;
     public GameObject botaoContinuar;
+    bool naoPause = false;
     private void Awake()
     {
         sceneController = this;
@@ -23,13 +24,15 @@ public class SceneController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Pause();
-            geral.SetActive(true);
-            if (pause.activeSelf) return;
             OptionsPanel();
             BonfirePanel();
             RunesPanel();
             VideoPanel();
+            AudioPanel();
+            TravelPanel();
+            Pause();
+            geral.SetActive(true);
+            naoPause = false;
         }
         TutorialPanel();
     }
@@ -62,12 +65,11 @@ public class SceneController : MonoBehaviour
     {
         if (pause.activeSelf)
         {
-            Debug.Log("Foi isso");
             pause.SetActive(false);
             PlayerController.instance.ResetAllActions();
             GameManager.instance.UnPause();
         }
-        else if (!bonfire.activeSelf && !options.activeSelf && !pause.activeSelf && !runePanel.activeSelf)
+        else if (!naoPause)
         {
             pause.SetActive(true);
             PlayerController.instance.StopAllActions();
@@ -115,8 +117,9 @@ public class SceneController : MonoBehaviour
         if (options.activeSelf)
         {
             options.SetActive(false);
-            PlayerController.instance.ResetAllActions();
-            GameManager.instance.UnPause();
+            //PlayerController.instance.ResetAllActions();
+            naoPause = true;
+            //GameManager.instance.UnPause();
         }
     }
     void BonfirePanel()
@@ -124,8 +127,12 @@ public class SceneController : MonoBehaviour
         if (bonfire.activeSelf)
         {
             bonfire.SetActive(false);
-            PlayerController.instance.ResetAllActions();
-            GameManager.instance.UnPause();
+            naoPause = true;
+            if (!runePanel.activeSelf && !travelPanel.activeSelf)
+            {
+                PlayerController.instance.ResetAllActions();
+                GameManager.instance.UnPause();
+            }
         }
     }
     public void OpenRunePanel()
@@ -139,8 +146,10 @@ public class SceneController : MonoBehaviour
         if (runePanel.activeSelf)
         {
             runePanel.SetActive(false);
-            PlayerController.instance.ResetAllActions();
-            GameManager.instance.UnPause();
+            bonfire.SetActive(true);
+            naoPause = true;
+            //PlayerController.instance.ResetAllActions();
+            //GameManager.instance.UnPause();
         }
     }
     public void VideoPanel()
@@ -148,8 +157,31 @@ public class SceneController : MonoBehaviour
         if (videoPanel.activeSelf)
         {
             videoPanel.SetActive(false);
-            PlayerController.instance.ResetAllActions();
-            GameManager.instance.UnPause();
+            naoPause = true;
+            //PlayerController.instance.ResetAllActions();
+            //GameManager.instance.UnPause();
+        }
+    }
+    public void AudioPanel()
+    {
+        if (audioPanel.activeSelf)
+        {
+            audioPanel.SetActive(false);
+            naoPause = true;
+            //PlayerController.instance.ResetAllActions();
+            //GameManager.instance.UnPause();
+        }
+    }
+    public void TravelPanel()
+    {
+        Debug.Log("AUI");
+        if (travelPanel.activeSelf)
+        {
+            travelPanel.SetActive(false);
+            bonfire.SetActive(true);
+            naoPause = true;
+            //PlayerController.instance.ResetAllActions();
+            //GameManager.instance.UnPause();
         }
     }
 }
