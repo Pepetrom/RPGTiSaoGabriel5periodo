@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PlayerInteract : MonoBehaviour
 {
     private Interactable collEnter, collExit;
-    public GameObject pressF;
+    public GameObject pressF, selectCircle;
 
     public static PlayerInteract instance;
     private void Awake()
@@ -55,6 +55,15 @@ public class PlayerInteract : MonoBehaviour
     public void FixedUpdatePlayerInteract()
     {
         CheckDistance();
+        if (collEnter)
+        {
+            selectCircle.SetActive(true);
+            selectCircle.transform.position = collEnter.transform.position;
+        }
+        else
+        {
+            selectCircle.SetActive(false);
+        }
     }
 
     void CheckDistance()

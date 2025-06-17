@@ -82,6 +82,7 @@ public class PlayerController : MonoBehaviour
     float closestDistance = Mathf.Infinity;
     Transform closestEnemy = null;
     float enemyDistance = 0;
+    public GameObject targetSelector;
     //Raycast
     Ray ray;
     RaycastHit hit;
@@ -142,6 +143,15 @@ public class PlayerController : MonoBehaviour
         SetDirection();
         cc.Move(moveDirection * Time.fixedDeltaTime);
         PlayerInteract.instance.FixedUpdatePlayerInteract();
+        if (target)
+        {
+            targetSelector.SetActive(true);
+            targetSelector.transform.position = target.transform.position;
+        }
+        else
+        {
+            targetSelector.SetActive(false);
+        }
     }
     void CheckDistanceTarget()
     {
