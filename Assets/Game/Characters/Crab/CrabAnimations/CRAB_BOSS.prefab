@@ -804,9 +804,9 @@ GameObject:
   - component: {fileID: 4870842617820389905}
   - component: {fileID: 2050349085244078061}
   - component: {fileID: 4411233835612565584}
-  - component: {fileID: 9149525191331794626}
   - component: {fileID: -5184049523564015379}
   - component: {fileID: 4495597086366166264}
+  - component: {fileID: 6475246150814393701}
   m_Layer: 0
   m_Name: CRAB_BOSS
   m_TagString: Enemy
@@ -928,7 +928,7 @@ MonoBehaviour:
   claw1: {fileID: 6868109321103934617}
   claw2: {fileID: 3633943805380908013}
   furnaceCollider: {fileID: 7342123184897092790}
-  ownCollider: {fileID: 9149525191331794626}
+  ownCollider: {fileID: 6475246150814393701}
   fire: {fileID: 300936490306634137}
   fireCircle: {fileID: 6078231133531657138}
   bigFire: {fileID: 1938095466138790902}
@@ -969,27 +969,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   firePoints: []
---- !u!135 &9149525191331794626
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5601612524664430839}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 1024
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 2
-  m_Center: {x: 0, y: 4.83, z: -1.1}
 --- !u!114 &-5184049523564015379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1034,6 +1013,29 @@ MonoBehaviour:
   OverrideAttenuation: 1
   OverrideMinDistance: 22
   OverrideMaxDistance: 100
+--- !u!136 &6475246150814393701
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5601612524664430839}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.4400002
+  m_Height: 2.880001
+  m_Direction: 1
+  m_Center: {x: -0.000000039914745, y: 5.5231724, z: -1.19}
 --- !u!1 &5743355667614101292
 GameObject:
   m_ObjectHideFlags: 0

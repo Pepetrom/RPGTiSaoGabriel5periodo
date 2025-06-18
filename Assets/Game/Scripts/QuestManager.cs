@@ -20,7 +20,7 @@ public class QuestManager : MonoBehaviour
     public void Poem()
     {
         UIItems.instance.ShowNotes(poem);
-        GameManager.instance.Score(400);
+        if (medicine) { GameManager.instance.Score(400); medicine = false; }
     }
     public void DropMedicine()
     {

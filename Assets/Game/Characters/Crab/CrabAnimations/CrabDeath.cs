@@ -28,5 +28,11 @@ public class CrabDeath : ICrabInterface
         {
             controller.Die(controller.gameObject);
         }
+        controller.Invoke("GaranteeOfDeath", 3);
+    }
+
+    void GaranteeOfDeath()
+    {
+        controller.Die(controller.gameObject);
     }
 }

@@ -24,7 +24,7 @@ public class CrabFSM : MonoBehaviour, IDamageable
     public float meleeRange, minRange, maxRange, kbForce;
     public int hp, damage, posture, maxPosture;
     public float impulse, rotateSpeed;
-    public SphereCollider jumpCollider, claw1, claw2, furnaceCollider, ownCollider;
+    public CapsuleCollider jumpCollider, claw1, claw2, furnaceCollider, ownCollider;
     public GameObject fire, fireCircle, bigFire, stairBlock;
     public bool canDoFireDamage, spinCombo = false;
     public string bossName;
