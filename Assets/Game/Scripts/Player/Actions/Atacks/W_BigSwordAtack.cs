@@ -75,7 +75,7 @@ public class W_BigSwordAtack : IWeapon
         if (interrupted) return;
         if (atacking)
         {
-            if (player.target != null)
+            if (player.closestEnemy != null)
             {
                 FacePlayerTarget();
             }
@@ -91,7 +91,7 @@ public class W_BigSwordAtack : IWeapon
     }
     public void FacePlayerTarget()
     {
-        atackDirection = (player.target.position - player.model.transform.position);
+        atackDirection = (player.closestEnemy.transform.position - player.model.transform.position);
         atackDirection.y = 0;
         atackDirection = atackDirection.normalized;
         player.model.transform.rotation = Quaternion.LookRotation(atackDirection);

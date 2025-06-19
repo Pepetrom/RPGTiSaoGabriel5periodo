@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public Canvas lockSprite;
-
+    public bool dead = false;
     private void Start()
     {
         lockSprite.enabled = false;

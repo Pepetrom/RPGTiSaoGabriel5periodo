@@ -26,7 +26,6 @@ public class PlayerController : MonoBehaviour
     public int stamPerHit; // Vari�vel que indica a quantidade de estamina perdida por hit
     public bool isAttacking = false; // Vari�vel para saber se o jogador est� atacando ou n�o
     public int comboCounter = 1;
-    public Transform target = null;
     public AtackCollider atackCollider;
     [SerializeField] float detectionAutoTargetRange = 30;
     public TrailRenderer swordTrail;
@@ -67,7 +66,6 @@ public class PlayerController : MonoBehaviour
     float targetLockedX, targetLockedY;
     float rightAmount;
     float forwardAmount;
-    Enemy enemy;
 
     public CharacterController cc;
     float gravity = -9;
@@ -80,7 +78,7 @@ public class PlayerController : MonoBehaviour
     //Detect Closest Enemy
     Collider[] hits;
     float closestDistance = Mathf.Infinity;
-    Transform closestEnemy = null;
+    public Enemy closestEnemy = null;
     float enemyDistance = 0;
     public GameObject targetSelector;
     //Raycast
@@ -143,10 +141,10 @@ public class PlayerController : MonoBehaviour
         SetDirection();
         cc.Move(moveDirection * Time.fixedDeltaTime);
         PlayerInteract.instance.FixedUpdatePlayerInteract();
-        if (target)
+        if (closestEnemy)
         {
             targetSelector.SetActive(true);
-            targetSelector.transform.position = target.transform.position;
+            targetSelector.transform.position = closestEnemy.transform.position;
         }
         else
         {
@@ -155,7 +153,7 @@ public class PlayerController : MonoBehaviour
     }
     void CheckDistanceTarget()
     {
-        targetDirection = (target.position - transform.position).normalized;
+        targetDirection = (closestEnemy.transform.position - transform.position).normalized;
         playerRight = Vector3.Cross(targetDirection, Vector3.up);
         playerForward = Vector3.Cross(playerRight, Vector3.up);
 
@@ -299,9 +297,10 @@ public class PlayerController : MonoBehaviour
         {
             runningMultiplier = 2;
             animator.SetBool("Run", true);
-            target = null;
-            if(closestEnemy != null)
-                closestEnemy.GetComponent<Enemy>().ShowSprite(false);
+            if (closestEnemy)
+            {
+                closestEnemy = null;
+            }
         }
         else
         {
@@ -309,16 +308,33 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("Run", false);
         }
     }
+    public void EnemyDied()
+    {
+        if (closestEnemy)
+        {
+            if (closestEnemy.dead)
+            {
+                DetectClosestEnemy();
+            }
+        }
+    }
     void DetectClosestEnemy()
     {
-        if (target)
+        if (closestEnemy)
         {
-            target = null;
-            closestEnemy.GetComponent<Enemy>().ShowSprite(false);
-            return;
+            //closestEnemy.ShowSprite(false);
+            if (closestEnemy.dead)
+            {
+                closestEnemy = null;
+            }
+            else
+            {
+                closestEnemy = null;
+                return;
+            }
         }
         hits = Physics.OverlapSphere(model.transform.position, detectionAutoTargetRange);
-        closestDistance = Mathf.Infinity;
+        closestDistance = 50;
         closestEnemy = null;
         enemyDistance = 0;
 
@@ -326,22 +342,24 @@ public class PlayerController : MonoBehaviour
         {
             if (hit.CompareTag("Enemy"))
             {
+                Debug.Log("inimigo encontrado");
+                Enemy temp = hit.gameObject.GetComponent<Enemy>();
                 enemyDistance = Vector3.Distance(transform.position, hit.transform.position);
-                if (enemyDistance < closestDistance)
+                if (!temp.dead && enemyDistance < closestDistance)
                 {
+                    Debug.Log("inimigo alvejado");
+                    closestEnemy = temp;
                     closestDistance = enemyDistance;
-                    closestEnemy = hit.transform;
-                    closestEnemy.GetComponent<Enemy>().ShowSprite(true);
+                    //closestEnemy.ShowSprite(true);
                 }
             }
         }
-        target = closestEnemy;
     }
     void LookAtTarget()
     {
-        if (!canMove || target == null) return;
+        if (!canMove || closestEnemy == null) return;
 
-        targetDirection = (target.position - model.transform.position).normalized;
+        targetDirection = (closestEnemy.transform.position - model.transform.position).normalized;
         targetDirection.y = 0;
 
         newRotation = Quaternion.LookRotation(targetDirection);
@@ -350,7 +368,7 @@ public class PlayerController : MonoBehaviour
     }
     void LookForward()
     {
-        if (target != null) return;
+        if (closestEnemy != null) return;
         animator.SetFloat("X", 0);
         animator.SetFloat("Y", 1);
         forwardDirection = moveDirection;
@@ -362,7 +380,7 @@ public class PlayerController : MonoBehaviour
     }
     public Vector3 GetMousePosition()
     {
-        if (target != null) return Vector3.zero;
+        if (closestEnemy != null) return Vector3.zero;
         ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundMask)) // agora est� funcionando os raycasts
         {

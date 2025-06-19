@@ -17,6 +17,8 @@ public class TurtleDeathState : ITurtleStateMachine
     }
     public void OnEnter()
     {
+        controller.enemy.dead = true;
+        PlayerController.instance.EnemyDied();
         controller.GetComponent<Collider>().enabled = false;
         GameManager.instance.Score(200);
     }

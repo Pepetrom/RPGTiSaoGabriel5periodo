@@ -20,6 +20,8 @@ public class PorquinDeathState : IPorquinStateMachine
     }
     public void OnEnter()
     {
+        controller.enemy.dead = true;
+        PlayerController.instance.EnemyDied();
         controller.GetComponent<Collider>().enabled = false;
         GameManager.instance.Score(100);
         controller.DestroyPorquin(controller.studioEventEmitter, controller.hpCanvas);

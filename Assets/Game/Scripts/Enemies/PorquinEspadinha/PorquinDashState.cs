@@ -31,7 +31,7 @@ public class PorquinDashState : IPorquinStateMachine
     {
         if (controller.active)
         {
-            Debug.Log("ativo");
+            //Debug.Log("ativo");
             controller.agent.enabled = false;
             controller.rb.isKinematic = false;
             controller.KB(-20);

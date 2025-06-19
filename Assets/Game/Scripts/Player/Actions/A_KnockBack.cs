@@ -26,7 +26,6 @@ public class A_KnockBack : IAction
     public void ActionUpdate()
     {
         if (!knockBacking) return;
-        Debug.Log("sou eu dio!");
         PlayerController.instance.cc.Move(direction * Time.fixedDeltaTime);
         knockBackTime -= Time.fixedDeltaTime;
         if (knockBackTime <= 0)

@@ -59,7 +59,7 @@ public class PorquinWalkState : IPorquinStateMachine
                     else 
                     {
                         a = Random.Range(0f, 1f);
-                        Debug.Log(a);
+                        //Debug.Log(a);
                         fuzzificado = controller.FuzzyLogic(controller.fuzzyDash,controller.minDash, controller.maxDash);
                         if(a > fuzzificado)
                         {
