@@ -7,27 +7,25 @@ public class PlayerProjetile : MonoBehaviour
 {
     public ParticleSystem particle;
     float timer = 0;
-    public float speed, duration;
+    public float speed, duration, endEffectTimer = 0.3f;
     public bool endEffect = false, MultiHit = false;
     public SphereCollider colisor;
-    private void FixedUpdate()
-    {
-            timer += Time.fixedDeltaTime;
-            transform.position += transform.forward * Time.fixedDeltaTime * speed;
-            if (timer >= duration)
-            {
-                if (endEffect)
-                {
-                    colisor.enabled = false;
-                    particle.Play();
-                    Invoke("EndEffect", 0.3f);
-                }
-                else
-                {
-                    colisor.enabled = false;
-                    EndEffect();
-                }
+    private void FixedUpdate() {
+        timer += Time.fixedDeltaTime;
+        if (timer >= duration) {
+            if (endEffect) {
+                colisor.enabled = false;
+                if (particle) particle.Play();
+                Invoke("EndEffect", endEffectTimer);
             }
+            else {
+                colisor.enabled = false;
+                EndEffect();
+            }
+        }
+        else {
+            transform.position += transform.forward * Time.fixedDeltaTime * speed;
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
