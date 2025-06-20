@@ -36,6 +36,7 @@ public class LoadSword : MonoBehaviour
             }
             swordMaterials[i] = resourceRequest.asset as Material;
         }
+        ChangeSword(PlayerController.instance.equipedSecondaryRune);
         yield return true;
     }
 }

@@ -189,7 +189,6 @@ public class RuneSelector : MonoBehaviour
         }
         PlayerController.instance.equipedPrimaryRune = selected % atributesPerSkill;
         EquipRune();
-        LoadSword.instance.ChangeSword(PlayerController.instance.equipedPrimaryRune);
     }
     public void SelectSecondaryRune(int which)
     {
@@ -216,6 +215,7 @@ public class RuneSelector : MonoBehaviour
         }
         PlayerController.instance.equipedSecondaryRune = selected % atributesPerSkill;
         EquipRune();
+        LoadSword.instance.ChangeSword(PlayerController.instance.equipedSecondaryRune);
     }
     public void SelectTerciaryRune(int which)
     {
