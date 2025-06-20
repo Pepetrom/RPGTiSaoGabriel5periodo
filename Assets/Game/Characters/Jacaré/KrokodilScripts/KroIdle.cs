@@ -37,17 +37,50 @@ public class KroIdle : IKrokodil
             controller.animator.SetBool("isAttack", true);
             controller.SetState(new KroAttController(controller));
         }
-        else
+        else if(controller.TargetDir().magnitude > controller.meleeRange && controller.TargetDir().magnitude < controller.maxRange)
         {
-            if(controller.randomValue > controller.swingRate)
+            if(controller.randomValue < 20)
             {
-                controller.animator.SetBool("swing", true);
-                controller.SetState(new KroSwing(controller));
+                controller.jumpAttRate += 20;
+                controller.animator.SetTrigger("jumpAtt");
+                controller.SetState(new KroJumpAtt(controller));
             }
             else
             {
-                controller.animator.SetBool("isWalking", true);
-                controller.SetState(new KroWalk(controller));
+                controller.jumpAttRate -= 10;
+                if (controller.randomValue > controller.swingRate)
+                {
+                    controller.animator.SetBool("swing", true);
+                    controller.SetState(new KroSwing(controller));
+                }
+                else
+                {
+                    controller.animator.SetBool("isWalking", true);
+                    controller.SetState(new KroWalk(controller));
+                }
+            }
+        }
+        else
+        {
+            if (controller.randomValue > controller.jumpAttRate)
+            {
+                controller.jumpAttRate += 10;
+                controller.animator.SetTrigger("jumpAtt");
+                controller.SetState(new KroJumpAtt(controller));
+            }
+            else
+            {
+                controller.jumpAttRate -= 10;
+                if (controller.randomValue > controller.swingRate)
+                {
+                    controller.animator.SetBool("swing", true);
+                    controller.SetState(new KroSwing(controller));
+                }
+                else
+                {
+                    controller.animator.SetBool("isWalking", true);
+                    controller.SetState(new KroWalk(controller));
+                }
             }
         }
     }

@@ -10,7 +10,7 @@ public class KroAtt1 : IKrokodil
 
     public void OnEnter()
     {
-        controller.basicAtt -= 20;
+        controller.basicAtt -= 30;
         controller.jumpRate -= 5;
         controller.damage = 35;
     }
@@ -33,8 +33,17 @@ public class KroAtt1 : IKrokodil
             controller.gunCollider.enabled = false;
         if (controller.end)
         {
-            controller.animator.SetBool("att1", false);
-            controller.SetState(new KroAttController(controller));
+            if(controller.randomValue > controller.dashRate)
+            {
+                controller.dashRate += 20;
+                controller.SetState(new KroDodge(controller));
+            }
+            else
+            {
+                controller.dashRate -= 10;
+                controller.animator.SetBool("att1", false);
+                controller.SetState(new KroAttController(controller));
+            }
         }
     }
 }

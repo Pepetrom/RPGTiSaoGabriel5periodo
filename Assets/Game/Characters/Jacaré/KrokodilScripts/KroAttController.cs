@@ -10,6 +10,7 @@ public class KroAttController : IKrokodil
     public void OnEnter()
     {
         controller.animator.SetBool("att2", false);
+        controller.animator.SetBool("att1", false);
         controller.animator.SetBool("swing", false);
         controller.animator.SetBool("att2comb2", false);
         controller.animator.SetBool("heavy", false);
@@ -32,7 +33,25 @@ public class KroAttController : IKrokodil
             controller.canDoSecondStage = false;
             return;
         }
-        if (controller.TargetDir().magnitude < controller.meleeRange + 4)
+        if (controller.TargetDir().magnitude < controller.meleeRange)
+        {
+            if (controller.randomValue < 20)
+            {
+                if (!controller.canDash)
+                {
+                    BasicAtt();
+                }
+                else
+                {
+                    controller.SetState(new KroDodge(controller));
+                }
+            }
+            else
+            {
+                BasicAtt();
+            }
+        }
+        else if (controller.TargetDir().magnitude < controller.meleeRange + 4)
         {
             if (controller.randomValue > controller.jumpRate)
             {
@@ -40,22 +59,26 @@ public class KroAttController : IKrokodil
             }
             else
             {
-                if (controller.randomValue > controller.basicAtt)
-                {
-                    controller.animator.SetBool("att2", true);
-                    controller.SetState(new KroAtt2(controller));
-                }
-                else
-                {
-                    controller.animator.SetBool("att1", true);
-                    controller.SetState(new KroAtt1(controller));
-                }
+                BasicAtt();
             }
         }
         else
         {
             controller.animator.SetBool("isAttack", false);
             controller.SetState(new KroIdle(controller));
+        }
+    }
+    void BasicAtt()
+    {
+        if (controller.randomValue > controller.basicAtt)
+        {
+            controller.animator.SetBool("att2", true);
+            controller.SetState(new KroAtt2(controller));
+        }
+        else
+        {
+            controller.animator.SetBool("att1", true);
+            controller.SetState(new KroAtt1(controller));
         }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.VFX;
@@ -10,16 +11,18 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
     public Animator animator;
     public NavMeshAgent agent;
     public GameObject player;
+    public LayerMask groundLayer;
     [HideInInspector]public bool antecipation = false, end = false, combo = false, action = false, action2 = false, action3 = false, activate = false, hashitted = false, eventS = false, bigWall = false;
     [Header("COMBAT")]
     public string bossName;
-    public Collider clawCollider, gunCollider, footCollider, twoHandedCollider;
+    public Collider clawCollider, gunCollider, footCollider, twoHandedCollider, jumpCollider;
     public CapsuleCollider ownCollider;
-    public int randomValue, att2Count, hp, basicAtt = 40, swingRate = 100,moveAtt = 40, damage, posture, maxPosture, jumpRate = 60, damage2;
-    public float meleeRange, maxRange, swingRange,jumpForce, fireRate, interval;
-    public bool isSecondStage = false, canDoSecondStage = false, canRecoverPosture = true;
+    public int randomValue,hp, basicAtt = 40, swingRate = 100,moveAtt = 40, damage, posture, maxPosture, jumpRate = 60, damage2, jumpAttRate, dashRate, bombCount = 0;
+    public float meleeRange, maxRange, swingRange,jumpForce, fireRate, interval, arenaRadius, bombFireRate;
+    public bool isSecondStage = false, canDoSecondStage = false, canRecoverPosture = true, canDash = true;
     public Transform gunFireSpot, hitPos;
-    public GameObject bulletPrefab, armor, bulletPrefabSecondStage;
+    public Vector3 arenaCenter;
+    public GameObject bulletPrefab, armor, bulletPrefabSecondStage, jumpLocation, croc, bombPrefab;
     public Material secondStageMaterial;
     [Header("VFX")]
     public GameObject stun;
@@ -28,11 +31,13 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
 
     //swing
     Vector3 velocity, lVelocity;
-    float moveY, moveX, time;
+    float moveY, moveX, time, nextBomb;
     void Start()
     {
         if(player == null)
             player = GameObject.FindWithTag("Player");
+        if (jumpLocation == null)
+            jumpLocation = GameObject.Find("JumpKroLocation");
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         SetState(new KroStartState(this));
@@ -40,6 +45,7 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
         UIItems.instance.ResetBossHP(hp, bossName);
         clawCollider.enabled = false; gunCollider.enabled = false; footCollider.enabled = false; twoHandedCollider.enabled = false;
         posture = maxPosture;
+        canDash = true;
     }
     void Update()
     {
@@ -206,6 +212,27 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
             animator.Play("Stun");
             SetState(new KroStun(this));
         }
+    }
+    public void DropBombs()
+    {
+        for(int i = 0; i <= 6; i++)
+        {
+            Vector3 randomPos = GetRandomPointInArena();
+            Vector3 spawnPos = randomPos + Vector3.up * Random.Range(80f, 120f);
+            if (Physics.Raycast(spawnPos, Vector3.down, out RaycastHit hit, 20f, groundLayer))
+            {
+                Instantiate(bombPrefab, hit.point + Vector3.up * 0.5f, Quaternion.identity);
+            }
+            else
+            {
+                Instantiate(bombPrefab, spawnPos, Quaternion.identity);
+            }
+        }
+    }
+    Vector3 GetRandomPointInArena()
+    {
+        Vector2 randomCircle = Random.insideUnitCircle * arenaRadius;
+        return new Vector3(arenaCenter.x + randomCircle.x, arenaCenter.y, arenaCenter.z + randomCircle.y);
     }
     #endregion
     public void TakeDamage(int damage, float knockbackStrenght)
