@@ -23,7 +23,7 @@ public class RuneSelector : MonoBehaviour
         runes.SetActive(!runes.activeSelf);
         skills.SetActive(!skills.activeSelf);
     }
-    private void Start()
+    public void StartRune()
     {
         PlayerController.instance.equipedPrimaryRune = SaveLoad.instance.saveData.player.primaryRune;
         PlayerController.instance.equipedSecondaryRune = SaveLoad.instance.saveData.player.secondaryRune;

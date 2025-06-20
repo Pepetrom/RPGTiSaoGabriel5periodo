@@ -8,6 +8,7 @@ public class SceneController : MonoBehaviour
     public static SceneController sceneController;
     public GameObject tutorial, pageA, pageB, options, bonfire, pause, changeLog, videoPanel, audioPanel, geral, travelPanel;
     public GameObject runePanel, cheatMenu, commands;
+    public RuneSelector runePanelScript;
     public GameObject botaoContinuar;
     bool naoPause = false;
     private void Awake()
@@ -18,6 +19,7 @@ public class SceneController : MonoBehaviour
     {
         commands.SetActive(SaveLoad.instance.saveData.player.commandsOpen);
         SaveLoad.instance.ShowContinuar(botaoContinuar);
+        if(runePanelScript)runePanelScript.StartRune();
     }
 
     private void Update()
