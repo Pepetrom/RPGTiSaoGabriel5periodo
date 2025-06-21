@@ -9,6 +9,7 @@ public class KroCollider : MonoBehaviour
     {
         if (other.CompareTag("Player") /*&& !kro.hashitted*/)
         {
+            PlayerController.instance.ResetAllActions();
             HPBar.instance.TakeDamage(kro.damage, kro.transform);
         }
     }

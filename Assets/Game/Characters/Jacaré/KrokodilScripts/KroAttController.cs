@@ -62,10 +62,38 @@ public class KroAttController : IKrokodil
                 BasicAtt();
             }
         }
-        else
+        else if(controller.TargetDir().magnitude < controller.maxRange)
         {
             controller.animator.SetBool("isAttack", false);
             controller.SetState(new KroIdle(controller));
+        }
+        else
+        {
+            if (!controller.isSecondStage)
+            {
+                controller.animator.SetBool("isAttack", false);
+                controller.SetState(new KroIdle(controller));
+            }
+            else
+            {
+                if (Input.GetKeyDown(KeyCode.R))
+                {
+                    controller.SetState(new KroBite(controller));
+                    return;
+                }
+                else
+                {
+                    if(controller.randomValue < 40)
+                    {
+                        controller.SetState(new KroBite(controller));
+                    }
+                    else
+                    {
+                        controller.animator.SetBool("isAttack", false);
+                        controller.SetState(new KroIdle(controller));
+                    }
+                }
+            }
         }
     }
     void BasicAtt()

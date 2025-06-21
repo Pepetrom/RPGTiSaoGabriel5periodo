@@ -26,26 +26,31 @@ public class KroSecondStage : IKrokodil
     {
         if (controller.action)
         {
+            CameraScript.instance.CombatCamera(90, 0.6f, 1.2f);
             controller.agent.speed = 25;
-            controller.agent.acceleration = 16;
+            controller.agent.acceleration = 20;
             controller.agent.angularSpeed = 100;
             controller.agent.SetDestination(controller.jumpLocation.transform.position);
             if (controller.HasReachedDestination())
             {
                 controller.animator.SetTrigger("waterJump");
                 controller.agent.enabled = false;
+                controller.action = false;
             }
         }
         if (controller.end)
         {
             controller.armor.SetActive(false);
             controller.croc.SetActive(false);
-            while(controller.bombCount < 60)
+            if(controller.bombCount <= 60)
             {
+                CameraScript.instance.CombatCamera(90, 0.6f, 1.2f);
+                controller.CameraShakeKro();
                 if (Time.time >= nextFireTime)
                 {
                     controller.DropBombs();
                     nextFireTime = Time.time + controller.bombFireRate;
+                    controller.bombCount += 6;
                 }
             }
         }
@@ -54,6 +59,7 @@ public class KroSecondStage : IKrokodil
             controller.armor.SetActive(true);
             controller.croc.SetActive(true);
             controller.animator.SetTrigger("backToArena");
+            controller.SetState(new KroJumpBack(controller));
         }
     }
 

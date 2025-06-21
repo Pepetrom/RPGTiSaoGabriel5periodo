@@ -12,6 +12,7 @@ public class KroIdle : IKrokodil
         controller.animator.SetBool("att1", false);
         controller.animator.SetBool("att2", false);
         controller.animator.SetBool("isAttack", false);
+        controller.animator.SetBool("swing", false);
         controller.end = false;
         controller.SortNumber();
     }

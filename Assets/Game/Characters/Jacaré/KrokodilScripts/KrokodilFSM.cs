@@ -11,15 +11,16 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
     public Animator animator;
     public NavMeshAgent agent;
     public GameObject player;
+    public GameObject hoffMesh;
     public LayerMask groundLayer;
     [HideInInspector]public bool antecipation = false, end = false, combo = false, action = false, action2 = false, action3 = false, activate = false, hashitted = false, eventS = false, bigWall = false;
     [Header("COMBAT")]
     public string bossName;
-    public Collider clawCollider, gunCollider, footCollider, twoHandedCollider, jumpCollider;
+    public Collider clawCollider, gunCollider, footCollider, twoHandedCollider, jumpCollider, mouthCollider;
     public CapsuleCollider ownCollider;
     public int randomValue,hp, basicAtt = 40, swingRate = 100,moveAtt = 40, damage, posture, maxPosture, jumpRate = 60, damage2, jumpAttRate, dashRate, bombCount = 0;
     public float meleeRange, maxRange, swingRange,jumpForce, fireRate, interval, arenaRadius, bombFireRate;
-    public bool isSecondStage = false, canDoSecondStage = false, canRecoverPosture = true, canDash = true;
+    public bool isSecondStage = false, canDoSecondStage = false, canRecoverPosture = true, canDash = true, grabbed = false;
     public Transform gunFireSpot, hitPos;
     public Vector3 arenaCenter;
     public GameObject bulletPrefab, armor, bulletPrefabSecondStage, jumpLocation, croc, bombPrefab;
@@ -28,6 +29,7 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
     public GameObject stun;
     public ParticleSystem bigImpactVFX, clawVFX, crackVFX, gunVFX;
     public VisualEffect hitVFX;
+    public Coroutine runningCo;
 
     //swing
     Vector3 velocity, lVelocity;
@@ -43,7 +45,7 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
         SetState(new KroStartState(this));
         UIItems.instance.ShowBOSSHUD(true);
         UIItems.instance.ResetBossHP(hp, bossName);
-        clawCollider.enabled = false; gunCollider.enabled = false; footCollider.enabled = false; twoHandedCollider.enabled = false;
+        clawCollider.enabled = false; gunCollider.enabled = false; footCollider.enabled = false; twoHandedCollider.enabled = false; mouthCollider.enabled = false;
         posture = maxPosture;
         canDash = true;
     }
@@ -234,6 +236,11 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
         Vector2 randomCircle = Random.insideUnitCircle * arenaRadius;
         return new Vector3(arenaCenter.x + randomCircle.x, arenaCenter.y, arenaCenter.z + randomCircle.y);
     }
+    public void FallTowardsSomething(float speed, Transform tg)
+    {
+        Vector3 target = new Vector3(tg.position.x, transform.position.y, tg.position.z);
+        transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+    }
     #endregion
     public void TakeDamage(int damage, float knockbackStrenght)
     {
@@ -243,6 +250,11 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
         if(UIItems.instance.bossCurrentHP < hp / 2 && !isSecondStage)
         {
             canDoSecondStage = true;
+        }
+        if(UIItems.instance.bossCurrentHP <= 0)
+        {
+            animator.Play("ArmatureCroc_Death");
+            SetState(new KroDeath(this));
         }
         FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.takingDamage, transform.position);
         PlayHitEffect();
@@ -282,5 +294,20 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
     void SecondStageAnimTimes()
     {
         
+    }
+    public void Destroy(GameObject boss)
+    {
+        Destroy(boss);
+    }
+    public IEnumerator RunningTime()
+    {
+        agent.speed = 20;
+        agent.acceleration = 20;
+        agent.SetDestination(player.transform.position);
+        yield return new WaitForSeconds(2.2f);
+        agent.ResetPath();
+        action = false;
+        action2 = true;
+        runningCo = null;
     }
 }

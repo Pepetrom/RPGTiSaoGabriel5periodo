@@ -26,6 +26,29 @@ public class KroSwing : IKrokodil
         controller.agent.SetDestination(swingPos);
         controller.RotateTowardsPlayer(8);
         controller.SwingMove();
+        if (!controller.isSecondStage)
+        {
+            Swing();
+        }
+        else
+        {
+            if(controller.TargetDir().magnitude < controller.maxRange)
+            {
+                Swing();
+            }
+            else
+            {
+                if(Input.GetKeyDown(KeyCode.R))
+                    controller.SetState(new KroBite(controller));
+                else
+                {
+                    Swing();
+                }
+            }
+        }
+    }
+    void Swing()
+    {
         if (controller.TargetDir().magnitude < controller.meleeRange)
         {
             controller.animator.SetBool("isAttack", true);
