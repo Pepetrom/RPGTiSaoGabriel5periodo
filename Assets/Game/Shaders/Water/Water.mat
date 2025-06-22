@@ -33,15 +33,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _FoamTexA:
         m_Texture: {fileID: 2800000, guid: 7a04b6ded09cb334b99c280ce3f348fb, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 3, y: 3}
         m_Offset: {x: 1, y: 1}
     - _FoamTexB:
         m_Texture: {fileID: 2800000, guid: 8a2c5bad272d4b844815f89792350922, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 3, y: 3}
         m_Offset: {x: 1, y: 1}
     - _WaterTex:
         m_Texture: {fileID: 2800000, guid: fd495fa89a016314c9b95943fe827129, type: 3}
-        m_Scale: {x: 2, y: 2}
+        m_Scale: {x: 3, y: 3}
         m_Offset: {x: 1, y: 1}
     m_Ints: []
     m_Floats:
@@ -49,7 +49,7 @@ Material:
     - _FoamBlinkSpeed: 0.05
     - _FoamThresh: 1
     - _FresnelIntensity: 1
-    - _FresnelPower: 1.45
+    - _FresnelPower: 0.81
     - _Transparency: 0.922
     m_Colors:
     - _FlowDir: {r: 0.5, g: 0, b: 0, a: 0}
