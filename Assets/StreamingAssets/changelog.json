@@ -167,6 +167,48 @@
             "authors": [],
             "content": "- Bug fixes\n- QUEST 1: Deliver medicine to the Tortoise — it drops from piglets after talking to him and NPC David\n- QUEST 2: Obtain the essence from Anneliese's husband — go down to the turtle area and enter the secondary boss arena to find the essence\n- Player drops souls upon death\n- Runes with unit price and price scaling",
             "date": "2025-05-23"
+        },
+        {
+            "version": "1.2.4",
+            "title": "Core Systems and Environment",
+            "authors": [],
+            "content": "- Finalized terrain assets for the camp\n- Implemented travel system between checkpoints\n- Implemented verticality: elevator added to the map\n- Camp fully implemented\n- Sword finalized for the player\n- Provisional boss (crab) arena and animations\n- Fully implemented piglet enemy\n- All dialogues written",
+            "date": "2025-05-28"
+        },
+        {
+            "version": "1.2.5",
+            "title": "Boss and Combat Enhancements",
+            "authors": [],
+            "content": "- Implemented Secondary Boss (crab) with VFX pack: fire effects, explosions, laser fire, and arena visuals\n- Added death animation for the player\n- Added attack animations and cycles for the Boss\n- Improved player combat restrictions: player cannot move during attack or healing animations",
+            "date": "2025-06-02"
+        },
+        {
+            "version": "1.2.6",
+            "title": "Combat Polish and Audio",
+            "authors": [],
+            "content": "- Implemented audio systems\n- Completed Boss attack animations and cycles\n- Added shielded piglet attack animations and cycles\n- Skill tree system finalized\n- Polished visual effects and shaders\n- Improved game juice: levers and valves now have movement animations",
+            "date": "2025-06-07"
+        },
+        {
+            "version": "1.2.7",
+            "title": "Quest Finalization and Loot System",
+            "authors": [],
+            "content": "- Finalized all quests, whispers, and user interface elements\n- Souls now drop on player death with two retrieval options: manual pickup or auto-collect within proximity\n- Implemented score drop visuals with stable ground detection\n- Improved auto-aim system to ignore dead enemies and dynamically update targets",
+            "date": "2025-06-12"
+        },
+        {
+            "version": "1.2.8",
+            "title": "Critical Bug Fixes and Combat Stability",
+            "authors": [],
+            "content": "- Fixed player collider dealing multiple hits per attack\n- Fixed player collider remaining active incorrectly, causing unintended damage\n- Fixed issue where player gets stuck after taking damage\n- Fixed player attacking after closing UI\n- Improved combat loop stability: ensured smooth progression through enemy kills, note interaction, rune purchasing, and valve activation",
+            "date": "2025-06-18"
+        },
+        {
+            "version": "1.2.9",
+            "title": "Rune System and UX Improvements",
+            "authors": [],
+            "content": "- Fixed rune system freezing the player after purchase\n- Changed rune panel close button from F to ESC\n- Fixed elevator near yellow rune starting in wrong position\n- Improved auto-aim system to ignore dead enemies and update targets correctly",
+            "date": "2025-06-21"
         }
     ]
 }
