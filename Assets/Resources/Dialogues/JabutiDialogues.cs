@@ -32,27 +32,37 @@ public class JabutiDialogue : MonoBehaviour
             if (canTalk)
             {
                 NPCname.text = "TORTOISE";
-                if (!QuestManager.instance.medicine)
+                if(QuestManager.instance.davidDialogueIndex != 5)
                 {
-                    PlayerController.instance.StopAllActions();
-                    DialogueManager.instance.LoadDialogue(dialoguePaths[0]);
-                    DialogueManager.instance.printLine(DialogueManager.instance.text);
-                    if (DialogueManager.instance.dialogueEnded)
-                        QuestManager.instance.davidDialogueIndex = 3;
-                    SaveLoad.instance.saveData.player.davidDialogueIndex = 3;
-                    SaveLoad.instance.Save();
+                    if (!QuestManager.instance.medicine)
+                    {
+                        PlayerController.instance.StopAllActions();
+                        DialogueManager.instance.LoadDialogue(dialoguePaths[0]);
+                        DialogueManager.instance.printLine(DialogueManager.instance.text);
+                        if (DialogueManager.instance.dialogueEnded)
+                            QuestManager.instance.davidDialogueIndex = 3;
+                        SaveLoad.instance.saveData.player.davidDialogueIndex = 3;
+                        SaveLoad.instance.Save();
+                    }
+                    else
+                    {
+                        PlayerController.instance.StopAllActions();
+                        DialogueManager.instance.LoadDialogue(dialoguePaths[0]);
+                        DialogueManager.instance.printLine(DialogueManager.instance.text);
+                        UIItems.instance.ShowMedicine(false);
+                        QuestManager.instance.Poem();
+                        if (DialogueManager.instance.dialogueEnded)
+                            QuestManager.instance.davidDialogueIndex = 4;
+                        SaveLoad.instance.saveData.player.davidDialogueIndex = 4;
+                        SaveLoad.instance.Save();
+                    }
                 }
                 else
                 {
                     PlayerController.instance.StopAllActions();
                     DialogueManager.instance.LoadDialogue(dialoguePaths[0]);
                     DialogueManager.instance.printLine(DialogueManager.instance.text);
-                    UIItems.instance.ShowMedicine(false);
                     QuestManager.instance.Poem();
-                    if (DialogueManager.instance.dialogueEnded)
-                        QuestManager.instance.davidDialogueIndex = 4;
-                    SaveLoad.instance.saveData.player.davidDialogueIndex = 4;
-                    SaveLoad.instance.Save();
                 }
             }
         }

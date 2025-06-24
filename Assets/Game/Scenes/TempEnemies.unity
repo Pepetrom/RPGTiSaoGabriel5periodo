@@ -30503,7 +30503,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -721, y: -466.4}
+  m_AnchoredPosition: {x: -685.5, y: -466.4}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &356184578
@@ -45677,7 +45677,7 @@ Transform:
   m_GameObject: {fileID: 564200608}
   serializedVersion: 2
   m_LocalRotation: {x: 0.48255104, y: 0.32697853, z: -0.20037267, w: 0.78745186}
-  m_LocalPosition: {x: 225.32, y: -19.27, z: -146.84001}
+  m_LocalPosition: {x: -12, y: 42, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -60057,6 +60057,7 @@ MonoBehaviour:
   - Dialogues/D/DavidDialogue3
   - Dialogues/D/DavidDialogue4
   - Dialogues/D/DavidDialogue5
+  - Dialogues/D/DavidDialogue6
   NPCname: {fileID: 1518346786}
 --- !u!1 &741032314
 GameObject:
@@ -85743,7 +85744,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -767.8, y: -466.4}
+  m_AnchoredPosition: {x: -732.3, y: -466.4}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1133288975
@@ -158230,17 +158231,17 @@ PrefabInstance:
     - target: {fileID: 3309777756324126554, guid: a7dd1cff653b2eb44a36b57ea2fe2a45,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 237.32
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3309777756324126554, guid: a7dd1cff653b2eb44a36b57ea2fe2a45,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -61.15
+      value: 0.12
       objectReference: {fileID: 0}
     - target: {fileID: 3309777756324126554, guid: a7dd1cff653b2eb44a36b57ea2fe2a45,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -130.64
+      value: 7.2
       objectReference: {fileID: 0}
     - target: {fileID: 3309777756324126554, guid: a7dd1cff653b2eb44a36b57ea2fe2a45,
         type: 3}
@@ -158495,7 +158496,7 @@ PrefabInstance:
     - target: {fileID: 3625156775460667600, guid: a7dd1cff653b2eb44a36b57ea2fe2a45,
         type: 3}
       propertyPath: baseDamage
-      value: 80
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 3625156775460667600, guid: a7dd1cff653b2eb44a36b57ea2fe2a45,
         type: 3}

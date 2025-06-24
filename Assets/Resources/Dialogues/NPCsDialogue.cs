@@ -66,6 +66,18 @@ public class NPCsDialogue : MonoBehaviour
                         PlayerController.instance.StopAllActions();
                         DialogueManager.instance.LoadDialogue(dialoguePaths[4]);
                         DialogueManager.instance.printLine(DialogueManager.instance.text);
+                        if (DialogueManager.instance.dialogueEnded)
+                        {
+                            QuestManager.instance.davidDialogueIndex = 5;
+                            GameManager.instance.Score(400);
+                        }
+                        SaveLoad.instance.saveData.player.davidDialogueIndex = 5;
+                        SaveLoad.instance.Save();
+                        break;
+                    case 5:
+                        PlayerController.instance.StopAllActions();
+                        DialogueManager.instance.LoadDialogue(dialoguePaths[5]);
+                        DialogueManager.instance.printLine(DialogueManager.instance.text);
                         break;
                 }
             }
