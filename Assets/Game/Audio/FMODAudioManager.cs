@@ -32,6 +32,7 @@ public class FMODAudioManager : MonoBehaviour
     public EventReference crabDeath;
     [Header("Jacaré")]
     public EventReference machineGun;
+    public EventReference bubbleExplosion;
 
     [Header("UI")]
     public EventReference pressedButton;

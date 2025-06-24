@@ -9,7 +9,6 @@ public class KroDeath : IKrokodil
 
     public void OnEnter()
     {
-        GameManager.instance.Score(5000);
         controller.ownCollider.enabled = false;
     }
 
@@ -21,6 +20,9 @@ public class KroDeath : IKrokodil
     public void OnUpdate()
     {
         if (controller.end)
-            controller.Destroy(controller.gameObject);
+        {
+            GameManager.instance.Score(5000);
+            controller.DestroyBoss(controller.gameObject);
+        }
     }
 }

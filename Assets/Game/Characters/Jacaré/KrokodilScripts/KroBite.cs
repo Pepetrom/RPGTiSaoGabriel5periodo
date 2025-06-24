@@ -49,6 +49,7 @@ public class KroBite : IKrokodil
             controller.mouthCollider.enabled = false;
         if (controller.end)
         {
+            controller.hoffMesh.SetActive(false);
             controller.animator.SetBool("bite", false);
             controller.SetState(new KroIdle(controller));
         }

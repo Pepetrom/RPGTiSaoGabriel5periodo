@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 436108537574796281}
   - component: {fileID: 7750258225683644135}
   - component: {fileID: 5151734841410104958}
-  m_Layer: 16
+  m_Layer: 17
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,8 +96,10 @@ GameObject:
   - component: {fileID: 7105496640093992473}
   - component: {fileID: 5077464538906973179}
   - component: {fileID: -7058972866317704267}
-  m_Layer: 16
-  m_Name: Bombs
+  - component: {fileID: -4121099617145510191}
+  - component: {fileID: 3162744444015499725}
+  m_Layer: 17
+  m_Name: Bubbles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -250,8 +252,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2
-  m_Height: 2
+  m_Radius: 1
+  m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &-7058972866317704267
@@ -281,3 +283,31 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &-4121099617145510191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8576731493386660667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d8da266b56721b4e9477e5a774f8f41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  p: {fileID: 11400000, guid: 5398a01ac78a06b44aef18cc8c140657, type: 2}
+  explosion: {fileID: 8789053755522830647, guid: 55ad1c591831f6b4ba8ea125e92a872f,
+    type: 3}
+--- !u!114 &3162744444015499725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8576731493386660667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8cafe2c66f46ea4a8c8257298956008, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 8

@@ -13,6 +13,7 @@ public class KroSecondStage : IKrokodil
         controller.isSecondStage = true;
         controller.end = false;
         controller.animator.SetBool("isAttack", false);
+        controller.ownCollider.enabled = false;
     }
 
     public void OnExit()
@@ -20,10 +21,13 @@ public class KroSecondStage : IKrokodil
         controller.end = false;
         controller.action = false;
         controller.action2 = false;
+        controller.ownCollider.enabled = true;
     }
 
     public void OnUpdate()
     {
+        if (controller.activate)
+            controller.CameraShakeKro();    
         if (controller.action)
         {
             CameraScript.instance.CombatCamera(90, 0.6f, 1.2f);
@@ -50,7 +54,7 @@ public class KroSecondStage : IKrokodil
                 {
                     controller.DropBombs();
                     nextFireTime = Time.time + controller.bombFireRate;
-                    controller.bombCount += 6;
+                    controller.bombCount += 12;
                 }
             }
         }

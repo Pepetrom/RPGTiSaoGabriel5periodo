@@ -1785,6 +1785,37 @@ Transform:
   - {fileID: 6662697614908788390}
   m_Father: {fileID: 7469916072809771918}
   m_LocalEulerAnglesHint: {x: -45.414574, y: 48.56116, z: -2.3424668}
+--- !u!1 &2390758892365495126
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1855026380961916510}
+  m_Layer: 0
+  m_Name: ClawTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1855026380961916510
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2390758892365495126}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.3420201, y: 0, z: 0, w: 0.9396927}
+  m_LocalPosition: {x: -0, y: 0.0727, z: -0.0141}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1462992563000417151}
+  m_LocalEulerAnglesHint: {x: 40, y: 0, z: 0}
 --- !u!1 &2416185336986026637
 GameObject:
   m_ObjectHideFlags: 0
@@ -4678,6 +4709,7 @@ Transform:
   - {fileID: 6063933216744809980}
   - {fileID: 1704752283294106832}
   - {fileID: 3333004787410478450}
+  - {fileID: 7624153304185034801}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2623791223261428150
@@ -4718,7 +4750,7 @@ MonoBehaviour:
   mouthCollider: {fileID: 1378997337717776460}
   ownCollider: {fileID: 1156339994628257321}
   randomValue: 0
-  hp: 400
+  hp: 700
   basicAtt: 40
   swingRate: 100
   moveAtt: 40
@@ -4762,6 +4794,12 @@ MonoBehaviour:
   crackVFX: {fileID: 0}
   gunVFX: {fileID: 0}
   hitVFX: {fileID: 6578666374620937032, guid: 1434f9b62b8090644a73c6b08e0047f0, type: 3}
+  vfxAtt:
+  - {fileID: 1226948033216109083, guid: f74ca33ee3f46eb438062def437486a7, type: 3}
+  - {fileID: 8768651954918315089, guid: 80fea6f0aafe3284fbed0097d7f639a0, type: 3}
+  vfxAttPos:
+  - {fileID: 1855026380961916510}
+  - {fileID: 7624153304185034801}
 --- !u!195 &327336501116574259
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5063,6 +5101,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1522314789835101809}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7023753149543412116
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7624153304185034801}
+  m_Layer: 0
+  m_Name: PoisonExplosionPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7624153304185034801
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7023753149543412116}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 5.18, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6490162635313446821}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7064934392187407341
 GameObject:
   m_ObjectHideFlags: 0
@@ -5129,6 +5198,7 @@ Transform:
   - {fileID: 1580173591206364712}
   - {fileID: 5737480465555967390}
   - {fileID: 6177383007406146932}
+  - {fileID: 1855026380961916510}
   m_Father: {fileID: 8282208035962462330}
   m_LocalEulerAnglesHint: {x: 38.134514, y: -12.545854, z: -33.461926}
 --- !u!1 &7120163778251950064

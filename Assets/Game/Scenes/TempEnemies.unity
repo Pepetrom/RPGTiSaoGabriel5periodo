@@ -15438,13 +15438,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 175432066}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 312.4, y: -53.13, z: -109.7}
+  m_LocalRotation: {x: 0, y: -0.86602545, z: 0, w: 0.49999994}
+  m_LocalPosition: {x: 305.34, y: -53.13, z: -111.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -120, z: 0}
 --- !u!4 &175782708 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4714516155811990803, guid: 8dc412ab837817446b1586beda880ca2,
@@ -25200,6 +25200,13 @@ MonoBehaviour:
       Data3: 1337468831
       Data4: -244285134
     Path: "event:/SFX/Inimigos/Jacar\xE9/MachineGun"
+  bubbleExplosion:
+    Guid:
+      Data1: 81412024
+      Data2: 1136793884
+      Data3: -1079541856
+      Data4: -227250589
+    Path: "event:/SFX/Inimigos/Jacar\xE9/Explos\xE3oBolha"
   pressedButton:
     Guid:
       Data1: 413527898
@@ -45677,7 +45684,7 @@ Transform:
   m_GameObject: {fileID: 564200608}
   serializedVersion: 2
   m_LocalRotation: {x: 0.48255104, y: 0.32697853, z: -0.20037267, w: 0.78745186}
-  m_LocalPosition: {x: -12, y: 42, z: -9}
+  m_LocalPosition: {x: 225.32, y: -19.27, z: -146.84001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -136065,7 +136072,7 @@ Transform:
   m_GameObject: {fileID: 1882844608}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 290.97, y: -21.23, z: -126.28}
+  m_LocalPosition: {x: 290.97, y: -3.6, z: -126.28}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -136105,9 +136112,9 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 0.9245283, g: 0.903523, b: 0.64106447, a: 1}
-  m_Intensity: 635.6
-  m_Range: 57.2
+  m_Color: {r: 0.9339623, g: 0.92128897, b: 0.7797704, a: 1}
+  m_Intensity: 2201.9
+  m_Range: 776.2
   m_SpotAngle: 168.21806
   m_InnerSpotAngle: 109.89711
   m_CookieSize: 10
@@ -158231,17 +158238,17 @@ PrefabInstance:
     - target: {fileID: 3309777756324126554, guid: a7dd1cff653b2eb44a36b57ea2fe2a45,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 237.32
       objectReference: {fileID: 0}
     - target: {fileID: 3309777756324126554, guid: a7dd1cff653b2eb44a36b57ea2fe2a45,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.12
+      value: -61.15
       objectReference: {fileID: 0}
     - target: {fileID: 3309777756324126554, guid: a7dd1cff653b2eb44a36b57ea2fe2a45,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.2
+      value: -130.64
       objectReference: {fileID: 0}
     - target: {fileID: 3309777756324126554, guid: a7dd1cff653b2eb44a36b57ea2fe2a45,
         type: 3}
@@ -158496,7 +158503,7 @@ PrefabInstance:
     - target: {fileID: 3625156775460667600, guid: a7dd1cff653b2eb44a36b57ea2fe2a45,
         type: 3}
       propertyPath: baseDamage
-      value: 30
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3625156775460667600, guid: a7dd1cff653b2eb44a36b57ea2fe2a45,
         type: 3}

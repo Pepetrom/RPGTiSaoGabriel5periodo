@@ -30,6 +30,8 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
     public ParticleSystem bigImpactVFX, clawVFX, crackVFX, gunVFX;
     public VisualEffect hitVFX;
     public Coroutine runningCo;
+    public VisualEffect[] vfxAtt;
+    public Transform[] vfxAttPos;
 
     //swing
     Vector3 velocity, lVelocity;
@@ -217,7 +219,7 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
     }
     public void DropBombs()
     {
-        for(int i = 0; i <= 6; i++)
+        for(int i = 0; i <= 12; i++)
         {
             Vector3 randomPos = GetRandomPointInArena();
             Vector3 spawnPos = randomPos + Vector3.up * Random.Range(80f, 120f);
@@ -273,9 +275,11 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
         mats[0] = secondStageMaterial;
         armor.GetComponent<SkinnedMeshRenderer>().materials = mats;
     }
-    public void PlayVFX(ParticleSystem vfx)
+    public void PlayVFX(int i)
     {
-        vfx.Play();
+        VisualEffect vfxInstance = Instantiate(vfxAtt[i], vfxAttPos[i].position, Quaternion.identity);
+        vfxInstance.Play();
+        vfxInstance.transform.SetParent(null);
     }
     public void PlaySoundAttached(string path)
     {
@@ -295,7 +299,7 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
     {
         
     }
-    public void Destroy(GameObject boss)
+    public void DestroyBoss(GameObject boss)
     {
         Destroy(boss);
     }

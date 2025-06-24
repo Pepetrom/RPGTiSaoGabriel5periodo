@@ -23030,7 +23030,7 @@ AnimationClip:
     m_LoopTime: 0
     m_LoopBlend: 0
     m_LoopBlendOrientation: 1
-    m_LoopBlendPositionY: 0
+    m_LoopBlendPositionY: 1
     m_LoopBlendPositionXZ: 0
     m_KeepOriginalOrientation: 1
     m_KeepOriginalPositionY: 1
@@ -136274,9 +136274,30 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 1.5
+    functionName: PlaySoundAttached
+    data: "event:/SFX/Inimigos/Jacar\xE9/Jacar\xE9Ch\xE3oImpacto"
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.5
+    functionName: PlayVFX
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 2.9666667
     functionName: Action
     data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 3.1
+    functionName: PlaySoundAttached
+    data: "event:/SFX/Inimigos/Jacar\xE9/Jacar\xE9Ch\xE3oImpacto"
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -136312,6 +136333,13 @@ AnimationClip:
   - time: 3.5666666
     functionName: StopAction
     data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 3.5666666
+    functionName: PlaySoundAttached
+    data: "event:/SFX/Inimigos/Jacar\xE9/Jacar\xE9Ch\xE3oImpacto"
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -136361,6 +136389,20 @@ AnimationClip:
   - time: 5.733333
     functionName: PlaySoundAttached
     data: "event:/SFX/Inimigos/Jacar\xE9/Jacar\xE9Ch\xE3oImpacto"
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 5.733333
+    functionName: PlaySoundAttached
+    data: "event:/SFX/Inimigos/Jacar\xE9/Jacar\xE9Ch\xE3oImpacto"
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 5.733333
+    functionName: PlayVFX
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
