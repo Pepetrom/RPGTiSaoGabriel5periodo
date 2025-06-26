@@ -28,6 +28,10 @@ public class EnemySpawner : MonoBehaviour
                     PorquinStateMachine porquin = enemy.GetComponent<PorquinStateMachine>();
                     porquin.patrolData = patrolData;
                     break;
+                case "porquinEscudo":
+                    PorquinEscudoFSM porquinEscudo = enemy.GetComponent<PorquinEscudoFSM>();
+                    porquinEscudo.patrolData = patrolData;
+                    break;
             }
         }
     }
