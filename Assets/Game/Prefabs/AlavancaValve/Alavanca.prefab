@@ -142,8 +142,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInRange: 0
+  outline: {fileID: 4771983823947393604}
   animator: {fileID: 2553241071708431551}
   valve: {fileID: 0}
+  reminderText: 
 --- !u!1 &921101561212558919
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,6 +158,7 @@ GameObject:
   - component: {fileID: 8301483921132478563}
   - component: {fileID: 658816610950218303}
   - component: {fileID: 5110479514979550796}
+  - component: {fileID: 4771983823947393604}
   m_Layer: 16
   m_Name: Cylinder.067
   m_TagString: Untagged
@@ -250,6 +253,24 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4795737975356854249, guid: 1348299b7dced304a94e41b7b5a45b94, type: 3}
+--- !u!114 &4771983823947393604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 921101561212558919}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &3213427919655118485
 GameObject:
   m_ObjectHideFlags: 0

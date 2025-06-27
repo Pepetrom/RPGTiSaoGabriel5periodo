@@ -25,8 +25,6 @@ public class GameManager : MonoBehaviour
     public AudioManager audioMan;
     public bool isOnWater;
 
-    public Material glowingMaterial;
-
     private void Awake()
     {
         instance = this;

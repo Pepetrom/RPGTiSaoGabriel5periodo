@@ -6,21 +6,20 @@ public abstract class Interactable : MonoBehaviour
 {
     public bool isInRange = false;
     public abstract void Interact();
-    public Renderer rendererInteractable;
-    Material oldMaterial;
+    public Outline outline;
     private void Start()
     {
-        oldMaterial = rendererInteractable.material;
+        if (outline) outline.enabled = false;
     }
     public void Enter()
     {
         isInRange = true;
-        if (rendererInteractable) rendererInteractable.material = GameManager.instance.glowingMaterial;
+        if (outline) outline.enabled = true;
     }
     public void Exit()
     {
         isInRange = false;
-        if (rendererInteractable) rendererInteractable.material = oldMaterial;
+        if (outline) outline.enabled = false;
     }
     public bool IsInRange()
     {

@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInRange: 0
+  outline: {fileID: 1163683191863829939}
   objectThatMove: {fileID: 0}
   locationID: 1
   alavanca: {fileID: 9076466025358442192}
@@ -84,6 +85,7 @@ GameObject:
   - component: {fileID: 2014088979338731349}
   - component: {fileID: 6272220998467825853}
   - component: {fileID: 9076466025358442192}
+  - component: {fileID: 1163683191863829939}
   m_Layer: 0
   m_Name: Plane.001
   m_TagString: Untagged
@@ -179,6 +181,24 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1163683191863829939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2817104526167554841}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &5294356677112431934
 GameObject:
   m_ObjectHideFlags: 0
