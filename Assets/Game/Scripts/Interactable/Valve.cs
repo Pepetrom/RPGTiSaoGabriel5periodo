@@ -11,6 +11,7 @@ public class Valve : Interactable
     public int locationID = 0;
     public GameObject greenLight, redLight;
     public string reminderText = "";
+    public GameObject smoke;
     public override void Interact()
     {
         Activate();
@@ -25,6 +26,12 @@ public class Valve : Interactable
         if(animator)animator.SetTrigger("Activate");
         objectThatMove.ChangeLocation(locationID);
         if(reminderText.Length > 0) LittleReminder.instance.littleReminder(reminderText);
+        smoke.SetActive(true);
+        Invoke("DeactivateSmoke", 3f);
+    }
+    void DeactivateSmoke()
+    {
+        smoke.SetActive(false);
     }
     public void CanBeActivated(bool can)
     {

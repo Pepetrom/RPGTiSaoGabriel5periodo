@@ -1244,8 +1244,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1566.6667, y: -539.8442}
-  m_SizeDelta: {x: 606.6667, y: 1079.6884}
+  m_AnchoredPosition: {x: 1566.6667, y: -539.661}
+  m_SizeDelta: {x: 606.6667, y: 1079.322}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &163188679
 GameObject:
@@ -2244,7 +2244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4811321, g: 0.4811321, b: 0.4811321, a: 1}
+  m_Color: {r: 0.16037738, g: 0.16037738, b: 0.16037738, a: 0.9647059}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5896,11 +5896,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonImage: {fileID: 952166402}
   buttonText: {fileID: 1320254540}
-  normalButtonColor: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
+  normalButtonColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   hoverButtonColor: {r: 1, g: 1, b: 1, a: 1}
   pressedButtonColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
   normalTextColor: {r: 1, g: 1, b: 1, a: 1}
-  hoverTextColor: {r: 0.8160377, g: 1, b: 0.9939794, a: 1}
+  hoverTextColor: {r: 0, g: 0, b: 0, a: 1}
   pressedTextColor: {r: 1, g: 1, b: 1, a: 1}
   selectedTextColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
   isRune: 0
@@ -5923,7 +5923,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 0}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0}
@@ -5973,15 +5973,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 8f29ba7414dd6214eaea333b1ffa7953, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -6445,7 +6445,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -425, y: -51}
-  m_SizeDelta: {x: 352.2665, y: 65}
+  m_SizeDelta: {x: 350, y: 65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1061659659
 MonoBehaviour:
@@ -6461,11 +6461,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonImage: {fileID: 1061659661}
   buttonText: {fileID: 324716259}
-  normalButtonColor: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
+  normalButtonColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   hoverButtonColor: {r: 1, g: 1, b: 1, a: 1}
   pressedButtonColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
   normalTextColor: {r: 1, g: 1, b: 1, a: 1}
-  hoverTextColor: {r: 0.8160377, g: 1, b: 0.9939794, a: 1}
+  hoverTextColor: {r: 0, g: 0, b: 0, a: 1}
   pressedTextColor: {r: 1, g: 1, b: 1, a: 1}
   selectedTextColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
   isRune: 0
@@ -6488,7 +6488,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 0}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0}
@@ -6538,15 +6538,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 8f29ba7414dd6214eaea333b1ffa7953, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -6811,7 +6811,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -50, y: 50}
-  m_SizeDelta: {x: 400, y: 65}
+  m_SizeDelta: {x: 350, y: 200}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1080185604
 MonoBehaviour:
@@ -6912,14 +6912,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 8f29ba7414dd6214eaea333b1ffa7953, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8937,7 +8937,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 50}
+  m_AnchoredPosition: {x: 25, y: 50}
   m_SizeDelta: {x: 352.26648, y: 65}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1454330497
@@ -8958,7 +8958,7 @@ MonoBehaviour:
   hoverButtonColor: {r: 1, g: 1, b: 1, a: 1}
   pressedButtonColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
   normalTextColor: {r: 1, g: 1, b: 1, a: 1}
-  hoverTextColor: {r: 0.8349056, g: 1, b: 0.9947756, a: 1}
+  hoverTextColor: {r: 0, g: 0, b: 0, a: 1}
   pressedTextColor: {r: 1, g: 1, b: 1, a: 1}
   selectedTextColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
   isRune: 0
@@ -8981,7 +8981,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 0}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0}
@@ -9031,15 +9031,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Color: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 8f29ba7414dd6214eaea333b1ffa7953, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -10796,11 +10796,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonImage: {fileID: 1771353839}
   buttonText: {fileID: 2131152814}
-  normalButtonColor: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
+  normalButtonColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   hoverButtonColor: {r: 1, g: 1, b: 1, a: 1}
   pressedButtonColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
   normalTextColor: {r: 1, g: 1, b: 1, a: 1}
-  hoverTextColor: {r: 0.8160377, g: 1, b: 0.9939794, a: 1}
+  hoverTextColor: {r: 0, g: 0, b: 0, a: 1}
   pressedTextColor: {r: 1, g: 1, b: 1, a: 1}
   selectedTextColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
   isRune: 0
@@ -10823,7 +10823,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 0}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0}
@@ -10885,15 +10885,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 8f29ba7414dd6214eaea333b1ffa7953, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -11101,7 +11101,7 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2064258531}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.85020727}
+  m_AnchorMin: {x: 0, y: 0.850226}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
@@ -12413,7 +12413,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1794729602}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.14979273
+  m_Size: 0.14977401
   m_NumberOfSteps: 10
   m_OnValueChanged:
     m_PersistentCalls:
@@ -13022,7 +13022,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -425, y: -316}
-  m_SizeDelta: {x: 352.2665, y: 65}
+  m_SizeDelta: {x: 350, y: 65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &134395494430108760
 RectTransform:
@@ -13628,7 +13628,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -425, y: 40}
-  m_SizeDelta: {x: 352.2665, y: 65}
+  m_SizeDelta: {x: 350, y: 65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &611769049324325576
 CanvasRenderer:
@@ -13938,7 +13938,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 0}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0}
@@ -14941,15 +14941,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Color: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 8f29ba7414dd6214eaea333b1ffa7953, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -15545,8 +15545,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 353.33334, y: -539.8442}
-  m_SizeDelta: {x: 606.6667, y: 1079.6884}
+  m_AnchoredPosition: {x: 353.33334, y: -539.661}
+  m_SizeDelta: {x: 606.6667, y: 1079.322}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2254439173160369116
 GameObject:
@@ -15584,8 +15584,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -539.8442}
-  m_SizeDelta: {x: 606.6667, y: 1079.6884}
+  m_AnchoredPosition: {x: 960, y: -539.661}
+  m_SizeDelta: {x: 606.6667, y: 1079.322}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2266655545497233346
 MonoBehaviour:
@@ -16654,13 +16654,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonImage: {fileID: 7277344926339225116}
   buttonText: {fileID: 6467445766891025194}
-  normalButtonColor: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
+  normalButtonColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   hoverButtonColor: {r: 1, g: 1, b: 1, a: 1}
-  pressedButtonColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 0}
+  pressedButtonColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
   normalTextColor: {r: 1, g: 1, b: 1, a: 1}
-  hoverTextColor: {r: 0.8160377, g: 1, b: 0.9939794, a: 1}
+  hoverTextColor: {r: 0, g: 0, b: 0, a: 1}
   pressedTextColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedTextColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedTextColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
   isRune: 0
 --- !u!114 &2987699295822268508
 MonoBehaviour:
@@ -17241,15 +17241,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Color: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 8f29ba7414dd6214eaea333b1ffa7953, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -17304,7 +17304,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -425, y: -142}
-  m_SizeDelta: {x: 352.2665, y: 65}
+  m_SizeDelta: {x: 350, y: 65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &3446029000026033396
 RectTransform:
@@ -18961,7 +18961,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 0}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0}
@@ -19913,7 +19913,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -425, y: -229}
-  m_SizeDelta: {x: 352.2665, y: 65}
+  m_SizeDelta: {x: 350, y: 65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &5663636631765942192
 RectTransform:
@@ -20100,15 +20100,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 8f29ba7414dd6214eaea333b1ffa7953, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -20664,11 +20664,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonImage: {fileID: 3355872053510226513}
   buttonText: {fileID: 921952504272619246}
-  normalButtonColor: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
+  normalButtonColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   hoverButtonColor: {r: 1, g: 1, b: 1, a: 1}
   pressedButtonColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
   normalTextColor: {r: 1, g: 1, b: 1, a: 1}
-  hoverTextColor: {r: 0.8160377, g: 1, b: 0.9939794, a: 1}
+  hoverTextColor: {r: 0, g: 0, b: 0, a: 1}
   pressedTextColor: {r: 1, g: 1, b: 1, a: 1}
   selectedTextColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
   isRune: 0
@@ -20928,11 +20928,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonImage: {fileID: 5778344115197836601}
   buttonText: {fileID: 2590262802827881672}
-  normalButtonColor: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
+  normalButtonColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   hoverButtonColor: {r: 1, g: 1, b: 1, a: 1}
   pressedButtonColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
   normalTextColor: {r: 1, g: 1, b: 1, a: 1}
-  hoverTextColor: {r: 0.8160377, g: 1, b: 0.9939794, a: 1}
+  hoverTextColor: {r: 0, g: 0, b: 0, a: 1}
   pressedTextColor: {r: 1, g: 1, b: 1, a: 1}
   selectedTextColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
   isRune: 0
@@ -21152,11 +21152,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonImage: {fileID: 1712061664822123293}
   buttonText: {fileID: 5135014177106240600}
-  normalButtonColor: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
+  normalButtonColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   hoverButtonColor: {r: 1, g: 1, b: 1, a: 1}
   pressedButtonColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
   normalTextColor: {r: 1, g: 1, b: 1, a: 1}
-  hoverTextColor: {r: 0.8160377, g: 1, b: 0.9939794, a: 1}
+  hoverTextColor: {r: 0, g: 0, b: 0, a: 1}
   pressedTextColor: {r: 1, g: 1, b: 1, a: 1}
   selectedTextColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
   isRune: 0
@@ -21832,15 +21832,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 8f29ba7414dd6214eaea333b1ffa7953, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -22285,7 +22285,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 0}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0}
@@ -22427,7 +22427,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 0}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0}
