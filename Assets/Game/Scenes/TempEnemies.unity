@@ -24232,6 +24232,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8175405170186277913, guid: e3fb75a5832951743aa1f342540391ef,
         type: 3}
+      propertyPath: isInRange
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8175405170186277913, guid: e3fb75a5832951743aa1f342540391ef,
+        type: 3}
       propertyPath: locationID
       value: 2
       objectReference: {fileID: 0}
@@ -24387,6 +24392,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInRange: 0
+  rendererInteractable: {fileID: 0}
   canBeActivated: 1
   animator: {fileID: 285190023}
   objectThatMove: {fileID: 6932001239139818933}
@@ -24394,6 +24400,7 @@ MonoBehaviour:
   greenLight: {fileID: 0}
   redLight: {fileID: 0}
   reminderText: 
+  smoke: {fileID: 0}
 --- !u!135 &285190025
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -56714,6 +56721,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInRange: 0
+  rendererInteractable: {fileID: 0}
   note: {fileID: 21300000, guid: 3bae58c094b604143aef42142f63bf05, type: 3}
 --- !u!1001 &702338635
 PrefabInstance:
@@ -105989,6 +105997,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInRange: 0
+  rendererInteractable: {fileID: 0}
   canBeActivated: 1
   animator: {fileID: 1437426659}
   objectThatMove: {fileID: 6932001239139818933}
@@ -105996,6 +106005,7 @@ MonoBehaviour:
   greenLight: {fileID: 0}
   redLight: {fileID: 0}
   reminderText: 
+  smoke: {fileID: 0}
 --- !u!135 &1437426661
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -112467,6 +112477,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInRange: 0
+  rendererInteractable: {fileID: 0}
   note: {fileID: 21300000, guid: 9dd1a110b44016b47b142420fee4a8a3, type: 3}
 --- !u!4 &1534530535 stripped
 Transform:
@@ -146888,6 +146899,7 @@ MonoBehaviour:
   enemySpawner: {fileID: 1223273490}
   audioMan: {fileID: 2024490044}
   isOnWater: 0
+  glowingMaterial: {fileID: 2100000, guid: 2d0e42458d4e00141929c8b572b11914, type: 2}
 --- !u!4 &2024490040
 Transform:
   m_ObjectHideFlags: 0
@@ -149954,6 +149966,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInRange: 0
+  rendererInteractable: {fileID: 0}
 --- !u!64 &2063289982
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -163851,6 +163864,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInRange: 0
+  rendererInteractable: {fileID: 0}
   canBeActivated: 1
   animator: {fileID: 785850297733002160}
   objectThatMove: {fileID: 1005278076}
@@ -163858,6 +163872,7 @@ MonoBehaviour:
   greenLight: {fileID: 0}
   redLight: {fileID: 0}
   reminderText: The Pipe has been lifted
+  smoke: {fileID: 0}
 --- !u!33 &563719461068246852
 MeshFilter:
   m_ObjectHideFlags: 0

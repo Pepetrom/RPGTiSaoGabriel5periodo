@@ -69,6 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInRange: 0
+  rendererInteractable: {fileID: 4862396516509349019}
   value: 50
 --- !u!114 &8773620305008932813
 MonoBehaviour:
@@ -179,6 +180,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa1ec9841e1ece9459582242d571afbd, type: 3}
+--- !u!23 &4862396516509349019 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5325809476531589332, guid: fa1ec9841e1ece9459582242d571afbd,
+    type: 3}
+  m_PrefabInstance: {fileID: 762129090859885647}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6629958504647859049 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6238040173778337574, guid: fa1ec9841e1ece9459582242d571afbd,
