@@ -35235,6 +35235,13 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
+  - time: 1.7666667
+    functionName: PlaySoundAttached
+    data: "event:/SFX/Inimigos/Tartaruga/Canh\xE3o"
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 1.8333334
     functionName: Antecipation
     data: 
@@ -35248,13 +35255,6 @@ AnimationClip:
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
-    messageOptions: 0
-  - time: 2
-    functionName: PlayAudio
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 4
     messageOptions: 0
   - time: 4.3333335
     functionName: AttackIdle

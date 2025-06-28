@@ -449,7 +449,7 @@ Transform:
   m_GameObject: {fileID: 1643876515492158807}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7094906, y: -0.24511585, z: -0.2938842, w: 0.59175456}
-  m_LocalPosition: {x: 0.05, y: 0.3, z: -1.48}
+  m_LocalPosition: {x: 0.05, y: 1, z: -1.48}
   m_LocalScale: {x: 100, y: 99.99998, z: 99.99996}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -474,7 +474,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &52202515619353098
 Transform:
   m_ObjectHideFlags: 0
@@ -995,6 +995,12 @@ MonoBehaviour:
   - {fileID: 6299889171514275707}
   hitVFX: {fileID: 6578666374620937032, guid: 1434f9b62b8090644a73c6b08e0047f0, type: 3}
   hitPos: {fileID: 8407593179279277824}
+  vfxAtt:
+  - {fileID: 3680409294408599713, guid: 0e1106b641136fb4f9000d110f9a3f4d, type: 3}
+  - {fileID: 2025653557791573771, guid: 806b23eaa6ade944a83edd1bcca23f72, type: 3}
+  vfxAttPos:
+  - {fileID: 8407593179279277824}
+  - {fileID: 8407593179279277824}
   initialPoint: {fileID: 52202515619353098}
   finalPoint: {fileID: 0}
   line: {fileID: 0}
@@ -13134,7 +13140,7 @@ PrefabInstance:
     - target: {fileID: 7775720572921995497, guid: 08469ac24cbd5284ab3fccebfcf25a53,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8816062366949768850, guid: 08469ac24cbd5284ab3fccebfcf25a53,
         type: 3}

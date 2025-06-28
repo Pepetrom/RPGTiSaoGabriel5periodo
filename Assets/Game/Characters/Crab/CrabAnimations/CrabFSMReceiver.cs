@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CrabFSMReceiver : MonoBehaviour
@@ -65,5 +66,9 @@ public class CrabFSMReceiver : MonoBehaviour
     public void PlaySoundAttached(string path)
     {
         FMODAudioManager.instance.PlaySoundAttached(path);
+    }
+    public void PlayVFX(int i)
+    {
+        crab.PlayVFX(i);    
     }
 }

@@ -40,6 +40,9 @@ public class FMODAudioManager : MonoBehaviour
     public EventReference buyRune;
     public EventReference noMoney;
 
+    [Header("Tartaruga")]
+    public EventReference turtleDamage;
+
 
     private void Awake()
     {

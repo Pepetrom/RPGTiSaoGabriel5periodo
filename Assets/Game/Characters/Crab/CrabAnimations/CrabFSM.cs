@@ -41,6 +41,8 @@ public class CrabFSM : MonoBehaviour, IDamageable
     public TrailRenderer[] trails;
     public VisualEffect hitVFX;
     public Transform hitPos;
+    public VisualEffect[] vfxAtt;
+    public Transform[] vfxAttPos;
 
     [Header("AttackBigFire")]
     public Transform initialPoint, finalPoint;
@@ -284,5 +286,11 @@ public class CrabFSM : MonoBehaviour, IDamageable
         hitVFXinstance.transform.rotation = vfxRotation;
         hitVFXinstance.Play();
         hitVFXinstance.transform.SetParent(null);
+    }
+    public void PlayVFX(int i)
+    {
+        VisualEffect vfxInstance = Instantiate(vfxAtt[i], vfxAttPos[i].position, Quaternion.identity);
+        vfxInstance.Play();
+        vfxInstance.transform.SetParent(null);
     }
 }

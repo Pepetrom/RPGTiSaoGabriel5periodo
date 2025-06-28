@@ -33,4 +33,8 @@ public class TurtleFSMReceiver : MonoBehaviour
     {
         turtle.Deactivate();
     }
+    public void PlaySoundAttached(string path)
+    {
+        FMODAudioManager.instance.PlaySoundAttached(path);
+    }
 }

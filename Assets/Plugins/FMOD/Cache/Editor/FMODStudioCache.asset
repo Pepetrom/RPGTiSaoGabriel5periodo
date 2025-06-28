@@ -27,6 +27,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 530
+--- !u!114 &-8570625635852785865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: "event:/SFX/Inimigos/Jacar\xE9/Morte"
+  m_EditorClassIdentifier: 
+  Path: "event:/SFX/Inimigos/Jacar\xE9/Morte"
+  Guid:
+    Data1: 1881470223
+    Data2: 1225792362
+    Data3: 2006517679
+    Data4: 1673049019
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 6870
 --- !u!114 &-8479413176289016433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42,7 +69,7 @@ MonoBehaviour:
   Path: FMOD/FMOD_WoL/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638865289026567020
+  lastModified: 638867321628507426
   FileSizes:
   - Name: Desktop
     Value: 28608
@@ -255,8 +282,8 @@ MonoBehaviour:
     Data3: 1440139407
     Data4: 1175891857
   Banks:
-  - {fileID: -8479413176289016433}
   - {fileID: 8981852520927742451}
+  - {fileID: -8479413176289016433}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1063,6 +1090,7 @@ MonoBehaviour:
   - {fileID: 8393391211552418243}
   - {fileID: -8479413176289016433}
   - {fileID: 8981852520927742451}
+  - {fileID: 7736262994136422501}
   EditorEvents:
   - {fileID: -7569771406294215129}
   - {fileID: -2715732980056275973}
@@ -1132,13 +1160,44 @@ MonoBehaviour:
   - {fileID: -5949325095289877670}
   - {fileID: -6623173933553887878}
   - {fileID: 3774845509916356990}
+  - {fileID: -8570625635852785865}
+  - {fileID: 1588209698309844237}
+  - {fileID: 1151313809462634224}
+  - {fileID: 619770127304068727}
   EditorParameters: []
   MasterBanks:
   - {fileID: -8479413176289016433}
   StringsBanks:
   - {fileID: 8393391211552418243}
-  cacheTime: 638865289027064240
+  cacheTime: 638867323785611650
   cacheVersion: 131624
+--- !u!114 &619770127304068727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Songs/Solos
+  m_EditorClassIdentifier: 
+  Path: event:/Songs/Solos
+  Guid:
+    Data1: 668789348
+    Data2: 1086977743
+    Data3: -2055822673
+    Data4: -1750347280
+  Banks:
+  - {fileID: 7736262994136422501}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 160000
 --- !u!114 &669633742359291694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1220,6 +1279,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 3552
+--- !u!114 &1151313809462634224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Inimigos/Tartaruga/TartarugaDano
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Inimigos/Tartaruga/TartarugaDano
+  Guid:
+    Data1: 400159638
+    Data2: 1326844204
+    Data3: -1586061440
+    Data4: -588168039
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 664
 --- !u!114 &1275475997922002869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1301,6 +1387,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 250
+--- !u!114 &1588209698309844237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: "event:/SFX/Inimigos/Tartaruga/Canh\xE3o"
+  m_EditorClassIdentifier: 
+  Path: "event:/SFX/Inimigos/Tartaruga/Canh\xE3o"
+  Guid:
+    Data1: 1365008696
+    Data2: 1201202979
+    Data3: -542423915
+    Data4: -2032138758
+  Banks:
+  - {fileID: 8981852520927742451}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
 --- !u!114 &1916164611689876816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1814,6 +1927,26 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 38000
+--- !u!114 &7736262994136422501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Musicas.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/FMOD_WoL/Build/Desktop/Musicas.bank
+  Name: Musicas
+  StudioPath: bank:/Musicas
+  lastModified: 638867323785611650
+  FileSizes:
+  - Name: Desktop
+    Value: 1431072
+  Exists: 1
 --- !u!114 &8116108026295829194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1856,10 +1989,10 @@ MonoBehaviour:
   Path: FMOD/FMOD_WoL/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638865289026567020
+  lastModified: 638867321628537440
   FileSizes:
   - Name: Desktop
-    Value: 3932
+    Value: 4182
   Exists: 1
 --- !u!114 &8456345858411569361
 MonoBehaviour:
@@ -1957,10 +2090,10 @@ MonoBehaviour:
   Path: FMOD/FMOD_WoL/Build/Desktop/VFX.bank
   Name: VFX
   StudioPath: bank:/VFX
-  lastModified: 638865289027064240
+  lastModified: 638867319070992031
   FileSizes:
   - Name: Desktop
-    Value: 7632704
+    Value: 7810624
   Exists: 1
 --- !u!114 &9137565999948361374
 MonoBehaviour:

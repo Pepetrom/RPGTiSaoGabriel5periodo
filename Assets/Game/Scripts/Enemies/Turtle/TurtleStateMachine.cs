@@ -232,6 +232,7 @@ public class TurtleStateMachine : MonoBehaviour, IDamageable
         hp -= damage;
         playerHit = true;
         PlayHitEffect();
+        FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.turtleDamage,transform.position);
         GameManager.instance.SpawnNumber((int)damage, Color.yellow, transform);
         if(hp <= 0)
         {

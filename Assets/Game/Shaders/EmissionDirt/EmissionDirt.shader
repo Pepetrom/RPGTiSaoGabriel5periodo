@@ -6,6 +6,7 @@ Shader "Custom/URP_UnlitDirtGlow"
         _DirtTex("Dirt Texture", 2D) = "white" {}
         _EmissionSlider("Emission Intensity", Range(0, 5)) = 1.0
         _GlowVel("Glow Velocity", Range(0, 5)) = 1.0
+        _Slider("WaterVelocity", Range(0, 5)) = 1.0
     }
 
     SubShader
@@ -41,7 +42,7 @@ Shader "Custom/URP_UnlitDirtGlow"
             CBUFFER_START(UnityPerMaterial)
                 float4 _ColorDirt;
                 float _EmissionSlider;
-                float _GlowVel;
+                float _GlowVel, _Slider;
                 float4 _DirtTex_ST; 
             CBUFFER_END
 
@@ -58,7 +59,8 @@ Shader "Custom/URP_UnlitDirtGlow"
 
             half4 frag (Varyings IN) : SV_Target
             {               
-                float2 uv = IN.uv * _DirtTex_ST.xy + _DirtTex_ST.zw;
+                float2 uvM = float2(0,_Time.x * _Slider);
+                float2 uv = IN.uv * _DirtTex_ST.xy + _DirtTex_ST.zw + uvM;
                 half4 dirt = SAMPLE_TEXTURE2D(_DirtTex, sampler_DirtTex, uv) * _ColorDirt; 
                 half glow = sin(_Time.y * _GlowVel) * 0.5 + 0.5;
                 half3 emission = dirt.rgb * _EmissionSlider * glow;

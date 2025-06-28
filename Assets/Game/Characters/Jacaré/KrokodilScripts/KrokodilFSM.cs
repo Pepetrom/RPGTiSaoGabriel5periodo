@@ -300,10 +300,6 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
         hitVFXinstance.Play();
         hitVFXinstance.transform.SetParent(null);
     }
-    void SecondStageAnimTimes()
-    {
-        
-    }
     public void DestroyBoss(GameObject boss)
     {
         Destroy(boss);

@@ -9,6 +9,7 @@ public class KroDeath : IKrokodil
 
     public void OnEnter()
     {
+        controller.stun.GetComponent<ParticleSystem>().Play();
         controller.ownCollider.enabled = false;
     }
 

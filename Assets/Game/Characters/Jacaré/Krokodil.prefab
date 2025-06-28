@@ -473,7 +473,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a3d9e0164a907274a967fc712096ff26, type: 2}
+  - {fileID: 2100000, guid: a5bc87ac0433d28468aa760b2e51c9f6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1175,6 +1175,37 @@ Transform:
   - {fileID: 1085619792137986294}
   m_Father: {fileID: 5847070827573636295}
   m_LocalEulerAnglesHint: {x: 7.842425, y: 179.84695, z: -1.3099905}
+--- !u!1 &1269753466307675356
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4656173966798362546}
+  m_Layer: 0
+  m_Name: ExplosionSmall
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4656173966798362546
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1269753466307675356}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 12.4, z: 0.45}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6490162635313446821}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1291625520483538546
 GameObject:
   m_ObjectHideFlags: 0
@@ -4709,6 +4740,8 @@ Transform:
   - {fileID: 1704752283294106832}
   - {fileID: 3333004787410478450}
   - {fileID: 7624153304185034801}
+  - {fileID: 1281602059201887093}
+  - {fileID: 4656173966798362546}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2623791223261428150
@@ -4786,7 +4819,7 @@ MonoBehaviour:
   croc: {fileID: 5866946251865434462}
   bombPrefab: {fileID: 8576731493386660667, guid: 87b10ef9449c0164d8904cd9f8229c2a,
     type: 3}
-  secondStageMaterial: {fileID: 2100000, guid: 42c22591657a57b44b0975aa2e4216c4, type: 2}
+  secondStageMaterial: {fileID: 2100000, guid: ec6c5771d43b6a4408dd026ab6fd9ba6, type: 2}
   stun: {fileID: 7615755019889925019}
   bigImpactVFX: {fileID: 0}
   clawVFX: {fileID: 0}
@@ -4796,9 +4829,15 @@ MonoBehaviour:
   vfxAtt:
   - {fileID: 1226948033216109083, guid: f74ca33ee3f46eb438062def437486a7, type: 3}
   - {fileID: 8768651954918315089, guid: 80fea6f0aafe3284fbed0097d7f639a0, type: 3}
+  - {fileID: 3680409294408599713, guid: 0e1106b641136fb4f9000d110f9a3f4d, type: 3}
+  - {fileID: 2025653557791573771, guid: 799757b3dd14ac742a66c6ecb078a1fa, type: 3}
+  - {fileID: 2025653557791573771, guid: 806b23eaa6ade944a83edd1bcca23f72, type: 3}
   vfxAttPos:
   - {fileID: 1855026380961916510}
   - {fileID: 7624153304185034801}
+  - {fileID: 1281602059201887093}
+  - {fileID: 4656173966798362546}
+  - {fileID: 1281602059201887093}
   respawnOb: {fileID: 0}
 --- !u!195 &327336501116574259
 NavMeshAgent:
@@ -6418,6 +6457,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7205647621275118319}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &9155720411023800963
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1281602059201887093}
+  m_Layer: 0
+  m_Name: ExplosionBig
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1281602059201887093
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9155720411023800963}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 8.2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6490162635313446821}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9213279235792159161
 GameObject:

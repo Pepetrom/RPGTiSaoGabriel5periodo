@@ -25429,6 +25429,13 @@ MonoBehaviour:
       Data3: 1845775766
       Data4: 1008895779
     Path: event:/SFX/UI/SemDinheiro
+  turtleDamage:
+    Guid:
+      Data1: 400159638
+      Data2: 1326844204
+      Data3: -1586061440
+      Data4: -588168039
+    Path: event:/SFX/Inimigos/Tartaruga/TartarugaDano
 --- !u!1001 &292051099
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46534,7 +46541,7 @@ Transform:
   m_GameObject: {fileID: 564200608}
   serializedVersion: 2
   m_LocalRotation: {x: 0.48255104, y: 0.32697853, z: -0.20037267, w: 0.78745186}
-  m_LocalPosition: {x: -12, y: 42, z: -9}
+  m_LocalPosition: {x: 90.9, y: -54.41, z: -393.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -60884,6 +60891,7 @@ GameObject:
   - component: {fileID: 740791334}
   - component: {fileID: 740791333}
   - component: {fileID: 740791336}
+  - component: {fileID: 740791337}
   m_Layer: 16
   m_Name: David
   m_TagString: Untagged
@@ -60998,6 +61006,37 @@ MonoBehaviour:
   - Dialogues/D/DavidDialogue5
   - Dialogues/D/DavidDialogue6
   NPCname: {fileID: 1518346786}
+--- !u!114 &740791337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 740791331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 668789348
+      Data2: 1086977743
+      Data3: -2055822673
+      Data4: -1750347280
+    Path: event:/Songs/Solos
+  Event: 
+  EventPlayTrigger: 1
+  EventStopTrigger: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 1
+  OverrideMinDistance: 20
+  OverrideMaxDistance: 120
 --- !u!1 &741032314
 GameObject:
   m_ObjectHideFlags: 0
@@ -146375,7 +146414,7 @@ Transform:
   m_GameObject: {fileID: 2000926832}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 113.8, y: -89.22147, z: -366.8}
+  m_LocalPosition: {x: 123.1, y: -89.22147, z: -378.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -159773,17 +159812,17 @@ PrefabInstance:
     - target: {fileID: 3309777756324126554, guid: a7dd1cff653b2eb44a36b57ea2fe2a45,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 102.9
       objectReference: {fileID: 0}
     - target: {fileID: 3309777756324126554, guid: a7dd1cff653b2eb44a36b57ea2fe2a45,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.12
+      value: -96.29
       objectReference: {fileID: 0}
     - target: {fileID: 3309777756324126554, guid: a7dd1cff653b2eb44a36b57ea2fe2a45,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.2
+      value: -376.9
       objectReference: {fileID: 0}
     - target: {fileID: 3309777756324126554, guid: a7dd1cff653b2eb44a36b57ea2fe2a45,
         type: 3}
@@ -160059,7 +160098,7 @@ PrefabInstance:
     - target: {fileID: 3625156775460667600, guid: a7dd1cff653b2eb44a36b57ea2fe2a45,
         type: 3}
       propertyPath: animacaoDeCair
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3625156775460667600, guid: a7dd1cff653b2eb44a36b57ea2fe2a45,
         type: 3}
