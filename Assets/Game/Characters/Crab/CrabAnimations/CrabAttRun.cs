@@ -14,7 +14,6 @@ public class CrabAttRun : ICrabInterface
         controller.rb.isKinematic = true;
         controller.damage = 40;
         controller.agent.speed = 8;
-        controller.ownCollider.enabled = false;
     }
 
     public void OnExit()

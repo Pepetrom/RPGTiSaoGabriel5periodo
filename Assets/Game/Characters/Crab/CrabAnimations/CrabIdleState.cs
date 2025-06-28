@@ -24,6 +24,13 @@ public class CrabIdleState : ICrabInterface
     }
     public void OnUpdate()
     {
+        if (controller.secondStage)
+        {
+            controller.animator.SetBool("secondStage", true);
+            controller.SetState(new CrabSecondStage(controller));
+            controller.secondStage = false;
+            return;
+        }
         if(controller.TargetDir().magnitude <= controller.meleeRange)
         {
             controller.animator.SetBool("isEnableToAttack", true);

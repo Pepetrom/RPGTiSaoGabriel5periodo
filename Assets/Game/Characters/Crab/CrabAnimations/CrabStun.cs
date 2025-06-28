@@ -11,6 +11,12 @@ public class CrabStun : ICrabInterface
     }
     public void OnEnter()
     {
+        if(UIItems.instance.bossCurrentHP <= 0)
+        {
+            controller.animator.Play("Crab_Death");
+            controller.SetState(new CrabDeath(controller));
+            return;
+        }
         controller.posture = controller.maxPosture;
         controller.animator.SetBool("att1", false);
         controller.animator.SetBool("att2", false);

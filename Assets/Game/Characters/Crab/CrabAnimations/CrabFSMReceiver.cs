@@ -66,8 +66,4 @@ public class CrabFSMReceiver : MonoBehaviour
     {
         FMODAudioManager.instance.PlaySoundAttached(path);
     }
-    public void OwnColliderActivate()
-    {
-        crab.OwnColliderActivate();
-    }
 }

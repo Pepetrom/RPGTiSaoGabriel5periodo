@@ -29,6 +29,7 @@ public class TurtleRunState : ITurtleStateMachine
         {
             controller.animator.SetBool("isRunning", false);
             controller.SetState(new TurtleCombatIdleState(controller));
+            return;
         }
         if (controller.sortedNumber < 0.3f)
         {

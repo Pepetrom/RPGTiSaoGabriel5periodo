@@ -121,6 +121,7 @@ public class UIItems : MonoBehaviour
         GameManager.instance.ResetPositionPlayer();
         PlayerController.instance.ForceIddle();
         PlayerController.instance.ResetAllActions();
+        BossManager.instance.CheckIfBossWasKilled();
         PlayerController.instance.playerIsDead = false;
     }
     public void GearLoopAnimation(bool state)

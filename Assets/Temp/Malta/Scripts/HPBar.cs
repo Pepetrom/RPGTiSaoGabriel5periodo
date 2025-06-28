@@ -126,4 +126,5 @@ public class HPBar : MonoBehaviour
         yield return new WaitForSeconds(PlayerController.instance.invencibilityTime);
         PlayerController.instance.canTakeDamage = true;
     }
+
 }

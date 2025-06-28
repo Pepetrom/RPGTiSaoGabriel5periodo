@@ -14,13 +14,16 @@ public class KroDeath : IKrokodil
 
     public void OnExit()
     {
-        controller.end = false;   
+        BossManager.instance.krokodil = false;
+        BossManager.instance.KrokodilSetUp(false);
+        controller.end = false;
     }
 
     public void OnUpdate()
     {
         if (controller.end)
         {
+            BossManager.instance.KrokodilSetUp(false);
             GameManager.instance.Score(5000);
             controller.DestroyBoss(controller.gameObject);
         }

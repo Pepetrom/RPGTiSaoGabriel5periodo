@@ -32,6 +32,8 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
     public Coroutine runningCo;
     public VisualEffect[] vfxAtt;
     public Transform[] vfxAttPos;
+    [Header("Arena")]
+    public GameObject respawnOb;
 
     //swing
     Vector3 velocity, lVelocity;
@@ -42,6 +44,9 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
             player = GameObject.FindWithTag("Player");
         if (jumpLocation == null)
             jumpLocation = GameObject.Find("JumpKroLocation");
+        if(respawnOb == null)
+            respawnOb = GameObject.Find("TeleporterJare");
+
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         SetState(new KroStartState(this));

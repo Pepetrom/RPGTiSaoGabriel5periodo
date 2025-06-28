@@ -4,6 +4,7 @@ using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.VFX;
 
 public class CrabFSM : MonoBehaviour, IDamageable
 {
@@ -26,7 +27,7 @@ public class CrabFSM : MonoBehaviour, IDamageable
     public float impulse, rotateSpeed;
     public CapsuleCollider jumpCollider, claw1, claw2, furnaceCollider, ownCollider;
     public GameObject fire, fireCircle, bigFire, stairBlock;
-    public bool canDoFireDamage, spinCombo = false;
+    public bool canDoFireDamage, spinCombo = false, triggerSecondStage = false;
     public string bossName;
 
     [Header("Fuzzy")]
@@ -38,6 +39,8 @@ public class CrabFSM : MonoBehaviour, IDamageable
     public GameObject ownFire;
     public Transform crackPosition;
     public TrailRenderer[] trails;
+    public VisualEffect hitVFX;
+    public Transform hitPos;
 
     [Header("AttackBigFire")]
     public Transform initialPoint, finalPoint;
@@ -69,6 +72,7 @@ public class CrabFSM : MonoBehaviour, IDamageable
         SetState(new CrabStartState(this));
         FuzzyGate(out fuzzyJump);
         FuzzyGate(out fuzzyDash);
+        triggerSecondStage = false;
     }
     private void Update()
     {
@@ -111,10 +115,6 @@ public class CrabFSM : MonoBehaviour, IDamageable
                 trails[i].time = 0.3f;
             }
         }
-    }
-    public void OwnColliderActivate()
-    {
-        ownCollider.enabled = true;
     }
     #region ACTIONEVENTS
     public void Antecipation()
@@ -256,16 +256,14 @@ public class CrabFSM : MonoBehaviour, IDamageable
     {
         UIItems.instance.bossCurrentHP -= damage;
         posture -= damage;
-        FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.takingDamage, transform.position);  
-        //playerHit = true;
-        //hit.Play();
+        FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.takingDamage, transform.position);
+        PlayHitEffect();
         GameManager.instance.SpawnNumber((int)damage, Color.yellow, transform);
-        if(UIItems.instance.bossCurrentHP <= hp / 2 && !secondStage && UIItems.instance.bossCurrentHP >= 0)
+        if(UIItems.instance.bossCurrentHP <= hp / 2 && !triggerSecondStage && UIItems.instance.bossCurrentHP >= 0)
         {
-            posture = maxPosture + (maxPosture/4);
-            ownCollider.enabled = false;
-            animator.SetBool("secondStage", true);
-            SetState(new CrabSecondStage(this));
+            maxPosture = maxPosture + (maxPosture/4);
+            posture = maxPosture;
+            secondStage = true;
         }
         if (UIItems.instance.bossCurrentHP <= 0)
         {
@@ -276,5 +274,15 @@ public class CrabFSM : MonoBehaviour, IDamageable
     public void Die(GameObject ob)
     {
         Destroy(ob);
+    }
+    public void PlayHitEffect()
+    {
+        Vector3 directionToPlayer = PlayerController.instance.transform.position - transform.position;
+        Vector3 vfxDir = directionToPlayer.normalized;
+        Quaternion vfxRotation = Quaternion.LookRotation(vfxDir);
+        VisualEffect hitVFXinstance = Instantiate(hitVFX, hitPos.position, Quaternion.identity);
+        hitVFXinstance.transform.rotation = vfxRotation;
+        hitVFXinstance.Play();
+        hitVFXinstance.transform.SetParent(null);
     }
 }

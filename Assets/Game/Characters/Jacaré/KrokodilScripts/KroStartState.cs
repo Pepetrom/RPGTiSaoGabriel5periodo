@@ -8,7 +8,8 @@ public class KroStartState : IKrokodil
     public KroStartState(KrokodilFSM controller) {  this.controller = controller; }
     public void OnEnter()
     {
-
+        controller.respawnOb.SetActive(false);
+        BossManager.instance.KrokodilSetUp(true);
     }
 
     public void OnExit()

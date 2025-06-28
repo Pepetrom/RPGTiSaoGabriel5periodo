@@ -41,7 +41,7 @@ public class TurtleAtt1State : ITurtleStateMachine
             controller.rightHand.enabled = true;
             controller.rb.isKinematic = false;
             controller.agent.enabled = false;
-            controller.KB(40);
+            controller.KB(20);
         }
         else
         {

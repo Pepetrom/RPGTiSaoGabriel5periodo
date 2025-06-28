@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
         UIItems.instance.UpdateScoreQUI(skillPoints);
         if (!spawnEnemies) return;
         enemySpawner.AllEnemies();
+        BossManager.instance.CheckIfBossWasKilled();
     }
     public void Pause()
     {

@@ -16,7 +16,6 @@ public class CrabJumpState : ICrabInterface
         controller.animator.SetBool("isJumping", true);
         controller.damage = 70;
         controller.ActivateTrails(true,true);
-        controller.ownCollider.enabled = false;
     }
 
     public void OnExit()
@@ -55,7 +54,6 @@ public class CrabJumpState : ICrabInterface
                 CameraScript.instance.CombatCamera(60, 0.6f, 2);
                 controller.Impulse(-controller.impulse);
                 controller.FallTowardsSomething(200, controller.player.transform);
-               controller.ownCollider.enabled = false;
             }
             else
             {

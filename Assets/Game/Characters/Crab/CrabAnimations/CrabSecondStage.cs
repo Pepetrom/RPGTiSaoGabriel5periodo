@@ -14,7 +14,7 @@ public class CrabSecondStage : ICrabInterface
     {
         //controller.animator.SetBool("secondStage", true);
         controller.ActivateTrails(true, true);
-        controller.secondStage = true;
+        controller.triggerSecondStage = true;
         controller.ownCollider.enabled = false;
     }
 
@@ -28,6 +28,7 @@ public class CrabSecondStage : ICrabInterface
         controller.eventS = false;
         controller.agent.enabled = true;
         controller.ActivateTrails(false, false);
+        controller.ownCollider.enabled = true;
     }
 
     public void OnUpdate()
@@ -49,7 +50,6 @@ public class CrabSecondStage : ICrabInterface
             {
                 controller.Impulse(-controller.impulse);
                 controller.FallTowardsSomething(200,controller.secondStageLocation.transform);
-                controller.ownCollider.enabled = false;
             }
             else
             {

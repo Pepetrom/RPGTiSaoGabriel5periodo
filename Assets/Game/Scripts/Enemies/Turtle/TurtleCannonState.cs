@@ -14,16 +14,12 @@ public class TurtleCannonState : ITurtleStateMachine
     public void OnEnter()
     {
         controller.animator.SetTrigger("cannon");
-        controller.agent.enabled = false;
-        controller.rb.isKinematic = false;
     }
 
     public void OnExit()
     {
         controller.end = false;
         controller.antecipation = false;
-        controller.agent.enabled = true;
-        controller.rb.isKinematic = true;
     }
 
     public void OnUpdate()

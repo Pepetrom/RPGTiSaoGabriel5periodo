@@ -40,7 +40,11 @@ public class TurtleCombatIdleState : ITurtleStateMachine
             controller.SetState(new TurtleStunState(controller));
             controller.playerHit = false;
         }
-        if(controller.TargetDir().magnitude <= controller.meleeRange)
+        if (controller.TargetDir().magnitude > controller.patrolDistance)
+        {
+            controller.SetState(new TurtlePatrolState(controller));
+        }
+        if (controller.TargetDir().magnitude <= controller.meleeRange)
         {
             controller.animator.SetBool("isAttack", true);
             controller.SetState(new TurtleAttController(controller));
@@ -50,7 +54,7 @@ public class TurtleCombatIdleState : ITurtleStateMachine
             controller.animator.SetBool("isWalking", true);
             controller.SetState(new TurtleWalkState(controller));
         }
-        else if (controller.TargetDir().magnitude >= controller.minCannonRange)
+        else if (controller.TargetDir().magnitude >= controller.minCannonRange && controller.TargetDir().magnitude < controller.patrolDistance)
         {
             if (controller.fuzzyCannon < controller.maxCannonRange)
             {

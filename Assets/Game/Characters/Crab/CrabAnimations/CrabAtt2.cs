@@ -16,7 +16,6 @@ public class CrabAtt2 : ICrabInterface
         controller.rb.isKinematic = true;
         controller.damage = 30;
         controller.ActivateTrails(true,false);
-        controller.ownCollider.enabled = false;
     }
 
     public void OnExit()
@@ -32,7 +31,7 @@ public class CrabAtt2 : ICrabInterface
     {
         if (!controller.antecipation)
         {
-            controller.RotateTowardsPlayer(10);
+            controller.RotateTowardsPlayer(6);
         }
         if (controller.activate)
         {

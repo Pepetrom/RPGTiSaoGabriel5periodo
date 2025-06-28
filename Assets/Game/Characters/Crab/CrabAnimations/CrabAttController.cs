@@ -30,7 +30,13 @@ public class CrabAttController : ICrabInterface
 
     public void OnUpdate()
     {
-        Debug.Log("Ta acontecendo nada");
+        if (controller.secondStage)
+        {
+            controller.animator.SetBool("secondStage", true);
+            controller.SetState(new CrabSecondStage(controller));
+            controller.secondStage = false;
+            return;
+        }
         if (controller.spinCombo)
         {
             controller.animator.SetBool("isSpin", true);

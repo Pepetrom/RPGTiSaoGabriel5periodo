@@ -15,11 +15,14 @@ public class CrabDeath : ICrabInterface
         controller.ownFire.SetActive(false);
         controller.stairBlock.SetActive(false);
         GameManager.instance.Score(3000);
+        BossManager.instance.antiqueFurnace = false;
+        controller.end = false;
     }
 
     public void OnExit()
     {
         controller.end = false;
+        BossManager.instance.antiqueFurnace = false;
     }
 
     public void OnUpdate()

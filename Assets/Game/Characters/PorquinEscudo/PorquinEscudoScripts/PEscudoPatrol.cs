@@ -49,7 +49,7 @@ public class PEscudoPatrol : IPorquinEscudo
         }
         if (controller.TargetDir().magnitude < controller.patrolRange)
         {
-            controller.animator.SetBool("patrolling", false);
+            controller.animator.SetBool("patrol", false);
             controller.SetState(new PEscudoIdle(controller));
         }
     }

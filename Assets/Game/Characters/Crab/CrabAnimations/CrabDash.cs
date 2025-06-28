@@ -13,8 +13,13 @@ public class CrabDash : ICrabInterface
     }
     public void OnEnter()
     {
+        if(controller.posture <= 0)
+        {
+            controller.animator.Play("Crab_Stun");
+            controller.SetState(new CrabStun(controller));
+            return;
+        }
         controller.rb.isKinematic = true;
-        controller.ownCollider.enabled = false;
     }
 
     public void OnExit()
@@ -51,7 +56,6 @@ public class CrabDash : ICrabInterface
         }
         if (controller.end)
         {
-            controller.ownCollider.enabled = true;
             controller.animator.SetBool("isDashing", false);
             controller.SetState(new CrabAttController(controller));
         }
