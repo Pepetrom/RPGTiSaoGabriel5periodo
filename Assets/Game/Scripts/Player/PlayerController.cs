@@ -260,7 +260,7 @@ public class PlayerController : MonoBehaviour
             grounded = true;
             if (gravity < gravityToTakeDamage)
             {
-                HPBar.instance.FallDamage(-gravity * 10);
+                HPBar.instance.FallDamage(-gravity * 3);
             }
             if (grounded) gravity = baseGravity;
             canDoAction[3] = true;
