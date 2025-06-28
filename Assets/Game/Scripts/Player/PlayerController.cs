@@ -6,6 +6,8 @@ public enum Atribute { strength, agility, constitution}
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
+    public bool animacaoDeCair = true;
+    bool terminouAAnimacaoDeCair = false;
     Camera mainCamera;
     //Rigidbody rb;
     public Vector3 moveDirection, forwardDirection;
@@ -105,6 +107,8 @@ public class PlayerController : MonoBehaviour
         swordTrail.emitting = false;
         InitialActions();
         ownCollider = GetComponent<CapsuleCollider>();
+        StopAllActionsDeath();
+        Invoke("EndFallAnim", 10f);
     }
     void InitialActions()
     {
@@ -473,6 +477,13 @@ public class PlayerController : MonoBehaviour
         isAttacking = false;
         swordTrail.emitting = false;
         atackCollider.gameObject.SetActive(false);
+    }
+    public void EndFallAnim()
+    {
+        if (terminouAAnimacaoDeCair) return;
+        ResetAllActions();
+        animator.SetTrigger("ForceIddle");
+        terminouAAnimacaoDeCair = true;
     }
 }
 

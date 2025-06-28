@@ -42,4 +42,8 @@ public class ControllerForAnim : MonoBehaviour
     {
         GameManager.instance.Respawn();
     }
+    public void EndFallAnim()
+    {
+        PlayerController.instance.EndFallAnim();
+    }
 }
