@@ -11,6 +11,7 @@ public class RedRune : MonoBehaviour,IRune
     public void ProjectileHitEffect(Collider other)
     {
         //adds a chance to regain one cheese for each enemy hit with the skill
+        Debug.Log("deiDano");
         other.GetComponent<IDamageable>().TakeDamage((int)(PlayerController.instance.baseDamage * (2f + PlayerController.instance.strength * 0.2f)), 0);
         random = Random.Range(0, 20);
         if(random == 1)
