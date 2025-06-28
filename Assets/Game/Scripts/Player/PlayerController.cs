@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
     public bool animacaoDeCair = true;
+    public GameObject PlayerHud;
     bool terminouAAnimacaoDeCair = false;
     Camera mainCamera;
     //Rigidbody rb;
@@ -107,8 +108,17 @@ public class PlayerController : MonoBehaviour
         swordTrail.emitting = false;
         InitialActions();
         ownCollider = GetComponent<CapsuleCollider>();
-        StopAllActionsDeath();
-        Invoke("EndFallAnim", 10f);
+        if( animacaoDeCair)
+        {
+            PlayerHud.SetActive(false);
+            StopAllActionsDeath();
+            Invoke("EndFallAnim", 10f);
+        }
+        else
+        {
+            terminouAAnimacaoDeCair = true;
+            animator.SetTrigger("ForceIddle");
+        }
     }
     void InitialActions()
     {
@@ -416,7 +426,7 @@ public class PlayerController : MonoBehaviour
     public void Die()
     {
         playerIsDead = true;
-        Debug.Log("MOrreu");
+        Debug.Log("Morreu (PlayerController)");
         animator.SetTrigger("Death");
         PickablePlayerSoul temp = Instantiate(soulPickable, transform.position, transform.rotation).GetComponent<PickablePlayerSoul>();
         temp.value =(int)(GameManager.instance.skillPoints / 2);
@@ -481,6 +491,7 @@ public class PlayerController : MonoBehaviour
     public void EndFallAnim()
     {
         if (terminouAAnimacaoDeCair) return;
+        PlayerHud.SetActive(true);
         ResetAllActions();
         animator.SetTrigger("ForceIddle");
         terminouAAnimacaoDeCair = true;

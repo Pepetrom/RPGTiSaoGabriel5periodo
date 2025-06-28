@@ -9,7 +9,7 @@ public class ElevatorItSelf : MonoBehaviour
 
     private void Update()
     {
-        if(o.transform.position == o.place[0])
+        if (o.transform.position == o.place[0])
         {
             locationID = 0;
         }
@@ -23,11 +23,12 @@ public class ElevatorItSelf : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             WhereToGo();
-            Debug.Log("Elevei");
+            Debug.Log("Tentei Elevar");
         }
     }
     void WhereToGo()
     {
+        Debug.Log("Elevei");
         switch (locationID)
         {
             case 0:

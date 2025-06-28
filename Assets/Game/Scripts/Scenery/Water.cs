@@ -8,7 +8,7 @@ public class Water : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            PlayerController.instance.Die();
+            HPBar.instance.FallDamage(9999f);
         }
     }
     /*private void Update()

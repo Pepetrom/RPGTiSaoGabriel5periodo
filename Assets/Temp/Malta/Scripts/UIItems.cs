@@ -123,6 +123,7 @@ public class UIItems : MonoBehaviour
         PlayerController.instance.ResetAllActions();
         BossManager.instance.CheckIfBossWasKilled();
         PlayerController.instance.playerIsDead = false;
+        HPBar.instance.RespawnInvincible();
     }
     public void GearLoopAnimation(bool state)
     {

@@ -67,6 +67,7 @@ public class HPBar : MonoBehaviour
     }
     public void FallDamage(float damage)
     {
+        Debug.Log("VOCE Levou Dano de Queda (HpBar)");
         if (PlayerController.instance.imortal) return;
         if (PlayerController.instance.canTakeDamage && currentHP > 0)
         {
@@ -82,8 +83,13 @@ public class HPBar : MonoBehaviour
                 CameraScript.instance.TakeHit(CameraScript.instance.targetVigColor);
             }
         }
+        else
+        {
+            return;
+        }
         if (currentHP <= 0)
         {
+            Debug.Log("VOCE CAIU (HpBar)");
             StopCoroutine(InvulnableTime());
             Die(); 
         }
@@ -115,10 +121,15 @@ public class HPBar : MonoBehaviour
     }
     public void Die()
     {
+        Debug.Log("VOCE MORREU (HpBar)");
         PlayerController.instance.Die();
         FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.hoffDeath, PlayerController.instance.transform.position);
         UIItems.instance.ShowBOSSHUD(false);
         StopCoroutine(InvulnableTime());
+    }
+    public void RespawnInvincible()
+    {
+        StartCoroutine(InvulnableTime());
     }
     public IEnumerator InvulnableTime()
     {
