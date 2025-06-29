@@ -39,18 +39,27 @@ Material:
         m_Texture: {fileID: 2800000, guid: 8a2c5bad272d4b844815f89792350922, type: 3}
         m_Scale: {x: 10, y: 2}
         m_Offset: {x: 1, y: 1}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: 18eae2fb1479fd84e8a52046b2f6cb8a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _WaterTex:
         m_Texture: {fileID: 2800000, guid: fd495fa89a016314c9b95943fe827129, type: 3}
         m_Scale: {x: 16.23, y: 6.01}
         m_Offset: {x: 1, y: 1}
     m_Ints: []
     m_Floats:
+    - _DepthFadeDistance: 0.45
     - _FlowSpeed: 0.005
     - _FoamBlinkSpeed: 0.05
     - _FoamThresh: 1
     - _FresnelIntensity: 0.661
     - _FresnelPower: 1.23
+    - _NormalSpeed: 0.005
+    - _RefractionStrength: 0.02
     - _Transparency: 0.71
+    - _WaveAmplitude: 0.1
+    - _WaveFrequency: 1
     m_Colors:
     - _FlowDir: {r: 0, g: 1.42, b: 0, a: 0}
     - _FoamColor: {r: 0.9622642, g: 0.91395646, b: 0.28595585, a: 1}

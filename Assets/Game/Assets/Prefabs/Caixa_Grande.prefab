@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5850443129007147776}
   m_Layer: 12
   m_Name: Caixa_Grande
-  m_TagString: Untagged
+  m_TagString: Destroyable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasDrop: 0
   drop: {fileID: 0}
-  destroyEffect: {fileID: 5783484673379052555, guid: 0613523a1fa5700429486afb9bd6c223,
+  destroyEffect: {fileID: 9137930862895167825, guid: 78617733dcff3094ba45f16b65ee1e11,
     type: 3}
 --- !u!135 &5850443129007147776
 SphereCollider:
