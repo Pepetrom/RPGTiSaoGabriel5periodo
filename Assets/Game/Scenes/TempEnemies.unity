@@ -13174,6 +13174,235 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 141895205}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &141943733
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 141943735}
+  - component: {fileID: 141943734}
+  m_Layer: 0
+  m_Name: FMODAudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &141943734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141943733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 818f6d0ac371c3a4894304ed41911ed1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bonfireInteract:
+    Guid:
+      Data1: -263878956
+      Data2: 1083986672
+      Data3: 1612293023
+      Data4: 786968177
+    Path: "event:/SFX/Interag\xEDveis/Bonfire"
+  boxCrash:
+    Guid:
+      Data1: -1788199288
+      Data2: 1335569056
+      Data3: 1430260662
+      Data4: 755888203
+    Path: event:/SFX/Outros/CaixaQuebrando
+  notes:
+    Guid:
+      Data1: -210107625
+      Data2: 1117092780
+      Data3: -1787114358
+      Data4: 190462808
+    Path: "event:/SFX/Interag\xEDveis/Notas"
+  lever:
+    Guid:
+      Data1: -2106867020
+      Data2: 1215025276
+      Data3: 572903560
+      Data4: -2135042673
+    Path: "event:/SFX/Interag\xEDveis/Alavanca"
+  valve:
+    Guid:
+      Data1: -1152863188
+      Data2: 1261520027
+      Data3: -799265369
+      Data4: -1860385167
+    Path: "event:/SFX/Interag\xEDveis/V\xE1lvula"
+  fillingWater:
+    Guid:
+      Data1: 255104625
+      Data2: 1336459728
+      Data3: -1119620429
+      Data4: -233261329
+    Path: "event:/SFX/Outros/\xC1guaEnchendo"
+  item:
+    Guid:
+      Data1: 421518846
+      Data2: 1232188501
+      Data3: 490649984
+      Data4: -1733482970
+    Path: "event:/SFX/Interag\xEDveis/ItemDesativando"
+  sword:
+  - Guid:
+      Data1: 1032504528
+      Data2: 1206053305
+      Data3: -153415009
+      Data4: -2141530076
+    Path: event:/SFX/Hoff/Espada/EspadaLeve
+  - Guid:
+      Data1: 162217540
+      Data2: 1192722060
+      Data3: 2007776397
+      Data4: -450832480
+    Path: event:/SFX/Hoff/Espada/EspadaLeve2
+  - Guid:
+      Data1: 118729233
+      Data2: 1200400848
+      Data3: 1685592993
+      Data4: 2104526821
+    Path: event:/SFX/Hoff/Espada/EspadaPesada
+  - Guid:
+      Data1: -400863639
+      Data2: 1155264064
+      Data3: -1408847184
+      Data4: 1233087844
+    Path: event:/SFX/Hoff/Espada/EspadaHit
+  - Guid:
+      Data1: 1846469390
+      Data2: 1139836395
+      Data3: -424844632
+      Data4: 2133627015
+    Path: event:/SFX/Hoff/Espada/EspadaHitPesado
+  estus:
+    Guid:
+      Data1: -407794018
+      Data2: 1079420891
+      Data3: -1743795284
+      Data4: 1349413939
+    Path: event:/SFX/Hoff/Estus
+  dash:
+    Guid:
+      Data1: -1152592645
+      Data2: 1199223392
+      Data3: 881684099
+      Data4: 1692499975
+    Path: event:/SFX/Hoff/Footsteps/Esquiva
+  hoffDeath:
+    Guid:
+      Data1: -101712400
+      Data2: 1123793376
+      Data3: -29045832
+      Data4: -1092447219
+    Path: event:/SFX/Hoff/HoffMorte
+  porquinDeath:
+    Guid:
+      Data1: 1199171817
+      Data2: 1115165757
+      Data3: -1188819576
+      Data4: -141237322
+    Path: event:/SFX/Inimigos/Porquinho/PorquinhoMorte
+  porquin:
+    Guid:
+      Data1: -1111362883
+      Data2: 1288301742
+      Data3: -476691315
+      Data4: -941796286
+    Path: event:/SFX/Inimigos/Porquinho/PorquinhoSons
+  porquinBlood:
+    Guid:
+      Data1: -1107788969
+      Data2: 1150330529
+      Data3: -204028777
+      Data4: 543656266
+    Path: event:/SFX/Inimigos/Porquinho/Sangue
+  takingDamage:
+    Guid:
+      Data1: -412085555
+      Data2: 1331236129
+      Data3: -15544412
+      Data4: 636077106
+    Path: event:/SFX/Inimigos/Caranguejo/Hit
+  crabDeath:
+    Guid:
+      Data1: -2003374838
+      Data2: 1235991600
+      Data3: 835542689
+      Data4: -946253931
+    Path: event:/SFX/Inimigos/Caranguejo/Morte
+  machineGun:
+    Guid:
+      Data1: 609763076
+      Data2: 1261660395
+      Data3: 1337468831
+      Data4: -244285134
+    Path: "event:/SFX/Inimigos/Jacar\xE9/MachineGun"
+  bubbleExplosion:
+    Guid:
+      Data1: 81412024
+      Data2: 1136793884
+      Data3: -1079541856
+      Data4: -227250589
+    Path: "event:/SFX/Inimigos/Jacar\xE9/Explos\xE3oBolha"
+  pressedButton:
+    Guid:
+      Data1: 413527898
+      Data2: 1252356040
+      Data3: 1463048370
+      Data4: 281253975
+    Path: "event:/SFX/UI/PressionarBot\xE3o"
+  hoverButton:
+    Guid:
+      Data1: 1363674403
+      Data2: 1278353400
+      Data3: -1951804005
+      Data4: -90282689
+    Path: "event:/SFX/UI/HoverBot\xE3o"
+  buyRune:
+    Guid:
+      Data1: -1269142913
+      Data2: 1142271258
+      Data3: 2142910876
+      Data4: -2087380969
+    Path: event:/SFX/UI/ComprarRuna
+  noMoney:
+    Guid:
+      Data1: -1031177882
+      Data2: 1193340235
+      Data3: 1845775766
+      Data4: 1008895779
+    Path: event:/SFX/UI/SemDinheiro
+  turtleDamage:
+    Guid:
+      Data1: 400159638
+      Data2: 1326844204
+      Data3: -1586061440
+      Data4: -588168039
+    Path: event:/SFX/Inimigos/Tartaruga/TartarugaDano
+--- !u!4 &141943735
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141943733}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &142468119
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -25372,209 +25601,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 289999571}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &291764159 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6442608666220955059, guid: a7dd1cff653b2eb44a36b57ea2fe2a45,
-    type: 3}
-  m_PrefabInstance: {fileID: 38538781962525537}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &291764165
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 291764159}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 818f6d0ac371c3a4894304ed41911ed1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bonfireInteract:
-    Guid:
-      Data1: -263878956
-      Data2: 1083986672
-      Data3: 1612293023
-      Data4: 786968177
-    Path: "event:/SFX/Interag\xEDveis/Bonfire"
-  boxCrash:
-    Guid:
-      Data1: -1788199288
-      Data2: 1335569056
-      Data3: 1430260662
-      Data4: 755888203
-    Path: event:/SFX/Outros/CaixaQuebrando
-  notes:
-    Guid:
-      Data1: -210107625
-      Data2: 1117092780
-      Data3: -1787114358
-      Data4: 190462808
-    Path: "event:/SFX/Interag\xEDveis/Notas"
-  lever:
-    Guid:
-      Data1: -2106867020
-      Data2: 1215025276
-      Data3: 572903560
-      Data4: -2135042673
-    Path: "event:/SFX/Interag\xEDveis/Alavanca"
-  valve:
-    Guid:
-      Data1: -1152863188
-      Data2: 1261520027
-      Data3: -799265369
-      Data4: -1860385167
-    Path: "event:/SFX/Interag\xEDveis/V\xE1lvula"
-  fillingWater:
-    Guid:
-      Data1: 255104625
-      Data2: 1336459728
-      Data3: -1119620429
-      Data4: -233261329
-    Path: "event:/SFX/Outros/\xC1guaEnchendo"
-  item:
-    Guid:
-      Data1: 421518846
-      Data2: 1232188501
-      Data3: 490649984
-      Data4: -1733482970
-    Path: "event:/SFX/Interag\xEDveis/ItemDesativando"
-  sword:
-  - Guid:
-      Data1: 1032504528
-      Data2: 1206053305
-      Data3: -153415009
-      Data4: -2141530076
-    Path: event:/SFX/Hoff/Espada/EspadaLeve
-  - Guid:
-      Data1: 162217540
-      Data2: 1192722060
-      Data3: 2007776397
-      Data4: -450832480
-    Path: event:/SFX/Hoff/Espada/EspadaLeve2
-  - Guid:
-      Data1: 118729233
-      Data2: 1200400848
-      Data3: 1685592993
-      Data4: 2104526821
-    Path: event:/SFX/Hoff/Espada/EspadaPesada
-  - Guid:
-      Data1: -400863639
-      Data2: 1155264064
-      Data3: -1408847184
-      Data4: 1233087844
-    Path: event:/SFX/Hoff/Espada/EspadaHit
-  - Guid:
-      Data1: 1846469390
-      Data2: 1139836395
-      Data3: -424844632
-      Data4: 2133627015
-    Path: event:/SFX/Hoff/Espada/EspadaHitPesado
-  estus:
-    Guid:
-      Data1: -407794018
-      Data2: 1079420891
-      Data3: -1743795284
-      Data4: 1349413939
-    Path: event:/SFX/Hoff/Estus
-  dash:
-    Guid:
-      Data1: -1152592645
-      Data2: 1199223392
-      Data3: 881684099
-      Data4: 1692499975
-    Path: event:/SFX/Hoff/Footsteps/Esquiva
-  hoffDeath:
-    Guid:
-      Data1: -101712400
-      Data2: 1123793376
-      Data3: -29045832
-      Data4: -1092447219
-    Path: event:/SFX/Hoff/HoffMorte
-  porquinDeath:
-    Guid:
-      Data1: 1199171817
-      Data2: 1115165757
-      Data3: -1188819576
-      Data4: -141237322
-    Path: event:/SFX/Inimigos/Porquinho/PorquinhoMorte
-  porquin:
-    Guid:
-      Data1: -1111362883
-      Data2: 1288301742
-      Data3: -476691315
-      Data4: -941796286
-    Path: event:/SFX/Inimigos/Porquinho/PorquinhoSons
-  porquinBlood:
-    Guid:
-      Data1: -1107788969
-      Data2: 1150330529
-      Data3: -204028777
-      Data4: 543656266
-    Path: event:/SFX/Inimigos/Porquinho/Sangue
-  takingDamage:
-    Guid:
-      Data1: -412085555
-      Data2: 1331236129
-      Data3: -15544412
-      Data4: 636077106
-    Path: event:/SFX/Inimigos/Caranguejo/Hit
-  crabDeath:
-    Guid:
-      Data1: -2003374838
-      Data2: 1235991600
-      Data3: 835542689
-      Data4: -946253931
-    Path: event:/SFX/Inimigos/Caranguejo/Morte
-  machineGun:
-    Guid:
-      Data1: 609763076
-      Data2: 1261660395
-      Data3: 1337468831
-      Data4: -244285134
-    Path: "event:/SFX/Inimigos/Jacar\xE9/MachineGun"
-  bubbleExplosion:
-    Guid:
-      Data1: 81412024
-      Data2: 1136793884
-      Data3: -1079541856
-      Data4: -227250589
-    Path: "event:/SFX/Inimigos/Jacar\xE9/Explos\xE3oBolha"
-  pressedButton:
-    Guid:
-      Data1: 413527898
-      Data2: 1252356040
-      Data3: 1463048370
-      Data4: 281253975
-    Path: "event:/SFX/UI/PressionarBot\xE3o"
-  hoverButton:
-    Guid:
-      Data1: 1363674403
-      Data2: 1278353400
-      Data3: -1951804005
-      Data4: -90282689
-    Path: "event:/SFX/UI/HoverBot\xE3o"
-  buyRune:
-    Guid:
-      Data1: -1269142913
-      Data2: 1142271258
-      Data3: 2142910876
-      Data4: -2087380969
-    Path: event:/SFX/UI/ComprarRuna
-  noMoney:
-    Guid:
-      Data1: -1031177882
-      Data2: 1193340235
-      Data3: 1845775766
-      Data4: 1008895779
-    Path: event:/SFX/UI/SemDinheiro
-  turtleDamage:
-    Guid:
-      Data1: 400159638
-      Data2: 1326844204
-      Data3: -1586061440
-      Data4: -588168039
-    Path: event:/SFX/Inimigos/Tartaruga/TartarugaDano
 --- !u!1001 &292051099
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -165891,10 +165917,6 @@ PrefabInstance:
         type: 3}
       insertIndex: 1
       addedObject: {fileID: 38538781962525548}
-    - targetCorrespondingSourceObject: {fileID: 6442608666220955059, guid: a7dd1cff653b2eb44a36b57ea2fe2a45,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 291764165}
   m_SourcePrefab: {fileID: 100100000, guid: a7dd1cff653b2eb44a36b57ea2fe2a45, type: 3}
 --- !u!1 &38538781962525538 stripped
 GameObject:
@@ -221226,6 +221248,7 @@ SceneRoots:
   - {fileID: 145026715}
   - {fileID: 680936422}
   - {fileID: 1216859220}
+  - {fileID: 141943735}
   - {fileID: 1223273491}
   - {fileID: 1518564836}
   - {fileID: 1604569624}

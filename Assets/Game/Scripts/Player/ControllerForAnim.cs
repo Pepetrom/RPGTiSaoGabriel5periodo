@@ -1,3 +1,4 @@
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -45,5 +46,24 @@ public class ControllerForAnim : MonoBehaviour
     public void EndFallAnim()
     {
         PlayerController.instance.EndFallAnim();
+    }
+
+    //audio
+
+    public void PlayOneShot(EventReference sound, Vector3 position)
+    {
+        FMODAudioManager.instance.PlayOneShot(sound, position);
+    }
+    public void PlayOneShotAttached(EventReference sound, GameObject ob)
+    {
+        FMODAudioManager.instance.PlayOneShotAttached(sound, ob);
+    }
+    public void PlayFootsteps(string path)
+    {
+        FMODAudioManager.instance.PlayFootsteps(path);
+    }
+    public void PlaySoundAttached(string path)
+    {
+        FMODAudioManager.instance.PlaySoundAttached(path);
     }
 }

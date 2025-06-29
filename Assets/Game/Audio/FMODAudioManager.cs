@@ -7,6 +7,7 @@ using FMOD.Studio;
 public class FMODAudioManager : MonoBehaviour
 {
     public static FMODAudioManager instance;
+    public GameObject cameraMenu;
     [Header("Ambiente")]
     public EventReference bonfireInteract;
     public EventReference boxCrash;
@@ -43,10 +44,22 @@ public class FMODAudioManager : MonoBehaviour
     [Header("Tartaruga")]
     public EventReference turtleDamage;
 
+    [Header("Músicas")]
+    public EventReference menuSong;
+    private EventInstance menuSongInstance;
+
 
     private void Awake()
     {
-        instance = this;
+        if(instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
     public void PlayOneShot(EventReference sound, Vector3 position)
     {
@@ -65,5 +78,15 @@ public class FMODAudioManager : MonoBehaviour
     public void PlaySoundAttached(string path)
     {
         RuntimeManager.PlayOneShotAttached(path, gameObject);
+    }
+    public void PlayMenuMusic()
+    {
+        menuSongInstance = RuntimeManager.CreateInstance(menuSong);
+        menuSongInstance.start();
+    }
+    public void StopMenuMusic()
+    {
+        menuSongInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        menuSongInstance.release();
     }
 }

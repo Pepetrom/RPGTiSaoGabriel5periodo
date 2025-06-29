@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8804486106402560734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Songs/Menu
+  m_EditorClassIdentifier: 
+  Path: event:/Songs/Menu
+  Guid:
+    Data1: 368697201
+    Data2: 1222588250
+    Data3: 389232032
+    Data4: -1597663353
+  Banks:
+  - {fileID: 7736262994136422501}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 49000
 --- !u!114 &-8687062340611501943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,7 +96,7 @@ MonoBehaviour:
   Path: FMOD/FMOD_WoL/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638867150182740837
+  lastModified: 638868085118888972
   FileSizes:
   - Name: Desktop
     Value: 28608
@@ -282,8 +309,8 @@ MonoBehaviour:
     Data3: 1440139407
     Data4: 1175891857
   Banks:
-  - {fileID: -8479413176289016433}
   - {fileID: 8981852520927742451}
+  - {fileID: -8479413176289016433}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1164,12 +1191,13 @@ MonoBehaviour:
   - {fileID: 1588209698309844237}
   - {fileID: 1151313809462634224}
   - {fileID: 619770127304068727}
+  - {fileID: -8804486106402560734}
   EditorParameters: []
   MasterBanks:
   - {fileID: -8479413176289016433}
   StringsBanks:
   - {fileID: 8393391211552418243}
-  cacheTime: 638867330964107602
+  cacheTime: 638868085138341539
   cacheVersion: 131624
 --- !u!114 &619770127304068727
 MonoBehaviour:
@@ -1942,10 +1970,10 @@ MonoBehaviour:
   Path: FMOD/FMOD_WoL/Build/Desktop/Musicas.bank
   Name: Musicas
   StudioPath: bank:/Musicas
-  lastModified: 638867330963533935
+  lastModified: 638868085138341539
   FileSizes:
   - Name: Desktop
-    Value: 1431072
+    Value: 2051680
   Exists: 1
 --- !u!114 &8116108026295829194
 MonoBehaviour:
@@ -1989,10 +2017,10 @@ MonoBehaviour:
   Path: FMOD/FMOD_WoL/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638867330963388021
+  lastModified: 638868085118914145
   FileSizes:
   - Name: Desktop
-    Value: 4182
+    Value: 4230
   Exists: 1
 --- !u!114 &8456345858411569361
 MonoBehaviour:
@@ -2090,7 +2118,7 @@ MonoBehaviour:
   Path: FMOD/FMOD_WoL/Build/Desktop/VFX.bank
   Name: VFX
   StudioPath: bank:/VFX
-  lastModified: 638867330964107602
+  lastModified: 638867319070992031
   FileSizes:
   - Name: Desktop
     Value: 7810624

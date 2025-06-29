@@ -5842,6 +5842,243 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &949228941
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 949228943}
+  - component: {fileID: 949228942}
+  m_Layer: 0
+  m_Name: FMODAudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &949228942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949228941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 818f6d0ac371c3a4894304ed41911ed1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraMenu: {fileID: 983970528}
+  bonfireInteract:
+    Guid:
+      Data1: -263878956
+      Data2: 1083986672
+      Data3: 1612293023
+      Data4: 786968177
+    Path: "event:/SFX/Interag\xEDveis/Bonfire"
+  boxCrash:
+    Guid:
+      Data1: -1788199288
+      Data2: 1335569056
+      Data3: 1430260662
+      Data4: 755888203
+    Path: event:/SFX/Outros/CaixaQuebrando
+  notes:
+    Guid:
+      Data1: -210107625
+      Data2: 1117092780
+      Data3: -1787114358
+      Data4: 190462808
+    Path: "event:/SFX/Interag\xEDveis/Notas"
+  lever:
+    Guid:
+      Data1: -2106867020
+      Data2: 1215025276
+      Data3: 572903560
+      Data4: -2135042673
+    Path: "event:/SFX/Interag\xEDveis/Alavanca"
+  valve:
+    Guid:
+      Data1: -1152863188
+      Data2: 1261520027
+      Data3: -799265369
+      Data4: -1860385167
+    Path: "event:/SFX/Interag\xEDveis/V\xE1lvula"
+  fillingWater:
+    Guid:
+      Data1: 255104625
+      Data2: 1336459728
+      Data3: -1119620429
+      Data4: -233261329
+    Path: "event:/SFX/Outros/\xC1guaEnchendo"
+  item:
+    Guid:
+      Data1: 421518846
+      Data2: 1232188501
+      Data3: 490649984
+      Data4: -1733482970
+    Path: "event:/SFX/Interag\xEDveis/ItemDesativando"
+  sword:
+  - Guid:
+      Data1: 1032504528
+      Data2: 1206053305
+      Data3: -153415009
+      Data4: -2141530076
+    Path: event:/SFX/Hoff/Espada/EspadaLeve
+  - Guid:
+      Data1: 162217540
+      Data2: 1192722060
+      Data3: 2007776397
+      Data4: -450832480
+    Path: event:/SFX/Hoff/Espada/EspadaLeve2
+  - Guid:
+      Data1: 118729233
+      Data2: 1200400848
+      Data3: 1685592993
+      Data4: 2104526821
+    Path: event:/SFX/Hoff/Espada/EspadaPesada
+  - Guid:
+      Data1: -400863639
+      Data2: 1155264064
+      Data3: -1408847184
+      Data4: 1233087844
+    Path: event:/SFX/Hoff/Espada/EspadaHit
+  - Guid:
+      Data1: 1846469390
+      Data2: 1139836395
+      Data3: -424844632
+      Data4: 2133627015
+    Path: event:/SFX/Hoff/Espada/EspadaHitPesado
+  estus:
+    Guid:
+      Data1: -407794018
+      Data2: 1079420891
+      Data3: -1743795284
+      Data4: 1349413939
+    Path: event:/SFX/Hoff/Estus
+  dash:
+    Guid:
+      Data1: -1152592645
+      Data2: 1199223392
+      Data3: 881684099
+      Data4: 1692499975
+    Path: event:/SFX/Hoff/Footsteps/Esquiva
+  hoffDeath:
+    Guid:
+      Data1: -101712400
+      Data2: 1123793376
+      Data3: -29045832
+      Data4: -1092447219
+    Path: event:/SFX/Hoff/HoffMorte
+  porquinDeath:
+    Guid:
+      Data1: 1199171817
+      Data2: 1115165757
+      Data3: -1188819576
+      Data4: -141237322
+    Path: event:/SFX/Inimigos/Porquinho/PorquinhoMorte
+  porquin:
+    Guid:
+      Data1: -1111362883
+      Data2: 1288301742
+      Data3: -476691315
+      Data4: -941796286
+    Path: event:/SFX/Inimigos/Porquinho/PorquinhoSons
+  porquinBlood:
+    Guid:
+      Data1: -1107788969
+      Data2: 1150330529
+      Data3: -204028777
+      Data4: 543656266
+    Path: event:/SFX/Inimigos/Porquinho/Sangue
+  takingDamage:
+    Guid:
+      Data1: -412085555
+      Data2: 1331236129
+      Data3: -15544412
+      Data4: 636077106
+    Path: event:/SFX/Inimigos/Caranguejo/Hit
+  crabDeath:
+    Guid:
+      Data1: -2003374838
+      Data2: 1235991600
+      Data3: 835542689
+      Data4: -946253931
+    Path: event:/SFX/Inimigos/Caranguejo/Morte
+  machineGun:
+    Guid:
+      Data1: 609763076
+      Data2: 1261660395
+      Data3: 1337468831
+      Data4: -244285134
+    Path: "event:/SFX/Inimigos/Jacar\xE9/MachineGun"
+  bubbleExplosion:
+    Guid:
+      Data1: 81412024
+      Data2: 1136793884
+      Data3: -1079541856
+      Data4: -227250589
+    Path: "event:/SFX/Inimigos/Jacar\xE9/Explos\xE3oBolha"
+  pressedButton:
+    Guid:
+      Data1: 413527898
+      Data2: 1252356040
+      Data3: 1463048370
+      Data4: 281253975
+    Path: "event:/SFX/UI/PressionarBot\xE3o"
+  hoverButton:
+    Guid:
+      Data1: 1363674403
+      Data2: 1278353400
+      Data3: -1951804005
+      Data4: -90282689
+    Path: "event:/SFX/UI/HoverBot\xE3o"
+  buyRune:
+    Guid:
+      Data1: -1269142913
+      Data2: 1142271258
+      Data3: 2142910876
+      Data4: -2087380969
+    Path: event:/SFX/UI/ComprarRuna
+  noMoney:
+    Guid:
+      Data1: -1031177882
+      Data2: 1193340235
+      Data3: 1845775766
+      Data4: 1008895779
+    Path: event:/SFX/UI/SemDinheiro
+  turtleDamage:
+    Guid:
+      Data1: 400159638
+      Data2: 1326844204
+      Data3: -1586061440
+      Data4: -588168039
+    Path: event:/SFX/Inimigos/Tartaruga/TartarugaDano
+  menuSong:
+    Guid:
+      Data1: 368697201
+      Data2: 1222588250
+      Data3: 389232032
+      Data4: -1597663353
+    Path: event:/Songs/Menu
+--- !u!4 &949228943
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949228941}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &952166398
 GameObject:
   m_ObjectHideFlags: 0
@@ -6282,6 +6519,7 @@ GameObject:
   - component: {fileID: 983970530}
   - component: {fileID: 983970529}
   - component: {fileID: 983970532}
+  - component: {fileID: 983970533}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -6407,6 +6645,64 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &983970533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 983970528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonRigidbodyVelocity: 0
+  attenuationObject: {fileID: 983970528}
+--- !u!1 &1059926168
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1059926170}
+  - component: {fileID: 1059926169}
+  m_Layer: 0
+  m_Name: PlayMusic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1059926169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059926168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed3571ca6f96adb4e938ef3954bde0e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1059926170
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059926168}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1061659657
 GameObject:
   m_ObjectHideFlags: 0
@@ -10870,6 +11166,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: TempEnemies
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 949228942}
+        m_TargetAssemblyTypeName: FMODAudioManager, Assembly-CSharp
+        m_MethodName: StopMenuMusic
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1771353839
@@ -22464,6 +22772,18 @@ MonoBehaviour:
           m_StringArgument: TempEnemies
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 949228942}
+        m_TargetAssemblyTypeName: FMODAudioManager, Assembly-CSharp
+        m_MethodName: StopMenuMusic
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7884530885538993770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23931,6 +24251,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 983970531}
+  - {fileID: 949228943}
   - {fileID: 2040059902}
   - {fileID: 8321517935874087295}
   - {fileID: 1392668735}
@@ -23938,3 +24259,4 @@ SceneRoots:
   - {fileID: 334728073}
   - {fileID: 102166557}
   - {fileID: 446891025}
+  - {fileID: 1059926170}
