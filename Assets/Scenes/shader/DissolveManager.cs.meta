@@ -3,7 +3,12 @@ guid: f32ae6780a4eb384fba0e64ce24deb0a
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - player: {instanceID: 0}
+  - mainCamera: {instanceID: 0}
+  - dissolveShaderScreenSpace: {instanceID: 0}
+  - dissolveTexture: {fileID: 2800000, guid: a0f6e1b25afbf314fbc821e592d65780, type: 3}
+  - noiseTexture: {fileID: 2800000, guid: ec45c6a381c3bca4fb85cd8a3ccc9d89, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

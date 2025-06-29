@@ -15,6 +15,7 @@ Shader "Custom/AdvancedDissolveShader"
         _DissolveSoftness ("Dissolve Softness", Range(0, 1)) = 0.1 
         _NoiseScale ("Noise Scale", Float) = 1.0
         _NoiseSpeed ("Noise Speed", Vector) = (1.0, 0.0, 0.0, 0.0)
+        _NoiseEdgeStrength ("Noise Edge Strength", Range(0, 2)) = 1
 
        
         [HideInInspector] _PlayerScreenPos ("Player Screen Pos", Vector) = (0.5, 0.5, 0, 0) // Default center
@@ -44,7 +45,7 @@ Shader "Custom/AdvancedDissolveShader"
             sampler2D _HeightMap;
 
             float4 _EdgeColor;
-            float _EdgeWidth;
+            float _EdgeWidth, _NoiseEdgeStrength;
             float _DissolveScreenRadius;
             float _DissolveSoftness;
             float _NoiseScale;
@@ -95,45 +96,29 @@ Shader "Custom/AdvancedDissolveShader"
 
             fixed4 frag(v2f i) : SV_Target
             {
-                // Coordenadas de tela normalizadas (0 a 1)
-                float2 screenUV = i.screenPos.xy / i.screenPos.w;
+                 float2 screenUV = i.screenPos.xy / i.screenPos.w;
+    float2 playerScreenUV = _PlayerScreenPos.xy;
 
-                // Posição do jogador em coordenadas de tela normalizadas (já vem do script)
-                float2 playerScreenUV = _PlayerScreenPos.xy;
+    float aspect = _ScreenParams.x / _ScreenParams.y;
+    float2 offset = screenUV - playerScreenUV;
+    offset.x *= aspect;
+    float screenDistance = length(offset);
 
-                // Cálculo da distância no espaço da tela
-                float screenDistance = distance(screenUV, playerScreenUV);
+    float dissolveAlpha = smoothstep(_DissolveScreenRadius - _DissolveSoftness, _DissolveScreenRadius, screenDistance);
 
-                
-                // Cálculo da dissolução baseado na distância da tela
-                // O raio e a suavidade agora são relativos ao espaço da tela
-                float dissolveAlpha = smoothstep(_DissolveScreenRadius - _DissolveSoftness, _DissolveScreenRadius, screenDistance);
+    float2 noiseUV = animateNoiseUV(i.uv * _NoiseScale, _NoiseSpeed);
+    float noiseValue = tex2D(_NoiseTex, noiseUV).r;
 
-                // Noise animado aplicado à borda
-                float2 noiseUV = animateNoiseUV(i.uv * _NoiseScale, _NoiseSpeed);
-                float noiseValue = tex2D(_NoiseTex, noiseUV).r;
+    float edgeFactor = smoothstep(_DissolveScreenRadius - _EdgeWidth, _DissolveScreenRadius, screenDistance) - dissolveAlpha;
+    edgeFactor = saturate(edgeFactor * (1 + noiseValue * _NoiseEdgeStrength));
 
-                // Cálculo da borda baseado na distância da tela
-                float edgeFactor = smoothstep(_DissolveScreenRadius - _EdgeWidth, _DissolveScreenRadius, screenDistance) - dissolveAlpha;
-                edgeFactor = saturate(edgeFactor * (1 + noiseValue)); // Multiplica pelo noise (ajustado para não ficar negativo)
+    fixed4 col = tex2D(_MainTex, i.uv);
 
-                // Textura base
-                fixed4 col = tex2D(_MainTex, i.uv);
+    col.a *= dissolveAlpha; 
+    col.a = saturate(col.a + edgeFactor); 
+    clip(col.a - 0.01);
 
-               
-
-                // Aplica cor da borda
-                col.rgb = lerp(col.rgb, _EdgeColor.rgb, edgeFactor * _EdgeColor.a); // Usa alpha da cor da borda para intensidade
-
-                // Alpha final: 1 - dissolveAlpha significa que fica visível onde dissolveAlpha é 0
-                col.a *= dissolveAlpha; 
-                // Garante que a borda não adicione alpha onde já é transparente
-                col.a = saturate(col.a + edgeFactor); 
-                                
-                // Recorta pixels totalmente transparentes para otimização
-                clip(col.a - 0.01);
-
-                return col;
+    return col;
             }
             ENDCG
         }

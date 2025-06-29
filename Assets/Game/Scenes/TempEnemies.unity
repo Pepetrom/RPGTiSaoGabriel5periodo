@@ -167704,6 +167704,7 @@ MonoBehaviour:
   dissolveScreenRadius: 0.497
   dissolveSoftness: 0.117
   edgeWidth: 0.1
+  noiseEdgeStrength: 1
   edgeColor: {r: 0, g: 0, b: 0, a: 1}
   noiseScale: 0.65
   noiseSpeed: {x: 0.005, y: 0.005}
@@ -176728,12 +176729,12 @@ GameObject:
   - component: {fileID: 3348106189960247737}
   - component: {fileID: 5576762527646106329}
   - component: {fileID: 164198550}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane.129
   m_TagString: Scenario
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2096382680530004320
 Transform:
@@ -177418,7 +177419,7 @@ GameObject:
   - component: {fileID: 6726924633571563832}
   - component: {fileID: 313176841715380072}
   - component: {fileID: 98269444}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Retopo_Plane.009
   m_TagString: Scenario
   m_Icon: {fileID: 0}
@@ -184591,12 +184592,12 @@ GameObject:
   - component: {fileID: 3007755165763792646}
   - component: {fileID: 4807175094887362962}
   - component: {fileID: 273217369}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane.131
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!1 &3499049606014186948
 GameObject:
@@ -185019,12 +185020,12 @@ GameObject:
   - component: {fileID: 680013866366057007}
   - component: {fileID: 4287823065080304500}
   - component: {fileID: 808507731}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Retopo_Plane.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!23 &3608157209517469582
 MeshRenderer:
