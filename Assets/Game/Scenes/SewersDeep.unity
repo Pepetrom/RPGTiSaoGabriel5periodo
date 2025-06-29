@@ -57511,7 +57511,7 @@ MonoBehaviour:
   medicine: 0
   canDropMedicine: 0
   essence: 0
-  poem: {fileID: 21300000, guid: d15bb7e0488303e43a1d9139979e55d3, type: 3}
+  poem: {fileID: 21300000, guid: 5b586855d5ebe5a4bad7c85bd44597dc, type: 3}
 --- !u!4 &680936422
 Transform:
   m_ObjectHideFlags: 0
@@ -70150,7 +70150,7 @@ PrefabInstance:
     - target: {fileID: 8175405170186277913, guid: e3fb75a5832951743aa1f342540391ef,
         type: 3}
       propertyPath: canBeActivated
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8175405170186277913, guid: e3fb75a5832951743aa1f342540391ef,
         type: 3}
@@ -73754,6 +73754,90 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 893617476}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &894242860
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 362654736310401854, guid: 8abb84b8ecfe2b1468a067d13468bd5f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -341.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 362654736310401854, guid: 8abb84b8ecfe2b1468a067d13468bd5f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 362654736310401854, guid: 8abb84b8ecfe2b1468a067d13468bd5f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -516.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 362654736310401854, guid: 8abb84b8ecfe2b1468a067d13468bd5f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7072302
+      objectReference: {fileID: 0}
+    - target: {fileID: 362654736310401854, guid: 8abb84b8ecfe2b1468a067d13468bd5f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7069834
+      objectReference: {fileID: 0}
+    - target: {fileID: 362654736310401854, guid: 8abb84b8ecfe2b1468a067d13468bd5f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 362654736310401854, guid: 8abb84b8ecfe2b1468a067d13468bd5f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 362654736310401854, guid: 8abb84b8ecfe2b1468a067d13468bd5f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -89.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 362654736310401854, guid: 8abb84b8ecfe2b1468a067d13468bd5f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 362654736310401854, guid: 8abb84b8ecfe2b1468a067d13468bd5f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4964604870470736044, guid: 8abb84b8ecfe2b1468a067d13468bd5f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4964604870470736044, guid: 8abb84b8ecfe2b1468a067d13468bd5f,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8674140020934186434, guid: 8abb84b8ecfe2b1468a067d13468bd5f,
+        type: 3}
+      propertyPath: m_Name
+      value: Caixa
+      objectReference: {fileID: 0}
+    - target: {fileID: 8674140020934186434, guid: 8abb84b8ecfe2b1468a067d13468bd5f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7150456892836773628, guid: 8abb84b8ecfe2b1468a067d13468bd5f, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8abb84b8ecfe2b1468a067d13468bd5f, type: 3}
 --- !u!4 &895444592 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3028151734421803154, guid: ac3ea190bd7e4e047a46c1bc66d36d18,
@@ -221735,3 +221819,4 @@ SceneRoots:
   - {fileID: 1806094169}
   - {fileID: 1083973962}
   - {fileID: 1796520177}
+  - {fileID: 894242860}

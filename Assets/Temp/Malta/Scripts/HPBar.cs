@@ -125,6 +125,7 @@ public class HPBar : MonoBehaviour
         PlayerController.instance.Die();
         FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.hoffDeath, PlayerController.instance.transform.position);
         UIItems.instance.ShowBOSSHUD(false);
+        FMODAudioManager.instance.StopMenuMusic();
         StopCoroutine(InvulnableTime());
     }
     public void RespawnInvincible()
