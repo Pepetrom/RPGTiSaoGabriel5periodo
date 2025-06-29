@@ -16,15 +16,19 @@ public class PEscudoWalk : IPorquinEscudo
 
     public void OnExit()
     {
-        controller.animator.SetBool("isWalking", false);
         controller.agent.speed = 0;
         controller.agent.angularSpeed = 0;
+        controller.animator.SetBool("isWalking", false);
     }
 
     public void OnUpdate()
     {
         controller.agent.SetDestination(controller.player.transform.position);
-        if(controller.TargetDir().magnitude <= controller.meleeRange)
+        if (controller.TargetDir().magnitude <= controller.meleeRange)
+        {
+            controller.SetState(new PEscudoIdle(controller));
+        }
+        else if (controller.TargetDir().magnitude >= controller.runRange)
         {
             controller.SetState(new PEscudoIdle(controller));
         }

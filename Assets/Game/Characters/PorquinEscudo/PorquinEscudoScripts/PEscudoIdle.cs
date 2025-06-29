@@ -24,11 +24,20 @@ public class PEscudoIdle : IPorquinEscudo
         {
             if(controller.randomValue > controller.swingRate)
             {
+                controller.animator.SetBool("swing", true);
                 controller.SetState(new PEscudoSwing(controller));
             }
             else
             {
-                controller.SetState(new PEscudoAttController(controller));
+                controller.swingRate -= 10;
+                if(controller.randomValue > controller.basicAtt)
+                {
+                    controller.SetState(new PEscudoAtt2(controller));
+                }
+                else
+                {
+                    controller.SetState(new PEscudoAtt1(controller));
+                }
             }
         }
         else if(controller.TargetDir().magnitude < controller.runRange)
@@ -37,7 +46,7 @@ public class PEscudoIdle : IPorquinEscudo
         }
         else if(controller.TargetDir().magnitude < controller.patrolRange)
         {
-
+            controller.SetState(new PEscudoRunAtt(controller));
         }
         else
         {

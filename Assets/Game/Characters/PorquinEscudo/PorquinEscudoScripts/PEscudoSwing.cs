@@ -12,7 +12,7 @@ public class PEscudoSwing : IPorquinEscudo
         controller.SortNumber();
         controller.agent.speed = 2.3f;
         swingPos = controller.Swing();
-        controller.swingRate += 20;
+        controller.swingRate += 10;
     }
 
     public void OnExit()
@@ -36,8 +36,8 @@ public class PEscudoSwing : IPorquinEscudo
                 }
                 else
                 {
-                    controller.animator.SetBool("canAtt", true);
-                    controller.SetState(new PEscudoAttController(controller));
+                    controller.animator.SetBool("swing", false);
+                    controller.SetState(new PEscudoIdle(controller));
                 }
             }
             else

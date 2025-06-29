@@ -1,3 +1,4 @@
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -12,13 +13,15 @@ public class PorquinEscudoFSM : MonoBehaviour, IDamageable, IChefe
     public Animator animator;
     public NavMeshAgent agent;
     public GameObject player;
+    public GameObject hpCanvas;
     public Rigidbody rb;
     public Slider hpBar;
+    public Enemy enemy;
     [HideInInspector] public bool antecipation = false, end = false, combo = false, action = false, action2 = false, action3 = false, activate = false, hashitted = false, eventS = false, bigWall = false;
     [Header("COMBAT")]
     public Collider shield;
     public CapsuleCollider ownCollider;
-    public int randomValue,maxHP,hp, basicAtt, swingRate, moveAtt = 40;
+    public int randomValue,maxHP,hp, basicAtt, swingRate, moveAtt = 40, damage;
     public float meleeRange, runRange, patrolRange, lerpSpeed, swingRange;
     public bool isShieldIsActive = false;
     [Header("VFX")]
@@ -34,6 +37,7 @@ public class PorquinEscudoFSM : MonoBehaviour, IDamageable, IChefe
     //swing
     Vector3 velocity, lVelocity;
     float moveY, moveX, time, nextBomb;
+    public StudioEventEmitter studioEventEmitter;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -52,20 +56,17 @@ public class PorquinEscudoFSM : MonoBehaviour, IDamageable, IChefe
                 patrolPoints[i] = patrolPoint.transform;
             }
         }
-        else
-        {
-            Debug.LogError("PatrolData não foi atribuído ao inimigo!");
-        }
-        rb = GetComponent<Rigidbody>();
-        SetState(new PEscudoIdle(this));
         hp = maxHP;
         hpBar.maxValue = maxHP;
         hpBar.value = hp;
         shield.enabled = false;
+        isShieldIsActive = true;
+        SetState(new PEscudoIdle(this));
     }
     void Update()
     {
         this.state?.OnUpdate();
+        UpdateHPBar();
     }
     public void SetState(IPorquinEscudo state)
     {
@@ -205,21 +206,30 @@ public class PorquinEscudoFSM : MonoBehaviour, IDamageable, IChefe
     #endregion
     public void TakeDamage(int damage, float knockbackStrenght)
     {
-        UIItems.instance.bossCurrentHP -= damage;
-        if (UIItems.instance.bossCurrentHP <= 0)
-        {
-
-        }
         if (isShieldIsActive)
         {
+            damage = 0;
+            hp -= damage;
+            GameManager.instance.SpawnNumber((int)damage, Color.yellow, transform);
             FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.takingDamage, transform.position);
-            PlayHitEffect();
+            PlayHitEffect(hitVFX);
         }
         else
         {
+            hp -= damage;
+            GameManager.instance.SpawnNumber((int)damage, Color.yellow, transform);
             FMODAudioManager.instance.PlayOneShot(FMODAudioManager.instance.porquinBlood, transform.position);
-            PlayHitEffect();
+            PlayHitEffect(blood);
         }
+        if (hp <= 0)
+        {
+            animator.Play("Morte");
+            SetState(new PEscudoDeath(this));
+        }
+    }
+    void UpdateHPBar()
+    {
+        hpBar.value = Mathf.Lerp(hpBar.value, hp, lerpSpeed);
     }
     public void CameraShakeEscudeba()
     {
@@ -230,14 +240,19 @@ public class PorquinEscudoFSM : MonoBehaviour, IDamageable, IChefe
     {
         FMODAudioManager.instance.PlaySoundAttached(path);
     }
-    public void PlayHitEffect()
+    public void PlayHitEffect(VisualEffect hitvfx)
     {
         Vector3 directionToPlayer = PlayerController.instance.transform.position - transform.position;
         Vector3 vfxDir = directionToPlayer.normalized;
         Quaternion vfxRotation = Quaternion.LookRotation(vfxDir);
-        VisualEffect hitVFXinstance = Instantiate(hitVFX, hitPos.position, Quaternion.identity);
+        VisualEffect hitVFXinstance = Instantiate(hitvfx, hitPos.position, Quaternion.identity);
         hitVFXinstance.transform.rotation = vfxRotation;
         hitVFXinstance.Play();
         hitVFXinstance.transform.SetParent(null);
+    }
+    public void DestroyPorquin(StudioEventEmitter porquin, GameObject hpCanvas)
+    {
+        Destroy(porquin);
+        Destroy(hpCanvas);
     }
 }

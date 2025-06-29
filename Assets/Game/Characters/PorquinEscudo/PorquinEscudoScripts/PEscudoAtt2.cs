@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PEscudoAtt1 : IPorquinEscudo
+public class PEscudoAtt2 : IPorquinEscudo
 {
     PorquinEscudoFSM controller;
-    public PEscudoAtt1(PorquinEscudoFSM controller) {  this.controller = controller; }
+    public PEscudoAtt2(PorquinEscudoFSM controller) { this.controller = controller; }
 
     public void OnEnter()
     {
-        controller.animator.SetTrigger("att1");
-        controller.basicAtt -= 10;
-        controller.damage = 10;
+        controller.animator.SetTrigger("att2");
+        controller.basicAtt += 15;
+        controller.damage = 25;
         controller.isShieldIsActive = false;
     }
 
@@ -28,7 +28,7 @@ public class PEscudoAtt1 : IPorquinEscudo
     {
         if (!controller.antecipation)
             controller.RotateTowardsPlayer(4);
-        if(controller.activate)
+        if (controller.activate)
             controller.shield.enabled = true;
         else
             controller.shield.enabled = false;

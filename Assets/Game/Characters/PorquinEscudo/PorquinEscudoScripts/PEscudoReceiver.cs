@@ -21,6 +21,14 @@ public class PEscudoReceiver : MonoBehaviour
     {
         porquin.End();
     }
+    public void Action()
+    {
+        porquin.Action();
+    }
+    public void StopAction()
+    {
+        porquin.StopAction();
+    }
     public void PlaySoundAttached(string path)
     {
         FMODAudioManager.instance.PlaySoundAttached(path);
