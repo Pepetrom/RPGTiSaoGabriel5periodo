@@ -94848,10 +94848,6 @@ MonoBehaviour:
       type: 3}
     enemyName: turtle
     patrolDatas: {fileID: 11400000, guid: 3bbb276b9abf9f645808a6959421d8a8, type: 2}
-  - enemyPrefab: {fileID: 8218241343359350336, guid: fb7703ad1f20e4d428ecc918412a433e,
-      type: 3}
-    enemyName: porquinEscudo
-    patrolDatas: {fileID: 11400000, guid: c18a05665f519e14e8460f729b22d6a4, type: 2}
 --- !u!4 &1223273491
 Transform:
   m_ObjectHideFlags: 0
@@ -212112,7 +212108,7 @@ PrefabInstance:
     - target: {fileID: 6113282216535863579, guid: cdbc667056939fc40a544971814ce155,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -83.48419
+      value: -83.51
       objectReference: {fileID: 0}
     - target: {fileID: 6113282216535863579, guid: cdbc667056939fc40a544971814ce155,
         type: 3}
@@ -212153,6 +212149,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7056030570246646049, guid: cdbc667056939fc40a544971814ce155,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.0493278
+      objectReference: {fileID: 0}
+    - target: {fileID: 7056030570246646049, guid: cdbc667056939fc40a544971814ce155,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.14992413
+      objectReference: {fileID: 0}
+    - target: {fileID: 7056030570246646049, guid: cdbc667056939fc40a544971814ce155,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 0.0035046942
+      objectReference: {fileID: 0}
+    - target: {fileID: 7056030570246646049, guid: cdbc667056939fc40a544971814ce155,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0.0029671246
+      objectReference: {fileID: 0}
+    - target: {fileID: 7056030570246646049, guid: cdbc667056939fc40a544971814ce155,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -0.0064973375
+      objectReference: {fileID: 0}
+    - target: {fileID: 7056030570246646049, guid: cdbc667056939fc40a544971814ce155,
+        type: 3}
+      propertyPath: m_Center.z
+      value: -0.002367525
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
