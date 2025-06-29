@@ -55,6 +55,7 @@ public class KrokodilFSM : MonoBehaviour, IDamageable, IChefe
         clawCollider.enabled = false; gunCollider.enabled = false; footCollider.enabled = false; twoHandedCollider.enabled = false; mouthCollider.enabled = false;
         posture = maxPosture;
         canDash = true;
+        FMODAudioManager.instance.PlayMenuMusic(FMODAudioManager.instance.kroSong);
     }
     void Update()
     {

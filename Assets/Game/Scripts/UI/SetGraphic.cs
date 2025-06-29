@@ -29,10 +29,10 @@ public class SetGraphic : MonoBehaviour
 
     private void Start()
     {
+        loadQuality();
         SetupQualityDropdown();
         SetupScreenModeDropdown();
         SetupResolutionDropdown();
-        loadQuality();
         if (!postExposureSlider || !postProcessVolume) return;
         SetupPostProcessSlider();
         loadExposure();

@@ -6,6 +6,6 @@ public class PlayMenuSong : MonoBehaviour
 {
     void Start()
     {
-        FMODAudioManager.instance.PlayMenuMusic();
+        FMODAudioManager.instance.PlayMenuMusic(FMODAudioManager.instance.menuSong);
     }
 }

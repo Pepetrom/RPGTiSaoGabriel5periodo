@@ -9,7 +9,7 @@ public class YellowRune : MonoBehaviour, IRune
     public void ProjectileHitEffect(Collider other)
     {
         // for each enemy hit, adds a little bit flat damage to the next atack
-        other.GetComponent<IDamageable>().TakeDamage((int)(PlayerController.instance.baseDamage * (2f + PlayerController.instance.constitution * 0.2f)), 0);
+        other.GetComponent<IDamageable>().TakeDamage((int)(PlayerController.instance.baseDamage * (PlayerController.instance.constitution/3)), 0);
         PlayerController.instance.damageAdd += PlayerController.instance.constitution * 1.5f;
     }
     public void AtackCriticalEffect1()

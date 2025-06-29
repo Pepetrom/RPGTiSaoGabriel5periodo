@@ -2,10 +2,11 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="MixerGroup" id="{d282fa1c-12d5-46cc-a98c-806131d292bd}">
 		<property name="name">
-			<value>VFX</value>
+			<value>SFX</value>
 		</property>
 		<relationship name="masters">
 			<destination>{0311ecfc-ec29-4128-95b6-d1953507a2b4}</destination>
+			<destination>{72f536d0-0cb2-48d9-bd9f-bd9ecb0c12a6}</destination>
 		</relationship>
 		<relationship name="effectChain">
 			<destination>{2a2e6f30-b52e-4ae9-962d-4c15665aa08b}</destination>

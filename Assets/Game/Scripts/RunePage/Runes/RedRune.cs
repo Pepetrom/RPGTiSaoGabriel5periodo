@@ -12,7 +12,7 @@ public class RedRune : MonoBehaviour,IRune
     {
         //adds a chance to regain one cheese for each enemy hit with the skill
         Debug.Log("deiDano");
-        other.GetComponent<IDamageable>().TakeDamage((int)(PlayerController.instance.baseDamage * (2f + PlayerController.instance.strength * 0.2f)), 0);
+        other.GetComponent<IDamageable>().TakeDamage((int)(PlayerController.instance.baseDamage * 0.2f), 0);
         random = Random.Range(0, 20);
         if(random == 1)
         {
@@ -48,6 +48,6 @@ public class RedRune : MonoBehaviour,IRune
     public void HitEffect()
     {
         //aumenta seu dano no próximo hit
-        PlayerController.instance.damageAdd += PlayerController.instance.strength * 1.5f;
+        PlayerController.instance.damageAdd += PlayerController.instance.strength * 2f;
     }
 }

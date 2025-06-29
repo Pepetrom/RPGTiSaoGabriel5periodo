@@ -25,8 +25,6 @@ public class PEscudoRunAtt : IPorquinEscudo
         controller.end = false;
         controller.action = false;
         controller.isShieldIsActive = true;
-        controller.agent.speed = 0;
-        controller.agent.angularSpeed = 0;
         controller.hashitted = false;
     }
 
@@ -34,11 +32,16 @@ public class PEscudoRunAtt : IPorquinEscudo
     {
         if (!controller.antecipation)
             controller.agent.SetDestination(controller.player.transform.position);
+        else
+        {
+            controller.agent.speed = 0;
+            controller.agent.angularSpeed = 0;
+        }
         if (controller.activate)
             controller.shield.enabled = true;
         else
             controller.shield.enabled = false;
-        if (controller.action)
+        if (controller.action) 
             controller.RotateTowardsPlayer(6);
         if (controller.end)
             controller.SetState(new PEscudoIdle(controller));

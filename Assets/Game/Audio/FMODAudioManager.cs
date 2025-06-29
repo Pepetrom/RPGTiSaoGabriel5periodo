@@ -46,6 +46,7 @@ public class FMODAudioManager : MonoBehaviour
 
     [Header("Músicas")]
     public EventReference menuSong;
+    public EventReference kroSong;
     private EventInstance menuSongInstance;
 
 
@@ -79,9 +80,9 @@ public class FMODAudioManager : MonoBehaviour
     {
         RuntimeManager.PlayOneShotAttached(path, gameObject);
     }
-    public void PlayMenuMusic()
+    public void PlayMenuMusic(EventReference song)
     {
-        menuSongInstance = RuntimeManager.CreateInstance(menuSong);
+        menuSongInstance = RuntimeManager.CreateInstance(song);
         menuSongInstance.start();
     }
     public void StopMenuMusic()

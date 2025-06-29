@@ -24,6 +24,7 @@ public class KroDeath : IKrokodil
     {
         if (controller.end)
         {
+            FMODAudioManager.instance.StopMenuMusic();
             BossManager.instance.KrokodilSetUp(false);
             GameManager.instance.Score(5000);
             controller.DestroyBoss(controller.gameObject);

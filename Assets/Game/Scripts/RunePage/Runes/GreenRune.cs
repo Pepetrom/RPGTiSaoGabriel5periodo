@@ -10,7 +10,7 @@ public class GreenRune : MonoBehaviour,IRune
     public void ProjectileHitEffect(Collider other)
     {
         //for each hit enemy adds a little multiplier to the next hit
-        other.GetComponent<IDamageable>().TakeDamage((int)(PlayerController.instance.baseDamage * (2f + PlayerController.instance.agility * 0.2f)), 0);
+        other.GetComponent<IDamageable>().TakeDamage((int)(PlayerController.instance.baseDamage * (PlayerController.instance.agility/6)), 0);
         PlayerController.instance.damageMultiplier += (0.1f * (PlayerController.instance.agility));
     }
     public void AtackCriticalEffect1()

@@ -20,6 +20,7 @@ public class CrabDash : ICrabInterface
             return;
         }
         controller.rb.isKinematic = true;
+        controller.ownCollider.enabled = false;
     }
 
     public void OnExit()
@@ -33,6 +34,7 @@ public class CrabDash : ICrabInterface
             controller.maxDash -= 30;
             count = 0;
         }
+        controller.ownCollider.enabled = true;
 
     }
 
