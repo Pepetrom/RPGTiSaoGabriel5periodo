@@ -38,8 +38,9 @@ public class GameManager : MonoBehaviour
         tutorial = false;
         skillPoints = SaveLoad.instance.saveData.player.skillPoints;
         UIItems.instance.UpdateScoreQUI(skillPoints);
-        if (!spawnEnemies) return;
-        enemySpawner.AllEnemies();
+        LittleReminder.instance.littleReminder((spawnEnemies ? "existe" : "nonExiste"));
+        //if (!spawnEnemies) return;
+        //enemySpawner.AllEnemies();
         BossManager.instance.CheckIfBossWasKilled();
     }
     public void Pause()
@@ -149,6 +150,7 @@ public class GameManager : MonoBehaviour
     {
         Estus.instance.ResetEstus();
         HPBar.instance.ResetBar();
+        enemySpawner.DestroyAllEnemies();
         enemySpawner.AllEnemies();
         Bonfire(false);
         UIItems.instance.deathAnimationIsOver = false;

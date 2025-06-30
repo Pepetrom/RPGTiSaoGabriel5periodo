@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -13,6 +11,10 @@ public class EnemySpawner : MonoBehaviour
 {
     public static EnemySpawner instance;
     public EnemiesInfo[] enemiesInfo;
+    private void Start()
+    {
+        AllEnemies();
+    }
     void SpawnEnemy(PatrolData patrolData, GameObject enemyPrefabs, string name, PatrolData rotation)
     {
         if (patrolData != null)
@@ -35,7 +37,7 @@ public class EnemySpawner : MonoBehaviour
             }
         }
     }
-    void DestroyAllEnemies()
+    public void DestroyAllEnemies()
     {
         Enemy[] enemies = FindObjectsOfType<Enemy>();
         foreach (Enemy enemy in enemies)
@@ -45,7 +47,7 @@ public class EnemySpawner : MonoBehaviour
     }
     public void AllEnemies()
     {
-        DestroyAllEnemies();
+        //DestroyAllEnemies();
         foreach(EnemiesInfo info in enemiesInfo)
         {
             SpawnEnemy(info.patrolDatas, info.enemyPrefab, info.enemyName, info.patrolDatas);
