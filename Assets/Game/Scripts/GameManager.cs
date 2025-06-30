@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        FMODAudioManager.instance.StopMenuMusic();
         tutorial = false;
         skillPoints = SaveLoad.instance.saveData.player.skillPoints;
         UIItems.instance.UpdateScoreQUI(skillPoints);
@@ -48,6 +49,7 @@ public class GameManager : MonoBehaviour
     public void UnPause()
     {
         Time.timeScale = 1;
+        PlayerController.instance.ResetAllActions();
     }
     public void SpawnNumber(int damageNumber, Color color, Transform targetLocation)
     {
