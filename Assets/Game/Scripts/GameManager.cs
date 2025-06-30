@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        FMODAudioManager.instance.StopMenuMusic();
         tutorial = false;
         skillPoints = SaveLoad.instance.saveData.player.skillPoints;
         UIItems.instance.UpdateScoreQUI(skillPoints);

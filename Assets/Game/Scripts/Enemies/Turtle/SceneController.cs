@@ -68,13 +68,13 @@ public class SceneController : MonoBehaviour
         if (pause.activeSelf)
         {
             pause.SetActive(false);
-            PlayerController.instance.ResetAllActions();
+            //PlayerController.instance.ResetAllActions();
             GameManager.instance.UnPause();
         }
         else if (!naoPause)
         {
             pause.SetActive(true);
-            PlayerController.instance.StopAllActions();
+            //PlayerController.instance.StopAllActions();
             GameManager.instance.Pause();
         }
     }
